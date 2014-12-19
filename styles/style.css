@@ -1,0 +1,36 @@
+body {
+    background: #eee;
+    font-family: arial;
+}
+
+.fade-enter {
+  opacity: 0.01;
+  transition: opacity .9s ease-in;
+}
+
+.fade-enter.fade-enter-active {
+  opacity: 1;
+}
+
+.fade-leave {
+    opacity: 1;
+    transition: opacity .3s ease-in;
+}
+
+.fade-leave.fade-leave-active {
+    opacity: 0.01;
+}
+
+.menubutton {
+    background: #333;
+    color: #eee;
+    width: 10%;
+    padding: 0.5rem;
+    margin: 0.3rem;
+}
+
+.menubutton:hover {
+    background: #777;
+    cursor: hand;
+}
+
