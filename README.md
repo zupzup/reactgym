@@ -3,7 +3,12 @@ reactgym
 
 simple app for trying out react
 
+#Setup:
+* npm install
+* npm start (starts a webpack server on localhost:3000)
+* npm tests (runs jest tests)
 
+#Structure:
 simple menu on top with
 * exercises
     * name
@@ -11,7 +16,7 @@ simple menu on top with
 * trainings
     * list of exercises, field for reps (number), field for weight (number), counter starts when 'save' is pressed
 
-TODOS:
+#TODOS:
 * slide-menu
 * nice sliding view-transitions
 * back-handling
