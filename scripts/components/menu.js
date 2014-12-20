@@ -8,27 +8,13 @@ var Menu = React.createClass({
     mixins: [Navigation],
 
     getInitialState() {
-        return {
-            menuPoints: [
-                {
-                    name: 'Home',
-                    link: 'home'
-                },
-                {
-                    name: 'Exercises',
-                    link: 'exercises'
-                },
-                {
-                    name: 'Workouts',
-                    link: 'exercises'
-                }
-            ]
-        };
+        return {};
     },
 
     render() {
         var self = this,
-            menuPoints = this.state.menuPoints.map(function(item) {
+            open = this.props.open ? 'open' : 'closed',
+            menuPoints = this.props.items.map(function(item) {
             var handlerFunc = function() {
                 self.transitionTo(item.link);
             };
@@ -36,7 +22,7 @@ var Menu = React.createClass({
         });
 
         return (
-            <div className='Menu'>
+            <div className={"menu " + open}>
                 {menuPoints}
             </div>
         );

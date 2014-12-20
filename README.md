@@ -17,10 +17,13 @@ simple menu on top with
     * list of exercises, field for reps (number), field for weight (number), counter starts when 'save' is pressed
 
 #TODOS:
-* slide-menu
 * nice sliding view-transitions
-* back-handling
 * fake-crud for exercises
 * fake crud for workouts
 * trainings
+* sass / compass instead of style.css :)
 * persistence in localstorage
+
+#DONE:
+* slide-menu [x]
+* basic back-handling [x]

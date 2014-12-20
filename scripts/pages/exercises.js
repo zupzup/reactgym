@@ -25,7 +25,7 @@ var Exercises = React.createClass({
         });
 
         return (
-            <div className='Exercises'>
+            <div className='exercises'>
                 {exercises}
             </div>
         );

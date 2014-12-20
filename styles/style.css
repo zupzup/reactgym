@@ -1,6 +1,7 @@
 body {
     background: #eee;
     font-family: arial;
+    margin: 0;
 }
 
 .fade-enter {
@@ -24,9 +25,8 @@ body {
 .menubutton {
     background: #333;
     color: #eee;
-    width: 10%;
     padding: 0.5rem;
-    margin: 0.3rem;
+    margin: 0.1rem;
 }
 
 .menubutton:hover {
@@ -34,3 +34,36 @@ body {
     cursor: hand;
 }
 
+.header span {
+    background: #888;
+    color: #eee;
+    padding: 0.25rem;
+    margin: 0.1rem;
+}
+
+.header span:hover {
+    background: #777;
+    cursor: hand;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    background: lightskyblue;
+    line-height: 2rem;
+}
+
+.menu {
+    width: 40%;
+    background: #eee;
+    display: inline-block;
+}
+
+.menu.closed {
+    display: none;
+}
+
+.contentArea {
+    display: inline-block;
+    position: relative;
+}
