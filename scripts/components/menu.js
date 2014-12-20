@@ -13,16 +13,16 @@ var Menu = React.createClass({
 
     render() {
         var self = this,
-            open = this.props.open ? 'open' : 'closed',
             menuPoints = this.props.items.map(function(item) {
             var handlerFunc = function() {
+                self.props.closeHandler();
                 self.transitionTo(item.link);
             };
             return <MenuButton name={item.name} handler={handlerFunc}></MenuButton>;
         });
 
         return (
-            <div className={"menu " + open}>
+            <div className="menu">
                 {menuPoints}
             </div>
         );

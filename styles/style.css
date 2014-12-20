@@ -6,7 +6,7 @@ body {
 
 .fade-enter {
   opacity: 0.01;
-  transition: opacity .9s ease-in;
+  transition: opacity .3s ease-in;
 }
 
 .fade-enter.fade-enter-active {
@@ -47,23 +47,35 @@ body {
 }
 
 .header {
-    position: fixed;
     top: 0;
     background: lightskyblue;
     line-height: 2rem;
 }
 
 .menu {
-    width: 40%;
-    background: #eee;
-    display: inline-block;
-}
-
-.menu.closed {
-    display: none;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
 }
 
 .contentArea {
-    display: inline-block;
+    min-height: 100%;
+    min-width: 100%;
+    background-color: white; 
     position: relative;
+    top: 0;
+    bottom: 100%;
+    left: 0;
+    z-index: 1;
+    transition: left 0.5s;
 }
+
+.contentArea.open {
+    left: 30%;
+}
+

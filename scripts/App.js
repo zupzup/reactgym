@@ -27,7 +27,7 @@ var App = React.createClass({
                     link: 'exercises'
                 }
             ],
-            menuOpen: true
+            menuOpen: false
         };
     },
 
@@ -38,13 +38,21 @@ var App = React.createClass({
         });
     },
 
+    closeMenu() {
+        this.setState({
+            menuPoints: this.state.menuPoints,
+            menuOpen: false
+        });
+    },
+
     render() {
-        var name = this.getRoutes().reverse()[0].name;
+        var name = this.getRoutes().reverse()[0].name,
+            open = this.state.menuOpen ? 'open' : '';
         return (
             <DocumentTitle title='Simple Gym 3.0'>
                 <div className='App'>
-                    <Menu open={this.state.menuOpen} items={this.state.menuPoints}/>
-                    <div className='contentArea'> 
+                    <Menu closeHandler={this.closeMenu} items={this.state.menuPoints}/>
+                    <div className={'contentArea ' + open}>
                         <Header menuHandler={this.toggleMenu} />
                         <ReactCSSTransitionGroup component="div" transitionName="fade">
                             <RouteHandler key={name} />
