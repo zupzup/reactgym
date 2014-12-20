@@ -4,22 +4,40 @@ body {
     margin: 0;
 }
 
-.fade-enter {
-  opacity: 0.01;
-  transition: opacity .3s ease-in;
+.slide-enter {
+    left: -100%;
+    transition: left .3s ease-in;
 }
 
-.fade-enter.fade-enter-active {
-  opacity: 1;
+.slide-enter.slide-enter-active {
+    left: 0;
 }
 
-.fade-leave {
-    opacity: 1;
-    transition: opacity .3s ease-in;
+.slide-leave {
+    left: 0;
+    transition: left .3s ease-in;
 }
 
-.fade-leave.fade-leave-active {
-    opacity: 0.01;
+.slide-leave.slide-leave-active {
+    left: 100%;
+}
+
+.slideBack-enter {
+    right: -100%;
+    transition: right .3s ease-in;
+}
+
+.slideBack-enter.slideBack-enter-active {
+    right: 0;
+}
+
+.slideBack-leave {
+    right: 0;
+    transition: right .3s ease-in;
+}
+
+.slideBack-leave.slideBack-leave-active {
+    right: 100%;
 }
 
 .menubutton {
@@ -76,6 +94,14 @@ body {
 }
 
 .contentArea.open {
-    left: 30%;
+    left: 35%;
 }
 
+.content div {
+    width: 100%;
+    position: absolute;
+}
+
+.back.hide {
+    display: none;
+}

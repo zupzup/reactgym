@@ -5,11 +5,13 @@ var React = require('react'),
     Router = require('react-router'),
     Route = Router.Route,
     Exercises = require('./pages/exercises'),
+    Workouts = require('./pages/workouts'),
     App = require('./App');
 
 var routes = (
     <Route name='home' path='/' handler={App}>
       <Route name='exercises' path='/exercises' handler={Exercises} />
+      <Route name='workouts' path='/workouts' handler={Workouts} />
     </Route>
 );
 

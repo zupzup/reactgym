@@ -6,10 +6,12 @@ var React = require('react/addons'),
     Router = require('react-router'),
     ReactCSSTransitionGroup = React.addons.CSSTransitionGroup,
     DocumentTitle = require('react-document-title'),
-    RouteHandler = Router.RouteHandler;
+    RouteHandler = Router.RouteHandler,
+    Navigation = Router.Navigation;
 
 var App = React.createClass({
-    mixins: [Router.State],
+    mixins: [Router.State, Navigation],
+    nextTransition: null,
 
     getInitialState() {
         return {
@@ -24,7 +26,7 @@ var App = React.createClass({
                 },
                 {
                     name: 'Workouts',
-                    link: 'exercises'
+                    link: 'workouts'
                 }
             ],
             menuOpen: false
@@ -38,6 +40,12 @@ var App = React.createClass({
         });
     },
 
+    getTransition(nextTransition) {
+        var transition = nextTransition ? nextTransition : 'slide';
+        this.nextTransition = null;
+        return transition;
+    },
+
     closeMenu() {
         this.setState({
             menuPoints: this.state.menuPoints,
@@ -45,16 +53,22 @@ var App = React.createClass({
         });
     },
 
+    back() {
+        this.nextTransition = 'slideBack';
+        this.goBack();
+    },
+
     render() {
         var name = this.getRoutes().reverse()[0].name,
+            transition = this.getTransition(this.nextTransition),
             open = this.state.menuOpen ? 'open' : '';
         return (
             <DocumentTitle title='Simple Gym 3.0'>
                 <div className='App'>
                     <Menu closeHandler={this.closeMenu} items={this.state.menuPoints}/>
                     <div className={'contentArea ' + open}>
-                        <Header menuHandler={this.toggleMenu} />
-                        <ReactCSSTransitionGroup component="div" transitionName="fade">
+                        <Header menuHandler={this.toggleMenu} backHandler={this.back} />
+                        <ReactCSSTransitionGroup className='content' component="div" transitionName={transition}>
                             <RouteHandler key={name} />
                         </ReactCSSTransitionGroup>
                     </div>

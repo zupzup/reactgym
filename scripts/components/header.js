@@ -1,25 +1,18 @@
 'use strict';
 
 var React = require('react'),
-    Menu = require('../components/menu'),
-    { Navigation } = require('react-router');
+    Menu = require('../components/menu');
 
 var Header = React.createClass({
-    mixins: [Navigation],
 
     render() {
+        var showBack = history.state != null ? '' : 'hide';
         return (
             <div className='header'>
-                <span onClick={this.back}>back</span>
+                <span className={"back " + showBack} onClick={this.props.backHandler}>back</span>
                 <span onClick={this.props.menuHandler}>menu</span>
             </div>
         );
-    },
-
-    back() {
-        if(history.state != null) {
-            this.goBack();
-        }
     }
 });
 

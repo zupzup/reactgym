@@ -10,9 +10,11 @@ var Exercises = React.createClass({
         return {
             exercises: [
                 {
+                    id: 1,
                     name: 'T-Bar-Rows'
                 },
                 {
+                    id: 2,
                     name: 'Hammercurls'
                 }
             ]

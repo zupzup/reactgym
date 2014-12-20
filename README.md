@@ -17,7 +17,6 @@ simple menu on top with
     * list of exercises, field for reps (number), field for weight (number), counter starts when 'save' is pressed
 
 #TODOS:
-* nice sliding view-transitions
 * fake-crud for exercises
 * fake crud for workouts
 * trainings
@@ -27,3 +26,5 @@ simple menu on top with
 #DONE:
 * slide-menu [x]
 * basic back-handling [x]
+* nice sliding view-transitions [x]
+* different animation for back [x]
