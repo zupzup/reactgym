@@ -17,12 +17,15 @@ simple menu on top with
     * list of exercises, field for reps (number), field for weight (number), counter starts when 'save' is pressed
 
 #TODOS:
-* mask for menu when it's open
-* back-handling for '/', cleaner way to register back animation
-    * refactor to flux? AppStateStore maybe?
+* refactor to flux
+    * AppStateStore
+        * nextTransition
+    * MenuStore, menupoints + open state
 * fake-crud for exercises
 * fake crud for workouts
 * trainings
+* Test Setup for jest (https://facebook.github.io/jest/docs/tutorial-react.html#content)
+* Some Proof of Concept-Tests with jest
 * sass / compass instead of style.css :)
 * persistence in localstorage
 
@@ -32,3 +35,4 @@ simple menu on top with
 * nice sliding view-transitions [x]
 * different animation for back [x]
 * back-handling for '/' [x]
+* mask for menu when it's open [x]

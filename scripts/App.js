@@ -67,12 +67,17 @@ var App = React.createClass({
 
     render() {
         var name = this.getRoutes().reverse()[0].name,
-            open = this.state.menuOpen ? 'open' : ''; //TODO: move to store
+            menuOpen = this.state.menuOpen ? 'open' : '', //TODO: move to store
+            contentHandler = null;
+
+        if(menuOpen) {
+            contentHandler = this.closeMenu; 
+        }
         return (
             <DocumentTitle title='Simple Gym 3.0'>
                 <div className='App'>
                     <Menu closeHandler={this.closeMenu} items={this.state.menuPoints}/>
-                    <div className={'contentArea ' + open}>
+                    <div className={'contentArea ' + menuOpen} onClick={contentHandler}>
                         <Header menuHandler={this.toggleMenu} backHandler={this.back} />
                         <ReactCSSTransitionGroup className='content' component="div" transitionName={this.state.nextTransition}>
                             <RouteHandler key={name} />
