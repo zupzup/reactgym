@@ -17,6 +17,9 @@ simple menu on top with
     * list of exercises, field for reps (number), field for weight (number), counter starts when 'save' is pressed
 
 #TODOS:
+* mask for menu when it's open
+* back-handling for '/', cleaner way to register back animation
+    * refactor to flux? AppStateStore maybe?
 * fake-crud for exercises
 * fake crud for workouts
 * trainings
@@ -28,3 +31,4 @@ simple menu on top with
 * basic back-handling [x]
 * nice sliding view-transitions [x]
 * different animation for back [x]
+* back-handling for '/' [x]

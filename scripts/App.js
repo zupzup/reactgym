@@ -29,46 +29,52 @@ var App = React.createClass({
                     link: 'workouts'
                 }
             ],
-            menuOpen: false
+            menuOpen: false,
+            nextTransition: 'slide'
         };
     },
 
     toggleMenu() {
         this.setState({
-            menuPoints: this.state.menuPoints,
-            menuOpen: !this.state.menuOpen
+            menuOpen: !this.state.menuOpen,
         });
     },
 
-    getTransition(nextTransition) {
-        var transition = nextTransition ? nextTransition : 'slide';
-        this.nextTransition = null;
-        return transition;
+    shouldComponentUpdate(nextProps, nextState) {
+        return !(this.state.nextTransition !== nextState.nextTransition && nextState.nextTransition === 'slide');
     },
 
     closeMenu() {
         this.setState({
-            menuPoints: this.state.menuPoints,
-            menuOpen: false
+            menuOpen: false,
         });
     },
 
     back() {
-        this.nextTransition = 'slideBack';
-        this.goBack();
+        this.setState({
+            nextTransition: 'slideBack'
+        });
+        if(history.state != null) {
+            this.goBack();
+        } else {
+            this.transitionTo('/');
+        }
+        // reset transition
+        this.setState({
+            nextTransition: 'slide'
+        });
     },
 
     render() {
         var name = this.getRoutes().reverse()[0].name,
-            transition = this.getTransition(this.nextTransition),
-            open = this.state.menuOpen ? 'open' : '';
+            open = this.state.menuOpen ? 'open' : ''; //TODO: move to store
         return (
             <DocumentTitle title='Simple Gym 3.0'>
                 <div className='App'>
                     <Menu closeHandler={this.closeMenu} items={this.state.menuPoints}/>
                     <div className={'contentArea ' + open}>
                         <Header menuHandler={this.toggleMenu} backHandler={this.back} />
-                        <ReactCSSTransitionGroup className='content' component="div" transitionName={transition}>
+                        <ReactCSSTransitionGroup className='content' component="div" transitionName={this.state.nextTransition}>
                             <RouteHandler key={name} />
                         </ReactCSSTransitionGroup>
                     </div>
