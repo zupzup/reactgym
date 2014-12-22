@@ -3,7 +3,6 @@ var Dispatcher = require('flux').Dispatcher,
     assign = require('object-assign'),
     AppDispatcher = assign(new Dispatcher(), {
         handleViewAction: function(action) {
-            console.log('view-action: ' + action);
             var payload = {
                 source: PayloadSources.VIEW_ACTION,
                 action: action

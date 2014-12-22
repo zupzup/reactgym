@@ -5,7 +5,7 @@ var React = require('react/addons'),
     Menu = require('./components/Menu'),
     Router = require('react-router'),
     AppState = require('./stores/AppState'),
-    AppStateAcitonCreators = require('./actions/AppStateActionCreators'),
+    AppStateActionCreators = require('./actions/AppStateActionCreators'),
     ReactCSSTransitionGroup = React.addons.CSSTransitionGroup,
     DocumentTitle = require('react-document-title'),
     RouteHandler = Router.RouteHandler,
@@ -16,49 +16,36 @@ var App = React.createClass({
     nextTransition: null,
 
     getInitialState() {
-        return {
-            menuOpen: false,
-            nextTransition: 'slide'
-        };
-    },
-
-    toggleMenu() {
-        this.setState({
-            menuOpen: !this.state.menuOpen,
-        });
-    },
-
-    closeMenu() {
-        this.setState({
-            menuOpen: false,
-        });
+        return this.getStateFromStores();
     },
 
     back() {
-        AppStateAcitonCreators.setNextTransition('slideBack');
+        AppStateActionCreators.setNextTransition('slideBack');
         if(history.state != null) {
             this.goBack();
         } else {
             this.transitionTo('/');
         }
-        AppStateAcitonCreators.resetTransitions();
+        AppStateActionCreators.resetTransitions();
+    },
+
+    contentHandler() {
+        if(this.state.menuOpen) {
+            AppStateActionCreators.closeMenu();
+        }
     },
 
     render() {
         var name = this.getRoutes().reverse()[0].name,
-            menuOpen = this.state.menuOpen ? 'open' : '', //TODO: move to store
-            contentHandler = null;
+            menuOpen = this.state.menuOpen ? 'open' : '';
 
-        if(menuOpen) {
-            contentHandler = this.closeMenu; 
-        }
         return (
             <DocumentTitle title='Simple Gym 3.0'>
                 <div className='App'>
-                    <Menu closeHandler={this.closeMenu} />
-                    <div className={'contentArea ' + menuOpen} onClick={contentHandler}>
-                        <Header menuHandler={this.toggleMenu} backHandler={this.back} />
-                        <ReactCSSTransitionGroup className='content' component="div" transitionName={this.state.nextTransition}>
+                    <Menu />
+                    <div className={'contentArea ' + menuOpen} onClick={this.contentHandler}>
+                        <Header backHandler={this.back} />
+                        <ReactCSSTransitionGroup className='content' component="div" transitionName={AppState.getNextTransition()}>
                             <RouteHandler key={name} />
                         </ReactCSSTransitionGroup>
                     </div>
@@ -68,9 +55,7 @@ var App = React.createClass({
     },
 
     getStateFromStores() {
-        return {
-            nextTransition: AppState.getNextTransition()
-        };
+        return AppState.getAll();
     },
 
     componentDidMount() {
@@ -82,7 +67,7 @@ var App = React.createClass({
     },
 
     _onChange() {
-        this.setState(getStateFromStores());
+        this.setState(this.getStateFromStores());
     },
 
     shouldComponentUpdate(nextProps, nextState) {

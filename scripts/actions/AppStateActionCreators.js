@@ -17,5 +17,17 @@ module.exports = {
             type: ActionTypes.RESET_TRANSITION,
             animation: 'slide'
         });
+    },
+
+    toggleMenu: function() {
+        AppDispatcher.handleViewAction({
+            type: ActionTypes.TOGGLE_MENU
+        });
+    },
+
+    closeMenu: function() {
+        AppDispatcher.handleViewAction({
+            type: ActionTypes.CLOSE_MENU
+        });
     }
 };

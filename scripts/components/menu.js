@@ -2,11 +2,12 @@
 
 var React = require('react'),
     MenuButton = require('../components/MenuButton'),
+    AppStateActionCreators = require('../actions/AppStateActionCreators'),
     { Navigation } = require('react-router');
 
 var Menu = React.createClass({
     mixins: [Navigation],
-    
+
     getInitialState() {
         return {
             menuPoints: [
@@ -30,7 +31,7 @@ var Menu = React.createClass({
         var self = this,
             menuPoints = this.state.menuPoints.map(function(item) {
             var handlerFunc = function() {
-                self.props.closeHandler();
+                AppStateActionCreators.closeMenu();
                 self.transitionTo(item.link);
             };
             return <MenuButton name={item.name} handler={handlerFunc}></MenuButton>;

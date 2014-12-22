@@ -6,13 +6,10 @@ var react = require('react'),
     ActionTypes = require('../constants/ActionTypes'),
     assign = require('object-assign'),
     CHANGE_EVENT = 'change',
-    _nextTransition = null;
+    _nextTransition = 'slide',
+    _menuOpen = false;
 
 var AppState = assign({}, EventEmitter.prototype, {
-
-    init: function() {
-        _nextTransition = 'slide';
-    },
 
     emitChange: function() {
         this.emit(CHANGE_EVENT);
@@ -27,7 +24,18 @@ var AppState = assign({}, EventEmitter.prototype, {
     },
 
     getNextTransition: function() {
-        return this._nextTransition;
+        return _nextTransition;
+    },
+
+    getMenuOpen: function() {
+        return _menuOpen;
+    },
+
+    getAll: function() {
+        return {
+            nextTransition: _nextTransition,
+            menuOpen: _menuOpen
+        };
     }
 
 });
@@ -35,7 +43,7 @@ var AppState = assign({}, EventEmitter.prototype, {
 AppState.dispatchToken = AppDispatcher.register(function(payload) {
     var action = payload.action;
 
-    switch(action) {
+    switch(action.type) {
         case ActionTypes.SET_NEXT_TRANSITION:
            _nextTransition = payload.animation;
            AppState.emitChange();
@@ -44,7 +52,15 @@ AppState.dispatchToken = AppDispatcher.register(function(payload) {
            _nextTransition = 'slide';
            AppState.emitChange();
            break;
-        default: //do nothing 
+        case ActionTypes.TOGGLE_MENU:
+            _menuOpen = !_menuOpen;
+            AppState.emitChange();
+            break;
+        case ActionTypes.CLOSE_MENU:
+            _menuOpen = false;
+            AppState.emitChange();
+            break;
+        default:
     }
 });
 
