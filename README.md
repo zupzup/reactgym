@@ -6,7 +6,7 @@ simple app for trying out react
 #Setup:
 * npm install
 * npm start (starts a webpack server on localhost:3000)
-* npm tests (runs jest tests)
+* npm test (runs jest tests, not a lot going on right now :))
 
 #Structure:
 simple menu on top with
