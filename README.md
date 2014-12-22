@@ -17,8 +17,6 @@ simple menu on top with
     * list of exercises, field for reps (number), field for weight (number), counter starts when 'save' is pressed
 
 #TODOS:
-* refactor to flux
-    * MenuStore, menupoints + open state
 * fake-crud for exercises
 * fake crud for workouts
 * trainings
@@ -36,3 +34,4 @@ simple menu on top with
 * mask for menu when it's open [x]
 * refactor to flux
     * AppStateStore [x]
+    * MenuStore, menupoints + open state
