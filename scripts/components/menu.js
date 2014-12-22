@@ -1,19 +1,34 @@
 'use strict';
 
 var React = require('react'),
-    MenuButton = require('../components/menubutton'),
+    MenuButton = require('../components/MenuButton'),
     { Navigation } = require('react-router');
 
 var Menu = React.createClass({
     mixins: [Navigation],
-
+    
     getInitialState() {
-        return {};
+        return {
+            menuPoints: [
+                {
+                    name: 'Home',
+                    link: 'home'
+                },
+                {
+                    name: 'Exercises',
+                    link: 'exercises'
+                },
+                {
+                    name: 'Workouts',
+                    link: 'workouts'
+                }
+            ]
+        };
     },
 
     render() {
         var self = this,
-            menuPoints = this.props.items.map(function(item) {
+            menuPoints = this.state.menuPoints.map(function(item) {
             var handlerFunc = function() {
                 self.props.closeHandler();
                 self.transitionTo(item.link);

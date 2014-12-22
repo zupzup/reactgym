@@ -3,5 +3,6 @@
 var keyMirror = require('react/lib/keyMirror');
 
 module.exports = keyMirror({
-    GO_BACK: null
+    SET_NEXT_TRANSITION: null,
+    RESET_TRANSITION: null
 });

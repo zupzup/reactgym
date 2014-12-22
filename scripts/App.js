@@ -1,9 +1,11 @@
 'use strict';
 
 var React = require('react/addons'),
-    Header = require('./components/header'),
-    Menu = require('./components/menu'),
+    Header = require('./components/Header'),
+    Menu = require('./components/Menu'),
     Router = require('react-router'),
+    AppState = require('./stores/AppState'),
+    AppStateAcitonCreators = require('./actions/AppStateActionCreators'),
     ReactCSSTransitionGroup = React.addons.CSSTransitionGroup,
     DocumentTitle = require('react-document-title'),
     RouteHandler = Router.RouteHandler,
@@ -15,33 +17,38 @@ var App = React.createClass({
 
     getInitialState() {
         return {
-            menuPoints: [
-                {
-                    name: 'Home',
-                    link: 'home'
-                },
-                {
-                    name: 'Exercises',
-                    link: 'exercises'
-                },
-                {
-                    name: 'Workouts',
-                    link: 'workouts'
-                }
-            ],
             menuOpen: false,
             nextTransition: 'slide'
         };
+    },
+
+    getStateFromStores() {
+        return {
+            nextTransition: AppState.getNextTransition()
+        };
+    },
+
+    componentDidMount() {
+        AppState.addChangeListener(this._onChange);
+    },
+
+    componentWillUnmount() {
+        AppState.removeChangeListener(this._onChange);
+    },
+
+    _onChange() {
+        this.setState(getStateFromStores());
+    },
+
+
+    shouldComponentUpdate(nextProps, nextState) {
+        return !(this.state.nextTransition !== nextState.nextTransition && nextState.nextTransition === 'slide');
     },
 
     toggleMenu() {
         this.setState({
             menuOpen: !this.state.menuOpen,
         });
-    },
-
-    shouldComponentUpdate(nextProps, nextState) {
-        return !(this.state.nextTransition !== nextState.nextTransition && nextState.nextTransition === 'slide');
     },
 
     closeMenu() {
@@ -51,18 +58,13 @@ var App = React.createClass({
     },
 
     back() {
-        this.setState({
-            nextTransition: 'slideBack'
-        });
+        AppStateAcitonCreators.setNextTransition('slideBack');
         if(history.state != null) {
             this.goBack();
         } else {
             this.transitionTo('/');
         }
-        // reset transition
-        this.setState({
-            nextTransition: 'slide'
-        });
+        AppStateAcitonCreators.resetTransitions();
     },
 
     render() {
@@ -76,7 +78,7 @@ var App = React.createClass({
         return (
             <DocumentTitle title='Simple Gym 3.0'>
                 <div className='App'>
-                    <Menu closeHandler={this.closeMenu} items={this.state.menuPoints}/>
+                    <Menu closeHandler={this.closeMenu} />
                     <div className={'contentArea ' + menuOpen} onClick={contentHandler}>
                         <Header menuHandler={this.toggleMenu} backHandler={this.back} />
                         <ReactCSSTransitionGroup className='content' component="div" transitionName={this.state.nextTransition}>

@@ -2,7 +2,7 @@
 
 var React = require('react'),
     Router = require('react-router'),
-    Menu = require('../components/menu');
+    Menu = require('../components/Menu');
 
 var Header = React.createClass({
     mixins: [Router.State],

@@ -18,8 +18,6 @@ simple menu on top with
 
 #TODOS:
 * refactor to flux
-    * AppStateStore
-        * nextTransition
     * MenuStore, menupoints + open state
 * fake-crud for exercises
 * fake crud for workouts
@@ -36,3 +34,5 @@ simple menu on top with
 * different animation for back [x]
 * back-handling for '/' [x]
 * mask for menu when it's open [x]
+* refactor to flux
+    * AppStateStore [x]
