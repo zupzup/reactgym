@@ -10,7 +10,7 @@ var Header = React.createClass({
 
     render() {
         var currentRoute = this.getRoutes().reverse()[0].name,
-            showBack = (history.state == null || currentRoute === 'home') ? 'hide' : ''; 
+            showBack = (history.state == null || currentRoute === 'home') ? 'hide' : '';
         return (
             <div className='header'>
                 <span className={"back " + showBack} onClick={this.props.backHandler}>back</span>

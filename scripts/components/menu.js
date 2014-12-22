@@ -2,6 +2,7 @@
 
 var React = require('react'),
     MenuButton = require('../components/MenuButton'),
+    MenuStore = require('../stores/MenuStore.js'),
     AppStateActionCreators = require('../actions/AppStateActionCreators'),
     { Navigation } = require('react-router');
 
@@ -10,20 +11,7 @@ var Menu = React.createClass({
 
     getInitialState() {
         return {
-            menuPoints: [
-                {
-                    name: 'Home',
-                    link: 'home'
-                },
-                {
-                    name: 'Exercises',
-                    link: 'exercises'
-                },
-                {
-                    name: 'Workouts',
-                    link: 'workouts'
-                }
-            ]
+            menuPoints: MenuStore.getMenuPoints()
         };
     },
 
@@ -42,6 +30,18 @@ var Menu = React.createClass({
                 {menuPoints}
             </div>
         );
+    },
+
+    componentDidMount() {
+        MenuStore.addChangeListener(this._onChange);
+    },
+
+    componentWillUnmount() {
+        MenuStore.removeChangeListener(this._onChange);
+    },
+
+    _onChange() {
+        this.setState({menuPoints: MenuStore.getMenuPoints()});
     }
 });
 
