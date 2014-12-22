@@ -16,7 +16,10 @@ var App = React.createClass({
     nextTransition: null,
 
     getInitialState() {
-        return this.getStateFromStores();
+        return {
+            menuOpen: AppState.getMenuOpen(),
+            nextTransition: AppState.getNextTransition()
+        };
     },
 
     back() {
