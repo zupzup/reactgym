@@ -22,29 +22,6 @@ var App = React.createClass({
         };
     },
 
-    getStateFromStores() {
-        return {
-            nextTransition: AppState.getNextTransition()
-        };
-    },
-
-    componentDidMount() {
-        AppState.addChangeListener(this._onChange);
-    },
-
-    componentWillUnmount() {
-        AppState.removeChangeListener(this._onChange);
-    },
-
-    _onChange() {
-        this.setState(getStateFromStores());
-    },
-
-
-    shouldComponentUpdate(nextProps, nextState) {
-        return !(this.state.nextTransition !== nextState.nextTransition && nextState.nextTransition === 'slide');
-    },
-
     toggleMenu() {
         this.setState({
             menuOpen: !this.state.menuOpen,
@@ -88,6 +65,29 @@ var App = React.createClass({
                 </div>
             </DocumentTitle>
         );
+    },
+
+    getStateFromStores() {
+        return {
+            nextTransition: AppState.getNextTransition()
+        };
+    },
+
+    componentDidMount() {
+        AppState.addChangeListener(this._onChange);
+    },
+
+    componentWillUnmount() {
+        AppState.removeChangeListener(this._onChange);
+    },
+
+    _onChange() {
+        this.setState(getStateFromStores());
+    },
+
+    shouldComponentUpdate(nextProps, nextState) {
+        // when resetting nextTransition, we don't need to re-render
+        return !(this.state.nextTransition !== nextState.nextTransition && nextState.nextTransition === 'slide');
     }
 });
 
