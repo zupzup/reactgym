@@ -20,8 +20,6 @@ simple menu on top with
 * fake-crud for exercises
 * fake crud for workouts
 * trainings
-* Test Setup for jest (https://facebook.github.io/jest/docs/tutorial-react.html#content)
-* Some Proof of Concept-Tests with jest
 * sass / compass instead of style.css :)
 * persistence in localstorage
 
@@ -35,3 +33,5 @@ simple menu on top with
 * refactor to flux
     * AppStateStore [x]
     * MenuStore, menupoints + open state
+* Test Setup for jest (https://facebook.github.io/jest/docs/tutorial-react.html#content) [x]
+* Some Proof of Concept-Tests with jest [x]

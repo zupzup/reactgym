@@ -15,14 +15,14 @@ var App = React.createClass({
     mixins: [Router.State, Navigation],
     nextTransition: null,
 
-    getInitialState() {
+    getInitialState: function() {
         return {
             menuOpen: AppState.getMenuOpen(),
             nextTransition: AppState.getNextTransition()
         };
     },
 
-    back() {
+    back: function() {
         AppStateActionCreators.setNextTransition('slideBack');
         if(history.state != null) {
             this.goBack();
@@ -32,13 +32,13 @@ var App = React.createClass({
         AppStateActionCreators.resetTransitions();
     },
 
-    contentHandler() {
+    contentHandler: function() {
         if(this.state.menuOpen) {
             AppStateActionCreators.closeMenu();
         }
     },
 
-    render() {
+    render: function() {
         var name = this.getRoutes().reverse()[0].name,
             menuOpen = this.state.menuOpen ? 'open' : '';
 
@@ -57,23 +57,23 @@ var App = React.createClass({
         );
     },
 
-    getStateFromStores() {
+    getStateFromStores: function() {
         return AppState.getAll();
     },
 
-    componentDidMount() {
+    componentDidMount: function() {
         AppState.addChangeListener(this._onChange);
     },
 
-    componentWillUnmount() {
+    componentWillUnmount: function() {
         AppState.removeChangeListener(this._onChange);
     },
 
-    _onChange() {
+    _onChange: function() {
         this.setState(this.getStateFromStores());
     },
 
-    shouldComponentUpdate(nextProps, nextState) {
+    shouldComponentUpdate: function(nextProps, nextState) {
         // when resetting nextTransition, we don't need to re-render
         return !(this.state.nextTransition !== nextState.nextTransition && nextState.nextTransition === 'slide');
     }

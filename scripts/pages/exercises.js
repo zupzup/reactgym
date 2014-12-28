@@ -6,7 +6,7 @@ var React = require('react'),
 var Exercises = React.createClass({
     mixins: [Router.State],
 
-    getInitialState() {
+    getInitialState: function() {
         return {
             exercises: [
                 {
@@ -21,7 +21,7 @@ var Exercises = React.createClass({
         };
     },
 
-    render() {
+    render: function() {
         var exercises = this.state.exercises.map(function(item) {
             return <p>{item.name}</p>;
         });

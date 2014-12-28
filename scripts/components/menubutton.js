@@ -1,10 +1,7 @@
-
-'use strict';
-
-var React = require('react');
+var React = require('react/addons');
 
 var MenuButton = React.createClass({
-    render() {
+    render: function() {
         return (
             <div className='menubutton' onClick={this.props.handler}>
                 {this.props.name}

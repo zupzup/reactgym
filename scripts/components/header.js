@@ -8,7 +8,7 @@ var React = require('react'),
 var Header = React.createClass({
     mixins: [Router.State],
 
-    render() {
+    render: function() {
         var currentRoute = this.getRoutes().reverse()[0].name,
             showBack = (history.state == null || currentRoute === 'home') ? 'hide' : '';
         return (

@@ -4,18 +4,18 @@ var React = require('react'),
     MenuButton = require('../components/MenuButton'),
     MenuStore = require('../stores/MenuStore.js'),
     AppStateActionCreators = require('../actions/AppStateActionCreators'),
-    { Navigation } = require('react-router');
+    Router = require('react-router');
 
 var Menu = React.createClass({
-    mixins: [Navigation],
+    mixins: [Router.Navigation],
 
-    getInitialState() {
+    getInitialState: function() {
         return {
             menuPoints: MenuStore.getMenuPoints()
         };
     },
 
-    render() {
+    render: function() {
         var self = this,
             menuPoints = this.state.menuPoints.map(function(item) {
             var handlerFunc = function() {
@@ -32,15 +32,15 @@ var Menu = React.createClass({
         );
     },
 
-    componentDidMount() {
+    componentDidMount: function() {
         MenuStore.addChangeListener(this._onChange);
     },
 
-    componentWillUnmount() {
+    componentWillUnmount: function() {
         MenuStore.removeChangeListener(this._onChange);
     },
 
-    _onChange() {
+    _onChange: function() {
         this.setState({menuPoints: MenuStore.getMenuPoints()});
     }
 });
