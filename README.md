@@ -6,19 +6,18 @@ simple app for trying out react
 #Setup:
 * npm install
 * npm start (starts a webpack server on localhost:3000)
-* npm test (runs jest tests, not a lot going on right now :))
 
 #Structure:
 simple menu on top with
 * exercises
     * name
-* workouts (1:n exercises)
+* workouts (1:n exercises, add/remove)
 * trainings
     * list of exercises, field for reps (number), field for weight (number), counter starts when 'save' is pressed
 
 #TODOS:
-* fake-crud for exercises
-* fake crud for workouts
+* crud for exercises
+* crud for workouts
 * trainings
 * sass / compass instead of style.css :)
 * persistence in localstorage
