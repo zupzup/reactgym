@@ -97,11 +97,39 @@ body {
     left: 35%;
 }
 
-.content div {
-    width: 100%;
+.list {
+}
+
+.listitem {
+    background: #fff;
+    cursor: pointer;
+    position: relative;
+    padding: 2rem 0 2rem 2rem;
+    border-bottom: 1px solid #aaa;
+}
+
+.listitem:first-child {
+    border-top: 1px solid #aaa;
+}
+
+.listitem.tappable:after {
+    right: 10px;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
     position: absolute;
+    border-color: rgba(255, 255, 255, 0);
+    border-left-color: #bbb;
+    border-width: .5rem;
+    top: 2rem;
 }
 
 .back.hide {
     display: none;
+}
+
+.content .page {
+    width: 100%;
+    position: absolute;
 }

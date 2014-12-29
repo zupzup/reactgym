@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react'),
+    List = require('../components/List')
     Router = require('react-router');
 
 var Workouts = React.createClass({
@@ -10,11 +11,11 @@ var Workouts = React.createClass({
         return {
             workouts: [
                 {
-                    name: 'Abs Shoulder Chest Triceps',
+                    label: 'Abs Shoulder Chest Triceps',
                     exercises: [1, 2]
                 },
                 {
-                    name: 'Legs Back Biceps',
+                    label: 'Legs Back Biceps',
                     exercises: [1, 2]
                 }
             ]
@@ -22,13 +23,13 @@ var Workouts = React.createClass({
     },
 
     render: function() {
-        var workouts = this.state.workouts.map(function(item) {
-            return <p>{item.name}</p>;
-        });
+        var defaultHandler = function(item, index) {
+            console.log(item, index);
+        };
 
         return (
-            <div className='workouts'>
-                {workouts}
+            <div className='page workouts'>
+                <List defaultHandler={defaultHandler} items={this.state.workouts}></List>
             </div>
         );
     }

@@ -10,8 +10,10 @@ simple app for trying out react
 #Structure:
 simple menu on top with
 * exercises
-    * name
+    * list of exercises, create/delete
+        * name
 * workouts (1:n exercises, add/remove)
+    * name, list of exercises
 * trainings
     * list of exercises, field for reps (number), field for weight (number), counter starts when 'save' is pressed
 

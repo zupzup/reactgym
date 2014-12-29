@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react'),
+    List = require('../components/List')
     Router = require('react-router');
 
 var Exercises = React.createClass({
@@ -11,24 +12,23 @@ var Exercises = React.createClass({
             exercises: [
                 {
                     id: 1,
-                    name: 'T-Bar-Rows'
+                    label: 'T-Bar-Rows'
                 },
                 {
                     id: 2,
-                    name: 'Hammercurls'
+                    label: 'Hammercurls'
                 }
             ]
         };
     },
 
     render: function() {
-        var exercises = this.state.exercises.map(function(item) {
-            return <p>{item.name}</p>;
-        });
-
+        var defaultHandler = function(item, index) {
+            console.log(item, index);
+        };
         return (
-            <div className='exercises'>
-                {exercises}
+            <div className='page exercises'>
+                <List defaultHandler={defaultHandler} items={this.state.exercises}></List>
             </div>
         );
     }
