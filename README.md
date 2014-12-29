@@ -18,6 +18,8 @@ simple menu on top with
     * list of exercises, field for reps (number), field for weight (number), counter starts when 'save' is pressed
 
 #TODOS:
+* header manipulation from anywhere (mixin?)
+    * buttons with handlers (predefined config?)
 * crud for exercises
 * crud for workouts
 * trainings
@@ -36,3 +38,4 @@ simple menu on top with
     * MenuStore, menupoints + open state
 * Test Setup for jest (https://facebook.github.io/jest/docs/tutorial-react.html#content) [x]
 * Some Proof of Concept-Tests with jest [x]
+* List view [x]
