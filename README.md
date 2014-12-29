@@ -19,7 +19,9 @@ simple menu on top with
 
 #TODOS:
 * header manipulation from anywhere (mixin?)
-    * buttons with handlers (predefined config?)
+    * buttons with handlers (predefined config: back, title, add, editMode)
+    * defaultHandlers for back/title
+    * HeaderStore for state, actions for changing state
 * crud for exercises
 * crud for workouts
 * trainings
