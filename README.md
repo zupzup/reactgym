@@ -18,7 +18,7 @@ simple menu on top with
     * list of exercises, field for reps (number), field for weight (number), counter starts when 'save' is pressed
 
 #TODOS:
-* remove warnings and bugs
+* remove warnings and bugs (all have to do with transitiongroup and router interaction)
     * nextTransition without timeout
     * going back to home error if not started there
     * transition-warning
