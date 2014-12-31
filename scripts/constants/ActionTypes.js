@@ -7,5 +7,7 @@ module.exports = keyMirror({
     SET_NEXT_TRANSITION: null,
     RESET_TRANSITION: null,
     TOGGLE_MENU: null,
-    CLOSE_MENU: null
+    CLOSE_MENU: null,
+    SET_HEADER_CONFIG: null,
+    RESET_HEADER_CONFIG: null
 });

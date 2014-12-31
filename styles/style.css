@@ -52,22 +52,53 @@ body {
     cursor: hand;
 }
 
-.header span {
+.header .headertitle {
+    color: #000;
+    text-align: center;
+    width: 24rem;
+    margin-left: -12rem;
+    left: 50%;
+    position: absolute;
+}
+
+.header .headermenu,.headeradd,.headeredit,.back {
+    line-height: 1rem;
+    width: 2.5rem;
     background: #888;
+    position: absolute;
     color: #eee;
+    text-align: center;
     padding: 0.25rem;
     margin: 0.1rem;
 }
 
-.header span:hover {
+.header .headermenu:hover,.headeradd:hover,.headeredit:hover,.back:hover {
     background: #777;
     cursor: hand;
+}
+
+.header .headermenu {
+    left: .1rem;
+}
+
+.header .back {
+    left: 3.5rem;
+}
+
+.header .headeradd {
+    right: .1rem;
+}
+
+.header .headeredit {
+    right: 3.5rem;
 }
 
 .header {
     top: 0;
     background: lightskyblue;
     line-height: 2rem;
+    height: 2rem;
+    position: relative;
 }
 
 .menu {
@@ -78,7 +109,7 @@ body {
     right: 0;
     bottom: 0;
     left: 0;
-    z-index: 0;
+    z-index: 1;
 }
 
 .contentArea {
@@ -89,8 +120,8 @@ body {
     top: 0;
     bottom: 100%;
     left: 0;
-    z-index: 1;
-    transition: left 0.5s;
+    z-index: 2;
+    transition: left 0.2s;
 }
 
 .contentArea.open {

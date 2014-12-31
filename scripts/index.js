@@ -4,6 +4,7 @@ var React = require('react'),
     css = require('style/url!file!../styles/style.css'),
     Router = require('react-router'),
     MenuStoreActionCreators = require('./actions/MenuStoreActionCreators'),
+    HeaderState = require('./stores/HeaderState'),
     Route = Router.Route,
     Exercises = require('./pages/Exercises'),
     Workouts = require('./pages/Workouts'),
@@ -17,6 +18,7 @@ var routes = (
 );
 
 MenuStoreActionCreators.getAllMenuPoints();
+HeaderState.init();
 
 Router.run(routes, Router.HistoryLocation, function(Handler) {
     React.render(<Handler/>, document.body);

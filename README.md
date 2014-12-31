@@ -18,10 +18,10 @@ simple menu on top with
     * list of exercises, field for reps (number), field for weight (number), counter starts when 'save' is pressed
 
 #TODOS:
-* header manipulation from anywhere (mixin?)
-    * buttons with handlers (predefined config: back, title, add, editMode)
-    * defaultHandlers for back/title
-    * HeaderStore for state, actions for changing state
+* remove warnings and bugs
+    * nextTransition without timeout
+    * going back to home error if not started there
+    * transition-warning
 * crud for exercises
 * crud for workouts
 * trainings
@@ -35,9 +35,14 @@ simple menu on top with
 * different animation for back [x]
 * back-handling for '/' [x]
 * mask for menu when it's open [x]
-* refactor to flux
+* refactor to flux [x]
     * AppStateStore [x]
-    * MenuStore, menupoints + open state
+    * MenuStore, menupoints + open state [x]
 * Test Setup for jest (https://facebook.github.io/jest/docs/tutorial-react.html#content) [x]
 * Some Proof of Concept-Tests with jest [x]
 * List view [x]
+* header manipulation from anywhere (mixin?) [x]
+    * buttons with handlers (predefined config: back, title, add, editMode) [x]
+    * defaultHandlers for back/title [x]
+    * HeaderStore for state, actions for changing state [x]
+

@@ -13,7 +13,6 @@ var React = require('react/addons'),
 
 var App = React.createClass({
     mixins: [Router.State, Navigation],
-    nextTransition: null,
 
     getInitialState: function() {
         return {
@@ -29,7 +28,7 @@ var App = React.createClass({
         } else {
             this.transitionTo('/');
         }
-        AppStateActionCreators.resetTransitions();
+        setTimeout(AppStateActionCreators.resetTransitions, 10); //TODO: remove timeout
     },
 
     contentHandler: function() {
@@ -43,7 +42,7 @@ var App = React.createClass({
             menuOpen = this.state.menuOpen ? 'open' : '';
 
         return (
-            <DocumentTitle title='Simple Gym 3.0'>
+            <DocumentTitle title='SimpleGym'>
                 <div className='App'>
                     <Menu />
                     <div className={'contentArea ' + menuOpen} onClick={this.contentHandler}>
@@ -74,8 +73,7 @@ var App = React.createClass({
     },
 
     shouldComponentUpdate: function(nextProps, nextState) {
-        // when resetting nextTransition, we don't need to re-render
-        return !(this.state.nextTransition !== nextState.nextTransition && nextState.nextTransition === 'slide');
+        return true;
     }
 });
 

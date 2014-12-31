@@ -45,7 +45,7 @@ AppState.dispatchToken = AppDispatcher.register(function(payload) {
 
     switch(action.type) {
         case ActionTypes.SET_NEXT_TRANSITION:
-           _nextTransition = payload.animation;
+           _nextTransition = payload.action.animation;
            AppState.emitChange();
            break;
         case ActionTypes.RESET_TRANSITION:
