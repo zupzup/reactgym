@@ -8,13 +8,15 @@ var React = require('react'),
     AppStateActionCreators = require('./actions/AppStateActionCreators'),
     Route = Router.Route,
     Exercises = require('./pages/Exercises'),
+    Home = require('./pages/Home'),
     Workouts = require('./pages/Workouts'),
     App = require('./App');
 
 var routes = (
-    <Route name='home' path='/' handler={App}>
-      <Route name='exercises' path='/exercises' handler={Exercises} />
-      <Route name='workouts' path='/workouts' handler={Workouts} />
+    <Route handler={App}>
+        <Route name='home' path='/' handler={Home} />
+        <Route name='exercises' path='/exercises' handler={Exercises} />
+        <Route name='workouts' path='/workouts' handler={Workouts} />
     </Route>
 );
 
@@ -23,5 +25,6 @@ HeaderState.init();
 
 Router.run(routes, Router.HistoryLocation, function(Handler) {
     React.render(<Handler/>, document.body);
+    // reset Transition animation after every transition
     AppStateActionCreators.resetTransitions();
 });

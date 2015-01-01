@@ -18,10 +18,6 @@ simple menu on top with
     * list of exercises, field for reps (number), field for weight (number), counter starts when 'save' is pressed
 
 #TODOS:
-* remove warnings and bugs (all have to do with transitiongroup and router interaction)
-    * home can be changed by creating a home-page
-    * going back to home error if not started there
-    * transition-warning
 * crud for exercises
 * crud for workouts
 * trainings
@@ -45,4 +41,7 @@ simple menu on top with
     * buttons with handlers (predefined config: back, title, add, editMode) [x]
     * defaultHandlers for back/title [x]
     * HeaderStore for state, actions for changing state [x]
-* nextTransition without timeout [x]
+* remove warnings and bugs with home and transitions [x]
+    * going back to home error if not started there [x]
+    * transition-warning [x]
+    * nextTransition without timeout [x]
