@@ -13,7 +13,7 @@ var List = React.createClass({
         var self = this,
             listItems = this.props.items.map(function(item, index) {
                 var handlerFunc = self._createHandlerFunction(item, index);
-                return <ListItem label={item.label} handler={handlerFunc}></ListItem>;
+                return <ListItem key={item.label} label={item.label} handler={handlerFunc}></ListItem>;
             });
 
         return (

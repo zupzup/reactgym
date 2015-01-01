@@ -5,6 +5,7 @@ var React = require('react'),
     Router = require('react-router'),
     MenuStoreActionCreators = require('./actions/MenuStoreActionCreators'),
     HeaderState = require('./stores/HeaderState'),
+    AppStateActionCreators = require('./actions/AppStateActionCreators'),
     Route = Router.Route,
     Exercises = require('./pages/Exercises'),
     Workouts = require('./pages/Workouts'),
@@ -22,4 +23,5 @@ HeaderState.init();
 
 Router.run(routes, Router.HistoryLocation, function(Handler) {
     React.render(<Handler/>, document.body);
+    AppStateActionCreators.resetTransitions();
 });

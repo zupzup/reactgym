@@ -19,7 +19,7 @@ simple menu on top with
 
 #TODOS:
 * remove warnings and bugs (all have to do with transitiongroup and router interaction)
-    * nextTransition without timeout
+    * home can be changed by creating a home-page
     * going back to home error if not started there
     * transition-warning
 * crud for exercises
@@ -45,4 +45,4 @@ simple menu on top with
     * buttons with handlers (predefined config: back, title, add, editMode) [x]
     * defaultHandlers for back/title [x]
     * HeaderStore for state, actions for changing state [x]
-
+* nextTransition without timeout [x]
