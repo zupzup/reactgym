@@ -43,11 +43,15 @@ var Exercises = React.createClass({
             },
             add: {
                 visible: true,
-                handler: function() {}
+                handler: function() {
+                    console.log('add clicked');
+                }
             },
             editMode: {
                 visible: true,
-                handler: function() {}
+                handler: function() {
+                    console.log('editMode activated');
+                }
             }
         });
     },

@@ -18,8 +18,12 @@ simple menu on top with
     * list of exercises, field for reps (number), field for weight (number), counter starts when 'save' is pressed
 
 #TODOS:
-* crud for exercises
-* crud for workouts
+* modal
+    * via event
+    * globally reachable
+    * pass in content-component to render
+* crud for exercises (header-delete, header-add with a modal)
+* crud for workouts (header-delete, header-add with a modal)
 * trainings
 * sass / compass instead of style.css :)
 * persistence in localstorage
