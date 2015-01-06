@@ -28,7 +28,6 @@ var App = React.createClass({
         } else {
             this.transitionTo('/');
         }
-        setTimeout(AppStateActionCreators.resetTransitions, 10); //TODO: remove timeout
     },
 
     contentHandler: function() {

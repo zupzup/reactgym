@@ -28,10 +28,6 @@ var Home = React.createClass({
                 text: 'Home'
             }
         });
-    },
-
-    componentWillUnmount: function() {
-        HeaderStateActionCreators.resetConfig();
     }
 });
 

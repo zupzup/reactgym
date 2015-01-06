@@ -70,6 +70,7 @@ body {
     text-align: center;
     padding: 0.25rem;
     margin: 0.1rem;
+    z-index: 2;
 }
 
 .header .headermenu:hover,.headeradd:hover,.headeredit:hover,.back:hover {
