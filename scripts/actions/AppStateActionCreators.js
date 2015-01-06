@@ -28,5 +28,18 @@ module.exports = {
         AppDispatcher.handleViewAction({
             type: ActionTypes.CLOSE_MENU
         });
+    },
+
+    openModal: function(content) {
+        AppDispatcher.handleViewAction({
+            type: ActionTypes.OPEN_MODAL,
+            content: content
+        });
+    },
+
+    closeModal: function() {
+        AppDispatcher.handleViewAction({
+            type: ActionTypes.CLOSE_MODAL
+        });
     }
 };

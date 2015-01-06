@@ -15,10 +15,7 @@ var App = React.createClass({
     mixins: [Router.State, Navigation],
 
     getInitialState: function() {
-        return {
-            menuOpen: AppState.getMenuOpen(),
-            nextTransition: AppState.getNextTransition()
-        };
+        return AppState.getAll();
     },
 
     back: function() {
@@ -45,7 +42,7 @@ var App = React.createClass({
                     <Menu />
                     <div className={'contentArea ' + menuOpen} onClick={this.contentHandler}>
                         <Header backHandler={this.back} />
-                        <ReactCSSTransitionGroup className='content' component="div" transitionName={AppState.getNextTransition()}>
+                        <ReactCSSTransitionGroup className='content' component='div' transitionName={AppState.getNextTransition()}>
                             <RouteHandler key={name} />
                         </ReactCSSTransitionGroup>
                     </div>

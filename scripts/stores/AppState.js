@@ -7,6 +7,7 @@ var react = require('react'),
     assign = require('object-assign'),
     CHANGE_EVENT = 'change',
     _nextTransition = 'slide',
+    _modal = null,
     _menuOpen = false;
 
 var AppState = assign({}, EventEmitter.prototype, {
@@ -31,10 +32,15 @@ var AppState = assign({}, EventEmitter.prototype, {
         return _menuOpen;
     },
 
+    getModalOpen: function() {
+        return _modal; 
+    },
+
     getAll: function() {
         return {
             nextTransition: _nextTransition,
-            menuOpen: _menuOpen
+            menuOpen: _menuOpen,
+            modal: _modal
         };
     }
 
@@ -58,6 +64,14 @@ AppState.dispatchToken = AppDispatcher.register(function(payload) {
             break;
         case ActionTypes.CLOSE_MENU:
             _menuOpen = false;
+            AppState.emitChange();
+            break;
+        case ActionTypes.OPEN_MODAL:
+            _modal = payload.action.content;
+            AppState.emitChange();
+            break;
+        case ActionTypes.CLOSE_MODAL:
+            _modal = null;
             AppState.emitChange();
             break;
         default:

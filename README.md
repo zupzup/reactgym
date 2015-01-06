@@ -19,9 +19,11 @@ simple menu on top with
 
 #TODOS:
 * modal
-    * via event
-    * globally reachable
-    * pass in content-component to render
+    * via event, AppState [x]
+    * globally reachable [x]
+    * pass in content-component to render [x]
+    * animate modal
+    * add modal to App.js
 * crud for exercises (header-delete, header-add with a modal)
 * crud for workouts (header-delete, header-add with a modal)
 * trainings
@@ -49,3 +51,4 @@ simple menu on top with
     * going back to home error if not started there [x]
     * transition-warning [x]
     * nextTransition without timeout [x]
+
