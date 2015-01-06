@@ -22,7 +22,6 @@ var App = React.createClass({
     },
 
     back: function() {
-        AppStateActionCreators.setNextTransition('slideBack');
         if(history.state != null) {
             this.goBack();
         } else {

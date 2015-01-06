@@ -20,6 +20,10 @@ var routes = (
     </Route>
 );
 
+window.onpopstate = function() {
+    AppStateActionCreators.setNextTransition('slideBack');
+};
+
 MenuStoreActionCreators.getAllMenuPoints();
 HeaderState.init();
 
