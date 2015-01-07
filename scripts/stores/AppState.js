@@ -32,7 +32,7 @@ var AppState = assign({}, EventEmitter.prototype, {
         return _menuOpen;
     },
 
-    getModalOpen: function() {
+    getModal: function() {
         return _modal; 
     },
 

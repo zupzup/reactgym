@@ -35,7 +35,7 @@ var Exercises = React.createClass({
         );
     },
 
-    componentWillMount: function() {
+    componentDidMount: function() {
         HeaderStateActionCreators.setConfig({
             back: true,
             title:  {
@@ -51,7 +51,7 @@ var Exercises = React.createClass({
             editMode: {
                 visible: true,
                 handler: function() {
-                    AppStateActionCreators.closeModal();
+                    AppStateActionCreators.openModal(<div>Fancy Edit Modal!</div>);
                 }
             }
         });

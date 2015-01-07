@@ -3,6 +3,7 @@
 var React = require('react/addons'),
     Header = require('./components/Header'),
     Menu = require('./components/Menu'),
+    Modal = require('./components/Modal'),
     Router = require('react-router'),
     AppState = require('./stores/AppState'),
     AppStateActionCreators = require('./actions/AppStateActionCreators'),
@@ -18,30 +19,28 @@ var App = React.createClass({
         return AppState.getAll();
     },
 
-    back: function() {
-        if(history.state != null) {
-            this.goBack();
-        } else {
-            this.transitionTo('/');
-        }
-    },
-
     contentHandler: function() {
         if(this.state.menuOpen) {
             AppStateActionCreators.closeMenu();
         }
+
+        if(this.state.modal) {
+            AppStateActionCreators.closeModal();
+        } 
     },
 
     render: function() {
         var name = this.getRoutes().reverse()[0].name,
-            menuOpen = this.state.menuOpen ? 'open' : '';
+            menuOpen = this.state.menuOpen ? 'open' : '',
+            modal = <Modal content={this.state.modal} closeHandler={AppStateActionCreators.closeModal}  />;
 
         return (
             <DocumentTitle title='SimpleGym'>
                 <div className='App'>
+                    {modal}
                     <Menu />
                     <div className={'contentArea ' + menuOpen} onClick={this.contentHandler}>
-                        <Header backHandler={this.back} />
+                        <Header />
                         <ReactCSSTransitionGroup className='content' component='div' transitionName={AppState.getNextTransition()}>
                             <RouteHandler key={name} />
                         </ReactCSSTransitionGroup>

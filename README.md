@@ -18,12 +18,6 @@ simple menu on top with
     * list of exercises, field for reps (number), field for weight (number), counter starts when 'save' is pressed
 
 #TODOS:
-* modal
-    * via event, AppState [x]
-    * globally reachable [x]
-    * pass in content-component to render [x]
-    * animate modal
-    * add modal to App.js
 * crud for exercises (header-delete, header-add with a modal)
 * crud for workouts (header-delete, header-add with a modal)
 * trainings
@@ -31,24 +25,30 @@ simple menu on top with
 * persistence in localstorage
 
 #DONE:
-* slide-menu [x]
-* basic back-handling [x]
-* nice sliding view-transitions [x]
-* different animation for back [x]
-* back-handling for '/' [x]
-* mask for menu when it's open [x]
-* refactor to flux [x]
-    * AppStateStore [x]
-    * MenuStore, menupoints + open state [x]
-* Test Setup for jest (https://facebook.github.io/jest/docs/tutorial-react.html#content) [x]
-* Some Proof of Concept-Tests with jest [x]
-* List view [x]
-* header manipulation from anywhere (mixin?) [x]
-    * buttons with handlers (predefined config: back, title, add, editMode) [x]
-    * defaultHandlers for back/title [x]
-    * HeaderStore for state, actions for changing state [x]
-* remove warnings and bugs with home and transitions [x]
-    * going back to home error if not started there [x]
-    * transition-warning [x]
-    * nextTransition without timeout [x]
+* [ ] slide-menu
+* [ ] basic back-handling
+* [ ] nice sliding view-transitions
+* [ ] different animation for back
+* [ ] back-handling for '/'
+* [ ] mask for menu when it's open
+* [ ] refactor to flux
+    * [ ] AppStateStore
+    * [ ] MenuStore, menupoints + open state
+* [ ] Test Setup for jest (https://facebook.github.io/jest/docs/tutorial-react.html#content)
+* [ ] Some Proof of Concept-Tests with jest
+* [ ] List view
+* [ ] header manipulation from anywhere (mixin?)
+    * [ ] buttons with handlers (predefined config: back, title, add, editMode)
+    * [ ] defaultHandlers for back/title
+    * [ ] HeaderStore for state, actions for changing state
+* [ ] remove warnings and bugs with home and transitions
+    * [ ] going back to home error if not started there
+    * [ ] transition-warning
+    * [ ] nextTransition without timeout
+* [ ] modal
+    * [ ] via event, AppState
+    * [ ] globally reachable
+    * [ ] pass in content-component to render
+    * [ ] animate modal
+    * [ ] add modal to App.js
 

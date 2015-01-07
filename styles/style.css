@@ -165,3 +165,30 @@ body {
     width: 100%;
     position: absolute;
 }
+
+.modal.open {
+    top: 0;
+}
+
+.modal {
+    position: absolute;
+    z-index: 100;
+    background: #eee;
+    top: -60%;
+    left: 0;
+    right: 0;
+    height: 60%;
+    transition: top 0.3s;
+}
+
+.modal .close {
+    cursor: pointer;
+    height: 2rem;
+    width: 2rem;
+    right: .5rem;
+    top: .5rem;
+    position: absolute;
+    display: inline-block;
+    background-color: red;
+}
+

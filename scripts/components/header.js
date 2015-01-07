@@ -1,18 +1,27 @@
 'use strict';
 
-var React = require('react'),
+var React = require('react/addons'),
     Router = require('react-router'),
     HeaderState = require('../stores/HeaderState'),
     AppStateActionCreators = require('../actions/AppStateActionCreators'),
+    Navigation = Router.Navigation;
     Menu = require('../components/Menu');
 
 var Header = React.createClass({
-    mixins: [Router.State],
+    mixins: [Router.State, Navigation],
 
     getInitialState: function() {
         return {
             config: HeaderState.getConfig()
         };
+    },
+
+    back: function() {
+        if(history.state != null) {
+            this.goBack();
+        } else {
+            this.transitionTo('/');
+        }
     },
 
     render: function() {
@@ -38,7 +47,7 @@ var Header = React.createClass({
         return (
             <div className='header'>
                 <span className="headermenu" onClick={AppStateActionCreators.toggleMenu}>menu</span>
-                <span className={"back " + showBack} onClick={this.props.backHandler}>back</span>
+                <span className={"back " + showBack} onClick={this.back}>back</span>
                 {title}
                 {add}
                 {editMode}
