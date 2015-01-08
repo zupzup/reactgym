@@ -4,6 +4,7 @@ var React = require('react'),
     List = require('../components/List')
     HeaderStateActionCreators = require('../actions/HeaderStateActionCreators'),
     AppStateActionCreators = require('../actions/AppStateActionCreators'),
+    AddExercise = require('../components/forms/AddExercise'),
     Router = require('react-router');
 
 var Exercises = React.createClass({
@@ -45,7 +46,9 @@ var Exercises = React.createClass({
             add: {
                 visible: true,
                 handler: function() {
-                    AppStateActionCreators.openModal(<div>Hello Modal!</div>);
+                    AppStateActionCreators.openModal(
+                        <AddExercise /> 
+                    );
                 }
             },
             editMode: {

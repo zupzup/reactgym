@@ -192,3 +192,9 @@ body {
     background-color: red;
 }
 
+.form.exercises {
+    text-align: center;
+}
+
+.form .nameField {
+}
