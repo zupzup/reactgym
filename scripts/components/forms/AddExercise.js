@@ -11,6 +11,8 @@ var AddExercise = React.createClass({
     },
 
     handleSubmit: function() {
+        var value = this.refs.name.getDOMNode().value;
+        console.log(value);
         AppStateActionCreators.closeModal();
     },
 
@@ -23,7 +25,7 @@ var AddExercise = React.createClass({
        return (
             <div className='form exercises'>
                 <h1>Add Exercise</h1>
-                <input className='nameField' type='text' placeholder='name' name={name} />
+                <input className='nameField' type='text' placeholder='name' ref='name' />
                 <button onClick={this.handleSubmit}>Submit</button> |
                 <button onClick={this.handleCancel}>Cancel</button>
             </div>
