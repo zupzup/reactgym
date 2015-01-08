@@ -18,9 +18,22 @@ simple menu on top with
     * list of exercises, field for reps (number), field for weight (number), counter starts when 'save' is pressed
 
 #TODOS:
-* crud for exercises (header-delete, header-add with a modal)
-* crud for workouts (header-delete, header-add with a modal)
+* crud for exercises (header-delete, header-add with a modal), ExerciseStore
+    * add - textfield and submit/cancel, close on submit or cancel
+    * delete at list items
+* crud for workouts (header-delete, header-add with a modal), WorkoutStore
+    * add - textfield, selectfield for exercises and submit/cancel, close on submit or cancel
+    * edit - add view with values, same functionality
+    * delete at list items
 * trainings
+    * choose-training-screen - list of trainings
+    * global timer starts for training, AppState - activeTraining {id}, TrainingStore
+    * list of exercises
+        * subview with reps for each exercise
+            * form with rep, weight, new
+            * delete for reps
+            * timer for exercise
+    * End-training button with prompt
 * sass / compass instead of style.css :)
 * persistence in localstorage
 
