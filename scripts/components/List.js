@@ -29,8 +29,9 @@ var List = React.createClass({
         if(!handlerFunc || typeof handlerFunc !== 'function') {
             handlerFunc = defaultFunction || function() {};
         }
-        return function() {
-            handlerFunc(item, index);
+        return function(e) {
+            e.stopPropagation();
+            handlerFunc(e, item, index);
         };
     }
 });

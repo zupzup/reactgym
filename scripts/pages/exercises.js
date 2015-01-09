@@ -19,11 +19,11 @@ var Exercises = React.createClass({
         };
     },
 
-    deleteHandler: function(item, index) {
+    deleteHandler: function(e, item, index) {
         ExerciseStoreActionCreators.removeExercise(index);
     },
 
-    defaultHandler: function(item, index) {
+    defaultHandler: function(e, item, index) {
         console.log(item, index);
     },
 
