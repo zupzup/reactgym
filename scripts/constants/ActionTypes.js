@@ -11,5 +11,8 @@ module.exports = keyMirror({
     OPEN_MODAL: null,
     CLOSE_MODAL: null,
     SET_HEADER_CONFIG: null,
-    RESET_HEADER_CONFIG: null
+    RESET_HEADER_CONFIG: null,
+    GET_EXERCISES: null,
+    ADD_EXERCISE: null,
+    REMOVE_EXERCISE: null
 });

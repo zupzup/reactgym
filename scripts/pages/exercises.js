@@ -3,8 +3,10 @@
 var React = require('react'),
     List = require('../components/List')
     HeaderStateActionCreators = require('../actions/HeaderStateActionCreators'),
+    ExerciseStoreActionCreators = require('../actions/ExerciseStoreActionCreators'),
     AppStateActionCreators = require('../actions/AppStateActionCreators'),
     AddExercise = require('../components/forms/AddExercise'),
+    ExerciseStore = require('../stores/ExerciseStore'),
     Router = require('react-router');
 
 var Exercises = React.createClass({
@@ -12,31 +14,30 @@ var Exercises = React.createClass({
 
     getInitialState: function() {
         return {
-            exercises: [
-                {
-                    id: 1,
-                    label: 'T-Bar-Rows'
-                },
-                {
-                    id: 2,
-                    label: 'Hammercurls'
-                }
-            ]
+            exercises: ExerciseStore.getExercises(),
+            editAble: false
         };
     },
 
+    deleteHandler: function(item, index) {
+        ExerciseStoreActionCreators.removeExercise(index);
+    },
+
+    defaultHandler: function(item, index) {
+        console.log(item, index);
+    },
+
     render: function() {
-        var defaultHandler = function(item, index) {
-            console.log(item, index);
-        };
         return (
             <div className='page exercises'>
-                <List defaultHandler={defaultHandler} items={this.state.exercises}></List>
+                <List deleteHandler={this.deleteHandler} editAble={this.state.editAble} defaultHandler={this.defaultHandler} items={this.state.exercises}></List>
             </div>
         );
     },
 
     componentDidMount: function() {
+        var self = this;
+        ExerciseStore.addChangeListener(this._onChange);
         HeaderStateActionCreators.setConfig({
             back: true,
             title:  {
@@ -54,14 +55,19 @@ var Exercises = React.createClass({
             editMode: {
                 visible: true,
                 handler: function() {
-                    AppStateActionCreators.openModal(<div>Fancy Edit Modal!</div>);
+                    self.setState({editAble: !self.state.editAble})
                 }
             }
         });
     },
 
     componentWillUnmount: function() {
+        ExerciseStore.removeChangeListener(this._onChange);
         HeaderStateActionCreators.resetConfig();
+    },
+
+    _onChange: function() {
+        this.setState({exercises: ExerciseStore.getExercises()});
     }
 });
 

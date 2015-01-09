@@ -140,6 +140,23 @@ body {
     border-bottom: 1px solid #aaa;
 }
 
+.listitem .delete {
+    visibility: hidden;
+    position: absolute;
+    background:lightcoral;
+    color: #fff;
+    padding: 0.4rem;
+    right: 3rem;
+}
+
+.listitem .delete.show {
+    visibility: visible;
+}
+
+.listitem .delete:hover {
+    background: red;
+}
+
 .listitem:first-child {
     border-top: 1px solid #aaa;
 }

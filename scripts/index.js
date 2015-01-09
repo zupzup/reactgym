@@ -6,6 +6,7 @@ var React = require('react'),
     MenuStoreActionCreators = require('./actions/MenuStoreActionCreators'),
     HeaderState = require('./stores/HeaderState'),
     AppStateActionCreators = require('./actions/AppStateActionCreators'),
+    ExerciseStoreActionCreators = require('./actions/ExerciseStoreActionCreators'),
     Route = Router.Route,
     Exercises = require('./pages/Exercises'),
     Home = require('./pages/Home'),
@@ -25,6 +26,7 @@ window.onpopstate = function() {
 };
 
 MenuStoreActionCreators.getAllMenuPoints();
+ExerciseStoreActionCreators.getExercises();
 HeaderState.init();
 
 Router.run(routes, Router.HistoryLocation, function(Handler) {

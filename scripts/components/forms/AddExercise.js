@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react'),
+    ExerciseStoreActionCreators = require('../../actions/ExerciseStoreActionCreators'),
     AppStateActionCreators = require('../../actions/AppStateActionCreators');
 
 var AddExercise = React.createClass({
@@ -11,8 +12,7 @@ var AddExercise = React.createClass({
     },
 
     handleSubmit: function() {
-        var value = this.refs.name.getDOMNode().value;
-        console.log(value);
+        ExerciseStoreActionCreators.addExercise(this.refs.name.getDOMNode().value);
         AppStateActionCreators.closeModal();
     },
 

@@ -18,9 +18,7 @@ simple menu on top with
     * list of exercises, field for reps (number), field for weight (number), counter starts when 'save' is pressed
 
 #TODOS:
-* crud for exercises (header-delete, header-add with a modal), ExerciseStore
-    * add - textfield and submit/cancel, close on submit or cancel
-    * delete at list items
+* ListItem - multiple nested clickHandlers
 * crud for workouts (header-delete, header-add with a modal), WorkoutStore
     * add - textfield, selectfield for exercises and submit/cancel, close on submit or cancel
     * edit - add view with values, same functionality
@@ -64,4 +62,7 @@ simple menu on top with
     * [x] pass in content-component to render
     * [x] animate modal
     * [x] add modal to App.js
+* crud for exercises (header-delete, header-add with a modal), ExerciseStore [x]
+    * [x] add - textfield and submit/cancel, close on submit or cancel
+    * [x] delete at list items
 

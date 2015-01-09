@@ -12,8 +12,9 @@ var List = React.createClass({
     render: function() {
         var self = this,
             listItems = this.props.items.map(function(item, index) {
-                var handlerFunc = self._createHandlerFunction(item, index);
-                return <ListItem key={item.label} label={item.label} handler={handlerFunc}></ListItem>;
+                var handlerFunc = self._createHandlerFunction(item, index, self.props.defaultHandler),
+                    deleteHandler = self._createHandlerFunction(item, index, self.props.deleteHandler);
+                return <ListItem deleteHandler={deleteHandler} editAble={self.props.editAble} key={item.label} label={item.label} handler={handlerFunc}></ListItem>;
             });
 
         return (
@@ -23,10 +24,10 @@ var List = React.createClass({
         );
     },
 
-    _createHandlerFunction: function(item, index) {
-        handlerFunc = item.handlerFunc;
+    _createHandlerFunction: function(item, index, defaultFunction) {
+        var handlerFunc = item.handlerFunc;
         if(!handlerFunc || typeof handlerFunc !== 'function') {
-            handlerFunc = this.props.defaultHandler || function() {};
+            handlerFunc = defaultFunction || function() {};
         }
         return function() {
             handlerFunc(item, index);
