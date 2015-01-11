@@ -31,8 +31,10 @@ simple menu on top with
             * delete for reps
             * timer for exercise
     * End-training button with prompt
-* sass / compass instead of style.css :)
 * persistence in localstorage
+* es6ify
+* RxJS-ify
+* sass / compass instead of style.css :)
 
 #DONE:
 * [x] slide-menu
