@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react'),
+    _ = require('lodash'),
     ListItem = require('../components/ListItem');
 
 var List = React.createClass({
@@ -12,9 +13,11 @@ var List = React.createClass({
     render: function() {
         var self = this,
             listItems = this.props.items.map(function(item, index) {
-                var handlerFunc = self._createHandlerFunction(item, index, self.props.defaultHandler),
-                    deleteHandler = self._createHandlerFunction(item, index, self.props.deleteHandler);
-                return <ListItem deleteHandler={deleteHandler} editAble={self.props.editAble} key={item.label} label={item.label} handler={handlerFunc}></ListItem>;
+                var handlers = _.transform(self.props.handlers, function(result, handler, key) {
+                    return result[key] = self._createHandlerFunction(item, index, handler);
+                });
+
+                return <ListItem editAble={self.props.editAble} key={item.label} label={item.label} handlers={handlers}></ListItem>;
             });
 
         return (

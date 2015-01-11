@@ -65,4 +65,5 @@ simple menu on top with
     * [x] add - textfield and submit/cancel, close on submit or cancel
     * [x] delete at list items
 * [x] ListItem - multiple nested clickHandlers
+* [x] rewrite List to take an handler-object with different handlers, then parse with lodash
 
