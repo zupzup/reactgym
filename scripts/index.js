@@ -27,6 +27,7 @@ window.onpopstate = function() {
 
 MenuStoreActionCreators.getAllMenuPoints();
 ExerciseStoreActionCreators.getExercises();
+WorkoutStoreActionCreators.getWorkouts();
 HeaderState.init();
 
 Router.run(routes, Router.HistoryLocation, function(Handler) {

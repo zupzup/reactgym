@@ -14,5 +14,9 @@ module.exports = keyMirror({
     RESET_HEADER_CONFIG: null,
     GET_EXERCISES: null,
     ADD_EXERCISE: null,
-    REMOVE_EXERCISE: null
+    REMOVE_EXERCISE: null,
+    GET_WORKOUTS: null,
+    ADD_WORKOUT: null,
+    REMOVE_WORKOUT: null,
+    UPDATE_WORKOUT: null
 });
