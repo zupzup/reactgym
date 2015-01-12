@@ -75,7 +75,6 @@ var Workouts = React.createClass({
 
     componentWillUnmount: function() {
         WorkoutStore.removeChangeListener(this._onChange);
-        HeaderStateActionCreators.resetConfig();
     },
 
     _onChange: function() {
