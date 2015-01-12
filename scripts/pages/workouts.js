@@ -4,7 +4,9 @@ var React = require('react'),
     List = require('../components/List')
     HeaderStateActionCreators = require('../actions/HeaderStateActionCreators'),
     WorkoutStoreActionCreators = require('../actions/WorkoutStoreActionCreators'),
+    WorkoutForm = require('../components/forms/WorkoutForm'),
     WorkoutStore = require('../stores/WorkoutStore'),
+    AppStateActionCreators = require('../actions/AppStateActionCreators'),
     Router = require('react-router');
 
 var Workouts = React.createClass({
@@ -25,10 +27,17 @@ var Workouts = React.createClass({
         console.log(item, index);
     },
 
+    editHandler: function(e, item, index) {
+        AppStateActionCreators.openModal(
+            <WorkoutForm edit={true} workout={item} />
+        );
+    },
+
     render: function() {
             var handlers = {
                 default: this.defaultHandler,
-                delete: this.deleteHandler
+                delete: this.deleteHandler,
+                edit: this.editHandler
             }
 
         return (
@@ -50,7 +59,9 @@ var Workouts = React.createClass({
             add: {
                 visible: true,
                 handler: function() {
-                    console.log('add workout');
+                    AppStateActionCreators.openModal(
+                        <WorkoutForm />
+                    );
                 }
             },
             editMode: {

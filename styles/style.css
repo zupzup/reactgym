@@ -147,6 +147,19 @@ body {
     color: #fff;
     padding: 0.4rem;
     right: 3rem;
+    top: 1.6rem;
+    line-height: 1rem;
+}
+
+.listitem .edit {
+    visibility: hidden;
+    position: absolute;
+    background: burlywood;
+    color: #fff;
+    padding: 0.4rem;
+    top: 1.6rem;
+    line-height: 1rem;
+    right: 7rem;
 }
 
 .listitem .delete.show {
@@ -159,6 +172,14 @@ body {
 
 .listitem:first-child {
     border-top: 1px solid #aaa;
+}
+
+.listitem .edit.show {
+    visibility: visible;
+}
+
+.listitem .edit:hover {
+    background: orange;
 }
 
 .listitem.tappable:after {
@@ -209,7 +230,7 @@ body {
     background-color: red;
 }
 
-.form.exercises {
+.form {
     text-align: center;
 }
 

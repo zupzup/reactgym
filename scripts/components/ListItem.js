@@ -14,6 +14,7 @@ var ListItem = React.createClass({
             editAble = this.props.editAble ? 'show' : '';
         return (
             <div className={"listitem " + tappable} onClick={handlers.default}>
+                <span className={"edit " + editAble} onClick={handlers.edit}>edit</span>{this.props.label}
                 <span className={"delete " + editAble} onClick={handlers.delete}>delete</span>{this.props.label}
             </div>
         );

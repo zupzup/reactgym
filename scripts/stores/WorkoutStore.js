@@ -54,7 +54,8 @@ WorkoutStore.dispatchToken = AppDispatcher.register(function(payload) {
                     }).reduce(function(acc, item) {
                         return item;
                     }, 0),
-                    label: payload.action.workout
+                    label: payload.action.workout.label,
+                    exercises: payload.action.workout.exercises
                 });
             WorkoutStore.emitChange();
             break;
@@ -63,8 +64,8 @@ WorkoutStore.dispatchToken = AppDispatcher.register(function(payload) {
             WorkoutStore.emitChange();
             break;
         case ActionTypes.UPDATE_WORKOUT:
-            _workouts.map(function(item) {
-                if(payload.action.workout.index === item.id) {
+            _workouts = _workouts.map(function(item) {
+                if(payload.action.workout.id === item.id) {
                     item = payload.action.workout; 
                 }
                 return item;

@@ -18,10 +18,6 @@ simple menu on top with
     * list of exercises, field for reps (number), field for weight (number), counter starts when 'save' is pressed
 
 #TODOS:
-* crud for workouts (header-delete, header-add with a modal), WorkoutStore
-    * add - textfield, selectfield for exercises and submit/cancel, close on submit or cancel
-    * edit - add view with values, same functionality
-    * delete at list items
 * trainings
     * choose-training-screen - list of trainings
     * global timer starts for training, AppState - activeTraining {id}, TrainingStore
@@ -68,4 +64,8 @@ simple menu on top with
     * [x] delete at list items
 * [x] ListItem - multiple nested clickHandlers
 * [x] rewrite List to take an handler-object with different handlers, then parse with lodash
+* [x] crud for workouts (header-delete, header-add with a modal), WorkoutStore
+    * [x] add - textfield, selectfield for exercises and submit/cancel, close on submit or cancel
+    * [x] edit - add view with values, same functionality
+    * [x] delete at list items
 
