@@ -45,6 +45,10 @@ MenuStore.dispatchToken = AppDispatcher.register(function(payload) {
                 {
                     name: 'Workouts',
                     link: 'workouts'
+                },
+                {
+                    name: 'Start Training',
+                    link: 'trainings'
                 }
             ];
             MenuStore.emitChange();
