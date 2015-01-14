@@ -6,14 +6,12 @@ var React = require('react'),
     AppStateActionCreators = require('../actions/AppStateActionCreators'),
     Router = require('react-router');
 
-var Trainings = React.createClass({
+var Training = React.createClass({
     mixins: [Router.State],
 
     getInitialState: function() {
-        return {
-        };
+        return {};
     },
-
 
     render: function() {
         return (
@@ -42,5 +40,5 @@ var Trainings = React.createClass({
     }
 });
 
-module.exports = Trainings;
+module.exports = Training;
 

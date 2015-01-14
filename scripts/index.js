@@ -9,7 +9,7 @@ var React = require('react'),
     ExerciseStoreActionCreators = require('./actions/ExerciseStoreActionCreators'),
     Route = Router.Route,
     Exercises = require('./pages/Exercises'),
-    Trainings = require('./pages/Trainings'),
+    Training = require('./pages/Training'),
     Home = require('./pages/Home'),
     Workouts = require('./pages/Workouts'),
     App = require('./App');
@@ -19,7 +19,7 @@ var routes = (
         <Route name='home' path='/' handler={Home} />
         <Route name='exercises' path='/exercises' handler={Exercises} />
         <Route name='workouts' path='/workouts' handler={Workouts} />
-        <Route name='trainings' path='/trainings' handler={Trainings} />
+        <Route name='training' path='/training' handler={Training} />
     </Route>
 );
 
