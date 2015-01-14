@@ -8,7 +8,8 @@ var react = require('react'),
     CHANGE_EVENT = 'change',
     _nextTransition = 'slide',
     _modal = null,
-    _menuOpen = false;
+    _menuOpen = false,
+    _activeTraining = null;
 
 var AppState = assign({}, EventEmitter.prototype, {
 
@@ -36,6 +37,10 @@ var AppState = assign({}, EventEmitter.prototype, {
         return _modal; 
     },
 
+    getActiveTraining: function() {
+        return _activeTraining;
+    },
+
     getAll: function() {
         return {
             nextTransition: _nextTransition,
@@ -43,7 +48,6 @@ var AppState = assign({}, EventEmitter.prototype, {
             modal: _modal
         };
     }
-
 });
 
 AppState.dispatchToken = AppDispatcher.register(function(payload) {
@@ -72,6 +76,14 @@ AppState.dispatchToken = AppDispatcher.register(function(payload) {
             break;
         case ActionTypes.CLOSE_MODAL:
             _modal = null;
+            AppState.emitChange();
+            break;
+        case ActionTypes.START_TRAINING:
+            _activeTraining = payload.action.id;
+            AppState.emitChange();
+            break;
+        case ActionTypes.FINISH_TRAINING:
+            _activeTraining = null;
             AppState.emitChange();
             break;
         default:

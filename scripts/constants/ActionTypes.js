@@ -18,5 +18,7 @@ module.exports = keyMirror({
     GET_WORKOUTS: null,
     ADD_WORKOUT: null,
     REMOVE_WORKOUT: null,
-    UPDATE_WORKOUT: null
+    UPDATE_WORKOUT: null,
+    START_TRAINING: null,
+    FINISH_TRAINING: null
 });

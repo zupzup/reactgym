@@ -41,5 +41,18 @@ module.exports = {
         AppDispatcher.handleViewAction({
             type: ActionTypes.CLOSE_MODAL
         });
+    },
+
+    startTraining: function() {
+        AppDispatcher.handleViewAction({
+            type: ActionTypes.START_TRAINING,
+            id: 5
+        });
+    },
+
+    finishTraining: function() {
+        AppDispatcher.handleViewAction({
+            type: ActionTypes.FINISH_TRAINING
+        });
     }
 };
