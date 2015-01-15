@@ -20,5 +20,7 @@ module.exports = keyMirror({
     REMOVE_WORKOUT: null,
     UPDATE_WORKOUT: null,
     START_TRAINING: null,
-    FINISH_TRAINING: null
+    FINISH_TRAINING: null,
+    ADD_TRAINING: null,
+    REMOVE_TRAINING: null
 });

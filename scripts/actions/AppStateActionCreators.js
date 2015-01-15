@@ -43,10 +43,10 @@ module.exports = {
         });
     },
 
-    startTraining: function() {
+    startTraining: function(id) {
         AppDispatcher.handleViewAction({
             type: ActionTypes.START_TRAINING,
-            id: 5
+            id: id
         });
     },
 

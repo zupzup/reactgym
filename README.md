@@ -19,7 +19,7 @@ simple menu on top with
 
 #TODOS:
 * trainings
-    * on clicking 'Training' -> if none active, training selection, otherwise go to trainings
+    * [x] on clicking 'Training' -> if none active, training selection, otherwise go to trainings
     * choose-training-screen - list of trainings
     * global timer starts for training, AppState - activeTraining {id}, TrainingStore
     * list of exercises
