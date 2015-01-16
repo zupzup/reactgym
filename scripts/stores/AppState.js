@@ -5,7 +5,7 @@ var react = require('react'),
     EventEmitter = require('events').EventEmitter,
     ActionTypes = require('../constants/ActionTypes'),
     assign = require('object-assign'),
-    DEFAULT_TIMER = 90,
+    DEFAULT_TIMER = 10,
     CHANGE_EVENT = 'change',
     _nextTransition = 'slide',
     _modal = null,
@@ -96,6 +96,10 @@ AppState.dispatchToken = AppDispatcher.register(function(payload) {
         case ActionTypes.START_TIMER:
             _timerValue = DEFAULT_TIMER;
             _timerId = window.setInterval(function() {
+                if(_timerValue === 0) {
+                    window.clearInterval(_timerId);
+                    return;
+                }
                 _timerValue -= 1; 
                 AppState.emitChange();
             }, 1000);
