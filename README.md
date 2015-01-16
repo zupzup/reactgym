@@ -19,9 +19,6 @@ simple menu on top with
 
 #TODOS:
 * trainings
-    * [x] on clicking 'Training' -> if none active, training selection, otherwise go to trainings
-    * [x] choose-workout-screen - list of workouts
-    * global timer starts for training, AppState - activeTraining {id}, TrainingStore
     * list of exercises
         * subview with reps for each exercise
             * form with rep, weight, new
@@ -69,4 +66,8 @@ simple menu on top with
     * [x] add - textfield, selectfield for exercises and submit/cancel, close on submit or cancel
     * [x] edit - add view with values, same functionality
     * [x] delete at list items
+* trainings
+    * [x] on clicking 'Training' -> if none active, training selection, otherwise go to trainings
+    * [x] choose-workout-screen - list of workouts
+    * [x] global timer starts for training, AppState - activeTraining {id}, TrainingStore
 
