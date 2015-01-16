@@ -16,7 +16,10 @@ var TrainingForm = React.createClass({
     },
 
     render: function() {
-        var exercise = this.props.exercise;
+        var exercise = this.props.exercise,
+            savedSets = (
+                <span>1</span><span>2</span><span>3</span>
+            );
 
        return (
             <div className='form training'>
