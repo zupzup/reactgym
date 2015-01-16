@@ -54,5 +54,17 @@ module.exports = {
         AppDispatcher.handleViewAction({
             type: ActionTypes.FINISH_TRAINING
         });
+    },
+
+    startTimer: function() {
+        AppDispatcher.handleViewAction({
+            type: ActionTypes.START_TIMER
+        });
+    },
+
+    stopTimer: function() {
+        AppDispatcher.handleViewAction({
+            type: ActionTypes.STOP_TIMER
+        });
     }
 };

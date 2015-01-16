@@ -14,7 +14,10 @@ var Training = React.createClass({
     mixins: [Router.Navigation],
 
     getInitialState: function() {
-        return {activeTraining: AppState.getActiveTraining()};
+        return {
+            activeTraining: AppState.getActiveTraining(),
+            timer: 0
+        };
     },
 
     finishTraining: function() {
@@ -37,6 +40,7 @@ var Training = React.createClass({
 
     exerciseClickHandler: function(e, item, index) {
         console.log(item);
+        AppStateActionCreators.startTimer();
     },
 
     render: function() {
@@ -64,6 +68,7 @@ var Training = React.createClass({
                 <div className='page training'>
                     <h1>Training</h1>
                     <h2>{training.workout.label}</h2>
+                    <div>{this.state.timer}</div>
                     <List editAble={false} handlers={handlers} items={exercises}></List>
                     <div onClick={this.finishTraining}>Finish Training</div>
                 </div>
@@ -88,7 +93,10 @@ var Training = React.createClass({
     },
 
     _onChange: function() {
-        this.setState({activeTraining: AppState.getActiveTraining()});
+        this.setState({
+            activeTraining: AppState.getActiveTraining(),
+            timer: AppState.getTimer()
+        });
     }
 });
 

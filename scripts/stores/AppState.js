@@ -5,10 +5,13 @@ var react = require('react'),
     EventEmitter = require('events').EventEmitter,
     ActionTypes = require('../constants/ActionTypes'),
     assign = require('object-assign'),
+    DEFAULT_TIMER = 90,
     CHANGE_EVENT = 'change',
     _nextTransition = 'slide',
     _modal = null,
     _menuOpen = false,
+    _timerId = null,
+    _timerValue = null,
     _activeTraining = null;
 
 var AppState = assign({}, EventEmitter.prototype, {
@@ -39,6 +42,10 @@ var AppState = assign({}, EventEmitter.prototype, {
 
     getActiveTraining: function() {
         return _activeTraining;
+    },
+
+    getTimer: function() {
+        return _timerValue;
     },
 
     getAll: function() {
@@ -84,6 +91,18 @@ AppState.dispatchToken = AppDispatcher.register(function(payload) {
             break;
         case ActionTypes.FINISH_TRAINING:
             _activeTraining = null;
+            AppState.emitChange();
+            break;
+        case ActionTypes.START_TIMER:
+            _timerValue = DEFAULT_TIMER;
+            _timerId = window.setInterval(function() {
+                _timerValue -= 1; 
+                AppState.emitChange();
+            }, 1000);
+            AppState.emitChange();
+            break;
+        case ActionTypes.STOP_TIMER:
+            window.clearInterval(_timerId);
             AppState.emitChange();
             break;
         default:
