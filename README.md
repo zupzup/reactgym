@@ -19,11 +19,11 @@ simple menu on top with
 
 #TODOS:
 * trainings
-    * list of exercises
-        * subview with reps for each exercise
-            * form with rep, weight, new
+    * [x] list of exercises
+        * [x] subview with reps for each exercise
+            * [x] form with rep, weight, new
             * delete for reps
-            * timer for exercise
+            * [x] timer for exercise
     * End-training button with prompt
 * persistence in localstorage
 * es6ify

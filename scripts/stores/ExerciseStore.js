@@ -4,6 +4,7 @@ var react = require('react'),
     AppDispatcher = require('../dispatcher/AppDispatcher'),
     EventEmitter = require('events').EventEmitter,
     ActionTypes = require('../constants/ActionTypes'),
+    _ = require('lodash'),
     assign = require('object-assign'),
     CHANGE_EVENT = 'change',
     _exercises = [];
@@ -20,6 +21,12 @@ var ExerciseStore = assign({}, EventEmitter.prototype, {
 
     removeChangeListener: function(callback) {
         this.removeListener(CHANGE_EVENT, callback);
+    },
+
+    getExerciseForId: function(id) {
+        return _.first(_exercises.filter(function(exercise) {
+            return exercise.id === id; 
+        }));
     },
 
     getExercises: function() {

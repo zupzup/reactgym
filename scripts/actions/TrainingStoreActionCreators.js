@@ -14,7 +14,8 @@ module.exports = {
     removeTraining: function(index) {
         AppDispatcher.handleViewAction({
             type: ActionTypes.REMOVE_TRAINING,
-            index: index 
+            index: index
         });
     }
 };
+

@@ -66,5 +66,13 @@ module.exports = {
         AppDispatcher.handleViewAction({
             type: ActionTypes.STOP_TIMER
         });
+    },
+
+    addSet: function(id, reps, weight) {
+        AppDispatcher.handleViewAction({
+            type: ActionTypes.ADD_SET,
+            exercise: id,
+            set: {reps: reps, weight: weight}
+        });
     }
 };

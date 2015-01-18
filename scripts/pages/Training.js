@@ -6,6 +6,8 @@ var React = require('react'),
     AppStateActionCreators = require('../actions/AppStateActionCreators'),
     TrainingStoreActionCreators = require('../actions/TrainingStoreActionCreators'),
     WorkoutStore = require('../stores/WorkoutStore'),
+    _ = require('lodash'),
+    TrainingForm = require('../components/forms/TrainingForm'),
     TrainingStore = require('../stores/TrainingStore'),
     ExerciseStore = require('../stores/ExerciseStore'),
     AppState = require('../stores/AppState');
@@ -16,7 +18,8 @@ var Training = React.createClass({
     getInitialState: function() {
         return {
             activeTraining: AppState.getActiveTraining(),
-            timer: 0
+            timer: 0,
+            currentExercise: null
         };
     },
 
@@ -26,20 +29,33 @@ var Training = React.createClass({
     },
 
     startTraining: function(e, item, index) {
+        var workout = _.assign({}, item);
+        var sets = workout.exercises.reduce(function(acc, exercise) {
+            acc[exercise] = [];
+            return acc;
+        }, {});
         var training = {
-            workout: item,
+            workout: workout,
             id: TrainingStore.getTrainings().map(function(item) {
                 return item.id + 1;
             }).reduce(function(acc, item) {
                 return item;
-            }, 0)
+            }, 0),
+            sets: sets
         };
+        this.state.currentExercise = _.first(training.workout.exercises);
         TrainingStoreActionCreators.addTraining(training);
         AppStateActionCreators.startTraining(training.id);
     },
 
     exerciseClickHandler: function(e, item, index) {
-        console.log(item);
+        this.setState({
+            currentExercise: item.id
+        });
+    },
+
+    formSubmitHandler: function(exercise, reps, weight) {
+        AppStateActionCreators.addSet(exercise, reps, weight);
         AppStateActionCreators.startTimer();
     },
 
@@ -60,16 +76,18 @@ var Training = React.createClass({
                 default: this.exerciseClickHandler
             },
             training = TrainingStore.getTrainingForId(this.state.activeTraining);
+
         if(training != null) {
-            exercises = ExerciseStore.getExercises().filter(function(item) {
+            var exercises = ExerciseStore.getExercises().filter(function(item) {
                 return training.workout.exercises.indexOf(item.id) !== -1;
-            });
+            }),
+            currentExercise = this.state.currentExercise;
             return (
                 <div className='page training'>
-                    <h1>Training</h1>
-                    <h2>{training.workout.label}</h2>
+                    <h1>{training.workout.label}</h1>
                     <div>{this.state.timer}</div>
                     <List editAble={false} handlers={handlers} items={exercises}></List>
+                    <TrainingForm exercise={currentExercise} sets={training.sets[currentExercise]} handler={this.formSubmitHandler} />
                     <div onClick={this.finishTraining}>Finish Training</div>
                 </div>
             );

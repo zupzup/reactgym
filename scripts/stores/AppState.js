@@ -5,7 +5,9 @@ var react = require('react'),
     EventEmitter = require('events').EventEmitter,
     ActionTypes = require('../constants/ActionTypes'),
     assign = require('object-assign'),
-    DEFAULT_TIMER = 10,
+    TrainingStore = require('./TrainingStore'),
+    DEFAULT_TIMER = 90,
+    _ = require('lodash'),
     CHANGE_EVENT = 'change',
     _nextTransition = 'slide',
     _modal = null,
@@ -107,6 +109,11 @@ AppState.dispatchToken = AppDispatcher.register(function(payload) {
             break;
         case ActionTypes.STOP_TIMER:
             window.clearInterval(_timerId);
+            AppState.emitChange();
+            break;
+        case ActionTypes.ADD_SET:
+            var activeTraining = TrainingStore.getTrainingForId(_activeTraining);
+            activeTraining.sets[payload.action.exercise].push(payload.action.set);
             AppState.emitChange();
             break;
         default:

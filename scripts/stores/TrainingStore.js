@@ -53,3 +53,4 @@ TrainingStore.dispatchToken = AppDispatcher.register(function(payload) {
 });
 
 module.exports = TrainingStore;
+
