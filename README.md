@@ -22,8 +22,12 @@ simple menu on top with
     * [x] list of exercises
         * [x] subview with reps for each exercise
             * [x] form with rep, weight, new
-            * delete for reps
             * [x] timer for exercise
+            * delete for reps
+    * possibility to switch somewhere else while training is running
+    * vibrate on timer-stop
+    * styling
+    * timer on home-page
     * End-training button with prompt
 * persistence in localstorage
 * es6ify
