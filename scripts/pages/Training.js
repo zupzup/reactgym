@@ -8,6 +8,8 @@ var React = require('react'),
     WorkoutStore = require('../stores/WorkoutStore'),
     _ = require('lodash'),
     TrainingForm = require('../components/forms/TrainingForm'),
+    Router = require('react-router'),
+    StopTrainingDialog = require('../components/StopTrainingDialog'),
     TrainingStore = require('../stores/TrainingStore'),
     ExerciseStore = require('../stores/ExerciseStore'),
     AppState = require('../stores/AppState');
@@ -18,14 +20,22 @@ var Training = React.createClass({
     getInitialState: function() {
         return {
             activeTraining: AppState.getActiveTraining(),
-            timer: 0,
-            currentExercise: null
+            timer: AppState.getTimer()
         };
     },
 
     finishTraining: function() {
-        AppStateActionCreators.finishTraining();
-        this.transitionTo('home');
+        var yesHandler = function() {
+            AppStateActionCreators.finishTraining();
+            AppStateActionCreators.closeModal();
+            this.transitionTo('home');
+        };
+        var noHandler = function() {
+            AppStateActionCreators.closeModal();
+        };
+        AppStateActionCreators.openModal(
+            <StopTrainingDialog yesHandler={yesHandler} noHandler={noHandler} />
+        );
     },
 
     startTraining: function(e, item, index) {
@@ -41,17 +51,15 @@ var Training = React.createClass({
             }).reduce(function(acc, item) {
                 return item;
             }, 0),
-            sets: sets
+            sets: sets,
+            currentExercise: _.first(workout.exercises)
         };
-        this.state.currentExercise = _.first(training.workout.exercises);
         TrainingStoreActionCreators.addTraining(training);
         AppStateActionCreators.startTraining(training.id);
     },
 
     exerciseClickHandler: function(e, item, index) {
-        this.setState({
-            currentExercise: item.id
-        });
+        AppStateActionCreators.setCurrentExercise(item.id);
     },
 
     formSubmitHandler: function(exercise, reps, weight) {
@@ -81,7 +89,7 @@ var Training = React.createClass({
             var exercises = ExerciseStore.getExercises().filter(function(item) {
                 return training.workout.exercises.indexOf(item.id) !== -1;
             }),
-            currentExercise = this.state.currentExercise;
+            currentExercise = training.currentExercise;
             return (
                 <div className='page training'>
                     <h1>{training.workout.label}</h1>

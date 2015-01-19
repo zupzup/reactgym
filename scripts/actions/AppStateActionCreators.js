@@ -74,5 +74,12 @@ module.exports = {
             exercise: id,
             set: {reps: reps, weight: weight}
         });
+    },
+
+    setCurrentExercise: function(id) {
+        AppDispatcher.handleViewAction({
+            type: ActionTypes.SET_CURRENT_EXERCISE,
+            exercise: id,
+        });
     }
 };

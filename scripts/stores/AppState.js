@@ -56,6 +56,10 @@ var AppState = assign({}, EventEmitter.prototype, {
             menuOpen: _menuOpen,
             modal: _modal
         };
+    },
+
+    getCurrentExercise: function() {
+        return _activeTraining.currentExercise;
     }
 });
 
@@ -114,6 +118,11 @@ AppState.dispatchToken = AppDispatcher.register(function(payload) {
         case ActionTypes.ADD_SET:
             var activeTraining = TrainingStore.getTrainingForId(_activeTraining);
             activeTraining.sets[payload.action.exercise].push(payload.action.set);
+            AppState.emitChange();
+            break;
+        case ActionTypes.SET_CURRENT_EXERCISE:
+            var activeTraining = TrainingStore.getTrainingForId(_activeTraining);
+            activeTraining.currentExercise = payload.action.exercise;
             AppState.emitChange();
             break;
         default:

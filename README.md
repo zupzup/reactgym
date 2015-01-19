@@ -24,11 +24,11 @@ simple menu on top with
             * [x] form with rep, weight, new
             * [x] timer for exercise
             * delete for reps
-    * possibility to switch somewhere else while training is running
+    * [x] possibility to switch somewhere else while training is running
+    * [x] End-training button with prompt
+    * [x] global timer on home-page
     * vibrate on timer-stop
     * styling
-    * timer on home-page
-    * End-training button with prompt
 * persistence in localstorage
 * es6ify
 * RxJS-ify

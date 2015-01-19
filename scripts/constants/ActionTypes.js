@@ -23,6 +23,7 @@ module.exports = keyMirror({
     FINISH_TRAINING: null,
     ADD_TRAINING: null,
     REMOVE_TRAINING: null,
+    SET_CURRENT_EXERCISE: null,
     START_TIMER: null,
     STOP_TIMER: null
 });
