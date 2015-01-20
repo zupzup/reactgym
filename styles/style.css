@@ -211,7 +211,7 @@ body {
 .modal {
     position: absolute;
     z-index: 100;
-    background: #eee;
+    background: #ddd;
     top: -60%;
     left: 0;
     right: 0;
@@ -234,5 +234,55 @@ body {
     text-align: center;
 }
 
-.form .nameField {
+.finish {
+    width: 100%;
+    line-height: 3rem;
+    background: lightblue;
+    text-align: center;
+    margin-top: 1rem;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
 }
+
+.finish:hover {
+    background: #ccc;
+    cursor: hand;
+}
+
+.timer {
+    width: 100%;
+    line-height: 3rem;
+    background: lightblue;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.rep {
+    background: #333;
+    color: #eee;
+    padding: .5rem 1.5rem .5rem 1.5rem;
+    margin: 0.1rem;
+}
+
+.rep:hover {
+    background: #777;
+    cursor: hand;
+}
+
+.form.training {
+    margin-top: 1rem;
+}
+
+.stopTraining {
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    margin-top: 20%;
+    font-size: 3rem;
+}
+
+.stopTraining button {
+    font-size: 2rem;
+}
+

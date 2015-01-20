@@ -93,10 +93,10 @@ var Training = React.createClass({
             return (
                 <div className='page training'>
                     <h1>{training.workout.label}</h1>
-                    <div>{this.state.timer}</div>
+                    <div className='timer'>{this.state.timer}</div>
                     <List editAble={false} handlers={handlers} items={exercises}></List>
                     <TrainingForm exercise={currentExercise} sets={training.sets[currentExercise]} handler={this.formSubmitHandler} />
-                    <div onClick={this.finishTraining}>Finish Training</div>
+                    <div className='finish' onClick={this.finishTraining}>Finish Training</div>
                 </div>
             );
         }

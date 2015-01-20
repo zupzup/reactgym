@@ -100,13 +100,16 @@ AppState.dispatchToken = AppDispatcher.register(function(payload) {
             AppState.emitChange();
             break;
         case ActionTypes.START_TIMER:
+            window.clearInterval(_timerId);
             _timerValue = DEFAULT_TIMER;
             _timerId = window.setInterval(function() {
                 if(_timerValue === 0) {
                     window.clearInterval(_timerId);
+                    _timerValue = null;
+                    AppState.emitChange();
                     return;
                 }
-                _timerValue -= 1; 
+                _timerValue -= 1;
                 AppState.emitChange();
             }, 1000);
             AppState.emitChange();

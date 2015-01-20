@@ -21,15 +21,21 @@ var TrainingForm = React.createClass({
     render: function() {
         var exercise = ExerciseStore.getExerciseForId(this.props.exercise),
             sets = this.props.sets.map(function(item, index) {
-                return <span key={index}>{index + 1}</span>;
+                return <span className='rep' key={index}>{index + 1}</span>;
             });
        return (
             <div className='form training'>
                 <div>{sets}</div>
                 <h1>{exercise.label}</h1>
-                <input className='reps' type='text' placeholder='reps' ref='reps' />
-                <input className='reps' type='text' placeholder='weight' ref='weight' />
-                <button onClick={this.handleSubmit}>Submit</button> 
+                <div>
+                    <span>
+                        <input className='reps' type='text' placeholder='reps' ref='reps' /><br />
+                        <input className='reps' type='text' placeholder='weight' ref='weight' /><br />
+                    </span>
+                    <span>
+                        <button onClick={this.handleSubmit}>Add</button> 
+                    </span>
+                </div>
             </div>
         );
     }
