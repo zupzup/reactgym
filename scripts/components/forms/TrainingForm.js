@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react'),
+    AppStateActionCreators = require('../../actions/AppStateActionCreators'),
     ExerciseStore = require('../../stores/ExerciseStore');
 
 var TrainingForm = React.createClass({
@@ -19,9 +20,13 @@ var TrainingForm = React.createClass({
     },
 
     render: function() {
-        var exercise = ExerciseStore.getExerciseForId(this.props.exercise),
+        var self = this,
+            exercise = ExerciseStore.getExerciseForId(this.props.exercise),
             sets = this.props.sets.map(function(item, index) {
-                return <span className='rep' key={index}>{index + 1}</span>;
+                var handler = function() {
+                    AppStateActionCreators.removeSet(self.props.exercise, index);
+                }
+                return <span className='rep' key={index} onClick={handler}>{index + 1}</span>;
             });
        return (
             <div className='form training'>

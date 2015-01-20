@@ -116,11 +116,17 @@ AppState.dispatchToken = AppDispatcher.register(function(payload) {
             break;
         case ActionTypes.STOP_TIMER:
             window.clearInterval(_timerId);
+            _timerValue = null;
             AppState.emitChange();
             break;
         case ActionTypes.ADD_SET:
             var activeTraining = TrainingStore.getTrainingForId(_activeTraining);
             activeTraining.sets[payload.action.exercise].push(payload.action.set);
+            AppState.emitChange();
+            break;
+        case ActionTypes.REMOVE_SET:
+            var activeTraining = TrainingStore.getTrainingForId(_activeTraining);
+            activeTraining.sets[payload.action.exercise].splice(payload.action.index, 1);
             AppState.emitChange();
             break;
         case ActionTypes.SET_CURRENT_EXERCISE:

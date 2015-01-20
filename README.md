@@ -18,21 +18,14 @@ simple menu on top with
     * list of exercises, field for reps (number), field for weight (number), counter starts when 'save' is pressed
 
 #TODOS:
-* trainings
-    * [x] list of exercises
-        * [x] subview with reps for each exercise
-            * [x] form with rep, weight, new
-            * [x] timer for exercise
-            * delete for reps
-    * [x] possibility to switch somewhere else while training is running
-    * [x] End-training button with prompt
-    * [x] global timer on home-page
-    * vibrate on timer-stop
-    * styling
+* form validation
 * persistence in localstorage
 * es6ify
+* vibrate on timer-stop
 * RxJS-ify
 * sass / compass instead of style.css :)
+* native build android
+* file-api for persistence
 
 #DONE:
 * [x] slide-menu
@@ -74,4 +67,14 @@ simple menu on top with
     * [x] on clicking 'Training' -> if none active, training selection, otherwise go to trainings
     * [x] choose-workout-screen - list of workouts
     * [x] global timer starts for training, AppState - activeTraining {id}, TrainingStore
+* [x] trainings
+    * [x] list of exercises
+        * [x] subview with reps for each exercise
+            * [x] form with rep, weight, new
+            * [x] timer for exercise
+            * [x] delete for reps
+    * [x] possibility to switch somewhere else while training is running
+    * [x] End-training button with prompt
+    * [x] global timer on home-page
+    * [x] styling
 

@@ -76,6 +76,14 @@ module.exports = {
         });
     },
 
+    removeSet: function(id, index) {
+        AppDispatcher.handleViewAction({
+            type: ActionTypes.REMOVE_SET,
+            exercise: id,
+            index: index
+        });
+    },
+
     setCurrentExercise: function(id) {
         AppDispatcher.handleViewAction({
             type: ActionTypes.SET_CURRENT_EXERCISE,

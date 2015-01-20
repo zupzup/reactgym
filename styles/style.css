@@ -258,14 +258,14 @@ body {
 }
 
 .rep {
-    background: #333;
+    background: brown;
     color: #eee;
     padding: .5rem 1.5rem .5rem 1.5rem;
     margin: 0.1rem;
 }
 
 .rep:hover {
-    background: #777;
+    background: lightcoral;
     cursor: hand;
 }
 

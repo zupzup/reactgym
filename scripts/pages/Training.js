@@ -25,14 +25,16 @@ var Training = React.createClass({
     },
 
     finishTraining: function() {
-        var yesHandler = function() {
-            AppStateActionCreators.finishTraining();
-            AppStateActionCreators.closeModal();
-            this.transitionTo('home');
-        };
-        var noHandler = function() {
-            AppStateActionCreators.closeModal();
-        };
+        var self = this,
+            yesHandler = function() {
+                AppStateActionCreators.finishTraining();
+                AppStateActionCreators.stopTimer();
+                AppStateActionCreators.closeModal();
+                self.transitionTo('home');
+            },
+            noHandler = function() {
+                AppStateActionCreators.closeModal();
+            };
         AppStateActionCreators.openModal(
             <StopTrainingDialog yesHandler={yesHandler} noHandler={noHandler} />
         );
