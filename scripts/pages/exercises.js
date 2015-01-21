@@ -52,7 +52,7 @@ var Exercises = React.createClass({
                 visible: true,
                 handler: function() {
                     AppStateActionCreators.openModal(
-                        <AddExercise /> 
+                        <AddExercise />
                     );
                 }
             },
