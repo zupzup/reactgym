@@ -286,3 +286,7 @@ body {
     font-size: 2rem;
 }
 
+input.invalid {
+   border: 1px solid red;
+}
+

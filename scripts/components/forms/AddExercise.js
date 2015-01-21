@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react'),
+    ValidatedInput = require('./ValidatedInput'),
     ExerciseStoreActionCreators = require('../../actions/ExerciseStoreActionCreators'),
     AppStateActionCreators = require('../../actions/AppStateActionCreators');
 
@@ -25,7 +26,7 @@ var AddExercise = React.createClass({
        return (
             <div className='form exercises'>
                 <h1>Add Exercise</h1>
-                <input className='nameField' type='text' placeholder='name' ref='name' />
+                <ValidatedInput validator='string' ref='name' placeholder='name' className='nameField' />
                 <button onClick={this.handleSubmit}>Submit</button> |
                 <button onClick={this.handleCancel}>Cancel</button>
             </div>

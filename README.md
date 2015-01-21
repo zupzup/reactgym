@@ -18,7 +18,6 @@ simple menu on top with
     * list of exercises, field for reps (number), field for weight (number), counter starts when 'save' is pressed
 
 #TODOS:
-* form validation
 * persistence in localstorage
 * es6ify
 * vibrate on timer-stop
@@ -77,4 +76,5 @@ simple menu on top with
     * [x] End-training button with prompt
     * [x] global timer on home-page
     * [x] styling
+* [x] form validation
 
