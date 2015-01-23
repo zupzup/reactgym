@@ -18,13 +18,13 @@ simple menu on top with
     * list of exercises, field for reps (number), field for weight (number), counter starts when 'save' is pressed
 
 #TODOS:
-* persistence in localstorage
+* tests for all components
 * es6ify
-* vibrate on timer-stop
-* RxJS-ify
-* sass / compass instead of style.css :)
+* persistence in localstorage
 * native build android
+* vibrate on timer-stop
 * file-api for persistence
+* sass / compass instead of style.css :)
 
 #DONE:
 * [x] slide-menu
@@ -77,4 +77,5 @@ simple menu on top with
     * [x] global timer on home-page
     * [x] styling
 * [x] form validation
+* [x] tests for header
 
