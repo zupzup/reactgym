@@ -4,11 +4,10 @@ var React = require('react/addons'),
     Router = require('react-router'),
     HeaderState = require('../stores/HeaderState'),
     AppStateActionCreators = require('../actions/AppStateActionCreators'),
-    Navigation = Router.Navigation;
     Menu = require('../components/Menu');
 
 var Header = React.createClass({
-    mixins: [Router.State, Navigation],
+    mixins: [Router.State, Router.Navigation],
 
     getInitialState: function() {
         return {
