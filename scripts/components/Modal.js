@@ -3,7 +3,7 @@
 var React = require('react/addons');
 
 var Modal = React.createClass({
-    render: function() {
+    render() {
         var modalOpen = this.props.content ? 'open' : '';
         return (
             <div className={'modal ' + modalOpen}>

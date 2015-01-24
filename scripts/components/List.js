@@ -12,8 +12,8 @@ var List = React.createClass({
 
     render: function() {
         var self = this,
-            listItems = this.props.items.map(function(item, index) {
-                var handlers = _.transform(self.props.handlers, function(result, handler, key) {
+            listItems = this.props.items.map((item, index) => {
+                var handlers = _.transform(self.props.handlers, (result, handler, key) => {
                     return result[key] = self._createHandlerFunction(item, index, handler);
                 });
 

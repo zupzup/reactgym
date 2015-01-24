@@ -18,8 +18,8 @@ simple menu on top with
     * list of exercises, field for reps (number), field for weight (number), counter starts when 'save' is pressed
 
 #TODOS:
-* tests for all components
 * es6ify
+* tests for all components
 * persistence in localstorage
 * native build android
 * vibrate on timer-stop
