@@ -15,11 +15,11 @@ var React = require('react/addons'),
 var App = React.createClass({
     mixins: [Router.State, Navigation],
 
-    getInitialState: function() {
+    getInitialState() {
         return AppState.getAll();
     },
 
-    contentHandler: function() {
+    contentHandler() {
         if(this.state.menuOpen) {
             AppStateActionCreators.closeMenu();
         }
@@ -29,7 +29,7 @@ var App = React.createClass({
         } 
     },
 
-    render: function() {
+    render() {
         var name = this.getRoutes().reverse()[0].name,
             menuOpen = this.state.menuOpen ? 'open' : '',
             modal = <Modal content={this.state.modal} closeHandler={AppStateActionCreators.closeModal}  />;
@@ -50,23 +50,23 @@ var App = React.createClass({
         );
     },
 
-    getStateFromStores: function() {
+    getStateFromStores() {
         return AppState.getAll();
     },
 
-    componentDidMount: function() {
+    componentDidMount() {
         AppState.addChangeListener(this._onChange);
     },
 
-    componentWillUnmount: function() {
+    componentWillUnmount() {
         AppState.removeChangeListener(this._onChange);
     },
 
-    _onChange: function() {
+    _onChange() {
         this.setState(this.getStateFromStores());
     },
 
-    shouldComponentUpdate: function(nextProps, nextState) {
+    shouldComponentUpdate(nextProps, nextState) {
         return true;
     }
 });

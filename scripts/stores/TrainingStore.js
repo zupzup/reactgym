@@ -10,24 +10,24 @@ var react = require('react'),
 
 var TrainingStore = assign({}, EventEmitter.prototype, {
 
-    emitChange: function() {
+    emitChange() {
         this.emit(CHANGE_EVENT);
     },
 
-    addChangeListener: function(callback) {
+    addChangeListener(callback) {
         this.on(CHANGE_EVENT, callback);
     },
 
-    removeChangeListener: function(callback) {
+    removeChangeListener(callback) {
         this.removeListener(CHANGE_EVENT, callback);
     },
 
-    getTrainings: function() {
+    getTrainings() {
         return _trainings;
     },
 
-    getTrainingForId: function(id) {
-        var results = _trainings.filter(function(item) {
+    getTrainingForId(id) {
+        var results = _trainings.filter((item) => {
             return item.id === id;
         });
         if(results.length > 0) {
@@ -36,7 +36,7 @@ var TrainingStore = assign({}, EventEmitter.prototype, {
     }
 });
 
-TrainingStore.dispatchToken = AppDispatcher.register(function(payload) {
+TrainingStore.dispatchToken = AppDispatcher.register((payload) => {
     var action = payload.action;
 
     switch(action.type) {

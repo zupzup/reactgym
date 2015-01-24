@@ -9,13 +9,13 @@ var React = require('react/addons'),
 var Header = React.createClass({
     mixins: [Router.State, Router.Navigation],
 
-    getInitialState: function() {
+    getInitialState() {
         return {
             config: HeaderState.getConfig()
         };
     },
 
-    back: function() {
+    back() {
         if(history.state != null) {
             this.goBack();
         } else {
@@ -23,7 +23,7 @@ var Header = React.createClass({
         }
     },
 
-    render: function() {
+    render() {
         var currentRoute = this.getRoutes().reverse()[0].name,
             add,
             config = this.state.config,
@@ -54,15 +54,15 @@ var Header = React.createClass({
         );
     },
 
-    componentDidMount: function() {
+    componentDidMount() {
         HeaderState.addChangeListener(this._onChange);
     },
 
-    componentWillUnmount: function() {
+    componentWillUnmount() {
         HeaderState.removeChangeListener(this._onChange);
     },
 
-    _onChange: function() {
+    _onChange() {
         this.setState({config: HeaderState.getConfig()});
     }
 });

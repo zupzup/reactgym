@@ -6,11 +6,11 @@ var React = require('react'),
 
 var List = React.createClass({
 
-    getInitialState: function() {
+    getInitialState() {
         return {};
     },
 
-    render: function() {
+    render() {
         var self = this,
             listItems = this.props.items.map((item, index) => {
                 var handlers = _.transform(self.props.handlers, (result, handler, key) => {
@@ -27,7 +27,7 @@ var List = React.createClass({
         );
     },
 
-    _createHandlerFunction: function(item, index, defaultFunction) {
+    _createHandlerFunction(item, index, defaultFunction) {
         var handlerFunc = item.handlerFunc;
         if(!handlerFunc || typeof handlerFunc !== 'function') {
             handlerFunc = defaultFunction || function() {};

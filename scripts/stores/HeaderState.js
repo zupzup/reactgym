@@ -10,19 +10,19 @@ var react = require('react'),
 
 var HeaderState = assign({}, EventEmitter.prototype, {
 
-    emitChange: function() {
+    emitChange() {
         this.emit(CHANGE_EVENT);
     },
 
-    addChangeListener: function(callback) {
+    addChangeListener(callback) {
         this.on(CHANGE_EVENT, callback);
     },
 
-    removeChangeListener: function(callback) {
+    removeChangeListener(callback) {
         this.removeListener(CHANGE_EVENT, callback);
     },
 
-    init: function() {
+    init() {
         _config = {
             back: true,
             title: {
@@ -40,12 +40,12 @@ var HeaderState = assign({}, EventEmitter.prototype, {
         };
     },
 
-    getConfig: function() {
+    getConfig() {
         return _config;
     }
 });
 
-HeaderState.dispatchToken = AppDispatcher.register(function(payload) {
+HeaderState.dispatchToken = AppDispatcher.register((payload) => {
     var action = payload.action;
 
     switch(action.type) {

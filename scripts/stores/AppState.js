@@ -18,39 +18,39 @@ var react = require('react'),
 
 var AppState = assign({}, EventEmitter.prototype, {
 
-    emitChange: function() {
+    emitChange() {
         this.emit(CHANGE_EVENT);
     },
 
-    addChangeListener: function(callback) {
+    addChangeListener(callback) {
         this.on(CHANGE_EVENT, callback);
     },
 
-    removeChangeListener: function(callback) {
+    removeChangeListener(callback) {
         this.removeListener(CHANGE_EVENT, callback);
     },
 
-    getNextTransition: function() {
+    getNextTransition() {
         return _nextTransition;
     },
 
-    getMenuOpen: function() {
+    getMenuOpen() {
         return _menuOpen;
     },
 
-    getModal: function() {
+    getModal() {
         return _modal; 
     },
 
-    getActiveTraining: function() {
+    getActiveTraining() {
         return _activeTraining;
     },
 
-    getTimer: function() {
+    getTimer() {
         return _timerValue;
     },
 
-    getAll: function() {
+    getAll() {
         return {
             nextTransition: _nextTransition,
             menuOpen: _menuOpen,
@@ -58,12 +58,12 @@ var AppState = assign({}, EventEmitter.prototype, {
         };
     },
 
-    getCurrentExercise: function() {
+    getCurrentExercise() {
         return _activeTraining.currentExercise;
     }
 });
 
-AppState.dispatchToken = AppDispatcher.register(function(payload) {
+AppState.dispatchToken = AppDispatcher.register((payload) => {
     var action = payload.action;
 
     switch(action.type) {
@@ -102,7 +102,7 @@ AppState.dispatchToken = AppDispatcher.register(function(payload) {
         case ActionTypes.START_TIMER:
             window.clearInterval(_timerId);
             _timerValue = DEFAULT_TIMER;
-            _timerId = window.setInterval(function() {
+            _timerId = window.setInterval(() => {
                 if(_timerValue === 0) {
                     window.clearInterval(_timerId);
                     _timerValue = null;

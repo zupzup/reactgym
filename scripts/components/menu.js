@@ -9,13 +9,13 @@ var React = require('react'),
 var Menu = React.createClass({
     mixins: [Router.Navigation],
 
-    getInitialState: function() {
+    getInitialState() {
         return {
             menuPoints: MenuStore.getMenuPoints()
         };
     },
 
-    render: function() {
+    render() {
         var self = this,
             menuPoints = this.state.menuPoints.map(function(item) {
             var handlerFunc = function() {
@@ -32,15 +32,15 @@ var Menu = React.createClass({
         );
     },
 
-    componentDidMount: function() {
+    componentDidMount() {
         MenuStore.addChangeListener(this._onChange);
     },
 
-    componentWillUnmount: function() {
+    componentWillUnmount() {
         MenuStore.removeChangeListener(this._onChange);
     },
 
-    _onChange: function() {
+    _onChange() {
         this.setState({menuPoints: MenuStore.getMenuPoints()});
     }
 });

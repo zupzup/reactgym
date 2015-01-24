@@ -1,3 +1,5 @@
+'use strict';
+
 jest.dontMock('../scripts/components/Header.js');
 var React = require('react/addons'),
     Router = require('react-router'),
@@ -6,27 +8,27 @@ var React = require('react/addons'),
     TestUtils = React.addons.TestUtils,
     Header = require('../scripts/components/Header.js');
 
-describe("Header", function() {
+describe("Header", () => {
     beforeEach(function() {
         HeaderState.init();
     });
 
-    it("renders a Header", function() {
-        var Context = {
-            getCurrentRoutes: function() {
+    it("renders a Header", () => {
+        let Context = {
+            getCurrentRoutes: () => {
                 return ['ello'];
             }
         };
-        var header = React.withContext(Context, function() {
+        let header = React.withContext(Context, () => {
             return TestUtils.renderIntoDocument(<Header />);
         });
-        var addSpan = TestUtils.scryRenderedDOMComponentsWithClass(header, 'yarr');
+        let addSpan = TestUtils.scryRenderedDOMComponentsWithClass(header, 'yarr');
         expect(addSpan.length).toEqual(0);
         expect(TestUtils.isCompositeComponent(header)).toEqual(true);
         expect(header.getDOMNode().className).toEqual("header");
     });
 
-    it("renders a title, addbutton, editbutton and backbutton", function() {
+    it("renders a title, addbutton, editbutton and backbutton", () => {
         HeaderStateActionCreators.setConfig({
             back: true,
             title: {
@@ -35,25 +37,25 @@ describe("Header", function() {
             },
             add: {
                 visible: true,
-                handler: function() {}
+                handler: () => {}
             },
             editMode: {
                 visible: true,
-                handler: function() {}
+                handler: () => {}
             }
         });
-        var Context = {
-            getCurrentRoutes: function() {
+        let Context = {
+            getCurrentRoutes: () => {
                 return ['ello'];
             }
         };
-        var header = React.withContext(Context, function() {
+        let header = React.withContext(Context, () => {
             return TestUtils.renderIntoDocument(<Header />);
         });
-        var backSpan = TestUtils.findRenderedDOMComponentWithClass(header, 'back');
-        var titleSpan = TestUtils.findRenderedDOMComponentWithClass(header, 'headertitle');
-        var addSpan = TestUtils.findRenderedDOMComponentWithClass(header, 'headeradd');
-        var editSpan = TestUtils.findRenderedDOMComponentWithClass(header, 'headeredit');
+        let backSpan = TestUtils.findRenderedDOMComponentWithClass(header, 'back');
+        let titleSpan = TestUtils.findRenderedDOMComponentWithClass(header, 'headertitle');
+        let addSpan = TestUtils.findRenderedDOMComponentWithClass(header, 'headeradd');
+        let editSpan = TestUtils.findRenderedDOMComponentWithClass(header, 'headeredit');
         expect(backSpan.getDOMNode().textContent).toEqual('back');
         expect(titleSpan.getDOMNode().textContent).toEqual('sample');
         expect(addSpan.getDOMNode().textContent).toEqual('add');

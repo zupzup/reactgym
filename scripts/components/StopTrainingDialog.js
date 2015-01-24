@@ -3,11 +3,11 @@
 var React = require('react');
 
 var StopTrainingDialog = React.createClass({
-    getInitialState: function() {
+    getInitialState() {
         return {};
     },
 
-    render: function() {
+    render() {
        return (
             <div className='stopTraining'>
                 <div>Finish?</div>

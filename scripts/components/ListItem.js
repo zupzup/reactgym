@@ -4,11 +4,11 @@ var React = require('react');
 
 var ListItem = React.createClass({
 
-    getInitialState: function() {
+    getInitialState() {
         return {};
     },
 
-    render: function() {
+    render() {
         var handlers = this.props.handlers, 
             tappable = handlers.default ? 'tappable' : '',
             editAble = this.props.editAble ? 'show' : '';

@@ -7,11 +7,11 @@ var React = require('react'),
 var TrainingForm = React.createClass({
     mixins: [],
 
-    getInitialState: function() {
+    getInitialState() {
         return {};
     },
 
-    handleSubmit: function() {
+    handleSubmit() {
         var reps = this.refs.reps.getDOMNode(),
             weight = this.refs.weight.getDOMNode();
         this.props.handler(this.props.exercise, reps.value, weight.value);
@@ -19,11 +19,11 @@ var TrainingForm = React.createClass({
         weight.value = '';
     },
 
-    render: function() {
+    render() {
         var self = this,
             exercise = ExerciseStore.getExerciseForId(this.props.exercise),
             sets = this.props.sets.map(function(item, index) {
-                var handler = function() {
+                var handler = () => {
                     AppStateActionCreators.removeSet(self.props.exercise, index);
                 }
                 return <span className='rep' key={index} onClick={handler}>{index + 1}</span>;

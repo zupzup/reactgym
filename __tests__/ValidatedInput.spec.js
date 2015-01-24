@@ -1,12 +1,14 @@
+'use strict';
+
 jest.dontMock('../scripts/components/forms/ValidatedInput.js');
-var React = require('react/addons'),
+let React = require('react/addons'),
     TestUtils = React.addons.TestUtils,
     ValidatedInput = require('../scripts/components/forms/ValidatedInput.js');
 
-describe("ValidatedInput", function() {
-    it("renders a ValidatedInput", function() {
-        var handlerFunc = function() {};
-        var input = TestUtils.renderIntoDocument(
+describe("ValidatedInput", () => {
+    it("renders a ValidatedInput", () => {
+        let handlerFunc = () => {};
+        let input = TestUtils.renderIntoDocument(
                 <ValidatedInput validator='string' placeholder='name' className='nameField' />
         );
         expect(TestUtils.isCompositeComponent(input)).toEqual(true);

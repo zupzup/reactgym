@@ -12,22 +12,22 @@ var React = require('react'),
 var Exercises = React.createClass({
     mixins: [Router.State],
 
-    getInitialState: function() {
+    getInitialState() {
         return {
             exercises: ExerciseStore.getExercises(),
             editAble: false
         };
     },
 
-    deleteHandler: function(e, item, index) {
+    deleteHandler(e, item, index) {
         ExerciseStoreActionCreators.removeExercise(index);
     },
 
-    defaultHandler: function(e, item, index) {
+    defaultHandler(e, item, index) {
         console.log(item, index);
     },
 
-    render: function() {
+    render() {
         var handlers = {
             default: this.defaultHandler,
             delete: this.deleteHandler
@@ -39,7 +39,7 @@ var Exercises = React.createClass({
         );
     },
 
-    componentDidMount: function() {
+    componentDidMount() {
         var self = this;
         ExerciseStore.addChangeListener(this._onChange);
         HeaderStateActionCreators.setConfig({
@@ -50,7 +50,7 @@ var Exercises = React.createClass({
             },
             add: {
                 visible: true,
-                handler: function() {
+                handler: () => {
                     AppStateActionCreators.openModal(
                         <AddExercise />
                     );
@@ -58,18 +58,18 @@ var Exercises = React.createClass({
             },
             editMode: {
                 visible: true,
-                handler: function() {
+                handler: () => {
                     self.setState({editAble: !self.state.editAble})
                 }
             }
         });
     },
 
-    componentWillUnmount: function() {
+    componentWillUnmount() {
         ExerciseStore.removeChangeListener(this._onChange);
     },
 
-    _onChange: function() {
+    _onChange() {
         this.setState({exercises: ExerciseStore.getExercises()});
     }
 });

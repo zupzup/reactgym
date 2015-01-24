@@ -10,25 +10,25 @@ var react = require('react'),
 
 var WorkoutStore = assign({}, EventEmitter.prototype, {
 
-    emitChange: function() {
+    emitChange() {
         this.emit(CHANGE_EVENT);
     },
 
-    addChangeListener: function(callback) {
+    addChangeListener(callback) {
         this.on(CHANGE_EVENT, callback);
     },
 
-    removeChangeListener: function(callback) {
+    removeChangeListener(callback) {
         this.removeListener(CHANGE_EVENT, callback);
     },
 
-    getWorkouts: function() {
+    getWorkouts() {
         return _workouts;
     }
 
 });
 
-WorkoutStore.dispatchToken = AppDispatcher.register(function(payload) {
+WorkoutStore.dispatchToken = AppDispatcher.register((payload) => {
     var action = payload.action;
 
     switch(action.type) {
@@ -49,9 +49,9 @@ WorkoutStore.dispatchToken = AppDispatcher.register(function(payload) {
             break;
         case ActionTypes.ADD_WORKOUT:
             _workouts.push({
-                    id: _workouts.map(function(item) {
+                    id: _workouts.map((item) => {
                         return item.id + 1;
-                    }).reduce(function(acc, item) {
+                    }).reduce((acc, item) => {
                         return item;
                     }, 0),
                     label: payload.action.workout.label,
@@ -64,7 +64,7 @@ WorkoutStore.dispatchToken = AppDispatcher.register(function(payload) {
             WorkoutStore.emitChange();
             break;
         case ActionTypes.UPDATE_WORKOUT:
-            _workouts = _workouts.map(function(item) {
+            _workouts = _workouts.map((item) => {
                 if(payload.action.workout.id === item.id) {
                     item = payload.action.workout; 
                 }

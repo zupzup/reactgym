@@ -10,25 +10,25 @@ var react = require('react'),
 
 var MenuStore = assign({}, EventEmitter.prototype, {
 
-    emitChange: function() {
+    emitChange() {
         this.emit(CHANGE_EVENT);
     },
 
-    addChangeListener: function(callback) {
+    addChangeListener(callback) {
         this.on(CHANGE_EVENT, callback);
     },
 
-    removeChangeListener: function(callback) {
+    removeChangeListener(callback) {
         this.removeListener(CHANGE_EVENT, callback);
     },
 
-    getMenuPoints: function() {
+    getMenuPoints() {
         return _menuPoints;
     }
 
 });
 
-MenuStore.dispatchToken = AppDispatcher.register(function(payload) {
+MenuStore.dispatchToken = AppDispatcher.register((payload) => {
     var action = payload.action;
 
     switch(action.type) {

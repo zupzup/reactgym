@@ -4,71 +4,71 @@ var AppDispatcher = require('../dispatcher/AppDispatcher'),
     ActionTypes = require('../constants/ActionTypes');
 
 module.exports = {
-    setNextTransition: function(animation) {
+    setNextTransition(animation) {
         AppDispatcher.handleViewAction({
             type: ActionTypes.SET_NEXT_TRANSITION,
             animation: animation
         });
     },
 
-    resetTransitions: function() {
+    resetTransitions() {
         AppDispatcher.handleViewAction({
             type: ActionTypes.RESET_TRANSITION,
             animation: 'slide'
         });
     },
 
-    toggleMenu: function() {
+    toggleMenu() {
         AppDispatcher.handleViewAction({
             type: ActionTypes.TOGGLE_MENU
         });
     },
 
-    closeMenu: function() {
+    closeMenu() {
         AppDispatcher.handleViewAction({
             type: ActionTypes.CLOSE_MENU
         });
     },
 
-    openModal: function(content) {
+    openModal(content) {
         AppDispatcher.handleViewAction({
             type: ActionTypes.OPEN_MODAL,
             content: content
         });
     },
 
-    closeModal: function() {
+    closeModal() {
         AppDispatcher.handleViewAction({
             type: ActionTypes.CLOSE_MODAL
         });
     },
 
-    startTraining: function(id) {
+    startTraining(id) {
         AppDispatcher.handleViewAction({
             type: ActionTypes.START_TRAINING,
             id: id
         });
     },
 
-    finishTraining: function() {
+    finishTraining() {
         AppDispatcher.handleViewAction({
             type: ActionTypes.FINISH_TRAINING
         });
     },
 
-    startTimer: function() {
+    startTimer() {
         AppDispatcher.handleViewAction({
             type: ActionTypes.START_TIMER
         });
     },
 
-    stopTimer: function() {
+    stopTimer() {
         AppDispatcher.handleViewAction({
             type: ActionTypes.STOP_TIMER
         });
     },
 
-    addSet: function(id, reps, weight) {
+    addSet(id, reps, weight) {
         AppDispatcher.handleViewAction({
             type: ActionTypes.ADD_SET,
             exercise: id,
@@ -76,7 +76,7 @@ module.exports = {
         });
     },
 
-    removeSet: function(id, index) {
+    removeSet(id, index) {
         AppDispatcher.handleViewAction({
             type: ActionTypes.REMOVE_SET,
             exercise: id,
@@ -84,7 +84,7 @@ module.exports = {
         });
     },
 
-    setCurrentExercise: function(id) {
+    setCurrentExercise(id) {
         AppDispatcher.handleViewAction({
             type: ActionTypes.SET_CURRENT_EXERCISE,
             exercise: id,

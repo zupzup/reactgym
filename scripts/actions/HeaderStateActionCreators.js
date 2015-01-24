@@ -4,13 +4,13 @@ var AppDispatcher = require('../dispatcher/AppDispatcher'),
     ActionTypes = require('../constants/ActionTypes');
 
 module.exports = {
-    resetConfig: function() {
+    resetConfig() {
         AppDispatcher.handleViewAction({
             type: ActionTypes.RESET_HEADER_CONFIG
         });
     },
 
-    setConfig: function(config) {
+    setConfig(config) {
         AppDispatcher.handleViewAction({
             type: ActionTypes.SET_HEADER_CONFIG,
             config: config

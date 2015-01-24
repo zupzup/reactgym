@@ -12,28 +12,28 @@ var React = require('react'),
 var Workouts = React.createClass({
     mixins: [Router.State],
 
-    getInitialState: function() {
+    getInitialState() {
         return {
             workouts: WorkoutStore.getWorkouts(),
             editAble: false
         };
     },
 
-    deleteHandler: function(e, item, index) {
+    deleteHandler(e, item, index) {
         WorkoutStoreActionCreators.removeWorkout(index);
     },
 
-    defaultHandler: function(e, item, index) {
+    defaultHandler(e, item, index) {
         console.log(item, index);
     },
 
-    editHandler: function(e, item, index) {
+    editHandler(e, item, index) {
         AppStateActionCreators.openModal(
             <WorkoutForm edit={true} workout={item} />
         );
     },
 
-    render: function() {
+    render() {
             var handlers = {
                 default: this.defaultHandler,
                 delete: this.deleteHandler,
@@ -47,7 +47,7 @@ var Workouts = React.createClass({
         );
     },
 
-    componentDidMount: function() {
+    componentDidMount() {
         var self = this;
         WorkoutStore.addChangeListener(this._onChange);
         HeaderStateActionCreators.setConfig({
@@ -58,7 +58,7 @@ var Workouts = React.createClass({
             },
             add: {
                 visible: true,
-                handler: function() {
+                handler: () => {
                     AppStateActionCreators.openModal(
                         <WorkoutForm />
                     );
@@ -66,18 +66,18 @@ var Workouts = React.createClass({
             },
             editMode: {
                 visible: true,
-                handler: function() {
+                handler: () => {
                     self.setState({editAble: !self.state.editAble})
                 }
             }
         });
     },
 
-    componentWillUnmount: function() {
+    componentWillUnmount() {
         WorkoutStore.removeChangeListener(this._onChange);
     },
 
-    _onChange: function() {
+    _onChange() {
         this.setState({workouts: WorkoutStore.getWorkouts()});
     }
 });

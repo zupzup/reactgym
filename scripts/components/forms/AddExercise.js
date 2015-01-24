@@ -8,20 +8,20 @@ var React = require('react'),
 var AddExercise = React.createClass({
     mixins: [],
 
-    getInitialState: function() {
+    getInitialState() {
         return {};
     },
 
-    handleSubmit: function() {
+    handleSubmit() {
         ExerciseStoreActionCreators.addExercise(this.refs.name.getDOMNode().value);
         AppStateActionCreators.closeModal();
     },
 
-    handleCancel: function() {
+    handleCancel() {
         AppStateActionCreators.closeModal();
     },
 
-    render: function() {
+    render() {
 
        return (
             <div className='form exercises'>

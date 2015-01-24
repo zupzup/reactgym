@@ -23,7 +23,7 @@ var routes = (
     </Route>
 );
 
-window.onpopstate = function() {
+window.onpopstate = () => {
     AppStateActionCreators.setNextTransition('slideBack');
 };
 
@@ -32,7 +32,7 @@ ExerciseStoreActionCreators.getExercises();
 WorkoutStoreActionCreators.getWorkouts();
 HeaderState.init();
 
-Router.run(routes, Router.HistoryLocation, function(Handler) {
+Router.run(routes, Router.HistoryLocation, (Handler) => {
     React.render(<Handler/>, document.body);
     // reset Transition animation after every transition
     AppStateActionCreators.resetTransitions();

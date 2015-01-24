@@ -3,11 +3,11 @@ var ValidationUtil = {
         //TODO: real implementation, map etc.
         if(validator === 'number') {
             return {
-                test: function(value) { return /\d/.test(value); }
+                test: (value) => { return /\d/.test(value); }
             };
         }
         return {
-            test: function(value) { return true; }
+            test: (value) => { return true; }
         };
     }
 };

@@ -6,24 +6,24 @@ var React = require('react'),
 var ValidatedInput = React.createClass({
     mixins: [],
 
-    getInitialState: function() {
+    getInitialState() {
         return {
             value: this.props.value || '',
             valid: null
         };
     },
 
-    validate: function(value) {
+    validate(value) {
         var validator = ValidationUtil.getValidationFunction(this.props.validator);
         return validator.test(value);
     },
 
-    componentDidMount: function() {
+    componentDidMount() {
         var value = this.props.value || '';
         this.validateAndSetValue(value);
     },
 
-    validateAndSetValue: function(value) {
+    validateAndSetValue(value) {
         var valid = 'valid';
         if(!this.validate(value)) {
             valid = 'invalid';
@@ -34,12 +34,12 @@ var ValidatedInput = React.createClass({
         });
     },
 
-    changeHandler: function(e) {
+    changeHandler(e) {
         var newValue = e.currentTarget.value;
         this.validateAndSetValue(newValue);
     },
 
-    render: function() {
+    render() {
        return (
         <input placeholder={this.props.placeholder} ref={this.props.ref} className={this.props.className + ' ' + this.state.valid} type='text' name={this.props.name} onChange={this.changeHandler} value={this.state.value} />
         );

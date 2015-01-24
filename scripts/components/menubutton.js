@@ -3,7 +3,7 @@
 var React = require('react/addons');
 
 var MenuButton = React.createClass({
-    render: function() {
+    render() {
         return (
             <div className='menubutton' onClick={this.props.handler}>
                 {this.props.name}

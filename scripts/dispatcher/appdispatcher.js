@@ -2,7 +2,7 @@ var Dispatcher = require('flux').Dispatcher,
     PayloadSources = require('../constants/PayloadSources'),
     assign = require('object-assign'),
     AppDispatcher = assign(new Dispatcher(), {
-        handleViewAction: function(action) {
+        handleViewAction(action) {
             var payload = {
                 source: PayloadSources.VIEW_ACTION,
                 action: action
@@ -10,7 +10,7 @@ var Dispatcher = require('flux').Dispatcher,
             this.dispatch(payload);
         },
 
-        handleServerAction: function(action) {
+        handleServerAction(action) {
             var payload = {
                 source: PayloadSources.SERVER_ACTION,
                 action: action

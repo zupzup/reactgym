@@ -9,13 +9,13 @@ var React = require('react'),
 var Home = React.createClass({
     mixins: [Router.State],
 
-    getInitialState: function() {
+    getInitialState() {
         return {
             timer: AppState.getTimer()
         };
     },
 
-    render: function() {
+    render() {
         return (
             <div className='page home'>
                 Ello!
@@ -24,7 +24,7 @@ var Home = React.createClass({
         );
     },
 
-    componentWillMount: function() {
+    componentWillMount() {
         HeaderStateActionCreators.setConfig({
             back: false,
             title:  {
@@ -34,16 +34,16 @@ var Home = React.createClass({
         });
     },
 
-    componentDidMount: function() {
+    componentDidMount() {
         var self = this;
         AppState.addChangeListener(self._onChange);
     },
 
-    componentWillUnmount: function() {
+    componentWillUnmount() {
         AppState.removeChangeListener(this._onChange);
     },
 
-    _onChange: function() {
+    _onChange() {
         this.setState({
             timer: AppState.getTimer()
         });

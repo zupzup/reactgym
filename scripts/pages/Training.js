@@ -17,22 +17,22 @@ var React = require('react'),
 var Training = React.createClass({
     mixins: [Router.Navigation],
 
-    getInitialState: function() {
+    getInitialState() {
         return {
             activeTraining: AppState.getActiveTraining(),
             timer: AppState.getTimer()
         };
     },
 
-    finishTraining: function() {
+    finishTraining() {
         var self = this,
-            yesHandler = function() {
+            yesHandler = () => {
                 AppStateActionCreators.finishTraining();
                 AppStateActionCreators.stopTimer();
                 AppStateActionCreators.closeModal();
                 self.transitionTo('home');
             },
-            noHandler = function() {
+            noHandler = () => {
                 AppStateActionCreators.closeModal();
             };
         AppStateActionCreators.openModal(
@@ -40,15 +40,15 @@ var Training = React.createClass({
         );
     },
 
-    startTraining: function(e, item, index) {
+    startTraining(e, item, index) {
         var workout = _.assign({}, item);
-        var sets = workout.exercises.reduce(function(acc, exercise) {
+        var sets = workout.exercises.reduce((acc, exercise) => {
             acc[exercise] = [];
             return acc;
         }, {});
         var training = {
             workout: workout,
-            id: TrainingStore.getTrainings().map(function(item) {
+            id: TrainingStore.getTrainings().map((item) => {
                 return item.id + 1;
             }).reduce(function(acc, item) {
                 return item;
@@ -60,16 +60,16 @@ var Training = React.createClass({
         AppStateActionCreators.startTraining(training.id);
     },
 
-    exerciseClickHandler: function(e, item, index) {
+    exerciseClickHandler(e, item, index) {
         AppStateActionCreators.setCurrentExercise(item.id);
     },
 
-    formSubmitHandler: function(exercise, reps, weight) {
+    formSubmitHandler(exercise, reps, weight) {
         AppStateActionCreators.addSet(exercise, reps, weight);
         AppStateActionCreators.startTimer();
     },
 
-    render: function() {
+    render() {
         if(this.state.activeTraining === null) {
             var handlers = {
                 default: this.startTraining
@@ -88,7 +88,7 @@ var Training = React.createClass({
             training = TrainingStore.getTrainingForId(this.state.activeTraining);
 
         if(training != null) {
-            var exercises = ExerciseStore.getExercises().filter(function(item) {
+            var exercises = ExerciseStore.getExercises().filter((item) => {
                 return training.workout.exercises.indexOf(item.id) !== -1;
             }),
             currentExercise = training.currentExercise;
@@ -104,7 +104,7 @@ var Training = React.createClass({
         }
     },
 
-    componentDidMount: function() {
+    componentDidMount() {
         var self = this;
         AppState.addChangeListener(self._onChange);
         HeaderStateActionCreators.setConfig({
@@ -116,11 +116,11 @@ var Training = React.createClass({
         });
     },
 
-    componentWillUnmount: function() {
+    componentWillUnmount() {
         AppState.removeChangeListener(this._onChange);
     },
 
-    _onChange: function() {
+    _onChange() {
         this.setState({
             activeTraining: AppState.getActiveTraining(),
             timer: AppState.getTimer()

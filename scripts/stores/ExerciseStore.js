@@ -11,31 +11,31 @@ var react = require('react'),
 
 var ExerciseStore = assign({}, EventEmitter.prototype, {
 
-    emitChange: function() {
+    emitChange() {
         this.emit(CHANGE_EVENT);
     },
 
-    addChangeListener: function(callback) {
+    addChangeListener(callback) {
         this.on(CHANGE_EVENT, callback);
     },
 
-    removeChangeListener: function(callback) {
+    removeChangeListener(callback) {
         this.removeListener(CHANGE_EVENT, callback);
     },
 
-    getExerciseForId: function(id) {
+    getExerciseForId(id) {
         return _.first(_exercises.filter(function(exercise) {
             return exercise.id === id; 
         }));
     },
 
-    getExercises: function() {
+    getExercises() {
         return _exercises;
     }
 
 });
 
-ExerciseStore.dispatchToken = AppDispatcher.register(function(payload) {
+ExerciseStore.dispatchToken = AppDispatcher.register((payload) => {
     var action = payload.action;
 
     switch(action.type) {
@@ -58,7 +58,7 @@ ExerciseStore.dispatchToken = AppDispatcher.register(function(payload) {
             break;
         case ActionTypes.ADD_EXERCISE:
             _exercises.push({
-                    id: _exercises.map(function(item) {
+                    id: _exercises.map((item) => {
                         return item.id + 1;
                     }).reduce(function(acc, item) {
                         return item;

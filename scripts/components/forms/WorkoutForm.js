@@ -8,13 +8,13 @@ var React = require('react'),
 var WorkoutForm = React.createClass({
     mixins: [],
 
-    getInitialState: function() {
+    getInitialState() {
         return {
             exercises: ExerciseStore.getExercises()
         };
     },
 
-    handleSubmit: function() {
+    handleSubmit() {
         var workout = {
             label: this.refs.name.getDOMNode().value,
             exercises: this.getSelectedExercises(this.refs.exercises.getDOMNode().options)
@@ -28,13 +28,13 @@ var WorkoutForm = React.createClass({
         AppStateActionCreators.closeModal();
     },
 
-    handleCancel: function() {
+    handleCancel() {
         AppStateActionCreators.closeModal();
     },
 
-    render: function() {
+    render() {
         var self = this;
-        var exercises = this.state.exercises.map(function(item) {
+        var exercises = this.state.exercises.map((item) => {
             return <option value={item.id}>{item.label}</option>;
         });
         var value = this.props.edit ? this.props.workout.label : '';
@@ -51,8 +51,8 @@ var WorkoutForm = React.createClass({
         );
     },
 
-    getSelectedExercises: function(options) {
-        return Array.prototype.filter.apply(options, [function(option) {
+    getSelectedExercises(options) {
+        return Array.prototype.filter.apply(options, [(option) => {
             return option.selected; 
         }]).map(function(option) {
             return option.value;
