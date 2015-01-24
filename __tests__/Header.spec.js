@@ -20,6 +20,8 @@ describe("Header", function() {
         var header = React.withContext(Context, function() {
             return TestUtils.renderIntoDocument(<Header />);
         });
+        var addSpan = TestUtils.scryRenderedDOMComponentsWithClass(header, 'yarr');
+        expect(addSpan.length).toEqual(0);
         expect(TestUtils.isCompositeComponent(header)).toEqual(true);
         expect(header.getDOMNode().className).toEqual("header");
     });
