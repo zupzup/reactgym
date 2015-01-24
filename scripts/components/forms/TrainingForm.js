@@ -22,7 +22,7 @@ var TrainingForm = React.createClass({
     render() {
         var self = this,
             exercise = ExerciseStore.getExerciseForId(this.props.exercise),
-            sets = this.props.sets.map(function(item, index) {
+            sets = this.props.sets.map((item, index) => {
                 var handler = () => {
                     AppStateActionCreators.removeSet(self.props.exercise, index);
                 }

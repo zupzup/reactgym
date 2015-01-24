@@ -17,8 +17,8 @@ var Menu = React.createClass({
 
     render() {
         var self = this,
-            menuPoints = this.state.menuPoints.map(function(item) {
-            var handlerFunc = function() {
+            menuPoints = this.state.menuPoints.map((item) => {
+            var handlerFunc = () => {
                 AppStateActionCreators.closeMenu();
                 self.transitionTo(item.link);
             };

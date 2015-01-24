@@ -50,7 +50,7 @@ var Training = React.createClass({
             workout: workout,
             id: TrainingStore.getTrainings().map((item) => {
                 return item.id + 1;
-            }).reduce(function(acc, item) {
+            }).reduce((acc, item) => {
                 return item;
             }, 0),
             sets: sets,

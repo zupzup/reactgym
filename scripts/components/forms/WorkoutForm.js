@@ -54,7 +54,7 @@ var WorkoutForm = React.createClass({
     getSelectedExercises(options) {
         return Array.prototype.filter.apply(options, [(option) => {
             return option.selected; 
-        }]).map(function(option) {
+        }]).map((option) => {
             return option.value;
         });
     }

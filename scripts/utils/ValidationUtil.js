@@ -1,5 +1,5 @@
 var ValidationUtil = {
-    getValidationFunction: function(validator) {
+    getValidationFunction(validator) {
         //TODO: real implementation, map etc.
         if(validator === 'number') {
             return {

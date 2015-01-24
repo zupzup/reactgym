@@ -24,7 +24,7 @@ var ExerciseStore = assign({}, EventEmitter.prototype, {
     },
 
     getExerciseForId(id) {
-        return _.first(_exercises.filter(function(exercise) {
+        return _.first(_exercises.filter((exercise) => {
             return exercise.id === id; 
         }));
     },
@@ -60,7 +60,7 @@ ExerciseStore.dispatchToken = AppDispatcher.register((payload) => {
             _exercises.push({
                     id: _exercises.map((item) => {
                         return item.id + 1;
-                    }).reduce(function(acc, item) {
+                    }).reduce((acc, item) => {
                         return item;
                     }, 0),
                     label: payload.action.exercise

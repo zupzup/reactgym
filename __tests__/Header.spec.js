@@ -9,7 +9,7 @@ var React = require('react/addons'),
     Header = require('../scripts/components/Header.js');
 
 describe("Header", () => {
-    beforeEach(function() {
+    beforeEach(() => {
         HeaderState.init();
     });
 
