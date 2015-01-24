@@ -18,8 +18,10 @@ simple menu on top with
     * list of exercises, field for reps (number), field for weight (number), counter starts when 'save' is pressed
 
 #TODOS:
-* es6ify
 * tests for all components
+* tests for all stores
+* tests for all actions
+* tests for all utils
 * persistence in localstorage
 * native build android
 * vibrate on timer-stop
@@ -78,4 +80,5 @@ simple menu on top with
     * [x] styling
 * [x] form validation
 * [x] tests for header
+* [x] es6ify
 
