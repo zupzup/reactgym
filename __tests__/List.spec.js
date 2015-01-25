@@ -19,7 +19,7 @@ describe("List", () => {
         expect(listItems[1].getDOMNode().textContent).toContain('hola');
     });
 
-    it("triggers the ", () => {
+    it("triggers the given handler", () => {
         let mockHandler = jest.genMockFunction();
         let handlers = {
             default: mockHandler

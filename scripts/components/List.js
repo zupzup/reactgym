@@ -10,6 +10,10 @@ var List = React.createClass({
         return {};
     },
 
+    defaultHandler(e, item, index) {
+        console.log(item + ' clicked');
+    },
+
     render() {
         var self = this,
             listItems = this.props.items.map((item, index) => {
@@ -28,7 +32,7 @@ var List = React.createClass({
     },
 
     _createHandlerFunction(item, index, handler) {
-        var handlerFunc = handler || function() {};
+        var handlerFunc = handler || this.defaultHandler;
         return (e) => {
             e.stopPropagation();
             handlerFunc(e, item, index);
