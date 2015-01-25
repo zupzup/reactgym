@@ -1,14 +1,16 @@
 reactgym
 ========
+Workout-Tracking app built using react and flux. Web and Native Android/iOS.
 
-simple app for trying out react
-
-#Setup:
+Setup:
+------
 * npm install
 * npm start (starts a webpack server on localhost:3000)
+* npm test
 
-#Structure:
-simple menu on top with
+Structure:
+------
+simple slideout menu with
 * exercises
     * list of exercises, create/delete
         * name
@@ -17,7 +19,12 @@ simple menu on top with
 * trainings
     * list of exercises, field for reps (number), field for weight (number), counter starts when 'save' is pressed
 
-#TODOS:
+Demo:
+------
+TODO
+
+TODOS:
+-
 * tests for all components
 * tests for all stores
 * tests for all actions
@@ -28,7 +35,8 @@ simple menu on top with
 * file-api for persistence
 * sass / compass instead of style.css :)
 
-#DONE:
+DONE:
+------
 * [x] slide-menu
 * [x] basic back-handling
 * [x] nice sliding view-transitions
