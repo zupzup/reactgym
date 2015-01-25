@@ -9,19 +9,21 @@ var React = require('react/addons'),
     Header = require('../scripts/components/Header.js');
 
 describe("Header", () => {
+    let header,
+        Context;
     beforeEach(() => {
         HeaderState.init();
-    });
-
-    it("renders a Header", () => {
-        let Context = {
+        Context = {
             getCurrentRoutes: () => {
                 return ['ello'];
             }
         };
-        let header = React.withContext(Context, () => {
+        header = React.withContext(Context, () => {
             return TestUtils.renderIntoDocument(<Header />);
         });
+    });
+
+    it("renders a Header", () => {
         let addSpan = TestUtils.scryRenderedDOMComponentsWithClass(header, 'yarr');
         expect(addSpan.length).toEqual(0);
         expect(TestUtils.isCompositeComponent(header)).toEqual(true);
@@ -44,14 +46,6 @@ describe("Header", () => {
                 handler: () => {}
             }
         });
-        let Context = {
-            getCurrentRoutes: () => {
-                return ['ello'];
-            }
-        };
-        let header = React.withContext(Context, () => {
-            return TestUtils.renderIntoDocument(<Header />);
-        });
         let backSpan = TestUtils.findRenderedDOMComponentWithClass(header, 'back');
         let titleSpan = TestUtils.findRenderedDOMComponentWithClass(header, 'headertitle');
         let addSpan = TestUtils.findRenderedDOMComponentWithClass(header, 'headeradd');
@@ -60,6 +54,27 @@ describe("Header", () => {
         expect(titleSpan.getDOMNode().textContent).toEqual('sample');
         expect(addSpan.getDOMNode().textContent).toEqual('add');
         expect(editSpan.getDOMNode().textContent).toEqual('edit');
+    });
+
+    it("triggers a transition to home, if there is no history", () => {
+        HeaderStateActionCreators.setConfig({
+            back: true
+        });
+        header.transitionTo = jest.genMockFunction();
+        let backSpan = TestUtils.findRenderedDOMComponentWithClass(header, 'back');
+        TestUtils.Simulate.click(backSpan.getDOMNode());
+        expect(header.transitionTo.mock.calls.length).toBe(1);
+    });
+
+    it("triggers router-back on click on back", () => {
+        HeaderStateActionCreators.setConfig({
+            back: true
+        });
+        history.pushState({foo: 'bar'}, "page", "foo.html");
+        header.goBack = jest.genMockFunction();
+        let backSpan = TestUtils.findRenderedDOMComponentWithClass(header, 'back');
+        TestUtils.Simulate.click(backSpan.getDOMNode());
+        expect(header.goBack.mock.calls.length).toBe(1);
     });
 });
 
