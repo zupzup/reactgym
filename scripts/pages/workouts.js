@@ -7,10 +7,23 @@ var React = require('react'),
     WorkoutForm = require('../components/forms/WorkoutForm'),
     WorkoutStore = require('../stores/WorkoutStore'),
     AppStateActionCreators = require('../actions/AppStateActionCreators'),
+    HeaderMixin = require('../mixins/HeaderMixin');
     Router = require('react-router');
 
 var Workouts = React.createClass({
-    mixins: [Router.State],
+    header: {
+        title: 'Workouts',
+        add: () => {
+            AppStateActionCreators.openModal(
+                <WorkoutForm />
+            );
+        },
+        edit: function() {
+            this.setState({editAble: !this.state.editAble})
+        }
+    },
+
+    mixins: [Router.State, HeaderMixin],
 
     getInitialState() {
         return {
@@ -50,27 +63,6 @@ var Workouts = React.createClass({
     componentDidMount() {
         var self = this;
         WorkoutStore.addChangeListener(this._onChange);
-        HeaderStateActionCreators.setConfig({
-            back: true,
-            title:  {
-                visible: true,
-                text: 'Workouts'
-            },
-            add: {
-                visible: true,
-                handler: () => {
-                    AppStateActionCreators.openModal(
-                        <WorkoutForm />
-                    );
-                }
-            },
-            editMode: {
-                visible: true,
-                handler: () => {
-                    self.setState({editAble: !self.state.editAble})
-                }
-            }
-        });
     },
 
     componentWillUnmount() {

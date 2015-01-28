@@ -6,11 +6,24 @@ var React = require('react'),
     ExerciseStoreActionCreators = require('../actions/ExerciseStoreActionCreators'),
     AppStateActionCreators = require('../actions/AppStateActionCreators'),
     AddExercise = require('../components/forms/AddExercise'),
+    HeaderMixin = require('../mixins/HeaderMixin');
     ExerciseStore = require('../stores/ExerciseStore'),
     Router = require('react-router');
 
 var Exercises = React.createClass({
-    mixins: [Router.State],
+    header: {
+        title: 'Exercises',
+        add: () => {
+            AppStateActionCreators.openModal(
+                <AddExercise />
+            );
+        },
+        edit: function() {
+            this.setState({editAble: !this.state.editAble})
+        }
+    },
+
+    mixins: [Router.State, HeaderMixin],
 
     getInitialState() {
         return {
@@ -42,27 +55,6 @@ var Exercises = React.createClass({
     componentDidMount() {
         var self = this;
         ExerciseStore.addChangeListener(this._onChange);
-        HeaderStateActionCreators.setConfig({
-            back: true,
-            title:  {
-                visible: true,
-                text: 'Exercises'
-            },
-            add: {
-                visible: true,
-                handler: () => {
-                    AppStateActionCreators.openModal(
-                        <AddExercise />
-                    );
-                }
-            },
-            editMode: {
-                visible: true,
-                handler: () => {
-                    self.setState({editAble: !self.state.editAble})
-                }
-            }
-        });
     },
 
     componentWillUnmount() {
