@@ -56,10 +56,6 @@ var AppState = assign({}, EventEmitter.prototype, {
             menuOpen: _menuOpen,
             modal: _modal
         };
-    },
-
-    getCurrentExercise() {
-        return _activeTraining.currentExercise;
     }
 });
 

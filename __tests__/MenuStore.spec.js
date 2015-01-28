@@ -19,14 +19,9 @@ describe("MenuStore", () => {
         };
 
     beforeEach(() => {
-        jest.autoMockOn();
         AppDispatcher = require('../scripts/dispatcher/AppDispatcher');
         MenuStore = require('../scripts/stores/MenuStore.js');
         cb = AppDispatcher.register.mock.calls[0][0];
-    });
-
-    it("tests the callback", () => {
-        expect(AppDispatcher.register.mock.calls.length).toBe(1);
     });
 
     it("getMenuPoints", () => {

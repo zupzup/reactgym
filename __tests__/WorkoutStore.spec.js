@@ -47,14 +47,9 @@ describe("WorkoutStore", () => {
         };
 
     beforeEach(() => {
-        jest.autoMockOn();
         AppDispatcher = require('../scripts/dispatcher/AppDispatcher');
         WorkoutStore = require('../scripts/stores/WorkoutStore.js');
         cb = AppDispatcher.register.mock.calls[0][0];
-    });
-
-    it("tests the callback", () => {
-        expect(AppDispatcher.register.mock.calls.length).toBe(1);
     });
 
     it("gets workouts", () => {

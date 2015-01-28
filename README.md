@@ -25,6 +25,7 @@ TODO
 
 TODOS:
 -
+* fix state-problem in AppState (addset/removeset etc. -> move activeTraining to AppState completely)
 * update to react .13
 * tests for all components
 * tests for all stores
