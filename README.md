@@ -25,6 +25,7 @@ TODO
 
 TODOS:
 -
+* update to react .13
 * tests for all components
 * tests for all stores
 * tests for all actions

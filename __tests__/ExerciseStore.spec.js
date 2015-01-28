@@ -48,6 +48,12 @@ describe("ExerciseStore", () => {
         expect(exercises).toEqual([]);
     });
 
+    it("getExerciseForId", () => {
+        cb(actionRequestExercises);
+        var exercise = ExerciseStore.getExerciseForId(1);
+        expect(exercise.label).toEqual('T-Bar-Rows');
+    });
+
     it("requests exercises", () => {
         cb(actionRequestExercises);
         var exercises = ExerciseStore.getExercises();
