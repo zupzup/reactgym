@@ -5,39 +5,39 @@ body {
 }
 
 .slide-enter {
-    left: -100%;
-    transition: left .3s ease-in;
+    transform: translateX(-100%);
+    transition: transform .3s ease-in;
 }
 
 .slide-enter.slide-enter-active {
-    left: 0;
+    transform: translateX(0%);
 }
 
 .slide-leave {
-    left: 0;
-    transition: left .3s ease-in;
+    transform: translateX(0%);
+    transition: transform .3s ease-in;
 }
 
 .slide-leave.slide-leave-active {
-    left: 100%;
+    transform: translateX(100%);
 }
 
 .slideBack-enter {
-    right: -100%;
-    transition: right .3s ease-in;
+    transform: translateX(100%);
+    transition: transform .3s ease-in;
 }
 
 .slideBack-enter.slideBack-enter-active {
-    right: 0;
+    transform: translateX(0%);
 }
 
 .slideBack-leave {
-    right: 0;
-    transition: right .3s ease-in;
+    transform: translateX(0%);
+    transition: transform .3s ease-in;
 }
 
 .slideBack-leave.slideBack-leave-active {
-    right: 100%;
+    transform: translateX(-100%);
 }
 
 .menubutton {
@@ -118,15 +118,12 @@ body {
     min-width: 100%;
     background-color: white; 
     position: relative;
-    top: 0;
-    bottom: 100%;
-    left: 0;
     z-index: 2;
-    transition: left 0.2s;
+    transition: transform 0.2s;
 }
 
 .contentArea.open {
-    left: 35%;
+    transform: translateX(35%);
 }
 
 .list {
