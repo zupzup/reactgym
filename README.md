@@ -25,6 +25,7 @@ TODO
 
 TODOS:
 -
+* gulp build
 * update to react .13
 * tests for all components
 * tests for all actions

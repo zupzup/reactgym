@@ -17,8 +17,6 @@ server.listen(3000, 'localhost', function (err, result) {
   console.log('Listening at localhost:3000');
 });
 
-// FIXME: this is not how you're supposed to do it:
-
 server.app.use(function pushStateHook(req, res, next) {
   var ext = path.extname(req.url);
   if ((ext === '' || ext === '.html') && req.url !== '/') {
