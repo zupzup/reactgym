@@ -1,7 +1,5 @@
 'use strict';
 
-var _ = require('lodash');
-
 jest.dontMock('../../scripts/stores/MenuStore.js');
 jest.dontMock('object-assign');
 jest.mock('../../scripts/dispatcher/AppDispatcher.js');
@@ -33,7 +31,7 @@ describe("MenuStore", () => {
         cb(actionRequestMenuPoints);
         var menuPoints = MenuStore.getMenuPoints();
         expect(menuPoints.length).toEqual(4);
-        expect(_.first(menuPoints).name).toEqual('Home');
+        expect(menuPoints[0].name).toEqual('Home');
     });
 });
 

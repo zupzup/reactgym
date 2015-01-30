@@ -6,9 +6,9 @@ jest.mock('../../scripts/stores/MenuStore.js');
 jest.mock('../../scripts/actions/AppStateActionCreators.js');
 var React = require('react/addons'),
     TestUtils = React.addons.TestUtils,
-    Router = require('react-router');
-    MenuStore = require('../../scripts/stores/MenuStore.js'),
     AppStateActionCreators = require('../../scripts/actions/AppStateActionCreators'),
+    Router = require('react-router'),
+    MenuStore = require('../../scripts/stores/MenuStore.js'),
     Menu = require('../../scripts/components/Menu.js');
 
 describe("Menu", () => {

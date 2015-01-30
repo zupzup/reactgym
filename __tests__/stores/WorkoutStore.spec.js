@@ -1,7 +1,5 @@
 'use strict';
 
-var _ = require('lodash');
-
 jest.dontMock('../../scripts/stores/WorkoutStore.js');
 jest.dontMock('object-assign');
 jest.mock('../../scripts/dispatcher/AppDispatcher.js');
@@ -61,15 +59,15 @@ describe("WorkoutStore", () => {
         cb(actionRequestWorkouts);
         var workouts = WorkoutStore.getWorkouts();
         expect(workouts.length).toEqual(2);
-        expect(_.first(workouts).label).toEqual('Chest Triceps Shoulders Abs');
-        expect(_.first(workouts).exercises.length).toEqual(2);
+        expect(workouts[0].label).toEqual('Chest Triceps Shoulders Abs');
+        expect(workouts[0].exercises.length).toEqual(2);
     });
 
     it("adds workouts", () => {
         cb(actionAddWorkout);
         var workouts = WorkoutStore.getWorkouts();
         expect(workouts.length).toEqual(1);
-        expect(_.first(workouts).label).toEqual('#3');
+        expect(workouts[0].label).toEqual('#3');
     });
 
     it("removes workouts", () => {
@@ -86,8 +84,8 @@ describe("WorkoutStore", () => {
         cb(actionUpdateWorkout);
         var workouts = WorkoutStore.getWorkouts();
         expect(workouts.length).toEqual(1);
-        expect(_.first(workouts).label).toEqual('#4');
-        expect(_.first(workouts).exercises.length).toEqual(1);
+        expect(workouts[0].label).toEqual('#4');
+        expect(workouts[0].exercises.length).toEqual(1);
     });
 });
 

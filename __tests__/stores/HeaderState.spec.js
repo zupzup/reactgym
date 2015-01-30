@@ -1,7 +1,5 @@
 'use strict';
 
-var _ = require('lodash');
-
 jest.dontMock('../../scripts/stores/HeaderState.js');
 jest.dontMock('object-assign');
 jest.mock('../../scripts/dispatcher/AppDispatcher.js');

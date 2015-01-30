@@ -1,7 +1,5 @@
 'use strict';
 
-var _ = require('lodash');
-
 jest.dontMock('../../scripts/stores/ExerciseStore.js');
 jest.dontMock('object-assign');
 jest.mock('../../scripts/dispatcher/AppDispatcher.js');
@@ -53,7 +51,7 @@ describe("ExerciseStore", () => {
         cb(actionRequestExercises);
         var exercises = ExerciseStore.getExercises();
         expect(exercises.length).toEqual(3);
-        expect(_.first(exercises).label).toEqual('T-Bar-Rows');
+        expect(exercises[0].label).toEqual('T-Bar-Rows');
     });
 
     it("adds exercises", () => {
@@ -61,7 +59,7 @@ describe("ExerciseStore", () => {
         cb(actionAddExercises);
         var exercises = ExerciseStore.getExercises();
         expect(exercises.length).toEqual(2);
-        expect(_.first(exercises).label).toEqual('Hyperextensions');
+        expect(exercises[0].label).toEqual('Hyperextensions');
     });
 
     it("removes exercises", () => {
