@@ -27,6 +27,7 @@ var Training = React.createClass({
     finishTraining() {
         var self = this,
             yesHandler = () => {
+                TrainingStoreActionCreators.addTraining(AppState.getActiveTraining());
                 AppStateActionCreators.finishTraining();
                 AppStateActionCreators.stopTimer();
                 AppStateActionCreators.closeModal();
@@ -56,8 +57,7 @@ var Training = React.createClass({
             sets: sets,
             currentExercise: _.first(workout.exercises)
         };
-        TrainingStoreActionCreators.addTraining(training);
-        AppStateActionCreators.startTraining(training.id);
+        AppStateActionCreators.startTraining(training);
     },
 
     exerciseClickHandler(e, item, index) {
@@ -85,7 +85,7 @@ var Training = React.createClass({
         var handlers = {
                 default: this.exerciseClickHandler
             },
-            training = TrainingStore.getTrainingForId(this.state.activeTraining);
+            training = this.state.activeTraining;
 
         if(training != null) {
             var exercises = ExerciseStore.getExercises().filter((item) => {

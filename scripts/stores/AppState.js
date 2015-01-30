@@ -5,7 +5,6 @@ var react = require('react'),
     EventEmitter = require('events').EventEmitter,
     ActionTypes = require('../constants/ActionTypes'),
     assign = require('object-assign'),
-    TrainingStore = require('./TrainingStore'),
     DEFAULT_TIMER = 90,
     _ = require('lodash'),
     CHANGE_EVENT = 'change',
@@ -88,7 +87,7 @@ AppState.dispatchToken = AppDispatcher.register((payload) => {
             AppState.emitChange();
             break;
         case ActionTypes.START_TRAINING:
-            _activeTraining = payload.action.id;
+            _activeTraining = payload.action.training;
             AppState.emitChange();
             break;
         case ActionTypes.FINISH_TRAINING:
@@ -116,18 +115,15 @@ AppState.dispatchToken = AppDispatcher.register((payload) => {
             AppState.emitChange();
             break;
         case ActionTypes.ADD_SET:
-            var activeTraining = TrainingStore.getTrainingForId(_activeTraining);
-            activeTraining.sets[payload.action.exercise].push(payload.action.set);
+            _activeTraining.sets[payload.action.exercise].push(payload.action.set);
             AppState.emitChange();
             break;
         case ActionTypes.REMOVE_SET:
-            var activeTraining = TrainingStore.getTrainingForId(_activeTraining);
-            activeTraining.sets[payload.action.exercise].splice(payload.action.index, 1);
+            _activeTraining.sets[payload.action.exercise].splice(payload.action.index, 1);
             AppState.emitChange();
             break;
         case ActionTypes.SET_CURRENT_EXERCISE:
-            var activeTraining = TrainingStore.getTrainingForId(_activeTraining);
-            activeTraining.currentExercise = payload.action.exercise;
+            _activeTraining.currentExercise = payload.action.exercise;
             AppState.emitChange();
             break;
         default:

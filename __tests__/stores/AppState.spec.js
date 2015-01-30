@@ -5,13 +5,11 @@ var _ = require('lodash');
 jest.dontMock('../../scripts/stores/AppState.js');
 jest.dontMock('object-assign');
 jest.mock('../../scripts/dispatcher/AppDispatcher.js');
-jest.mock('../../scripts/stores/TrainingStore.js');
 
 describe("AppState", () => {
     let cb,
         AppState,
         AppDispatcher,
-        TrainingStore,
         ActionTypes = require('../../scripts/constants/ActionTypes.js'),
         setTransitionAction = {
             source: 'VIEW_ACTION',
@@ -55,7 +53,16 @@ describe("AppState", () => {
             source: 'VIEW_ACTION',
             action: {
                 type: ActionTypes.START_TRAINING,
-                id: 0
+                training: {
+                    id: 5,
+                    workout: {
+                        label: 'test',
+                        exercises: []
+                    },
+                    sets: {
+                        '0': []
+                    }
+                }
             }
         },
         finishTrainingAction = {
@@ -69,7 +76,7 @@ describe("AppState", () => {
             action: {
                 type: ActionTypes.ADD_SET,
                 set: 'hello',
-                exercise: 0
+                exercise: '0'
             }
         },
         removeSetAction = {
@@ -102,7 +109,6 @@ describe("AppState", () => {
 
     beforeEach(() => {
         AppDispatcher = require('../../scripts/dispatcher/AppDispatcher');
-        TrainingStore = require('../../scripts/stores/TrainingStore.js');
         AppState = require('../../scripts/stores/AppState.js');
         AppState.DEFAULT_TIMER = 1;
         cb = AppDispatcher.register.mock.calls[0][0];
@@ -207,44 +213,28 @@ describe("AppState", () => {
 
     describe('activeTraining', () => {
         beforeEach(() => {
-            TrainingStore.getTrainingForId.mockImplementation(() => {
-                return {
-                    sets: {
-                        '0': ['1']
-                    },
-                    currentExercise: null
-                }; 
-            });
-        });
-
-        it("getActiveTraining", () => {
-            expect(AppState.getActiveTraining()).toEqual(null);
+            cb(startTrainingAction);
         });
 
         it("startTraining", () => {
-            cb(startTrainingAction);
-            expect(AppState.getActiveTraining()).toEqual(0);
+            expect(AppState.getActiveTraining().id).toEqual(5);
         });
 
         it("finishTraining", () => {
-            cb(startTrainingAction);
             cb(finishTrainingAction);
             expect(AppState.getActiveTraining()).toEqual(null);
         });
 
-        it('addSet', () => {
+        it('add and removeSet', () => {
             cb(addSetAction);
-            expect(TrainingStore.getTrainingForId.mock.calls.length).toBe(1);
-        });
-
-        it('removeSet', () => {
+            expect(AppState.getActiveTraining().sets[0].length).toBe(1);
             cb(removeSetAction);
-            expect(TrainingStore.getTrainingForId.mock.calls.length).toBe(1);
+            expect(AppState.getActiveTraining().sets[0].length).toBe(0);
         });
 
         it('setCurrentExercise', () => {
             cb(setCurrentExerciseAction);
-            expect(TrainingStore.getTrainingForId.mock.calls.length).toBe(1);
+            expect(AppState.getActiveTraining().currentExercise).toBe(0);
         });
     });
 });
