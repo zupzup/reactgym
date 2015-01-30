@@ -3,8 +3,7 @@
 var React = require('react/addons'),
     Router = require('react-router'),
     HeaderState = require('../stores/HeaderState'),
-    AppStateActionCreators = require('../actions/AppStateActionCreators'),
-    Menu = require('../components/Menu');
+    AppStateActionCreators = require('../actions/AppStateActionCreators');
 
 var Header = React.createClass({
     mixins: [Router.State, Router.Navigation],
@@ -42,7 +41,6 @@ var Header = React.createClass({
         if(config.editMode && config.editMode.visible) {
             editMode = <span className="headeredit" onClick={config.editMode.handler}>edit</span>;
         }
-
         return (
             <div className='header'>
                 <span className="headermenu" onClick={AppStateActionCreators.toggleMenu}>menu</span>
