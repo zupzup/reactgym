@@ -1,10 +1,10 @@
 'use strict';
 
-jest.dontMock('../scripts/components/Menu.js');
+jest.dontMock('../../scripts/components/Menu.js');
 var React = require('react/addons'),
     Router = require('react-router'),
     TestUtils = React.addons.TestUtils,
-    Menu = require('../scripts/components/Menu.js');
+    Menu = require('../../scripts/components/Menu.js');
 
 describe("Menu", () => {
     let menu,

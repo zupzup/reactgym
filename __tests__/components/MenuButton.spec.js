@@ -1,9 +1,9 @@
 'use strict';
 
-jest.dontMock('../scripts/components/MenuButton.js');
+jest.dontMock('../../scripts/components/MenuButton.js');
 let React = require('react/addons'),
     TestUtils = React.addons.TestUtils,
-    MenuButton = require('../scripts/components/MenuButton.js');
+    MenuButton = require('../../scripts/components/MenuButton.js');
 
 describe("MenuButton", () => {
     it("renders a menubutton", () => {

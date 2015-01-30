@@ -2,15 +2,15 @@
 
 var _ = require('lodash');
 
-jest.dontMock('../scripts/stores/HeaderState.js');
+jest.dontMock('../../scripts/stores/HeaderState.js');
 jest.dontMock('object-assign');
-jest.mock('../scripts/dispatcher/AppDispatcher.js');
+jest.mock('../../scripts/dispatcher/AppDispatcher.js');
 
 describe("HeaderState", () => {
     let cb,
         HeaderState,
         AppDispatcher,
-        ActionTypes = require('../scripts/constants/ActionTypes.js'),
+        ActionTypes = require('../../scripts/constants/ActionTypes.js'),
         setConfigAction = {
             source: 'VIEW_ACTION',
             action: {
@@ -29,8 +29,8 @@ describe("HeaderState", () => {
 
     beforeEach(() => {
         jest.autoMockOn();
-        AppDispatcher = require('../scripts/dispatcher/AppDispatcher');
-        HeaderState = require('../scripts/stores/HeaderState.js');
+        AppDispatcher = require('../../scripts/dispatcher/AppDispatcher');
+        HeaderState = require('../../scripts/stores/HeaderState.js');
         cb = AppDispatcher.register.mock.calls[0][0];
     });
 

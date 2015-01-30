@@ -2,17 +2,17 @@
 
 var _ = require('lodash');
 
-jest.dontMock('../scripts/stores/AppState.js');
+jest.dontMock('../../scripts/stores/AppState.js');
 jest.dontMock('object-assign');
-jest.mock('../scripts/dispatcher/AppDispatcher.js');
-jest.mock('../scripts/stores/TrainingStore.js');
+jest.mock('../../scripts/dispatcher/AppDispatcher.js');
+jest.mock('../../scripts/stores/TrainingStore.js');
 
 describe("AppState", () => {
     let cb,
         AppState,
         AppDispatcher,
         TrainingStore,
-        ActionTypes = require('../scripts/constants/ActionTypes.js'),
+        ActionTypes = require('../../scripts/constants/ActionTypes.js'),
         setTransitionAction = {
             source: 'VIEW_ACTION',
             action: {
@@ -101,9 +101,9 @@ describe("AppState", () => {
         };
 
     beforeEach(() => {
-        AppDispatcher = require('../scripts/dispatcher/AppDispatcher');
-        TrainingStore = require('../scripts/stores/TrainingStore.js');
-        AppState = require('../scripts/stores/AppState.js');
+        AppDispatcher = require('../../scripts/dispatcher/AppDispatcher');
+        TrainingStore = require('../../scripts/stores/TrainingStore.js');
+        AppState = require('../../scripts/stores/AppState.js');
         AppState.DEFAULT_TIMER = 1;
         cb = AppDispatcher.register.mock.calls[0][0];
     });

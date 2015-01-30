@@ -1,12 +1,12 @@
 'use strict';
 
-jest.dontMock('../scripts/components/Header.js');
+jest.dontMock('../../scripts/components/Header.js');
 var React = require('react/addons'),
     Router = require('react-router'),
-    HeaderState = require('../scripts/stores/HeaderState'),
-    HeaderStateActionCreators = require('../scripts/actions/HeaderStateActionCreators'),
+    HeaderState = require('../../scripts/stores/HeaderState'),
+    HeaderStateActionCreators = require('../../scripts/actions/HeaderStateActionCreators'),
     TestUtils = React.addons.TestUtils,
-    Header = require('../scripts/components/Header.js');
+    Header = require('../../scripts/components/Header.js');
 
 describe("Header", () => {
     let header,

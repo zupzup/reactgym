@@ -1,9 +1,9 @@
 'use strict';
 
-jest.dontMock('../scripts/components/Modal.js');
+jest.dontMock('../../scripts/components/Modal.js');
 let React = require('react/addons'),
     TestUtils = React.addons.TestUtils,
-    Modal = require('../scripts/components/Modal.js');
+    Modal = require('../../scripts/components/Modal.js');
 
 describe("Modal", () => {
     it("renders a Modal", () => {

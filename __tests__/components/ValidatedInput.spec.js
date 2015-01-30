@@ -1,9 +1,9 @@
 'use strict';
 
-jest.dontMock('../scripts/components/forms/ValidatedInput.js');
+jest.dontMock('../../scripts/components/forms/ValidatedInput.js');
 let React = require('react/addons'),
     TestUtils = React.addons.TestUtils,
-    ValidatedInput = require('../scripts/components/forms/ValidatedInput.js');
+    ValidatedInput = require('../../scripts/components/forms/ValidatedInput.js');
 
 describe("ValidatedInput", () => {
     it("renders a ValidatedInput", () => {

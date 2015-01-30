@@ -2,15 +2,15 @@
 
 var _ = require('lodash');
 
-jest.dontMock('../scripts/stores/WorkoutStore.js');
+jest.dontMock('../../scripts/stores/WorkoutStore.js');
 jest.dontMock('object-assign');
-jest.mock('../scripts/dispatcher/AppDispatcher.js');
+jest.mock('../../scripts/dispatcher/AppDispatcher.js');
 
 describe("WorkoutStore", () => {
     let cb,
         WorkoutStore,
         AppDispatcher,
-        ActionTypes = require('../scripts/constants/ActionTypes.js'),
+        ActionTypes = require('../../scripts/constants/ActionTypes.js'),
         actionAddWorkout = {
             source: 'VIEW_ACTION',
             action: {
@@ -47,8 +47,8 @@ describe("WorkoutStore", () => {
         };
 
     beforeEach(() => {
-        AppDispatcher = require('../scripts/dispatcher/AppDispatcher');
-        WorkoutStore = require('../scripts/stores/WorkoutStore.js');
+        AppDispatcher = require('../../scripts/dispatcher/AppDispatcher');
+        WorkoutStore = require('../../scripts/stores/WorkoutStore.js');
         cb = AppDispatcher.register.mock.calls[0][0];
     });
 

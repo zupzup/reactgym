@@ -2,15 +2,15 @@
 
 var _ = require('lodash');
 
-jest.dontMock('../scripts/stores/MenuStore.js');
+jest.dontMock('../../scripts/stores/MenuStore.js');
 jest.dontMock('object-assign');
-jest.mock('../scripts/dispatcher/AppDispatcher.js');
+jest.mock('../../scripts/dispatcher/AppDispatcher.js');
 
 describe("MenuStore", () => {
     let cb,
         MenuStore,
         AppDispatcher,
-        ActionTypes = require('../scripts/constants/ActionTypes.js'),
+        ActionTypes = require('../../scripts/constants/ActionTypes.js'),
         actionRequestMenuPoints = {
             source: 'VIEW_ACTION',
             action: {
@@ -19,8 +19,8 @@ describe("MenuStore", () => {
         };
 
     beforeEach(() => {
-        AppDispatcher = require('../scripts/dispatcher/AppDispatcher');
-        MenuStore = require('../scripts/stores/MenuStore.js');
+        AppDispatcher = require('../../scripts/dispatcher/AppDispatcher');
+        MenuStore = require('../../scripts/stores/MenuStore.js');
         cb = AppDispatcher.register.mock.calls[0][0];
     });
 
