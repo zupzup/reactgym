@@ -28,7 +28,6 @@ TODOS:
 * fix state-problem in AppState (addset/removeset etc. -> move activeTraining to AppState completely)
 * update to react .13
 * tests for all components
-* tests for all stores
 * tests for all actions
 * tests for all utils
 * persistence in localstorage
@@ -91,4 +90,5 @@ DONE:
 * [x] form validation
 * [x] tests for header
 * [x] es6ify
+* [x] tests for all stores
 
