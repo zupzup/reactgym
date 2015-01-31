@@ -25,10 +25,8 @@ TODO
 
 TODOS:
 -
-* update to react .13
 * tests for all components
-* tests for all actions
-* tests for all utils
+* update to react .13
 * persistence in localstorage
 * native build android
 * vibrate on timer-stop
@@ -92,4 +90,5 @@ DONE:
 * [x] fix state-problem in AppState (addset/removeset etc. -> move activeTraining to AppState completely)
 * [x] sass / compass instead of style.css :)
 * [x] gulp build
+* [x] tests for all utils
 

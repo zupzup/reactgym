@@ -35,7 +35,7 @@ var WorkoutForm = React.createClass({
     render() {
         var self = this;
         var exercises = this.state.exercises.map((item) => {
-            return <option value={item.id}>{item.label}</option>;
+            return <option key={item.id} value={item.id}>{item.label}</option>;
         });
         var value = this.props.edit ? this.props.workout.label : '';
        return (
@@ -45,8 +45,8 @@ var WorkoutForm = React.createClass({
                 <select multiple ref='exercises' defaultValue={this.props.edit ? this.props.workout.exercises : []}>
                     {exercises}
                 </select>
-                <button onClick={this.handleSubmit}>Submit</button> |
-                <button onClick={this.handleCancel}>Cancel</button>
+                <button className='submitButton' onClick={this.handleSubmit}>Submit</button> |
+                <button className='cancelButton' onClick={this.handleCancel}>Cancel</button>
             </div>
         );
     },
