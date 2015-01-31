@@ -1,13 +1,12 @@
 'use strict';
 
 jest.dontMock('../../scripts/stores/AppState.js');
-jest.dontMock('object-assign');
 jest.mock('../../scripts/dispatcher/AppDispatcher.js');
 
 describe("AppState", () => {
     let cb,
-        AppState,
-        AppDispatcher,
+        AppDispatcher = require('../../scripts/dispatcher/AppDispatcher');
+        AppState = require('../../scripts/stores/AppState.js');
         ActionTypes = require('../../scripts/constants/ActionTypes.js'),
         setTransitionAction = {
             source: 'VIEW_ACTION',
@@ -106,9 +105,6 @@ describe("AppState", () => {
         };
 
     beforeEach(() => {
-        AppDispatcher = require('../../scripts/dispatcher/AppDispatcher');
-        AppState = require('../../scripts/stores/AppState.js');
-        AppState.DEFAULT_TIMER = 1;
         cb = AppDispatcher.register.mock.calls[0][0];
     });
 
@@ -177,7 +173,7 @@ describe("AppState", () => {
         });
     });
 
-    describe('modal', () => {
+    describe('timer', () => {
         var flag;
         it("getTimer", () => {
             expect(AppState.getTimer()).toEqual(null);

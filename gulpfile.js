@@ -4,6 +4,7 @@ var gulp = require('gulp'),
     gutil = require("gulp-util"),
     request = require('request'),
     path = require('path'),
+    jest = require('jest-cli'),
     WebpackDevServer = require('webpack-dev-server'),
     config = require('./webpack.config'),
     webpackConfig = require("./webpack.config.js");
@@ -11,6 +12,15 @@ var gulp = require('gulp'),
 gulp.task('default', function() {
     gulp.watch('styles/scss/*.scss', ['sass']);
     startServer();
+});
+
+gulp.task('test', function(callback) {
+    gulp.watch('__tests__/**/*.js', ['test']);
+    gulp.watch('scripts/**/*.js', ['test']);
+    var onComplete = function(result) {
+        callback();
+    }
+    jest.runCLI({}, __dirname, onComplete);
 });
 
 gulp.task('sass', function () {
