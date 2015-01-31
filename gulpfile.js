@@ -1,22 +1,16 @@
-var gulp = require('gulp');
-var webpack = require("webpack");
-var nodemon = require('gulp-nodemon');
-var sass = require('gulp-ruby-sass');
-var gutil = require("gulp-util");
-
-var webpackConfig = require("./webpack.config.js");
+var gulp = require('gulp'),
+    webpack = require("webpack"),
+    sass = require('gulp-ruby-sass'),
+    gutil = require("gulp-util"),
+    request = require('request'),
+    path = require('path'),
+    WebpackDevServer = require('webpack-dev-server'),
+    config = require('./webpack.config'),
+    webpackConfig = require("./webpack.config.js");
 
 gulp.task('default', function() {
-    gulp.watch('scss/*.scss', ['sass']);
-    gulp.watch('app/**/*.js', ['webpack']);
-    nodemon({
-        script: 'server/index.js',
-        ext: 'js html',
-        env: { 'NODE_ENV': 'development' },
-        nodeArgs: ['--debug']
-    }).on('restart', function () {
-        console.log('server restarted!')
-    });
+    gulp.watch('styles/scss/*.scss', ['sass']);
+    startServer();
 });
 
 gulp.task('sass', function () {
@@ -40,3 +34,27 @@ gulp.task("webpack", function(callback) {
         callback();
     });
 });
+
+var startServer = function() {
+    var server = new WebpackDevServer(webpack(config), {
+        publicPath: config.output.publicPath,
+        hot: true
+    });
+
+    server.listen(3000, 'localhost', function (err, result) {
+        if (err) {
+            console.log(err);
+        }
+
+        console.log('Listening at localhost:3000');
+    });
+
+    server.app.use(function pushStateHook(req, res, next) {
+        var ext = path.extname(req.url);
+        if ((ext === '' || ext === '.html') && req.url !== '/') {
+            req.pipe(request('http://localhost:3000')).pipe(res);
+        } else {
+            next();
+        }
+    });
+};

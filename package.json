@@ -16,7 +16,6 @@
   },
   "devDependencies": {
       "gulp": "^3.8.10",
-      "gulp-nodemon": "^1.0.5",
       "gulp-ruby-sass": "^0.7.1",
       "gulp-util": "^3.0.2",
       "css-loader": "^0.9.0",
