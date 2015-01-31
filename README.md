@@ -34,7 +34,6 @@ TODOS:
 * native build android
 * vibrate on timer-stop
 * file-api for persistence
-* sass / compass instead of style.css :)
 
 DONE:
 ------
@@ -92,4 +91,5 @@ DONE:
 * [x] es6ify
 * [x] tests for all stores
 * [x] fix state-problem in AppState (addset/removeset etc. -> move activeTraining to AppState completely)
+* [x] sass / compass instead of style.css :)
 

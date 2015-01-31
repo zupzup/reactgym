@@ -15,17 +15,21 @@
     "lodash": "^3.0.0"
   },
   "devDependencies": {
-    "css-loader": "^0.9.0",
-    "file-loader": "~0.8.1",
-    "istanbul": "^0.3.2",
-    "jest-cli": "git://github.com/hankhsiao/jest.git",
-    "react-hot-loader": "^0.5.0",
-    "request": "^2.40.0",
-    "sinon": "^1.12.2",
-    "style-loader": "^0.8.2",
-    "url-loader": "~0.5.5",
-    "webpack": "^1.5.1",
-    "webpack-dev-server": "^1.4.10"
+      "gulp": "^3.8.10",
+      "gulp-nodemon": "^1.0.5",
+      "gulp-ruby-sass": "^0.7.1",
+      "gulp-util": "^3.0.2",
+      "css-loader": "^0.9.0",
+      "file-loader": "~0.8.1",
+      "istanbul": "^0.3.2",
+      "jest-cli": "git://github.com/hankhsiao/jest.git",
+      "react-hot-loader": "^0.5.0",
+      "request": "^2.40.0",
+      "sinon": "^1.12.2",
+      "style-loader": "^0.8.2",
+      "url-loader": "~0.5.5",
+      "webpack": "^1.5.1",
+      "webpack-dev-server": "^1.4.10"
   },
   "scripts": {
     "start": "node server.js",

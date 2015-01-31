@@ -1,0 +1,282 @@
+
+body {
+  background: #eee;
+  font-family: arial;
+  margin: 0;
+}
+
+.slide-enter {
+  transform: translateX(-100%);
+  transition: transform .3s ease-in;
+  &.slide-enter-active {
+    transform: translateX(0%);
+  }
+}
+
+.slide-leave {
+  transform: translateX(0%);
+  transition: transform .3s ease-in;
+  &.slide-leave-active {
+    transform: translateX(100%);
+  }
+}
+
+.slideBack-enter {
+  transform: translateX(100%);
+  transition: transform .3s ease-in;
+  &.slideBack-enter-active {
+    transform: translateX(0%);
+  }
+}
+
+.slideBack-leave {
+  transform: translateX(0%);
+  transition: transform .3s ease-in;
+  &.slideBack-leave-active {
+    transform: translateX(-100%);
+  }
+}
+
+.menubutton {
+  background: #333;
+  color: #eee;
+  padding: 0.5rem;
+  margin: 0.1rem;
+  &:hover {
+    background: #777;
+    cursor: hand;
+  }
+}
+
+.header {
+  .headertitle {
+    color: #000;
+    text-align: center;
+    width: 24rem;
+    margin-left: -12rem;
+    left: 50%;
+    position: absolute;
+  }
+  .headermenu {
+    line-height: 1rem;
+    width: 2.5rem;
+    background: #888;
+    position: absolute;
+    color: #eee;
+    text-align: center;
+    padding: 0.25rem;
+    margin: 0.1rem;
+    z-index: 2;
+  }
+}
+
+.headeradd, .headeredit, .back {
+  line-height: 1rem;
+  width: 2.5rem;
+  background: #888;
+  position: absolute;
+  color: #eee;
+  text-align: center;
+  padding: 0.25rem;
+  margin: 0.1rem;
+  z-index: 2;
+}
+
+.header .headermenu:hover, .headeradd:hover, .headeredit:hover, .back:hover {
+  background: #777;
+  cursor: hand;
+}
+
+.header {
+  .headermenu {
+    left: .1rem;
+  }
+  .back {
+    left: 3.5rem;
+  }
+  .headeradd {
+    right: .1rem;
+  }
+  .headeredit {
+    right: 3.5rem;
+  }
+  top: 0;
+  background: lightskyblue;
+  line-height: 2rem;
+  height: 2rem;
+  position: relative;
+}
+
+.menu {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.contentArea {
+  min-height: 100%;
+  min-width: 100%;
+  background-color: white;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.2s;
+  &.open {
+    transform: translateX(35%);
+  }
+}
+
+.list {}
+
+.listitem {
+  background: #fff;
+  cursor: pointer;
+  position: relative;
+  padding: 2rem 0 2rem 2rem;
+  border-bottom: 1px solid #aaa;
+  .delete {
+    visibility: hidden;
+    position: absolute;
+    background: lightcoral;
+    color: #fff;
+    padding: 0.4rem;
+    right: 3rem;
+    top: 1.6rem;
+    line-height: 1rem;
+  }
+  .edit {
+    visibility: hidden;
+    position: absolute;
+    background: burlywood;
+    color: #fff;
+    padding: 0.4rem;
+    top: 1.6rem;
+    line-height: 1rem;
+    right: 7rem;
+  }
+  .delete {
+    &.show {
+      visibility: visible;
+    }
+    &:hover {
+      background: red;
+    }
+  }
+  &:first-child {
+    border-top: 1px solid #aaa;
+  }
+  .edit {
+    &.show {
+      visibility: visible;
+    }
+    &:hover {
+      background: orange;
+    }
+  }
+  &.tappable:after {
+    right: 10px;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    border-color: rgba(255, 255, 255, 0);
+    border-left-color: #bbb;
+    border-width: .5rem;
+    top: 2rem;
+  }
+}
+
+.back.hide {
+  display: none;
+}
+
+.content .page {
+  width: 100%;
+  position: absolute;
+}
+
+.modal {
+  &.open {
+    top: 0;
+  }
+  position: absolute;
+  z-index: 100;
+  background: #ddd;
+  top: -60%;
+  left: 0;
+  right: 0;
+  height: 60%;
+  transition: top 0.3s;
+  .close {
+    cursor: pointer;
+    height: 2rem;
+    width: 2rem;
+    right: .5rem;
+    top: .5rem;
+    position: absolute;
+    display: inline-block;
+    background-color: red;
+  }
+}
+
+.form {
+  text-align: center;
+}
+
+.finish {
+  width: 100%;
+  line-height: 3rem;
+  background: lightblue;
+  text-align: center;
+  margin-top: 1rem;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  &:hover {
+    background: #ccc;
+    cursor: hand;
+  }
+}
+
+.timer {
+  width: 100%;
+  line-height: 3rem;
+  background: lightblue;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.rep {
+  background: brown;
+  color: #eee;
+  padding: .5rem 1.5rem .5rem 1.5rem;
+  margin: 0.1rem;
+  &:hover {
+    background: lightcoral;
+    cursor: hand;
+  }
+}
+
+.form.training {
+  margin-top: 1rem;
+}
+
+.stopTraining {
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  margin-top: 20%;
+  font-size: 3rem;
+  button {
+    font-size: 2rem;
+  }
+}
+
+input.invalid {
+  border: 1px solid red;
+}
