@@ -72,6 +72,13 @@ WorkoutStore.dispatchToken = AppDispatcher.register((payload) => {
             });
             WorkoutStore.emitChange();
             break;
+        case ActionTypes.REMOVE_EXERCISE_FROM_WORKOUTS:
+            _workouts = _workouts.map((item) => {
+                item.exercises = item.exercises.filter(ex => ex !== payload.action.id);
+                return item;
+            });
+            WorkoutStore.emitChange();
+            break;
         default:
     }
 });

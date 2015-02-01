@@ -26,5 +26,11 @@ module.exports = {
             type: ActionTypes.UPDATE_WORKOUT,
             workout: workout
         });
+    },
+    removeExerciseFromWorkouts(id) {
+        AppDispatcher.handleViewAction({
+            type: ActionTypes.REMOVE_EXERCISE_FROM_WORKOUTS,
+            id: id
+        });
     }
 };

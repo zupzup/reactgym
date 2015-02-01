@@ -26,6 +26,13 @@ describe("WorkoutStore", () => {
                 index: 0
             }
         },
+        actionRemoveExercise = {
+            source: 'VIEW_ACTION',
+            action: {
+                type: ActionTypes.REMOVE_EXERCISE_FROM_WORKOUTS,
+                id: 0
+            }
+        },
         actionUpdateWorkout = {
             source: 'VIEW_ACTION',
             action: {
@@ -86,6 +93,14 @@ describe("WorkoutStore", () => {
         expect(workouts.length).toEqual(1);
         expect(workouts[0].label).toEqual('#4');
         expect(workouts[0].exercises.length).toEqual(1);
+    });
+
+    it("removes the exercise from all workouts", () => {
+        cb(actionAddWorkout);
+        cb(actionAddWorkout);
+        cb(actionRemoveExercise);
+        expect(WorkoutStore.getWorkouts()[0].exercises).not.toContain(0);
+        expect(WorkoutStore.getWorkouts()[1].exercises).not.toContain(0);
     });
 });
 

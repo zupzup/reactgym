@@ -4,6 +4,7 @@ var React = require('react'),
     List = require('../components/List')
     HeaderStateActionCreators = require('../actions/HeaderStateActionCreators'),
     ExerciseStoreActionCreators = require('../actions/ExerciseStoreActionCreators'),
+    WorkoutStoreActionCreators = require('../actions/WorkoutStoreActionCreators'),
     AppStateActionCreators = require('../actions/AppStateActionCreators'),
     AddExercise = require('../components/forms/AddExercise'),
     HeaderMixin = require('../mixins/HeaderMixin');
@@ -34,6 +35,7 @@ var Exercises = React.createClass({
 
     deleteHandler(e, item, index) {
         ExerciseStoreActionCreators.removeExercise(index);
+        WorkoutStoreActionCreators.removeExerciseFromWorkouts(item.id);
     },
 
     defaultHandler(e, item, index) {
