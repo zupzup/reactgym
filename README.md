@@ -24,7 +24,6 @@ Demo:
 TODO
 
 TODOS:
--
 * tests for pages
 * update to react .13
 * persistence in localstorage

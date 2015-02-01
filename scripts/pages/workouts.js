@@ -8,7 +8,6 @@ var React = require('react'),
     WorkoutStore = require('../stores/WorkoutStore'),
     AppStateActionCreators = require('../actions/AppStateActionCreators'),
     HeaderMixin = require('../mixins/HeaderMixin');
-    Router = require('react-router');
 
 var Workouts = React.createClass({
     header: {
@@ -23,7 +22,7 @@ var Workouts = React.createClass({
         }
     },
 
-    mixins: [Router.State, HeaderMixin],
+    mixins: [HeaderMixin],
 
     getInitialState() {
         return {

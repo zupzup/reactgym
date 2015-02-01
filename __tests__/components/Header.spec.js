@@ -50,7 +50,7 @@ describe("Header", () => {
         expect(header.getDOMNode().className).toEqual('header');
     });
 
-    xit("renders a title, addbutton, editbutton and backbutton", () => {
+    it("renders a title, addbutton, editbutton and backbutton", () => {
         header = TestUtils.renderIntoDocument(<Header />);
         let backSpan = TestUtils.findRenderedDOMComponentWithClass(header, 'back');
         let titleSpan = TestUtils.findRenderedDOMComponentWithClass(header, 'headertitle');

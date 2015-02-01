@@ -2,14 +2,12 @@
 
 var React = require('react'),
     List = require('../components/List')
-    HeaderStateActionCreators = require('../actions/HeaderStateActionCreators'),
     ExerciseStoreActionCreators = require('../actions/ExerciseStoreActionCreators'),
     WorkoutStoreActionCreators = require('../actions/WorkoutStoreActionCreators'),
     AppStateActionCreators = require('../actions/AppStateActionCreators'),
     AddExercise = require('../components/forms/AddExercise'),
     HeaderMixin = require('../mixins/HeaderMixin');
-    ExerciseStore = require('../stores/ExerciseStore'),
-    Router = require('react-router');
+    ExerciseStore = require('../stores/ExerciseStore');
 
 var Exercises = React.createClass({
     header: {
@@ -24,7 +22,7 @@ var Exercises = React.createClass({
         }
     },
 
-    mixins: [Router.State, HeaderMixin],
+    mixins: [HeaderMixin],
 
     getInitialState() {
         return {
@@ -55,7 +53,6 @@ var Exercises = React.createClass({
     },
 
     componentDidMount() {
-        var self = this;
         ExerciseStore.addChangeListener(this._onChange);
     },
 

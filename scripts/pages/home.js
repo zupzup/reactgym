@@ -3,11 +3,10 @@
 var React = require('react'),
     List = require('../components/List')
     HeaderStateActionCreators = require('../actions/HeaderStateActionCreators'),
-    AppState = require('../stores/AppState'),
-    Router = require('react-router');
+    AppState = require('../stores/AppState');
 
 var Home = React.createClass({
-    mixins: [Router.State],
+    mixins: [],
 
     getInitialState() {
         return {

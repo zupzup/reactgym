@@ -1,6 +1,7 @@
 'use strict';
 
-var React = require('react');
+var React = require('react'),
+    HeaderStateActionCreators = require('../actions/HeaderStateActionCreators.js');
 
 var HeaderMixin = {
     componentDidMount() {
