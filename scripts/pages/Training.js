@@ -88,23 +88,21 @@ var Training = React.createClass({
         var handlers = {
                 default: this.exerciseClickHandler
             },
-            training = this.state.activeTraining;
-
-        if(training != null) {
-            var exercises = ExerciseStore.getExercises().filter((item) => {
+            training = this.state.activeTraining,
+            exercises = ExerciseStore.getExercises().filter((item) => {
                 return training.workout.exercises.indexOf(item.id) !== -1;
             }),
             currentExercise = training.currentExercise;
-            return (
-                <div className='page training'>
-                    <h1>{training.workout.label}</h1>
-                    <div className='timer'>{this.state.timer}</div>
-                    <List editAble={false} handlers={handlers} items={exercises}></List>
-                    <TrainingForm exercise={currentExercise} sets={training.sets[currentExercise]} handler={this.formSubmitHandler} />
-                    <div className='finish' onClick={this.finishTraining}>Finish Training</div>
-                </div>
-            );
-        }
+
+        return (
+            <div className='page training'>
+                <h1>{training.workout.label}</h1>
+                <div className='timer'>{this.state.timer}</div>
+                <List editAble={false} handlers={handlers} items={exercises}></List>
+                <TrainingForm exercise={currentExercise} sets={training.sets[currentExercise]} handler={this.formSubmitHandler} />
+                <div className='finish' onClick={this.finishTraining}>Finish Training</div>
+            </div>
+        );
     },
 
     componentDidMount() {

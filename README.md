@@ -24,7 +24,6 @@ Demo:
 TODO
 
 TODOS:
-* tests for pages
 * update to react .13
 * persistence in localstorage
 * native build android / iOS
@@ -92,4 +91,5 @@ DONE:
 * [x] tests for all utils
 * [x] tests for all components
 * [x] fix bug for exercise deletion (workouts are not updated)
+* [x] tests for pages
 
