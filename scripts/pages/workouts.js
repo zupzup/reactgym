@@ -35,10 +35,6 @@ var Workouts = React.createClass({
         WorkoutStoreActionCreators.removeWorkout(index);
     },
 
-    defaultHandler(e, item, index) {
-        console.log(item, index);
-    },
-
     editHandler(e, item, index) {
         AppStateActionCreators.openModal(
             <WorkoutForm edit={true} workout={item} />

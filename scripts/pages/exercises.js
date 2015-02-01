@@ -36,13 +36,9 @@ var Exercises = React.createClass({
         WorkoutStoreActionCreators.removeExerciseFromWorkouts(item.id);
     },
 
-    defaultHandler(e, item, index) {
-        console.log(item, index);
-    },
-
     render() {
         var handlers = {
-            default: this.defaultHandler,
+            default: null,
             delete: this.deleteHandler
         }
         return (

@@ -76,12 +76,12 @@ describe("Header", () => {
         TestUtils.Simulate.click(backSpan.getDOMNode());
         expect(header.goBack.mock.calls.length).toBe(1);
     });
-    
+ 
     it("shows no back button on homepage", () => {
         let backSpan = TestUtils.scryRenderedDOMComponentsWithClass(header, 'back hide');
         expect(backSpan.length).toBe(1);
     });
-    
+ 
     it("shows a back button on other pages, if there is a history", () => {
         Router.State.getRoutes.mockClear();
         Router.State.getRoutes.mockImplementation(() => {

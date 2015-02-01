@@ -11,7 +11,6 @@ var List = React.createClass({
     },
 
     defaultHandler(e, item, index) {
-        console.log(item + ' clicked');
     },
 
     render() {
