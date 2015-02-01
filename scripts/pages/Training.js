@@ -2,8 +2,8 @@
 
 var React = require('react'),
     List = require('../components/List')
-    HeaderStateActionCreators = require('../actions/HeaderStateActionCreators'),
     AppStateActionCreators = require('../actions/AppStateActionCreators'),
+    SimpleHeaderMixin = require('../mixins/SimpleHeaderMixin');
     TrainingStoreActionCreators = require('../actions/TrainingStoreActionCreators'),
     WorkoutStore = require('../stores/WorkoutStore'),
     _ = require('lodash'),
@@ -15,7 +15,10 @@ var React = require('react'),
     AppState = require('../stores/AppState');
 
 var Training = React.createClass({
-    mixins: [Router.Navigation],
+    header: {
+        title: 'Training'
+    },
+    mixins: [Router.Navigation, SimpleHeaderMixin],
 
     getInitialState() {
         return {
@@ -107,13 +110,6 @@ var Training = React.createClass({
     componentDidMount() {
         var self = this;
         AppState.addChangeListener(self._onChange);
-        HeaderStateActionCreators.setConfig({
-            back: true,
-            title:  {
-                visible: true,
-                text: 'Training'
-            }
-        });
     },
 
     componentWillUnmount() {

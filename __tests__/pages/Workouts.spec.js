@@ -13,7 +13,7 @@ var React = require('react/addons'),
     Workouts = require('../../scripts/pages/Workouts.js');
 
 describe("Exercises", () => {
-    var exercises;
+    var workouts;
     beforeEach(() => {
         WorkoutStore.getWorkouts.mockImplementation(() => {
             return [
