@@ -38,7 +38,7 @@ var TrainingForm = React.createClass({
                         <input className='reps' type='text' placeholder='weight' ref='weight' /><br />
                     </span>
                     <span>
-                        <button onClick={this.handleSubmit}>Add</button> 
+                        <button className='submitButton' onClick={this.handleSubmit}>Add</button> 
                     </span>
                 </div>
             </div>

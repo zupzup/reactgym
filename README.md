@@ -25,10 +25,11 @@ TODO
 
 TODOS:
 -
+* fix bug for exercise deletion (workouts are not updated)
 * tests for all components
 * update to react .13
 * persistence in localstorage
-* native build android
+* native build android / iOS
 * vibrate on timer-stop
 * file-api for persistence
 

@@ -34,7 +34,7 @@ describe("WorkoutForm", () => {
         WorkoutStoreActionCreators.addWorkout.mockClear(); 
     });
     
-    it("renders an AddExercise form", () => {
+    it("renders a WorkoutForm", () => {
         let workoutForm = TestUtils.renderIntoDocument(
             <WorkoutForm  />
         );
