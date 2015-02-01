@@ -40,6 +40,7 @@ describe("Header", () => {
     });
 
     afterEach(() => {
+        header.componentWillUnmount();
         Router.State.getRoutes.mockClear();
         HeaderState.getConfig.mockClear();
     });
@@ -74,6 +75,36 @@ describe("Header", () => {
         let backSpan = TestUtils.findRenderedDOMComponentWithClass(header, 'back');
         TestUtils.Simulate.click(backSpan.getDOMNode());
         expect(header.goBack.mock.calls.length).toBe(1);
+    });
+    
+    it("shows no back button on homepage", () => {
+        let backSpan = TestUtils.scryRenderedDOMComponentsWithClass(header, 'back hide');
+        expect(backSpan.length).toBe(1);
+    });
+    
+    it("shows a back button on other pages, if there is a history", () => {
+        Router.State.getRoutes.mockClear();
+        Router.State.getRoutes.mockImplementation(() => {
+            return [{name: 'notHome'}];
+        });
+        history.pushState({foo: 'bar'}, "page", "foo.html");
+        let newHeader = TestUtils.renderIntoDocument(<Header />);
+        let backSpan = TestUtils.scryRenderedDOMComponentsWithClass(newHeader, 'back hide');
+        expect(backSpan.length).toBe(0);
+    });
+
+    it("shows no buttons, if none are configured", () => {
+        HeaderState.getConfig.mockImplementation(() => {
+            return {};
+        });
+        let newHeader = TestUtils.renderIntoDocument(<Header />);
+        let title = TestUtils.scryRenderedDOMComponentsWithClass(newHeader, 'headertitle');
+        expect(title.length).toBe(0);
+    });
+
+    it("sets the state from the headerstore on change", () => {
+        header._onChange();
+        expect(Object.keys(header.state.config).length).toBe(4);
     });
 });
 

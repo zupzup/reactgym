@@ -39,6 +39,7 @@ describe("Menu", () => {
         let menu = TestUtils.renderIntoDocument(<Menu />);
         expect(TestUtils.isCompositeComponent(menu)).toEqual(true);
         expect(menu.getDOMNode().className).toEqual("menu");
+        menu.componentWillUnmount();
     });
 
     it("renders a Menu with items", () => {
@@ -48,6 +49,13 @@ describe("Menu", () => {
         TestUtils.Simulate.click(firstItem[0].getDOMNode());
         expect(AppStateActionCreators.closeMenu.mock.calls.length).toBe(1);
         expect(menu.transitionTo.mock.calls.length).toBe(1);
+    });
+
+    it("sets the state from the menustore on change", () => {
+        let menu = TestUtils.renderIntoDocument(<Menu />);
+        menu._onChange();
+        let menuItems = TestUtils.scryRenderedDOMComponentsWithClass(menu, 'menubutton');
+        expect(menuItems.length).toBe(2);
     });
 });
 
