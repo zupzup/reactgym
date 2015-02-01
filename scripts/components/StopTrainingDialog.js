@@ -11,7 +11,7 @@ var StopTrainingDialog = React.createClass({
        return (
             <div className='stopTraining'>
                 <div>Finish?</div>
-                <div><button onClick={this.props.yesHandler}>yes</button> <button onClick={this.props.noHandler}>no</button></div>
+                <div><button className='yes' onClick={this.props.yesHandler}>yes</button> <button className='no' onClick={this.props.noHandler}>no</button></div>
             </div>
         );
     },
