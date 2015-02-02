@@ -24,8 +24,25 @@ Demo:
 TODO
 
 TODOS:
-* update to react .13
 * persistence in localstorage
+* form validation (exercise, workouts, training)
+* bug with click handler (open menu, training buttons)
+* improve styling 
+    * animate edit/delete buttons
+    * fill empty space on homepage
+    * backbutton
+    * menubutton
+    * menu colors
+    * modal forms, bigger buttons
+    * training page (timer, header, active marker for exercise)
+* remove stores boilerplate
+    * object.assign for add/remove/changeeventhandlers
+* es6ify
+    * object literals
+    * destructuring
+    * array.findIndex / array.find
+* detail on workoutclick
+* update to react .13
 * native build android / iOS
 * vibrate on timer-stop
 * file-api for persistence

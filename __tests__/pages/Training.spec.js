@@ -25,6 +25,7 @@ var React = require('react/addons'),
 
 describe("Training", () => {
     var training;
+
     beforeEach(() => {
         AppState.getActiveTraining.mockImplementation(() => {
             return null;

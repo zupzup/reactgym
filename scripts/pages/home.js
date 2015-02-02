@@ -21,14 +21,16 @@ var Home = React.createClass({
 
     render() {
         var activeTraining = AppState.getActiveTraining(),
-            trainingDiv;
+            trainingDiv,
+            timerDiv;
         if(activeTraining) {
             trainingDiv = <div onClick={this.goToTrainingHandler} className='activeTraining'>{activeTraining.workout.label}</div>;
+            timerDiv = <div className='timer'>{this.state.timer}</div>;
         }
         return (
             <div className='page home'>
                 {trainingDiv}
-                <div className='timer'>{this.state.timer}</div>
+                {timerDiv}
             </div>
         );
     },
