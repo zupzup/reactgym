@@ -280,3 +280,24 @@ body {
 input.invalid {
   border: 1px solid red;
 }
+
+.page.home {
+    .timer {
+        margin-top: 0.1rem;
+        width: 100%;
+        line-height: 3rem;
+        background: lightblue;
+    }
+    .activeTraining {
+        cursor: hand;
+        margin-top: 0.1rem;
+        line-height: 3rem;
+        text-align: center;
+        width: 100%;
+        background: lightblue;
+        &:hover {
+            background: #aaa;
+        }
+    }
+}
+

@@ -3,10 +3,11 @@
 var React = require('react'),
     List = require('../components/List')
     HeaderStateActionCreators = require('../actions/HeaderStateActionCreators'),
+    Router = require('react-router'),
     AppState = require('../stores/AppState');
 
 var Home = React.createClass({
-    mixins: [],
+    mixins: [Router.Navigation],
 
     getInitialState() {
         return {
@@ -14,11 +15,20 @@ var Home = React.createClass({
         };
     },
 
+    goToTrainingHandler() {
+        this.transitionTo('training');
+    },
+
     render() {
+        var activeTraining = AppState.getActiveTraining(),
+            trainingDiv;
+        if(activeTraining) {
+            trainingDiv = <div onClick={this.goToTrainingHandler} className='activeTraining'>{activeTraining.workout.label}</div>;
+        }
         return (
             <div className='page home'>
-                Ello!
-                <div>{this.state.timer}</div>
+                {trainingDiv}
+                <div className='timer'>{this.state.timer}</div>
             </div>
         );
     },
