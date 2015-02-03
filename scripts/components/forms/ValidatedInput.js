@@ -1,10 +1,11 @@
 'use strict';
 
-var React = require('react'),
-    ValidationUtil = require('../../utils/ValidationUtil');
+var React = require('react/addons'),
+    ValidationUtil = require('../../utils/ValidationUtil'),
+    PureRenderMixin = require('react').addons.PureRenderMixin;
 
 var ValidatedInput = React.createClass({
-    mixins: [],
+    mixins: [PureRenderMixin],
 
     getInitialState() {
         return {

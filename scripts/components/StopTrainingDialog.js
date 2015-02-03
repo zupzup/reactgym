@@ -1,8 +1,10 @@
 'use strict';
 
-var React = require('react');
+var React = require('react'),
+    PureRenderMixin = require('react').addons.PureRenderMixin;
 
 var StopTrainingDialog = React.createClass({
+    mixins: [PureRenderMixin],
     getInitialState() {
         return {};
     },

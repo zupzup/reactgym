@@ -1,12 +1,13 @@
 'use strict';
 
-var React = require('react'),
+var React = require('react/addons'),
     WorkoutStoreActionCreators = require('../../actions/WorkoutStoreActionCreators'),
     ExerciseStore = require('../../stores/ExerciseStore'),
-    AppStateActionCreators = require('../../actions/AppStateActionCreators');
+    AppStateActionCreators = require('../../actions/AppStateActionCreators'),
+    PureRenderMixin = require('react').addons.PureRenderMixin;
 
 var WorkoutForm = React.createClass({
-    mixins: [],
+    mixins: [PureRenderMixin],
 
     getInitialState() {
         return {

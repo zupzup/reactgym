@@ -3,10 +3,11 @@
 var React = require('react/addons'),
     Router = require('react-router'),
     HeaderState = require('../stores/HeaderState'),
-    AppStateActionCreators = require('../actions/AppStateActionCreators');
+    AppStateActionCreators = require('../actions/AppStateActionCreators'),
+    PureRenderMixin = require('react').addons.PureRenderMixin;
 
 var Header = React.createClass({
-    mixins: [Router.State, Router.Navigation],
+    mixins: [Router.State, Router.Navigation, PureRenderMixin],
 
     getInitialState() {
         return {

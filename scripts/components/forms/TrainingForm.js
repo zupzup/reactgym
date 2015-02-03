@@ -1,11 +1,10 @@
 'use strict';
 
-var React = require('react'),
+var React = require('react/addons'),
     AppStateActionCreators = require('../../actions/AppStateActionCreators'),
     ExerciseStore = require('../../stores/ExerciseStore');
 
 var TrainingForm = React.createClass({
-    mixins: [],
 
     getInitialState() {
         return {};

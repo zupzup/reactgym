@@ -111,4 +111,5 @@ DONE:
 * [x] fix bug for exercise deletion (workouts are not updated)
 * [x] tests for pages
 * [x] bug with click handler (open menu, training buttons)
+* [x] include PureRenderMixin
 

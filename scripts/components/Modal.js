@@ -1,8 +1,10 @@
 'use strict';
 
-var React = require('react/addons');
+var React = require('react/addons'),
+    PureRenderMixin = require('react').addons.PureRenderMixin;
 
 var Modal = React.createClass({
+    mixins: [PureRenderMixin],
     render() {
         var modalOpen = this.props.content ? 'open' : '';
         return (

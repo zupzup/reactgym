@@ -1,10 +1,12 @@
 'use strict';
 
-var React = require('react'),
+var React = require('react/addons'),
     _ = require('lodash'),
-    ListItem = require('../components/ListItem');
+    ListItem = require('../components/ListItem'),
+    PureRenderMixin = require('react').addons.PureRenderMixin;
 
 var List = React.createClass({
+    mixins: [PureRenderMixin],
 
     getInitialState() {
         return {};

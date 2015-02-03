@@ -4,10 +4,11 @@ var React = require('react'),
     MenuButton = require('../components/MenuButton'),
     MenuStore = require('../stores/MenuStore.js'),
     AppStateActionCreators = require('../actions/AppStateActionCreators'),
-    Router = require('react-router');
+    Router = require('react-router'),
+    PureRenderMixin = require('react').addons.PureRenderMixin;
 
 var Menu = React.createClass({
-    mixins: [Router.Navigation],
+    mixins: [Router.Navigation, PureRenderMixin],
 
     getInitialState() {
         return {
