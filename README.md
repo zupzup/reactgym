@@ -24,9 +24,10 @@ Demo:
 TODO
 
 TODOS:
+* test App.js
 * persistence in localstorage
 * form validation (exercise, workouts, training)
-* bug with click handler (open menu, training buttons)
+* include flow stuff
 * improve styling 
     * animate edit/delete buttons
     * fill empty space on homepage
@@ -109,4 +110,5 @@ DONE:
 * [x] tests for all components
 * [x] fix bug for exercise deletion (workouts are not updated)
 * [x] tests for pages
+* [x] bug with click handler (open menu, training buttons)
 

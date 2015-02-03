@@ -19,7 +19,7 @@ gulp.task('test', function(callback) {
     gulp.watch('scripts/**/*.js', ['test']);
     var onComplete = function(result) {
         callback();
-    }
+    };
     jest.runCLI({}, __dirname, onComplete);
 });
 

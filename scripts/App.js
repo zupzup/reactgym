@@ -32,14 +32,17 @@ var App = React.createClass({
     render() {
         var name = this.getRoutes().reverse()[0].name,
             menuOpen = this.state.menuOpen ? 'open' : '',
-            modal = <Modal content={this.state.modal} closeHandler={AppStateActionCreators.closeModal}  />;
+            modal = <Modal content={this.state.modal} closeHandler={AppStateActionCreators.closeModal}  />,
+            modalClass = this.state.modal ? ' modalOpen' : '';
+            mask = (menuOpen || this.state.modal) ? <div className={'mask' + modalClass} onClick={this.contentHandler}></div> : null;
 
         return (
             <DocumentTitle title='SimpleGym'>
                 <div className='App'>
                     {modal}
                     <Menu />
-                    <div className={'contentArea ' + menuOpen} onClick={this.contentHandler}>
+                    {mask}
+                    <div className={'contentArea ' + menuOpen}>
                         <Header />
                         <ReactCSSTransitionGroup className='content' component='div' transitionName={AppState.getNextTransition()}>
                             <RouteHandler key={name} />

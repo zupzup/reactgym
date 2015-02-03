@@ -266,8 +266,6 @@ body {
 }
 
 .stopTraining {
-  height: 100%;
-  width: 100%;
   text-align: center;
   position: relative;
   margin-top: 20%;
@@ -301,3 +299,15 @@ input.invalid {
     }
 }
 
+.mask {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 90;
+    top: 2rem;
+    left: 35%;
+    &.modalOpen {
+        top: 60%;
+        left: 0;
+    }
+}
