@@ -29,5 +29,13 @@ describe("ValidatedInput", () => {
         TestUtils.Simulate.change(input.getDOMNode(), {target: {value: 'hello'}});
         expect(input.state.valid).toBe('invalid');
     });
+
+    it("resets the value on reset", () => {
+        let input = TestUtils.renderIntoDocument(
+                <ValidatedInput validator='number' placeholder='name' />
+        );
+        input.reset();
+        expect(input.state.value).toBe('');
+    });
 });
 

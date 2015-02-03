@@ -2,10 +2,10 @@
 
 var React = require('react/addons'),
     AppStateActionCreators = require('../../actions/AppStateActionCreators'),
+    ValidatedInput = require('./ValidatedInput'),
     ExerciseStore = require('../../stores/ExerciseStore');
 
 var TrainingForm = React.createClass({
-
     getInitialState() {
         return {};
     },
@@ -13,9 +13,11 @@ var TrainingForm = React.createClass({
     handleSubmit() {
         var reps = this.refs.reps.getDOMNode(),
             weight = this.refs.weight.getDOMNode();
-        this.props.handler(this.props.exercise, reps.value, weight.value);
-        reps.value = '';
-        weight.value = '';
+        if(reps.className.indexOf('invalid') === -1 && weight.className.indexOf('invalid') === -1) {
+            this.props.handler(this.props.exercise, reps.value, weight.value);
+            this.refs.reps.reset();
+            this.refs.weight.reset();
+        }
     },
 
     render() {
@@ -33,8 +35,8 @@ var TrainingForm = React.createClass({
                 <h1>{exercise.label}</h1>
                 <div>
                     <span>
-                        <input className='reps' type='text' placeholder='reps' ref='reps' /><br />
-                        <input className='reps' type='text' placeholder='weight' ref='weight' /><br />
+                        <ValidatedInput validator='number' ref='reps' placeholder='reps' className='reps' /><br />
+                        <ValidatedInput validator='number' ref='weight' placeholder='weight' className='weight' /><br />
                     </span>
                     <span>
                         <button className='submitButton' onClick={this.handleSubmit}>Add</button> 

@@ -25,7 +25,6 @@ TODO
 
 TODOS:
 * persistence in localstorage
-* form validation (exercise, workouts, training)
 * include flow stuff
 * improve styling 
     * animate edit/delete buttons
@@ -112,4 +111,5 @@ DONE:
 * [x] bug with click handler (open menu, training buttons)
 * [x] include PureRenderMixin
 * [x] test App.js
+* [x] form validation (training)
 

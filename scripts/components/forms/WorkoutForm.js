@@ -3,6 +3,7 @@
 var React = require('react/addons'),
     WorkoutStoreActionCreators = require('../../actions/WorkoutStoreActionCreators'),
     ExerciseStore = require('../../stores/ExerciseStore'),
+    ValidatedInput = require('./ValidatedInput'),
     AppStateActionCreators = require('../../actions/AppStateActionCreators'),
     PureRenderMixin = require('react').addons.PureRenderMixin;
 
@@ -42,7 +43,7 @@ var WorkoutForm = React.createClass({
        return (
             <div className='form workouts'>
                 <h1>Workout</h1>
-                <input className='nameField' type='text' placeholder='name' ref='name' defaultValue={value} />
+                <ValidatedInput validator='string' ref='name' placeholder='name' className='nameField' value={value} />
                 <select multiple ref='exercises' defaultValue={this.props.edit ? this.props.workout.exercises : []}>
                     {exercises}
                 </select>

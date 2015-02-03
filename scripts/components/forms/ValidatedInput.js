@@ -19,6 +19,10 @@ var ValidatedInput = React.createClass({
         return validator.test(value);
     },
 
+    reset() {
+        this.validateAndSetValue('');
+    },
+
     componentDidMount() {
         var value = this.props.value || '';
         this.validateAndSetValue(value);

@@ -39,6 +39,8 @@ describe("TrainingForm", () => {
             <TrainingForm sets={[{weight: 5, reps: 5}]} exercise={0} handler={handler}/>
         );
         let submitButton = TestUtils.findRenderedDOMComponentWithClass(trainingForm, 'submitButton');
+        trainingForm.refs.reps.validateAndSetValue(5);
+        trainingForm.refs.weight.validateAndSetValue(5);
         TestUtils.Simulate.click(submitButton.getDOMNode());
         expect(handler.mock.calls.length).toBe(1);
     });
