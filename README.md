@@ -24,7 +24,6 @@ Demo:
 TODO
 
 TODOS:
-* test App.js
 * persistence in localstorage
 * form validation (exercise, workouts, training)
 * include flow stuff
@@ -112,4 +111,5 @@ DONE:
 * [x] tests for pages
 * [x] bug with click handler (open menu, training buttons)
 * [x] include PureRenderMixin
+* [x] test App.js
 
