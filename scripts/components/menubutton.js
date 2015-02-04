@@ -8,7 +8,7 @@ var MenuButton = React.createClass({
     render() {
         return (
             <div className='menubutton' onClick={this.props.handler}>
-                {this.props.name}
+                - {this.props.name}
             </div>
         );
     }

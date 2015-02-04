@@ -44,7 +44,7 @@ var Header = React.createClass({
         return (
             <div className='header'>
                 <span className="headermenu" onClick={AppStateActionCreators.toggleMenu}>menu</span>
-                <span className={"back " + showBack} onClick={this.back}>back</span>
+                <span className={"back " + showBack} onClick={this.back}>&lt;</span>
                 {title}
                 {add}
                 {editMode}

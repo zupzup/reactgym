@@ -38,12 +38,13 @@ body {
 }
 
 .menubutton {
-  background: #333;
-  color: #eee;
+  background: #ddd;
+  color: #555;
   padding: 0.5rem;
   margin: 0.1rem;
+  font-size: 1.5rem;
   &:hover {
-    background: #777;
+    background: #eee;
     cursor: hand;
   }
 }
@@ -57,9 +58,10 @@ body {
     left: 50%;
     position: absolute;
   }
+
   .headermenu {
-    line-height: 1rem;
-    width: 2.5rem;
+    line-height: 3rem;
+    width: 4.5rem;
     background: #888;
     position: absolute;
     color: #eee;
@@ -70,9 +72,21 @@ body {
   }
 }
 
-.headeradd, .headeredit, .back {
-  line-height: 1rem;
-  width: 2.5rem;
+.headeradd, .headeredit {
+  line-height: 3rem;
+  width: 3.5rem;
+  background: #888;
+  position: absolute;
+  color: #eee;
+  text-align: center;
+  padding: 0.25rem;
+  margin: 0.1rem;
+  z-index: 2;
+}
+
+.back {
+  line-height: 3rem;
+  width: 3rem;
   background: #888;
   position: absolute;
   color: #eee;
@@ -92,18 +106,19 @@ body {
     left: .1rem;
   }
   .back {
-    left: 3.5rem;
+    left: 5.5rem;
   }
   .headeradd {
     right: .1rem;
   }
   .headeredit {
-    right: 3.5rem;
+    right: 4.5rem;
   }
   top: 0;
   background: lightskyblue;
-  line-height: 2rem;
-  height: 2rem;
+  line-height: 4rem;
+  height: 4rem;
+  font-size: 1.2rem;
   position: relative;
 }
 
@@ -146,7 +161,9 @@ body {
     padding: 0.4rem;
     right: 3rem;
     top: 1.6rem;
-    line-height: 1rem;
+    line-height: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.5s linear;
   }
   .edit {
     visibility: hidden;
@@ -155,11 +172,14 @@ body {
     color: #fff;
     padding: 0.4rem;
     top: 1.6rem;
-    line-height: 1rem;
+    line-height: 1.5rem;
     right: 7rem;
+    opacity: 0;
+    transition: opacity 0.5s linear;
   }
   .delete {
     &.show {
+      opacity: 1;
       visibility: visible;
     }
     &:hover {
@@ -171,6 +191,7 @@ body {
   }
   .edit {
     &.show {
+      opacity: 1;
       visibility: visible;
     }
     &:hover {

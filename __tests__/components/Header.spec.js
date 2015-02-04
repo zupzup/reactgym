@@ -56,7 +56,7 @@ describe("Header", () => {
         let titleSpan = TestUtils.findRenderedDOMComponentWithClass(header, 'headertitle');
         let addSpan = TestUtils.findRenderedDOMComponentWithClass(header, 'headeradd');
         let editSpan = TestUtils.findRenderedDOMComponentWithClass(header, 'headeredit');
-        expect(backSpan.getDOMNode().textContent).toEqual('back');
+        expect(backSpan.getDOMNode().textContent).toEqual('<');
         expect(titleSpan.getDOMNode().textContent).toEqual('sample');
         expect(addSpan.getDOMNode().textContent).toEqual('add');
         expect(editSpan.getDOMNode().textContent).toEqual('edit');

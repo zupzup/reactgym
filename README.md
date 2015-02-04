@@ -27,13 +27,13 @@ TODOS:
 * persistence in localstorage
 * include flow stuff
 * improve styling 
-    * animate edit/delete buttons
     * fill empty space on homepage
-    * backbutton
-    * menubutton
-    * menu colors
     * modal forms, bigger buttons
     * training page (timer, header, active marker for exercise)
+    * [x] animate edit/delete buttons
+    * [x] backbutton
+    * [x] menubutton
+    * [x] menu colors
 * remove stores boilerplate
     * object.assign for add/remove/changeeventhandlers
 * es6ify
