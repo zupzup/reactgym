@@ -12,11 +12,12 @@ var ListItem = React.createClass({
 
     render() {
         var handlers = this.props.handlers, 
-            tappable = handlers.default ? 'tappable' : '',
+            active = this.props.active ? ' active' : '',
+            tappable = handlers.default ? ' tappable' : '',
             editAble = this.props.editAble ? 'show' : '';
 
         return (
-            <div className={"listitem " + tappable} onClick={handlers.default}>
+            <div className={"listitem" + tappable + active} onClick={handlers.default}>
                 <span className={"edit " + editAble} onClick={handlers.edit}>edit</span>
                 <span className={"delete " + editAble} onClick={handlers.delete}>delete</span>{this.props.label}
             </div>

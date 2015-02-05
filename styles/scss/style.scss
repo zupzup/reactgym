@@ -210,6 +210,9 @@ body {
     border-width: .5rem;
     top: 2rem;
   }
+  &.active {
+    background: antiquewhite;
+  }
 }
 
 .back.hide {

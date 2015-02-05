@@ -17,14 +17,14 @@ describe("ListItem", () => {
     });
 
     it("renders a ListItem", () => {
-        let listItem = TestUtils.renderIntoDocument(<ListItem handlers={handlers}/>);
+        let listItem = TestUtils.renderIntoDocument(<ListItem active={true} handlers={handlers}/>);
         expect(TestUtils.isCompositeComponent(listItem)).toEqual(true);
-        expect(listItem.getDOMNode().className).toEqual("listitem tappable");
+        expect(listItem.getDOMNode().className).toEqual("listitem tappable active");
     });
 
     it("is not tappable, if there is no default handler", () => {
         let listItem = TestUtils.renderIntoDocument(<ListItem handlers={{}}/>);
-        expect(listItem.getDOMNode().className).toEqual("listitem ");
+        expect(listItem.getDOMNode().className).toEqual("listitem");
     });
 
     it("shows edit and delete if it's editable", () => {

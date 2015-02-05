@@ -45,6 +45,18 @@ describe("TrainingForm", () => {
         expect(handler.mock.calls.length).toBe(1);
     });
 
+    it("doesn't call the handler, if either field is invalid", () => {
+        let handler = jest.genMockFunction();
+        let trainingForm = TestUtils.renderIntoDocument(
+            <TrainingForm sets={[{weight: 5, reps: 5}]} exercise={0} handler={handler}/>
+        );
+        let submitButton = TestUtils.findRenderedDOMComponentWithClass(trainingForm, 'submitButton');
+        trainingForm.refs.reps.validateAndSetValue('k');
+        trainingForm.refs.weight.validateAndSetValue('');
+        TestUtils.Simulate.click(submitButton.getDOMNode());
+        expect(handler.mock.calls.length).toBe(0);
+    });
+
     it("removes sets on click", () => {
         let trainingForm = TestUtils.renderIntoDocument(
             <TrainingForm sets={[{weight: 5, reps: 5}]} exercise={0}/>

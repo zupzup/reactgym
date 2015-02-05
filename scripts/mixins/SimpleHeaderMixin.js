@@ -13,7 +13,7 @@ var SimpleHeaderMixin = {
                 text: self.header.title
             }
         });
-    },
+    }
 }
 
 module.exports = SimpleHeaderMixin;

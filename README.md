@@ -25,8 +25,9 @@ TODO
 
 TODOS:
 * persistence in localstorage
+* [x] extend list with activeItem
 * include flow stuff
-* improve styling 
+* improve styling
     * fill empty space on homepage
     * modal forms, bigger buttons
     * training page (timer, header, active marker for exercise)

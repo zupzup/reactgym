@@ -21,7 +21,7 @@ var HeaderMixin = {
                 handler: self.header.edit.bind(self)
             }
         });
-    },
+    }
 }
 
 module.exports = HeaderMixin;

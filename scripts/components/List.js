@@ -9,7 +9,9 @@ var List = React.createClass({
     mixins: [PureRenderMixin],
 
     getInitialState() {
-        return {};
+        return {
+            activeIndex: null
+        };
     },
 
     defaultHandler(e, item, index) {
@@ -22,7 +24,7 @@ var List = React.createClass({
                     return result[key] = self._createHandlerFunction(item, index, handler);
                 });
 
-                return <ListItem editAble={self.props.editAble} key={item.label} label={item.label} handlers={handlers}></ListItem>;
+                return <ListItem active={this.state.activeIndex === index} editAble={self.props.editAble} key={item.label} label={item.label} handlers={handlers}></ListItem>;
             });
 
         return (
@@ -35,6 +37,7 @@ var List = React.createClass({
     _createHandlerFunction(item, index, handler) {
         var handlerFunc = handler || this.defaultHandler;
         return (e) => {
+            this.setState({activeIndex: index});
             e.stopPropagation();
             handlerFunc(e, item, index);
         };
