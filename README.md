@@ -25,7 +25,6 @@ TODO
 
 TODOS:
 * persistence in localstorage
-* [x] extend list with activeItem
 * include flow stuff
 * improve styling
     * fill empty space on homepage
@@ -35,8 +34,6 @@ TODOS:
     * [x] backbutton
     * [x] menubutton
     * [x] menu colors
-* remove stores boilerplate
-    * object.assign for add/remove/changeeventhandlers
 * es6ify
     * object literals
     * destructuring
@@ -113,4 +110,7 @@ DONE:
 * [x] include PureRenderMixin
 * [x] test App.js
 * [x] form validation (training)
+* [x] extend list with activeItem
+* [x] remove stores boilerplate
+    * [x] object.assign for add/remove/changeeventhandlers
 

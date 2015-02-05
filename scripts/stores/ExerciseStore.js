@@ -9,7 +9,6 @@ var react = require('react'),
     _exercises = [];
 
 var ExerciseStore = assign({}, StoreListenerMixin, {
-
     getExerciseForId(id) {
         return _.first(_exercises.filter((exercise) => {
             return exercise.id === id; 
@@ -19,7 +18,6 @@ var ExerciseStore = assign({}, StoreListenerMixin, {
     getExercises() {
         return _exercises;
     }
-
 });
 
 ExerciseStore.dispatchToken = AppDispatcher.register((payload) => {

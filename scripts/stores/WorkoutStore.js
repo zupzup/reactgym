@@ -2,30 +2,15 @@
 
 var react = require('react'),
     AppDispatcher = require('../dispatcher/AppDispatcher'),
-    EventEmitter = require('events').EventEmitter,
     ActionTypes = require('../constants/ActionTypes'),
     assign = require('object-assign'),
-    CHANGE_EVENT = 'change',
+    StoreListenerMixin = require('../mixins/StoreListenerMixin.js'),
     _workouts = [];
 
-var WorkoutStore = assign({}, EventEmitter.prototype, {
-
-    emitChange() {
-        this.emit(CHANGE_EVENT);
-    },
-
-    addChangeListener(callback) {
-        this.on(CHANGE_EVENT, callback);
-    },
-
-    removeChangeListener(callback) {
-        this.removeListener(CHANGE_EVENT, callback);
-    },
-
+var WorkoutStore = assign({}, StoreListenerMixin, {
     getWorkouts() {
         return _workouts;
     }
-
 });
 
 WorkoutStore.dispatchToken = AppDispatcher.register((payload) => {

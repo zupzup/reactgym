@@ -2,12 +2,11 @@
 
 var react = require('react'),
     AppDispatcher = require('../dispatcher/AppDispatcher'),
-    EventEmitter = require('events').EventEmitter,
     ActionTypes = require('../constants/ActionTypes'),
+    StoreListenerMixin = require('../mixins/StoreListenerMixin.js'),
     assign = require('object-assign'),
     DEFAULT_TIMER = 90,
     _ = require('lodash'),
-    CHANGE_EVENT = 'change',
     _nextTransition = 'slide',
     _modal = null,
     _menuOpen = false,
@@ -15,20 +14,7 @@ var react = require('react'),
     _timerValue = null,
     _activeTraining = null;
 
-var AppState = assign({}, EventEmitter.prototype, {
-
-    emitChange() {
-        this.emit(CHANGE_EVENT);
-    },
-
-    addChangeListener(callback) {
-        this.on(CHANGE_EVENT, callback);
-    },
-
-    removeChangeListener(callback) {
-        this.removeListener(CHANGE_EVENT, callback);
-    },
-
+var AppState = assign({}, StoreListenerMixin, {
     getNextTransition() {
         return _nextTransition;
     },
