@@ -5,8 +5,8 @@ Workout-Tracking app built using react and flux. Web and Native Android/iOS.
 Setup:
 ------
 * npm install
-* npm start (starts a webpack server on localhost:3000)
-* npm test
+* gulp (starts a webpack server)
+* gulp test (runs tests and watches files)
 
 Structure:
 ------
@@ -25,7 +25,7 @@ TODO
 
 TODOS:
 * persistence in localstorage
-* include flow stuff
+* include flow
 * improve styling
     * fill empty space on homepage
     * modal forms, bigger buttons
@@ -37,6 +37,7 @@ TODOS:
 * es6ify
     * object literals
     * destructuring
+    * template strings
     * array.findIndex / array.find
 * detail on workoutclick
 * update to react .13
@@ -76,7 +77,7 @@ DONE:
     * [x] add - textfield and submit/cancel, close on submit or cancel
     * [x] delete at list items
 * [x] ListItem - multiple nested clickHandlers
-* [x] rewrite List to take an handler-object with different handlers, then parse with lodash
+* [x] rewrite List to take a handler-object with different handlers, then parse with lodash
 * [x] crud for workouts (header-delete, header-add with a modal), WorkoutStore
     * [x] add - textfield, selectfield for exercises and submit/cancel, close on submit or cancel
     * [x] edit - add view with values, same functionality
