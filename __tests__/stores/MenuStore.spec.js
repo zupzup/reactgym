@@ -27,6 +27,15 @@ describe("MenuStore", () => {
         expect(menuPoints).toEqual([]);
     });
 
+    it("doesn't throw on an unregistered action", () => {
+        expect(cb.bind(null,{
+            source: 'VIEW_ACTION',
+            action: {
+                type: 'NULL'
+            }
+        })).not.toThrow();
+    });
+
     it("requests menupoints", () => {
         cb(actionRequestMenuPoints);
         var menuPoints = MenuStore.getMenuPoints();

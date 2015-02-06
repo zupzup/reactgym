@@ -43,6 +43,15 @@ describe("HeaderState", () => {
         expect(config).toEqual(null);
     });
 
+    it("doesn't throw on an unregistered action", () => {
+        expect(cb.bind(null,{
+            source: 'VIEW_ACTION',
+            action: {
+                type: 'NULL'
+            }
+        })).not.toThrow();
+    });
+
     it("set config", () => {
         cb(setConfigAction);
         var config = HeaderState.getConfig();

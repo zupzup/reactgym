@@ -44,6 +44,17 @@ describe("WorkoutStore", () => {
                 } 
             }
         },
+        actionUpdateWorkoutFalse = {
+            source: 'VIEW_ACTION',
+            action: {
+                type: ActionTypes.UPDATE_WORKOUT,
+                workout: {
+                    id: 90,
+                    label: '#4',
+                    exercises: [1]
+                } 
+            }
+        },
         actionRequestWorkouts = {
             source: 'VIEW_ACTION',
             action: {
@@ -60,6 +71,15 @@ describe("WorkoutStore", () => {
     it("gets workouts", () => {
         var workouts = WorkoutStore.getWorkouts();
         expect(workouts).toEqual([]);
+    });
+
+    it("doesn't throw on an unregistered action", () => {
+        expect(cb.bind(null,{
+            source: 'VIEW_ACTION',
+            action: {
+                type: 'NULL'
+            }
+        })).not.toThrow();
     });
 
     it("requests workouts", () => {
@@ -93,6 +113,16 @@ describe("WorkoutStore", () => {
         expect(workouts.length).toEqual(1);
         expect(workouts[0].label).toEqual('#4');
         expect(workouts[0].exercises.length).toEqual(1);
+    });
+
+    it("doesn't change anything, if the id wasn't found", () => {
+        cb(actionAddWorkout);
+
+        cb(actionUpdateWorkoutFalse);
+        var workouts = WorkoutStore.getWorkouts();
+        expect(workouts.length).toEqual(1);
+        expect(workouts[0].label).toEqual('#3');
+        expect(workouts[0].exercises.length).toEqual(2);
     });
 
     it("removes the exercise from all workouts", () => {

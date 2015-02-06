@@ -214,6 +214,15 @@ describe("AppState", () => {
             expect(AppState.getActiveTraining().id).toEqual(5);
         });
 
+        it("doesn't throw on an unregistered action", () => {
+            expect(cb.bind(null,{
+                source: 'VIEW_ACTION',
+                action: {
+                    type: 'NULL'
+                }
+            })).not.toThrow();
+        });
+
         it("finishTraining", () => {
             cb(finishTrainingAction);
             expect(AppState.getActiveTraining()).toEqual(null);

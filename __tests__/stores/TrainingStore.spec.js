@@ -37,6 +37,19 @@ describe("TrainingStore", () => {
         expect(trainings).toEqual([]);
     });
 
+    it("doesn't throw on an unregistered action", () => {
+        expect(cb.bind(null,{
+            source: 'VIEW_ACTION',
+            action: {
+                type: 'NULL'
+            }
+        })).not.toThrow();
+    });
+
+    it("getTrainingForId returns undefined if there is no training found", () => {
+        expect(TrainingStore.getTrainingForId(50)).toBe(undefined);
+    });
+
     it("addTraining", () => {
         cb(addTrainingAction);
         var training = TrainingStore.getTrainingForId(5);

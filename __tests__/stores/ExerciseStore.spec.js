@@ -41,6 +41,15 @@ describe("ExerciseStore", () => {
         expect(exercises).toEqual([]);
     });
 
+    it("doesn't throw on an unregistered action", () => {
+        expect(cb.bind(null,{
+            source: 'VIEW_ACTION',
+            action: {
+                type: 'NULL'
+            }
+        })).not.toThrow();
+    });
+
     it("getExerciseForId", () => {
         cb(actionRequestExercises);
         var exercise = ExerciseStore.getExerciseForId(1);
