@@ -26,7 +26,7 @@ TODO
 TODOS:
 * persistence in localstorage
     * [x] ExerciseStore
-    * WorkoutStore
+    * [x] WorkoutStore
     * AppState
     * TrainingStore
 * include immutable.js

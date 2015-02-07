@@ -3,11 +3,13 @@
 jest.dontMock('../../scripts/stores/WorkoutStore.js');
 jest.dontMock('object-assign');
 jest.mock('../../scripts/dispatcher/AppDispatcher.js');
+jest.mock('../../scripts/utils/LocalStorageUtil.js');
 
 describe("WorkoutStore", () => {
     let cb,
-        WorkoutStore,
-        AppDispatcher,
+        LocalStorageUtil = require('../../scripts/utils/LocalStorageUtil.js'),
+        AppDispatcher = require('../../scripts/dispatcher/AppDispatcher');
+        WorkoutStore = require('../../scripts/stores/WorkoutStore.js');
         ActionTypes = require('../../scripts/constants/ActionTypes.js'),
         actionAddWorkout = {
             source: 'VIEW_ACTION',
@@ -30,7 +32,7 @@ describe("WorkoutStore", () => {
             source: 'VIEW_ACTION',
             action: {
                 type: ActionTypes.REMOVE_EXERCISE_FROM_WORKOUTS,
-                id: 0
+                id: 2
             }
         },
         actionUpdateWorkout = {
@@ -38,7 +40,7 @@ describe("WorkoutStore", () => {
             action: {
                 type: ActionTypes.UPDATE_WORKOUT,
                 workout: {
-                    id: 0,
+                    id: 1,
                     label: '#4',
                     exercises: [1]
                 } 
@@ -49,7 +51,7 @@ describe("WorkoutStore", () => {
             action: {
                 type: ActionTypes.UPDATE_WORKOUT,
                 workout: {
-                    id: 90,
+                    id: 0,
                     label: '#4',
                     exercises: [1]
                 } 
@@ -63,9 +65,15 @@ describe("WorkoutStore", () => {
         };
 
     beforeEach(() => {
-        AppDispatcher = require('../../scripts/dispatcher/AppDispatcher');
-        WorkoutStore = require('../../scripts/stores/WorkoutStore.js');
+        LocalStorageUtil.lsGet.mockImplementation(() => {
+            return [];
+        });
         cb = AppDispatcher.register.mock.calls[0][0];
+    });
+
+    afterEach(() => {
+        LocalStorageUtil.lsGet.mockClear();
+        LocalStorageUtil.lsSet.mockClear();
     });
 
     it("gets workouts", () => {
@@ -82,55 +90,70 @@ describe("WorkoutStore", () => {
         })).not.toThrow();
     });
 
-    it("requests workouts", () => {
-        cb(actionRequestWorkouts);
-        var workouts = WorkoutStore.getWorkouts();
-        expect(workouts.length).toEqual(2);
-        expect(workouts[0].label).toEqual('Chest Triceps Shoulders Abs');
-        expect(workouts[0].exercises.length).toEqual(2);
-    });
+    describe("has workouts", () => {
+        beforeEach(() => {
+            LocalStorageUtil.lsGet.mockImplementation(() => {
+                return [
+                    {
+                        id: 1,
+                        label: 'Chest Triceps Shoulders Abs',
+                        exercises: [1, 2]
+                    },
+                    {
+                        id: 2,
+                        label: 'Back Biceps Legs',
+                        exercises: [2, 3]
+                    }
+                ];
+            });
+        });
 
-    it("adds workouts", () => {
-        cb(actionAddWorkout);
-        var workouts = WorkoutStore.getWorkouts();
-        expect(workouts.length).toEqual(1);
-        expect(workouts[0].label).toEqual('#3');
-    });
+        it("requests workouts", () => {
+            cb(actionRequestWorkouts);
+            expect(LocalStorageUtil.lsSet.mock.calls.length).toBe(0);
+        });
 
-    it("removes workouts", () => {
-        cb(actionAddWorkout);
-        cb(actionAddWorkout);
-        cb(actionRemoveWorkout);
-        var workouts = WorkoutStore.getWorkouts();
-        expect(workouts.length).toEqual(1);
-    });
+        it("creates workouts if they are uninitialized", () => {
+            LocalStorageUtil.lsGet.mockImplementation(() => {
+                return null;
+            });
+            cb(actionRequestWorkouts);
+            expect(LocalStorageUtil.lsSet.mock.calls.length).toBe(1);
+        });
 
-    it("updates workouts", () => {
-        cb(actionAddWorkout);
+        it("adds workouts", () => {
+            cb(actionAddWorkout);
+            expect(LocalStorageUtil.lsSet.mock.calls.length).toBe(1);
+            expect(LocalStorageUtil.lsSet.mock.calls[0][1][2].label).toBe('#3');
+        });
 
-        cb(actionUpdateWorkout);
-        var workouts = WorkoutStore.getWorkouts();
-        expect(workouts.length).toEqual(1);
-        expect(workouts[0].label).toEqual('#4');
-        expect(workouts[0].exercises.length).toEqual(1);
-    });
+        it("removes workouts", () => {
+            cb(actionRemoveWorkout);
+            expect(LocalStorageUtil.lsSet.mock.calls.length).toBe(1);
+            expect(LocalStorageUtil.lsSet.mock.calls[0][1].length).toBe(1);
+        });
 
-    it("doesn't change anything, if the id wasn't found", () => {
-        cb(actionAddWorkout);
+        it("updates workouts", () => {
+            cb(actionUpdateWorkout);
+            expect(LocalStorageUtil.lsSet.mock.calls.length).toBe(1);
+            expect(LocalStorageUtil.lsSet.mock.calls[0][1].length).toBe(2);
+            expect(LocalStorageUtil.lsSet.mock.calls[0][1][0].label).toBe('#4');
+        });
 
-        cb(actionUpdateWorkoutFalse);
-        var workouts = WorkoutStore.getWorkouts();
-        expect(workouts.length).toEqual(1);
-        expect(workouts[0].label).toEqual('#3');
-        expect(workouts[0].exercises.length).toEqual(2);
-    });
+        it("doesn't change anything, if the id wasn't found", () => {
+            cb(actionUpdateWorkoutFalse);
+            expect(LocalStorageUtil.lsSet.mock.calls.length).toBe(1);
+            expect(LocalStorageUtil.lsSet.mock.calls[0][1].length).toBe(2);
+            expect(LocalStorageUtil.lsSet.mock.calls[0][1][0].label).toBe('Chest Triceps Shoulders Abs');
+        });
 
-    it("removes the exercise from all workouts", () => {
-        cb(actionAddWorkout);
-        cb(actionAddWorkout);
-        cb(actionRemoveExercise);
-        expect(WorkoutStore.getWorkouts()[0].exercises).not.toContain(0);
-        expect(WorkoutStore.getWorkouts()[1].exercises).not.toContain(0);
+        it("removes the exercise from all workouts", () => {
+            cb(actionRemoveExercise);
+            expect(LocalStorageUtil.lsSet.mock.calls.length).toBe(1);
+            expect(LocalStorageUtil.lsSet.mock.calls[0][1].length).toBe(2);
+            expect(LocalStorageUtil.lsSet.mock.calls[0][1][0].exercises).not.toContain(2);
+            expect(LocalStorageUtil.lsSet.mock.calls[0][1][1].exercises).not.toContain(2);
+        });
     });
 });
 

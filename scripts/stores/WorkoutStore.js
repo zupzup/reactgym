@@ -4,12 +4,12 @@ var react = require('react'),
     AppDispatcher = require('../dispatcher/AppDispatcher'),
     ActionTypes = require('../constants/ActionTypes'),
     assign = require('object-assign'),
-    StoreListenerMixin = require('../mixins/StoreListenerMixin.js'),
-    _workouts = [];
+    LocalStorageUtil = require('../utils/LocalStorageUtil.js'),
+    StoreListenerMixin = require('../mixins/StoreListenerMixin.js');
 
 var WorkoutStore = assign({}, StoreListenerMixin, {
     getWorkouts() {
-        return _workouts;
+        return LocalStorageUtil.lsGet('workouts');
     }
 });
 
@@ -18,50 +18,62 @@ WorkoutStore.dispatchToken = AppDispatcher.register((payload) => {
 
     switch(action.type) {
         case ActionTypes.GET_WORKOUTS:
-            _workouts = [
-                {
-                    id: 1,
-                    label: 'Chest Triceps Shoulders Abs',
-                    exercises: [1, 2]
-                },
-                {
-                    id: 2,
-                    label: 'Back Biceps Legs',
-                    exercises: [2, 3]
-                }
-            ];
-            WorkoutStore.emitChange();
+            var workouts = LocalStorageUtil.lsGet('workouts');
+            if(workouts == null) {
+                LocalStorageUtil.lsSet('workouts', 
+                [
+                    {
+                        id: 1,
+                        label: 'Chest Triceps Shoulders Abs',
+                        exercises: [1, 2]
+                    },
+                    {
+                        id: 2,
+                        label: 'Back Biceps Legs',
+                        exercises: [2, 3]
+                    }
+                ]);
+                WorkoutStore.emitChange();
+            }
             break;
         case ActionTypes.ADD_WORKOUT:
-            _workouts.push({
-                    id: _workouts.map((item) => {
-                        return item.id + 1;
-                    }).reduce((acc, item) => {
-                        return item;
-                    }, 0),
-                    label: payload.action.workout.label,
-                    exercises: payload.action.workout.exercises
-                });
+            var workouts = LocalStorageUtil.lsGet('workouts');
+            workouts.push({
+                id: workouts.map((item) => {
+                    return item.id + 1;
+                }).reduce((acc, item) => {
+                    return item;
+                }, 0),
+                label: payload.action.workout.label,
+                exercises: payload.action.workout.exercises
+            });
+            LocalStorageUtil.lsSet('workouts', workouts);
             WorkoutStore.emitChange();
             break;
         case ActionTypes.REMOVE_WORKOUT:
-            _workouts.splice(payload.action.index, 1);
+            var workouts = LocalStorageUtil.lsGet('workouts');
+            workouts.splice(payload.action.index, 1);
+            LocalStorageUtil.lsSet('workouts', workouts);
             WorkoutStore.emitChange();
             break;
         case ActionTypes.UPDATE_WORKOUT:
-            _workouts = _workouts.map((item) => {
+            var workouts = LocalStorageUtil.lsGet('workouts');
+            workouts = workouts.map((item) => {
                 if(payload.action.workout.id === item.id) {
                     item = payload.action.workout; 
                 }
                 return item;
             });
+            LocalStorageUtil.lsSet('workouts', workouts);
             WorkoutStore.emitChange();
             break;
         case ActionTypes.REMOVE_EXERCISE_FROM_WORKOUTS:
-            _workouts = _workouts.map((item) => {
+            var workouts = LocalStorageUtil.lsGet('workouts');
+            workouts = workouts.map((item) => {
                 item.exercises = item.exercises.filter(ex => ex !== payload.action.id);
                 return item;
             });
+            LocalStorageUtil.lsSet('workouts', workouts);
             WorkoutStore.emitChange();
             break;
         default:
