@@ -24,13 +24,8 @@ Demo:
 TODO
 
 TODOS:
-* persistence in localstorage
-    * [x] ExerciseStore
-    * [x] WorkoutStore
-    * AppState
-    * [x] TrainingStore
-* include immutable.js
 * BUG:currentExercise should be active on training-Start
+* include immutable.js
 * include flow
 * improve styling
     * fill empty space on homepage
@@ -120,4 +115,9 @@ DONE:
 * [x] extend list with activeItem
 * [x] remove stores boilerplate
     * [x] object.assign for add/remove/changeeventhandlers
+* [x] persistence in localstorage
+    * [x] ExerciseStore
+    * [x] WorkoutStore
+    * [x] AppState
+    * [x] TrainingStore
 

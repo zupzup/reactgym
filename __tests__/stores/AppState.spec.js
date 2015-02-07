@@ -2,12 +2,14 @@
 
 jest.dontMock('../../scripts/stores/AppState.js');
 jest.mock('../../scripts/dispatcher/AppDispatcher.js');
+jest.mock('../../scripts/utils/LocalStorageUtil.js');
 
 describe("AppState", () => {
     let cb,
-        AppDispatcher = require('../../scripts/dispatcher/AppDispatcher');
-        AppState = require('../../scripts/stores/AppState.js');
         ActionTypes = require('../../scripts/constants/ActionTypes.js'),
+        AppDispatcher = require('../../scripts/dispatcher/AppDispatcher');
+        LocalStorageUtil = require('../../scripts/utils/LocalStorageUtil.js'),
+        AppState = require('../../scripts/stores/AppState.js');
         setTransitionAction = {
             source: 'VIEW_ACTION',
             action: {
@@ -108,12 +110,18 @@ describe("AppState", () => {
         cb = AppDispatcher.register.mock.calls[0][0];
     });
 
-    it('tests the callback', () => {
-        expect(AppDispatcher.register.mock.calls.length).toBe(1);
-    });
 
     it('getAll', () => {
         expect(Object.keys(AppState.getAll()).length).toBe(3);
+    });
+
+    it("doesn't throw on an unregistered action", () => {
+        expect(cb.bind(null,{
+            source: 'VIEW_ACTION',
+            action: {
+                type: 'NULL'
+            }
+        })).not.toThrow();
     });
 
     describe('transition', () => {
@@ -207,37 +215,47 @@ describe("AppState", () => {
 
     describe('activeTraining', () => {
         beforeEach(() => {
-            cb(startTrainingAction);
+            LocalStorageUtil.lsGet.mockImplementation(() => {
+                return [];
+            });
+        });
+
+        afterEach(() => {
+            LocalStorageUtil.lsGet.mockClear();
+            LocalStorageUtil.lsSet.mockClear();
+            LocalStorageUtil.lsRemove.mockClear();
         });
 
         it("startTraining", () => {
-            expect(AppState.getActiveTraining().id).toEqual(5);
+            cb(startTrainingAction);
+            expect(LocalStorageUtil.lsSet.mock.calls.length).toBe(1);
+            expect(LocalStorageUtil.lsSet.mock.calls[0][1].id).toBe(5);
         });
 
-        it("doesn't throw on an unregistered action", () => {
-            expect(cb.bind(null,{
-                source: 'VIEW_ACTION',
-                action: {
-                    type: 'NULL'
-                }
-            })).not.toThrow();
-        });
 
         it("finishTraining", () => {
             cb(finishTrainingAction);
-            expect(AppState.getActiveTraining()).toEqual(null);
+            expect(LocalStorageUtil.lsRemove.mock.calls.length).toBe(1);
         });
 
         it('add and removeSet', () => {
+            LocalStorageUtil.lsGet.mockImplementation(() => {
+                return {
+                    id: 5,
+                    sets: {'0': ['hello']}
+                };
+            });
             cb(addSetAction);
-            expect(AppState.getActiveTraining().sets[0].length).toBe(1);
             cb(removeSetAction);
-            expect(AppState.getActiveTraining().sets[0].length).toBe(0);
+            expect(LocalStorageUtil.lsSet.mock.calls.length).toBe(2);
+            expect(LocalStorageUtil.lsSet.mock.calls[0][1].sets['0'].length).toBe(2);
+            expect(LocalStorageUtil.lsSet.mock.calls[1][1].sets['0'].length).toBe(0);
         });
 
         it('setCurrentExercise', () => {
             cb(setCurrentExerciseAction);
-            expect(AppState.getActiveTraining().currentExercise).toBe(0);
+            expect(LocalStorageUtil.lsSet.mock.calls.length).toBe(1);
+            expect(LocalStorageUtil.lsSet.mock.calls[0][1].currentExercise).toBe(0);
         });
     });
 });

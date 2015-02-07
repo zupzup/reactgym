@@ -44,23 +44,23 @@ WorkoutStore.dispatchToken = AppDispatcher.register((payload) => {
                 }).reduce((acc, item) => {
                     return item;
                 }, 0),
-                label: payload.action.workout.label,
-                exercises: payload.action.workout.exercises
+                label: action.workout.label,
+                exercises: action.workout.exercises
             });
             LocalStorageUtil.lsSet('workouts', workouts);
             WorkoutStore.emitChange();
             break;
         case ActionTypes.REMOVE_WORKOUT:
             var workouts = LocalStorageUtil.lsGet('workouts');
-            workouts.splice(payload.action.index, 1);
+            workouts.splice(action.index, 1);
             LocalStorageUtil.lsSet('workouts', workouts);
             WorkoutStore.emitChange();
             break;
         case ActionTypes.UPDATE_WORKOUT:
             var workouts = LocalStorageUtil.lsGet('workouts');
             workouts = workouts.map((item) => {
-                if(payload.action.workout.id === item.id) {
-                    item = payload.action.workout; 
+                if(action.workout.id === item.id) {
+                    item = action.workout; 
                 }
                 return item;
             });
@@ -70,7 +70,7 @@ WorkoutStore.dispatchToken = AppDispatcher.register((payload) => {
         case ActionTypes.REMOVE_EXERCISE_FROM_WORKOUTS:
             var workouts = LocalStorageUtil.lsGet('workouts');
             workouts = workouts.map((item) => {
-                item.exercises = item.exercises.filter(ex => ex !== payload.action.id);
+                item.exercises = item.exercises.filter(ex => ex !== action.id);
                 return item;
             });
             LocalStorageUtil.lsSet('workouts', workouts);

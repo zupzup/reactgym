@@ -36,7 +36,7 @@ HeaderState.dispatchToken = AppDispatcher.register((payload) => {
 
     switch(action.type) {
         case ActionTypes.SET_HEADER_CONFIG:
-           _config = payload.action.config;
+           _config = action.config;
            HeaderState.emitChange();
            break;
         case ActionTypes.RESET_HEADER_CONFIG:

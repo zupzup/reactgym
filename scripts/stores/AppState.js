@@ -3,6 +3,7 @@
 var react = require('react'),
     AppDispatcher = require('../dispatcher/AppDispatcher'),
     ActionTypes = require('../constants/ActionTypes'),
+    LocalStorageUtil = require('../utils/LocalStorageUtil.js'),
     StoreListenerMixin = require('../mixins/StoreListenerMixin.js'),
     assign = require('object-assign'),
     DEFAULT_TIMER = 90,
@@ -11,8 +12,7 @@ var react = require('react'),
     _modal = null,
     _menuOpen = false,
     _timerId = null,
-    _timerValue = null,
-    _activeTraining = null;
+    _timerValue = null;
 
 var AppState = assign({}, StoreListenerMixin, {
     getNextTransition() {
@@ -28,7 +28,7 @@ var AppState = assign({}, StoreListenerMixin, {
     },
 
     getActiveTraining() {
-        return _activeTraining;
+        return LocalStorageUtil.lsGet('activeTraining');
     },
 
     getTimer() {
@@ -49,7 +49,7 @@ AppState.dispatchToken = AppDispatcher.register((payload) => {
 
     switch(action.type) {
         case ActionTypes.SET_NEXT_TRANSITION:
-           _nextTransition = payload.action.animation;
+           _nextTransition = action.animation;
            AppState.emitChange();
            break;
         case ActionTypes.RESET_TRANSITION:
@@ -65,7 +65,7 @@ AppState.dispatchToken = AppDispatcher.register((payload) => {
             AppState.emitChange();
             break;
         case ActionTypes.OPEN_MODAL:
-            _modal = payload.action.content;
+            _modal = action.content;
             AppState.emitChange();
             break;
         case ActionTypes.CLOSE_MODAL:
@@ -73,11 +73,11 @@ AppState.dispatchToken = AppDispatcher.register((payload) => {
             AppState.emitChange();
             break;
         case ActionTypes.START_TRAINING:
-            _activeTraining = payload.action.training;
+            LocalStorageUtil.lsSet('activeTraining', action.training);
             AppState.emitChange();
             break;
         case ActionTypes.FINISH_TRAINING:
-            _activeTraining = null;
+            LocalStorageUtil.lsRemove('activeTraining');
             AppState.emitChange();
             break;
         case ActionTypes.START_TIMER:
@@ -101,15 +101,21 @@ AppState.dispatchToken = AppDispatcher.register((payload) => {
             AppState.emitChange();
             break;
         case ActionTypes.ADD_SET:
-            _activeTraining.sets[payload.action.exercise].push(payload.action.set);
+            var activeTraining = LocalStorageUtil.lsGet('activeTraining');
+            activeTraining.sets[action.exercise].push(action.set);
+            LocalStorageUtil.lsSet('activeTraining', activeTraining);
             AppState.emitChange();
             break;
         case ActionTypes.REMOVE_SET:
-            _activeTraining.sets[payload.action.exercise].splice(payload.action.index, 1);
+            var activeTraining = LocalStorageUtil.lsGet('activeTraining');
+            activeTraining.sets[action.exercise].splice(action.index, 1);
+            LocalStorageUtil.lsSet('activeTraining', activeTraining);
             AppState.emitChange();
             break;
         case ActionTypes.SET_CURRENT_EXERCISE:
-            _activeTraining.currentExercise = payload.action.exercise;
+            var activeTraining = LocalStorageUtil.lsGet('activeTraining');
+            activeTraining.currentExercise = action.exercise;
+            LocalStorageUtil.lsSet('activeTraining', activeTraining);
             AppState.emitChange();
             break;
         default:
