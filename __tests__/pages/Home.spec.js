@@ -2,6 +2,7 @@
 
 jest.dontMock('../../scripts/pages/Home.js');
 jest.mock('../../scripts/stores/AppState.js');
+jest.mock('../../scripts/stores/TrainingStore.js');
 jest.mock('../../scripts/actions/HeaderStateActionCreators.js');
 jest.mock('react-router');
 
@@ -22,11 +23,23 @@ describe("Home", () => {
                     }
                 };
         });
+        TrainingStore.getTrainings.mockImplementation(() => {
+            return [
+                {
+                    id: 0,
+                    date: '01.02.2015',
+                    workout: {
+                        label: 'some training'
+                    }
+                } 
+            ];
+        });
         home = TestUtils.renderIntoDocument(<Home />);
     });
 
     afterEach(() => {
         AppState.getActiveTraining.mockClear();
+        TrainingStore.getTrainings.mockClear();
         home.componentWillUnmount();
         AppState.getTimer.mockClear();
     });

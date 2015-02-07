@@ -3,6 +3,7 @@
 var React = require('react'),
     List = require('../components/List')
     HeaderStateActionCreators = require('../actions/HeaderStateActionCreators'),
+    TrainingStore = require('../stores/TrainingStore.js'),
     Router = require('react-router'),
     AppState = require('../stores/AppState');
 
@@ -22,6 +23,10 @@ var Home = React.createClass({
     render() {
         var activeTraining = AppState.getActiveTraining(),
             trainingDiv,
+            trainings = TrainingStore.getTrainings().map((item) => {
+                item.label = new Date(item.date).toDateString() + ' - ' + item.workout.label;
+                return item;
+            }),
             timerDiv;
         if(activeTraining) {
             trainingDiv = <div onClick={this.goToTrainingHandler} className='activeTraining'>{activeTraining.workout.label}</div>;
@@ -31,6 +36,8 @@ var Home = React.createClass({
             <div className='page home'>
                 {trainingDiv}
                 {timerDiv}
+                <h2>Recent Trainings:</h2>
+                <List editAble={false} items={trainings}></List>
             </div>
         );
     },

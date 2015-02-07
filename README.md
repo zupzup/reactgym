@@ -24,10 +24,12 @@ Demo:
 TODO
 
 TODOS:
+* detail on workoutclick
 * include immutable.js
 * include flow
 * improve styling
     * fill empty space on homepage
+        * recent training list -> detail on click
     * modal forms, bigger buttons
     * training page (timer, header, active marker for exercise)
     * [x] animate edit/delete buttons
@@ -39,7 +41,6 @@ TODOS:
     * destructuring
     * template strings
     * array.findIndex / array.find
-* detail on workoutclick
 * update to react .13
 * native build android / iOS
 * vibrate on timer-stop
