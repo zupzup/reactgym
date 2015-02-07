@@ -1,6 +1,6 @@
 'use strict';
 
-jest.dontMock('../../scripts/components/Menu.js');
+jest.dontMock('../../scripts/utils/ValidationUtil.js');
 var ValidationUtil = require('../../scripts/utils/ValidationUtil.js');
 
 describe("ValidationUtil", () => {

@@ -3,12 +3,14 @@
 jest.dontMock('../../scripts/stores/ExerciseStore.js');
 jest.dontMock('object-assign');
 jest.mock('../../scripts/dispatcher/AppDispatcher.js');
+jest.mock('../../scripts/utils/LocalStorageUtil.js');
 
 describe("ExerciseStore", () => {
     let cb,
-        ExerciseStore,
-        AppDispatcher,
         ActionTypes = require('../../scripts/constants/ActionTypes.js'),
+        LocalStorageUtil = require('../../scripts/utils/LocalStorageUtil.js'),
+        AppDispatcher = require('../../scripts/dispatcher/AppDispatcher'),
+        ExerciseStore = require('../../scripts/stores/ExerciseStore.js'),
         actionAddExercises = {
             source: 'VIEW_ACTION',
             action: {
@@ -31,9 +33,15 @@ describe("ExerciseStore", () => {
         };
 
     beforeEach(() => {
-        AppDispatcher = require('../../scripts/dispatcher/AppDispatcher');
-        ExerciseStore = require('../../scripts/stores/ExerciseStore.js');
+        LocalStorageUtil.lsGet.mockImplementation(() => {
+            return [];
+        });
         cb = AppDispatcher.register.mock.calls[0][0];
+    });
+
+    afterEach(() => {
+        LocalStorageUtil.lsGet.mockClear();
+        LocalStorageUtil.lsSet.mockClear();
     });
 
     it("getExercises", () => {
@@ -50,32 +58,70 @@ describe("ExerciseStore", () => {
         })).not.toThrow();
     });
 
-    it("getExerciseForId", () => {
-        cb(actionRequestExercises);
-        var exercise = ExerciseStore.getExerciseForId(1);
-        expect(exercise.label).toEqual('T-Bar-Rows');
+    describe('has exercises', () => {
+        beforeEach(() => {
+            LocalStorageUtil.lsGet.mockImplementation(() => {
+                return [
+                    {
+                        id: 1,
+                        label: 'T-Bar-Rows'
+                    },
+                    {
+                        id: 2,
+                        label: 'Hammercurls'
+                    },
+                    {
+                        id: 3,
+                        label: 'Butterfly'
+                    }
+                ];
+            });
+        });
+
+        it("getExerciseForId", () => {
+            var exercise = ExerciseStore.getExerciseForId(1);
+            expect(exercise.label).toEqual('T-Bar-Rows');
+        });
     });
 
-    it("requests exercises", () => {
+
+    it("requests exercises if they are initialized", () => {
+        LocalStorageUtil.lsGet.mockImplementation(() => {
+            return [];
+        });
         cb(actionRequestExercises);
-        var exercises = ExerciseStore.getExercises();
-        expect(exercises.length).toEqual(3);
-        expect(exercises[0].label).toEqual('T-Bar-Rows');
+        expect(LocalStorageUtil.lsSet.mock.calls.length).toBe(0);
+    });
+    
+    it("creates initial exercises, if they are uninitialized", () => {
+        LocalStorageUtil.lsGet.mockImplementation(() => {
+            return null;
+        });
+        cb(actionRequestExercises);
+        expect(LocalStorageUtil.lsSet.mock.calls.length).toBe(1);
+        expect(LocalStorageUtil.lsSet.mock.calls[0][1][0].id).toBe(1);
+        expect(LocalStorageUtil.lsSet.mock.calls[0][1][0].label).toBe('T-Bar-Rows');
     });
 
     it("adds exercises", () => {
+            LocalStorageUtil.lsGet.mockImplementation(() => {
+                return [
+                    {
+                        id: 3,
+                        label: 'Butterfly'
+                    }
+                ];
+            });
         cb(actionAddExercises);
-        cb(actionAddExercises);
-        var exercises = ExerciseStore.getExercises();
-        expect(exercises.length).toEqual(2);
-        expect(exercises[0].label).toEqual('Hyperextensions');
+        expect(LocalStorageUtil.lsSet.mock.calls.length).toBe(1);
+        expect(LocalStorageUtil.lsSet.mock.calls[0][1][1].label).toBe('Hyperextensions');
     });
 
     it("removes exercises", () => {
         cb(actionAddExercises);
         cb(actionRemoveExercise);
-        var exercises = ExerciseStore.getExercises();
-        expect(exercises.length).toEqual(0);
+        expect(LocalStorageUtil.lsSet.mock.calls.length).toBe(2);
+        expect(LocalStorageUtil.lsSet.mock.calls[1][1].length).toBe(0);
     });
 });
 

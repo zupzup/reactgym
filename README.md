@@ -25,6 +25,11 @@ TODO
 
 TODOS:
 * persistence in localstorage
+    * [x] ExerciseStore
+    * WorkoutStore
+    * AppState
+    * TrainingStore
+* include immutable.js
 * include flow
 * improve styling
     * fill empty space on homepage
