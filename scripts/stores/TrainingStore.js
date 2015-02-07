@@ -4,16 +4,22 @@ var react = require('react'),
     AppDispatcher = require('../dispatcher/AppDispatcher'),
     ActionTypes = require('../constants/ActionTypes'),
     assign = require('object-assign'),
-    StoreListenerMixin = require('../mixins/StoreListenerMixin.js'),
-    _trainings = [];
+    LocalStorageUtil = require('../utils/LocalStorageUtil.js'),
+    StoreListenerMixin = require('../mixins/StoreListenerMixin.js');
 
 var TrainingStore = assign({}, StoreListenerMixin, {
     getTrainings() {
-        return _trainings;
+        var trainings = LocalStorageUtil.lsGet('trainings');
+        if(trainings == null) {
+            trainings = [];
+            LocalStorageUtil.lsSet('trainings', trainings);
+        }
+        return trainings;
     },
 
     getTrainingForId(id) {
-        var results = _trainings.filter((item) => {
+        var trainings = LocalStorageUtil.lsGet('trainings');
+        var results = trainings.filter((item) => {
             return item.id === id;
         });
         if(results.length > 0) {
@@ -27,11 +33,15 @@ TrainingStore.dispatchToken = AppDispatcher.register((payload) => {
 
     switch(action.type) {
         case ActionTypes.ADD_TRAINING:
-            _trainings.push(payload.action.training);
+            var trainings = LocalStorageUtil.lsGet('trainings');
+            trainings.push(action.training);
+            LocalStorageUtil.lsSet('trainings', trainings);
             TrainingStore.emitChange();
             break;
         case ActionTypes.REMOVE_TRAINING:
-            _trainings.splice(payload.action.index, 1);
+            var trainings = LocalStorageUtil.lsGet('trainings');
+            trainings.splice(action.index, 1);
+            LocalStorageUtil.lsSet('trainings', trainings);
             TrainingStore.emitChange();
             break;
         default:

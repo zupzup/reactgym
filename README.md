@@ -28,8 +28,9 @@ TODOS:
     * [x] ExerciseStore
     * [x] WorkoutStore
     * AppState
-    * TrainingStore
+    * [x] TrainingStore
 * include immutable.js
+* BUG:currentExercise should be active on training-Start
 * include flow
 * improve styling
     * fill empty space on homepage
