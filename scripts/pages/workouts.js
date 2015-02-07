@@ -42,12 +42,11 @@ var Workouts = React.createClass({
     },
 
     render() {
-            var handlers = {
-                default: this.defaultHandler,
-                delete: this.deleteHandler,
-                edit: this.editHandler
-            }
-
+        var handlers = {
+            default: this.defaultHandler,
+            delete: this.deleteHandler,
+            edit: this.editHandler
+        };
         return (
             <div className='page workouts'>
                 <List editAble={this.state.editAble} handlers={handlers} items={this.state.workouts}></List>

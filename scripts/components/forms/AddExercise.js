@@ -14,7 +14,14 @@ var AddExercise = React.createClass({
     },
 
     handleSubmit() {
-        ExerciseStoreActionCreators.addExercise(this.refs.name.getDOMNode().value);
+        if(this.props.edit) {
+            ExerciseStoreActionCreators.updateExercise({
+                id: this.props.exercise.id,
+                label: this.refs.name.getDOMNode().value
+            });
+        } else {
+            ExerciseStoreActionCreators.addExercise(this.refs.name.getDOMNode().value);
+        }
         AppStateActionCreators.closeModal();
     },
 
@@ -23,11 +30,13 @@ var AddExercise = React.createClass({
     },
 
     render() {
+        var self = this,
+            value = this.props.edit ? this.props.exercise.label : '';
 
        return (
             <div className='form exercises'>
                 <h1>Add Exercise</h1>
-                <ValidatedInput validator='string' ref='name' placeholder='name' className='nameField' />
+                <ValidatedInput validator='string' ref='name' value={value} placeholder='name' className='nameField' />
                 <button className='submitButton' onClick={this.handleSubmit}>Submit</button> |
                 <button className='cancelButton' onClick={this.handleCancel}>Cancel</button>
             </div>

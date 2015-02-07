@@ -15,6 +15,7 @@ module.exports = keyMirror({
     GET_EXERCISES: null,
     ADD_EXERCISE: null,
     REMOVE_EXERCISE: null,
+    UPDATE_EXERCISE: null,
     GET_WORKOUTS: null,
     ADD_WORKOUT: null,
     REMOVE_WORKOUT: null,

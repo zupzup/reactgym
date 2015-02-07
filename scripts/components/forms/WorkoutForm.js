@@ -35,11 +35,11 @@ var WorkoutForm = React.createClass({
     },
 
     render() {
-        var self = this;
-        var exercises = this.state.exercises.map((item) => {
-            return <option key={item.id} value={item.id}>{item.label}</option>;
-        });
-        var value = this.props.edit ? this.props.workout.label : '';
+        var self = this,
+            exercises = this.state.exercises.map((item) => {
+                return <option key={item.id} value={item.id}>{item.label}</option>;
+            }),
+            value = this.props.edit ? this.props.workout.label : '';
        return (
             <div className='form workouts'>
                 <h1>Workout</h1>

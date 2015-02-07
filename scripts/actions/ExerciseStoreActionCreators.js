@@ -16,6 +16,12 @@ module.exports = {
             exercise: exercise
         });
     },
+    updateExercise(exercise) {
+        AppDispatcher.handleViewAction({
+            type: ActionTypes.UPDATE_EXERCISE,
+            exercise: exercise
+        });
+    },
     removeExercise(index) {
         AppDispatcher.handleViewAction({
             type: ActionTypes.REMOVE_EXERCISE,

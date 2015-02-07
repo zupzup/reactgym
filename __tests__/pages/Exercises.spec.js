@@ -56,6 +56,14 @@ describe("Exercises", () => {
         });
     });
 
+    describe('editHandler', () => {
+        it("renders an edit form", () => {
+            exercises.editHandler(null, {id: 0}, 0);
+            expect(AppStateActionCreators.openModal.mock.calls.length).toBe(1);
+            expect(AppStateActionCreators.openModal.mock.calls[0][0].props.exercise.id).toBe(0);
+        });
+    });
+
     describe('headerAdd', () => {
         it("opens a modal for adding an exercise", () => {
             exercises.header.add();

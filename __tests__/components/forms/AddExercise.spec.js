@@ -41,5 +41,19 @@ describe("AddExercise", () => {
         expect(AppStateActionCreators.closeModal.mock.calls.length).toBe(1);
         expect(ExerciseStoreActionCreators.addExercise.mock.calls.length).toBe(1);
     });
+
+    it("updates the exercise and closes the modal on submit if in edit mode", () => {
+        let exercise = {
+            id: 0,
+            label: 'hello'
+        };
+        let addExercise = TestUtils.renderIntoDocument(
+            <AddExercise edit={true} exercise={exercise} />
+        );
+        let submitButton = TestUtils.findRenderedDOMComponentWithClass(addExercise, 'submitButton');
+        TestUtils.Simulate.click(submitButton.getDOMNode());
+        expect(AppStateActionCreators.closeModal.mock.calls.length).toBe(1);
+        expect(ExerciseStoreActionCreators.updateExercise.mock.calls.length).toBe(1);
+    });
 });
 

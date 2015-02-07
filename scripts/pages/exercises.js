@@ -36,11 +36,18 @@ var Exercises = React.createClass({
         WorkoutStoreActionCreators.removeExerciseFromWorkouts(item.id);
     },
 
+    editHandler(e, item, index) {
+        AppStateActionCreators.openModal(
+            <AddExercise edit={true} exercise={item} />
+        );
+    },
+
     render() {
         var handlers = {
             default: null,
-            delete: this.deleteHandler
-        }
+            delete: this.deleteHandler,
+            edit: this.editHandler
+        };
         return (
             <div className='page exercises'>
                 <List editAble={this.state.editAble} handlers={handlers} items={this.state.exercises}></List>

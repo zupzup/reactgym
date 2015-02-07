@@ -18,6 +18,16 @@ describe("ExerciseStore", () => {
                 exercise: 'Hyperextensions'
             }
         },
+        actionUpdateExercise = {
+            source: 'VIEW_ACTION',
+            action: {
+                type: ActionTypes.UPDATE_EXERCISE,
+                exercise: {
+                    id: 3,
+                    label: 'newLabel'
+                }
+            }
+        },
         actionRemoveExercise = {
             source: 'VIEW_ACTION',
             action: {
@@ -115,6 +125,24 @@ describe("ExerciseStore", () => {
         cb(actionAddExercises);
         expect(LocalStorageUtil.lsSet.mock.calls.length).toBe(1);
         expect(LocalStorageUtil.lsSet.mock.calls[0][1][1].label).toBe('Hyperextensions');
+    });
+    
+    it("updates exercises", () => {
+            LocalStorageUtil.lsGet.mockImplementation(() => {
+                return [
+                    {
+                        id: 3,
+                        label: 'Butterfly'
+                    },
+                    {
+                        id: 4,
+                        label: 'Hyperextensions'
+                    }
+                ];
+            });
+        cb(actionUpdateExercise);
+        expect(LocalStorageUtil.lsSet.mock.calls.length).toBe(1);
+        expect(LocalStorageUtil.lsSet.mock.calls[0][1][0].label).toBe('newLabel');
     });
 
     it("removes exercises", () => {

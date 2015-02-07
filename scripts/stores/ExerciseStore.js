@@ -57,6 +57,17 @@ ExerciseStore.dispatchToken = AppDispatcher.register((payload) => {
             LocalStorageUtil.lsSet('exercises', exercises);
             ExerciseStore.emitChange();
             break;
+        case ActionTypes.UPDATE_EXERCISE:
+            var exercises = LocalStorageUtil.lsGet('exercises');
+            exercises = exercises.map((item) => {
+                if(payload.action.exercise.id === item.id) {
+                    item = payload.action.exercise; 
+                }
+                return item;
+            });
+            LocalStorageUtil.lsSet('exercises', exercises);
+            ExerciseStore.emitChange();
+            break;
         case ActionTypes.REMOVE_EXERCISE:
             var exercises = LocalStorageUtil.lsGet('exercises');
             exercises.splice(payload.action.index, 1);
