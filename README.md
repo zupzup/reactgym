@@ -24,7 +24,6 @@ Demo:
 TODO
 
 TODOS:
-* BUG:currentExercise should be active on training-Start
 * include immutable.js
 * include flow
 * improve styling
@@ -120,4 +119,5 @@ DONE:
     * [x] WorkoutStore
     * [x] AppState
     * [x] TrainingStore
+* [x] BUG:currentExercise should be active on training-Start
 

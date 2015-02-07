@@ -92,13 +92,16 @@ var Training = React.createClass({
             exercises = ExerciseStore.getExercises().filter((item) => {
                 return training.workout.exercises.indexOf(item.id) !== -1;
             }),
-            currentExercise = training.currentExercise;
+            currentExercise = training.currentExercise,
+            currentExerciseIndex = _.findIndex(exercises, (item, index) => {
+                return item.id === currentExercise;
+            });
 
         return (
             <div className='page training'>
                 <h1>{training.workout.label}</h1>
                 <div className='timer'>{this.state.timer}</div>
-                <List editAble={false} handlers={handlers} items={exercises}></List>
+                <List activeIndex={currentExerciseIndex} editAble={false} handlers={handlers} items={exercises}></List>
                 <TrainingForm exercise={currentExercise} sets={training.sets[currentExercise]} handler={this.formSubmitHandler} />
                 <div className='finish' onClick={this.finishTraining}>Finish Training</div>
             </div>
