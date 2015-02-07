@@ -54,7 +54,12 @@ describe("Training", () => {
         ExerciseStore.getExercises.mockImplementation(() => {
             return [
                 {
-                    id: 0
+                    id: 0,
+                    label: 't1'
+                },
+                {
+                    id: 1,
+                    label: 't2'
                 }
             ];
         });

@@ -226,6 +226,10 @@ describe("AppState", () => {
             LocalStorageUtil.lsRemove.mockClear();
         });
 
+        it("getActiveTraining", () => {
+            expect(AppState.getActiveTraining()).toEqual([]);
+        });
+
         it("startTraining", () => {
             cb(startTrainingAction);
             expect(LocalStorageUtil.lsSet.mock.calls.length).toBe(1);

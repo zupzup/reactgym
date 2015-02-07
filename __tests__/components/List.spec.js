@@ -14,7 +14,7 @@ describe("List", () => {
     });
 
     it("renders multiple list items", () => {
-        let list = TestUtils.renderIntoDocument(<List items={[{label: 'hello'}, {label: 'hola'}]} />);
+        let list = TestUtils.renderIntoDocument(<List activeIndex={0} items={[{label: 'hello'}, {label: 'hola'}]} />);
         let listItems = TestUtils.scryRenderedDOMComponentsWithClass(list, 'listitem');
         expect(listItems[0].getDOMNode().textContent).toContain('hello');
         expect(listItems[1].getDOMNode().textContent).toContain('hola');
