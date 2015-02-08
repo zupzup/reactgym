@@ -11,7 +11,7 @@ var react = require('react'),
 var ExerciseStore = assign({}, StoreListenerMixin, {
     getExerciseForId(id) {
         return _.first(LocalStorageUtil.lsGet('exercises').filter((exercise) => {
-            return exercise.id === id; 
+            return exercise.id == id;
         }));
     },
 

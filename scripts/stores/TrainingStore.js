@@ -3,6 +3,7 @@
 var react = require('react'),
     AppDispatcher = require('../dispatcher/AppDispatcher'),
     ActionTypes = require('../constants/ActionTypes'),
+    Immutable = require('immutable'),
     assign = require('object-assign'),
     LocalStorageUtil = require('../utils/LocalStorageUtil.js'),
     StoreListenerMixin = require('../mixins/StoreListenerMixin.js');
@@ -34,8 +35,9 @@ TrainingStore.dispatchToken = AppDispatcher.register((payload) => {
     switch(action.type) {
         case ActionTypes.ADD_TRAINING:
             var trainings = LocalStorageUtil.lsGet('trainings');
-            action.training.date = new Date();
-            trainings.push(action.training);
+            var trainingToAdd = action.training;
+            trainingToAdd = trainingToAdd.set('date', new Date());
+            trainings.push(trainingToAdd);
             LocalStorageUtil.lsSet('trainings', trainings);
             TrainingStore.emitChange();
             break;

@@ -9,6 +9,7 @@ var React = require('react'),
     _ = require('lodash'),
     TrainingForm = require('../components/forms/TrainingForm'),
     Router = require('react-router'),
+    Immutable = require('immutable'),
     StopTrainingDialog = require('../components/StopTrainingDialog'),
     TrainingStore = require('../stores/TrainingStore'),
     ExerciseStore = require('../stores/ExerciseStore'),
@@ -90,19 +91,19 @@ var Training = React.createClass({
             },
             training = this.state.activeTraining,
             exercises = ExerciseStore.getExercises().filter((item) => {
-                return training.workout.exercises.indexOf(item.id) !== -1;
+                return training.getIn(['workout', 'exercises']).contains(item.id);
             }),
-            currentExercise = training.currentExercise,
+            currentExercise = training.get('currentExercise').toString(),
             currentExerciseIndex = _.findIndex(exercises, (item, index) => {
-                return item.id === currentExercise;
+                return item.id == currentExercise;
             });
 
         return (
             <div className='page training'>
-                <h1>{training.workout.label}</h1>
+                <h1>{training.getIn(['workout', 'label'])}</h1>
                 <div className='timer'>{this.state.timer}</div>
                 <List activeIndex={currentExerciseIndex} editAble={false} handlers={handlers} items={exercises}></List>
-                <TrainingForm exercise={currentExercise} sets={training.sets[currentExercise]} handler={this.formSubmitHandler} />
+                <TrainingForm exercise={currentExercise} sets={training.getIn(['sets', currentExercise])} handler={this.formSubmitHandler} />
                 <div className='finish' onClick={this.finishTraining}>Finish Training</div>
             </div>
         );

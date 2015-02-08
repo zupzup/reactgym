@@ -3,9 +3,11 @@
 var React = require('react/addons'),
     AppStateActionCreators = require('../../actions/AppStateActionCreators'),
     ValidatedInput = require('./ValidatedInput'),
+    PureRenderMixin = require('react').addons.PureRenderMixin,
     ExerciseStore = require('../../stores/ExerciseStore');
 
 var TrainingForm = React.createClass({
+    mixins: [PureRenderMixin],
     getInitialState() {
         return {};
     },
@@ -28,7 +30,7 @@ var TrainingForm = React.createClass({
                     AppStateActionCreators.removeSet(self.props.exercise, index);
                 }
                 return <span className='rep' key={index} onClick={handler}>{index + 1}</span>;
-            });
+            }).toArray();
        return (
             <div className='form training'>
                 <div>{sets}</div>

@@ -26,7 +26,7 @@ TODO
 TODOS:
 * detail on workoutclick
 * include immutable.js
-    * trainingform
+    * rewrite tests to immutable
     * localstorageutil
         * immutable.fromJS
         * don't always go to localstorage

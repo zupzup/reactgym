@@ -32,7 +32,7 @@ var Home = React.createClass({
             timerDiv;
 
         if(activeTraining) {
-            trainingDiv = <div onClick={this.goToTrainingHandler} className='activeTraining'>{activeTraining.workout.label}</div>;
+            trainingDiv = <div onClick={this.goToTrainingHandler} className='activeTraining'>{activeTraining.getIn(['workout', 'label'])}</div>;
             timerDiv = <div className='timer'>{this.state.timer}</div>;
         }
         return (

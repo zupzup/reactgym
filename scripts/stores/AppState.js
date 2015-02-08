@@ -6,6 +6,7 @@ var react = require('react'),
     LocalStorageUtil = require('../utils/LocalStorageUtil.js'),
     StoreListenerMixin = require('../mixins/StoreListenerMixin.js'),
     assign = require('object-assign'),
+    Immutable = require('immutable'),
     DEFAULT_TIMER = 90,
     _ = require('lodash'),
     _nextTransition = 'slide',
@@ -30,7 +31,7 @@ var AppState = assign({}, StoreListenerMixin, {
 
     getActiveTraining() {
         if(_activeTraining == null) {
-            _activeTraining = LocalStorageUtil.lsGet('activeTraining');
+            _activeTraining = Immutable.fromJS(LocalStorageUtil.lsGet('activeTraining'));
         }
         return _activeTraining;
     },
@@ -77,7 +78,7 @@ AppState.dispatchToken = AppDispatcher.register((payload) => {
             AppState.emitChange();
             break;
         case ActionTypes.START_TRAINING:
-            _activeTraining = action.training;
+            _activeTraining = Immutable.fromJS(action.training);
             LocalStorageUtil.lsSet('activeTraining', _activeTraining);
             AppState.emitChange();
             break;
@@ -107,17 +108,17 @@ AppState.dispatchToken = AppDispatcher.register((payload) => {
             AppState.emitChange();
             break;
         case ActionTypes.ADD_SET:
-            _activeTraining.sets[action.exercise].push(action.set);
+            _activeTraining = _activeTraining.updateIn(['sets', action.exercise], list => list.push(action.set));
             LocalStorageUtil.lsSet('activeTraining', _activeTraining);
             AppState.emitChange();
             break;
         case ActionTypes.REMOVE_SET:
-            _activeTraining.sets[action.exercise].splice(action.index, 1);
+            _activeTraining = _activeTraining.updateIn(['sets', action.exercise], list => list.splice(action.index, 1));
             LocalStorageUtil.lsSet('activeTraining', _activeTraining);
             AppState.emitChange();
             break;
         case ActionTypes.SET_CURRENT_EXERCISE:
-            _activeTraining.currentExercise = action.exercise;
+            _activeTraining = _activeTraining.setIn(['currentExercise'], action.exercise);
             LocalStorageUtil.lsSet('activeTraining', _activeTraining);
             AppState.emitChange();
             break;
