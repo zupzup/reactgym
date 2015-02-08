@@ -5,6 +5,7 @@ var React = require('react'),
     HeaderStateActionCreators = require('../actions/HeaderStateActionCreators'),
     TrainingStore = require('../stores/TrainingStore.js'),
     Router = require('react-router'),
+    Immutable = require('immutable'),
     AppState = require('../stores/AppState');
 
 var Home = React.createClass({
@@ -24,10 +25,12 @@ var Home = React.createClass({
         var activeTraining = AppState.getActiveTraining(),
             trainingDiv,
             trainings = TrainingStore.getTrainings().map((item) => {
-                item.label = new Date(item.date).toDateString() + ' - ' + item.workout.label;
+                var date = new Date(item.date);
+                item.label = date.toLocaleDateString() + ' ' + date.toLocaleTimeString() + ' - ' + item.workout.label;
                 return item;
             }),
             timerDiv;
+
         if(activeTraining) {
             trainingDiv = <div onClick={this.goToTrainingHandler} className='activeTraining'>{activeTraining.workout.label}</div>;
             timerDiv = <div className='timer'>{this.state.timer}</div>;

@@ -26,6 +26,12 @@ TODO
 TODOS:
 * detail on workoutclick
 * include immutable.js
+    * trainingform
+    * localstorageutil
+        * immutable.fromJS
+        * don't always go to localstorage
+        * rewrite stores to handle immutable datastructures
+        * regressions throughout the app
 * include flow
 * improve styling
     * fill empty space on homepage

@@ -12,6 +12,7 @@ var react = require('react'),
     _modal = null,
     _menuOpen = false,
     _timerId = null,
+    _activeTraining = null,
     _timerValue = null;
 
 var AppState = assign({}, StoreListenerMixin, {
@@ -28,7 +29,10 @@ var AppState = assign({}, StoreListenerMixin, {
     },
 
     getActiveTraining() {
-        return LocalStorageUtil.lsGet('activeTraining');
+        if(_activeTraining == null) {
+            _activeTraining = LocalStorageUtil.lsGet('activeTraining');
+        }
+        return _activeTraining;
     },
 
     getTimer() {
@@ -73,10 +77,12 @@ AppState.dispatchToken = AppDispatcher.register((payload) => {
             AppState.emitChange();
             break;
         case ActionTypes.START_TRAINING:
-            LocalStorageUtil.lsSet('activeTraining', action.training);
+            _activeTraining = action.training;
+            LocalStorageUtil.lsSet('activeTraining', _activeTraining);
             AppState.emitChange();
             break;
         case ActionTypes.FINISH_TRAINING:
+            _activeTraining = null;
             LocalStorageUtil.lsRemove('activeTraining');
             AppState.emitChange();
             break;
@@ -101,21 +107,18 @@ AppState.dispatchToken = AppDispatcher.register((payload) => {
             AppState.emitChange();
             break;
         case ActionTypes.ADD_SET:
-            var activeTraining = LocalStorageUtil.lsGet('activeTraining');
-            activeTraining.sets[action.exercise].push(action.set);
-            LocalStorageUtil.lsSet('activeTraining', activeTraining);
+            _activeTraining.sets[action.exercise].push(action.set);
+            LocalStorageUtil.lsSet('activeTraining', _activeTraining);
             AppState.emitChange();
             break;
         case ActionTypes.REMOVE_SET:
-            var activeTraining = LocalStorageUtil.lsGet('activeTraining');
-            activeTraining.sets[action.exercise].splice(action.index, 1);
-            LocalStorageUtil.lsSet('activeTraining', activeTraining);
+            _activeTraining.sets[action.exercise].splice(action.index, 1);
+            LocalStorageUtil.lsSet('activeTraining', _activeTraining);
             AppState.emitChange();
             break;
         case ActionTypes.SET_CURRENT_EXERCISE:
-            var activeTraining = LocalStorageUtil.lsGet('activeTraining');
-            activeTraining.currentExercise = action.exercise;
-            LocalStorageUtil.lsSet('activeTraining', activeTraining);
+            _activeTraining.currentExercise = action.exercise;
+            LocalStorageUtil.lsSet('activeTraining', _activeTraining);
             AppState.emitChange();
             break;
         default:

@@ -59,7 +59,7 @@ describe("AppState", () => {
                         exercises: []
                     },
                     sets: {
-                        '0': []
+                        '0': ['hello']
                     }
                 }
             }
@@ -74,7 +74,7 @@ describe("AppState", () => {
             source: 'VIEW_ACTION',
             action: {
                 type: ActionTypes.ADD_SET,
-                set: 'hello',
+                set: 'ello',
                 exercise: '0'
             }
         },
@@ -243,22 +243,17 @@ describe("AppState", () => {
         });
 
         it('add and removeSet', () => {
-            LocalStorageUtil.lsGet.mockImplementation(() => {
-                return {
-                    id: 5,
-                    sets: {'0': ['hello']}
-                };
-            });
+            cb(startTrainingAction);
             cb(addSetAction);
             cb(removeSetAction);
-            expect(LocalStorageUtil.lsSet.mock.calls.length).toBe(2);
-            expect(LocalStorageUtil.lsSet.mock.calls[0][1].sets['0'].length).toBe(2);
-            expect(LocalStorageUtil.lsSet.mock.calls[1][1].sets['0'].length).toBe(0);
+            expect(AppState.getActiveTraining().sets['0'].length).toBe(1);
+            expect(LocalStorageUtil.lsSet.mock.calls.length).toBe(3);
         });
 
         it('setCurrentExercise', () => {
+            cb(startTrainingAction);
             cb(setCurrentExerciseAction);
-            expect(LocalStorageUtil.lsSet.mock.calls.length).toBe(1);
+            expect(LocalStorageUtil.lsSet.mock.calls.length).toBe(2);
             expect(LocalStorageUtil.lsSet.mock.calls[0][1].currentExercise).toBe(0);
         });
     });
