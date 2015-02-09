@@ -4,13 +4,14 @@ jest.dontMock('../../scripts/stores/ExerciseStore.js');
 jest.dontMock('object-assign');
 jest.mock('../../scripts/dispatcher/AppDispatcher.js');
 jest.mock('../../scripts/utils/LocalStorageUtil.js');
+let Immutable = require('immutable');
 
 describe("ExerciseStore", () => {
     let cb,
+        LocalStorageUtil,
+        AppDispatcher,
+        ExerciseStore,
         ActionTypes = require('../../scripts/constants/ActionTypes.js'),
-        LocalStorageUtil = require('../../scripts/utils/LocalStorageUtil.js'),
-        AppDispatcher = require('../../scripts/dispatcher/AppDispatcher'),
-        ExerciseStore = require('../../scripts/stores/ExerciseStore.js'),
         actionAddExercises = {
             source: 'VIEW_ACTION',
             action: {
@@ -23,7 +24,7 @@ describe("ExerciseStore", () => {
             action: {
                 type: ActionTypes.UPDATE_EXERCISE,
                 exercise: {
-                    id: 3,
+                    id: 1,
                     label: 'newLabel'
                 }
             }
@@ -43,6 +44,9 @@ describe("ExerciseStore", () => {
         };
 
     beforeEach(() => {
+        LocalStorageUtil = require('../../scripts/utils/LocalStorageUtil.js'),
+        AppDispatcher = require('../../scripts/dispatcher/AppDispatcher');
+        ExerciseStore = require('../../scripts/stores/ExerciseStore.js');
         LocalStorageUtil.lsGet.mockImplementation(() => {
             return [];
         });
@@ -56,7 +60,7 @@ describe("ExerciseStore", () => {
 
     it("getExercises", () => {
         var exercises = ExerciseStore.getExercises();
-        expect(exercises).toEqual([]);
+        expect(exercises.size).toEqual(0);
     });
 
     it("doesn't throw on an unregistered action", () => {
@@ -69,87 +73,58 @@ describe("ExerciseStore", () => {
     });
 
     describe('has exercises', () => {
-        beforeEach(() => {
+        it("getExerciseForId", () => {
             LocalStorageUtil.lsGet.mockImplementation(() => {
                 return [
                     {
                         id: 1,
                         label: 'T-Bar-Rows'
-                    },
-                    {
-                        id: 2,
-                        label: 'Hammercurls'
-                    },
-                    {
-                        id: 3,
-                        label: 'Butterfly'
                     }
                 ];
             });
-        });
-
-        it("getExerciseForId", () => {
             var exercise = ExerciseStore.getExerciseForId(1);
-            expect(exercise.label).toEqual('T-Bar-Rows');
+            expect(exercise.get('label')).toEqual('T-Bar-Rows');
         });
-    });
 
-
-    it("requests exercises if they are initialized", () => {
-        LocalStorageUtil.lsGet.mockImplementation(() => {
-            return [];
-        });
-        cb(actionRequestExercises);
-        expect(LocalStorageUtil.lsSet.mock.calls.length).toBe(0);
-    });
-    
-    it("creates initial exercises, if they are uninitialized", () => {
-        LocalStorageUtil.lsGet.mockImplementation(() => {
-            return null;
-        });
-        cb(actionRequestExercises);
-        expect(LocalStorageUtil.lsSet.mock.calls.length).toBe(1);
-        expect(LocalStorageUtil.lsSet.mock.calls[0][1][0].id).toBe(1);
-        expect(LocalStorageUtil.lsSet.mock.calls[0][1][0].label).toBe('T-Bar-Rows');
-    });
-
-    it("adds exercises", () => {
+        it("requests exercises if they are initialized", () => {
             LocalStorageUtil.lsGet.mockImplementation(() => {
-                return [
-                    {
-                        id: 3,
-                        label: 'Butterfly'
-                    }
-                ];
+                return [];
             });
-        cb(actionAddExercises);
-        expect(LocalStorageUtil.lsSet.mock.calls.length).toBe(1);
-        expect(LocalStorageUtil.lsSet.mock.calls[0][1][1].label).toBe('Hyperextensions');
-    });
-    
-    it("updates exercises", () => {
-            LocalStorageUtil.lsGet.mockImplementation(() => {
-                return [
-                    {
-                        id: 3,
-                        label: 'Butterfly'
-                    },
-                    {
-                        id: 4,
-                        label: 'Hyperextensions'
-                    }
-                ];
-            });
-        cb(actionUpdateExercise);
-        expect(LocalStorageUtil.lsSet.mock.calls.length).toBe(1);
-        expect(LocalStorageUtil.lsSet.mock.calls[0][1][0].label).toBe('newLabel');
-    });
+            cb(actionRequestExercises);
+            expect(LocalStorageUtil.lsSet.mock.calls.length).toBe(0);
+        });
 
-    it("removes exercises", () => {
-        cb(actionAddExercises);
-        cb(actionRemoveExercise);
-        expect(LocalStorageUtil.lsSet.mock.calls.length).toBe(2);
-        expect(LocalStorageUtil.lsSet.mock.calls[1][1].length).toBe(0);
+        it("creates initial exercises, if they are uninitialized", () => {
+            LocalStorageUtil.lsGet.mockImplementation(() => {
+                return null;
+            });
+            cb(actionRequestExercises);
+            expect(LocalStorageUtil.lsSet.mock.calls.length).toBe(1);
+            expect(LocalStorageUtil.lsSet.mock.calls[0][1].get(0).get('id')).toBe(1);
+            expect(LocalStorageUtil.lsSet.mock.calls[0][1].get(0).get('label')).toBe('T-Bar-Rows');
+        });
+
+        it("adds exercises", () => {
+            cb(actionAddExercises);
+            cb(actionAddExercises);
+            expect(ExerciseStore.getExercises().size).toBe(2);
+            expect(LocalStorageUtil.lsSet.mock.calls.length).toBe(2);
+            expect(LocalStorageUtil.lsSet.mock.calls[0][1].get(0).get('label')).toBe('Hyperextensions');
+        });
+
+        it("updates exercises", () => {
+            cb(actionAddExercises);
+            cb(actionAddExercises);
+            cb(actionUpdateExercise);
+            expect(LocalStorageUtil.lsSet.mock.calls.length).toBe(3);
+            expect(LocalStorageUtil.lsSet.mock.calls[2][1].get(0).get('label')).toBe('newLabel');
+        });
+
+        it("removes exercises", () => {
+            cb(actionRemoveExercise);
+            expect(LocalStorageUtil.lsSet.mock.calls.length).toBe(1);
+            expect(LocalStorageUtil.lsSet.mock.calls[0][1].size).toBe(0);
+        });
     });
 });
 

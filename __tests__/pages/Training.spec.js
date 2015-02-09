@@ -15,6 +15,7 @@ var React = require('react/addons'),
     TestUtils = React.addons.TestUtils,
     WorkoutStoreActionCreators = require('../../scripts/actions/WorkoutStoreActionCreators.js'),
     TrainingStoreActionCreators = require('../../scripts/actions/TrainingStoreActionCreators.js'),
+    Immutable = require('immutable'),
     AppStateActionCreators = require('../../scripts/actions/AppStateActionCreators.js'),
     WorkoutStore = require('../../scripts/stores/WorkoutStore.js'),
     ExerciseStore = require('../../scripts/stores/ExerciseStore.js'),
@@ -103,7 +104,7 @@ describe("Training", () => {
     describe("finishTraining", () => {
         beforeEach(() => {
             AppState.getActiveTraining.mockImplementation(() => {
-                return {
+                return Immutable.fromJS({
                     workout: {
                         id: 1,
                         label: 'first',
@@ -111,7 +112,7 @@ describe("Training", () => {
                     },
                     currentExercise: 1,
                     sets: []
-                };
+                });
             });
             training = TestUtils.renderIntoDocument(<Training />);
         });

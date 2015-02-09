@@ -5,6 +5,7 @@ jest.mock('../../scripts/actions/WorkoutStoreActionCreators.js');
 jest.mock('../../scripts/actions/ExerciseStoreActionCreators.js');
 jest.mock('../../scripts/actions/AppStateActionCreators.js');
 jest.mock('../../scripts/stores/ExerciseStore.js');
+let Immutable = require('immutable');
 
 var React = require('react/addons'),
     TestUtils = React.addons.TestUtils,
@@ -18,7 +19,7 @@ describe("Exercises", () => {
     var exercises;
     beforeEach(() => {
         ExerciseStore.getExercises.mockImplementation(() => {
-            return [
+            return Immutable.fromJS([
                 {
                     id: 0,
                     label: 'first'
@@ -27,7 +28,7 @@ describe("Exercises", () => {
                     id: 1,
                     label: 'second'
                 } 
-            ];
+            ]);
         });
         exercises = TestUtils.renderIntoDocument(<Exercises />);
     });

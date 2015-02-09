@@ -4,6 +4,7 @@ jest.dontMock('../../scripts/stores/TrainingStore.js');
 jest.dontMock('object-assign');
 jest.mock('../../scripts/dispatcher/AppDispatcher.js');
 jest.mock('../../scripts/utils/LocalStorageUtil.js');
+let Immutable = require('immutable');
 
 describe("TrainingStore", () => {
     let cb,
@@ -15,9 +16,9 @@ describe("TrainingStore", () => {
             source: 'VIEW_ACTION',
             action: {
                 type: ActionTypes.ADD_TRAINING,
-                training: {
+                training: Immutable.fromJS({
                     id: 5
-                }
+                })
             }
         },
         removeTrainingAction = {

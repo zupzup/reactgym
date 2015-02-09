@@ -9,6 +9,7 @@ jest.mock('react-router');
 var React = require('react/addons'),
     TestUtils = React.addons.TestUtils,
     HeaderStateActionCreators = require('../../scripts/actions/HeaderStateActionCreators.js'),
+    Immutable = require('immutable'),
     AppState = require('../../scripts/stores/AppState.js'),
     Home = require('../../scripts/pages/Home.js');
 
@@ -16,12 +17,12 @@ describe("Home", () => {
     var home;
     beforeEach(() => {
         AppState.getActiveTraining.mockImplementation(() => {
-            return {
+            return Immutable.fromJS({
                     id: 1,
                     workout: {
                         label: 'hello'
                     }
-                };
+                });
         });
         TrainingStore.getTrainings.mockImplementation(() => {
             return [

@@ -9,8 +9,10 @@ let React = require('react/addons'),
     AppStateActionCreators = require('../../../scripts/actions/AppStateActionCreators'),
     ExerciseStore = require('../../../scripts/stores/ExerciseStore.js'),
     TrainingForm = require('../../../scripts/components/forms/TrainingForm.js');
+let Immutable = require('immutable');
 
 describe("TrainingForm", () => {
+    var setData = Immutable.fromJS([{weight: 5, reps: 5}]);
     beforeEach(() => {
         ExerciseStore.getExerciseForId.mockImplementation(() => {
             return {
@@ -24,10 +26,10 @@ describe("TrainingForm", () => {
         ExerciseStore.getExerciseForId.mockClear();
         AppStateActionCreators.removeSet.mockClear(); 
     });
-    
+
     it("renders a TrainingForm", () => {
         let trainingForm = TestUtils.renderIntoDocument(
-            <TrainingForm sets={[{weight: 5, reps: 5}]} exercise={0}/>
+            <TrainingForm sets={setData} exercise={0}/>
         );
         expect(TestUtils.isCompositeComponent(trainingForm)).toEqual(true);
         expect(trainingForm.getDOMNode().className).toEqual("form training");
@@ -36,7 +38,7 @@ describe("TrainingForm", () => {
     it("calls the handler on submit", () => {
         let handler = jest.genMockFunction();
         let trainingForm = TestUtils.renderIntoDocument(
-            <TrainingForm sets={[{weight: 5, reps: 5}]} exercise={0} handler={handler}/>
+            <TrainingForm sets={setData} exercise={0} handler={handler}/>
         );
         let submitButton = TestUtils.findRenderedDOMComponentWithClass(trainingForm, 'submitButton');
         trainingForm.refs.reps.validateAndSetValue(5);
@@ -48,7 +50,7 @@ describe("TrainingForm", () => {
     it("doesn't call the handler, if either field is invalid", () => {
         let handler = jest.genMockFunction();
         let trainingForm = TestUtils.renderIntoDocument(
-            <TrainingForm sets={[{weight: 5, reps: 5}]} exercise={0} handler={handler}/>
+            <TrainingForm sets={setData} exercise={0} handler={handler}/>
         );
         let submitButton = TestUtils.findRenderedDOMComponentWithClass(trainingForm, 'submitButton');
         trainingForm.refs.reps.validateAndSetValue('k');
@@ -59,7 +61,7 @@ describe("TrainingForm", () => {
 
     it("removes sets on click", () => {
         let trainingForm = TestUtils.renderIntoDocument(
-            <TrainingForm sets={[{weight: 5, reps: 5}]} exercise={0}/>
+            <TrainingForm sets={setData} exercise={0}/>
         );
         let set = TestUtils.findRenderedDOMComponentWithClass(trainingForm, 'rep');
         TestUtils.Simulate.click(set.getDOMNode());

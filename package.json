@@ -40,10 +40,6 @@
     "collectCoverage": true,
     "testPathIgnorePatterns": [
       "/node_modules/"
-    ],
-    "coverageFormats": [
-      "json",
-      "html"
     ]
   }
 }

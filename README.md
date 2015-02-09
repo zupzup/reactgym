@@ -27,12 +27,12 @@ TODOS:
 * detail on workoutclick
 * include immutable.js
     * rewrite tests to immutable
-    * localstorageutil
-        * immutable.fromJS
-        * don't always go to localstorage
-        * rewrite stores to handle immutable datastructures
-        * regressions throughout the app
+    * [x] AppState
+    * [x] ExerciseStore
+    * WorkoutStore
+    * TrainingStore
 * include flow
+* include propTypes
 * improve styling
     * fill empty space on homepage
         * recent training list -> detail on click
@@ -43,14 +43,13 @@ TODOS:
     * [x] menubutton
     * [x] menu colors
 * es6ify
-    * object literals
-    * destructuring
+    * improved object literals
     * template strings
     * array.findIndex / array.find
 * update to react .13
 * native build android / iOS
 * vibrate on timer-stop
-* file-api for persistence
+* file-api / server-api for persistence
 
 DONE:
 ------
