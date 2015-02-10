@@ -1,7 +1,6 @@
 'use strict';
 
 jest.dontMock('../../scripts/stores/HeaderState.js');
-jest.dontMock('object-assign');
 jest.mock('../../scripts/dispatcher/AppDispatcher.js');
 
 describe("HeaderState", () => {

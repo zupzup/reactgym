@@ -7,7 +7,8 @@ var React = require('react'),
     WorkoutForm = require('../components/forms/WorkoutForm'),
     WorkoutStore = require('../stores/WorkoutStore'),
     AppStateActionCreators = require('../actions/AppStateActionCreators'),
-    HeaderMixin = require('../mixins/HeaderMixin');
+    HeaderMixin = require('../mixins/HeaderMixin'),
+    PureRenderMixin = require('react').addons.PureRenderMixin;
 
 var Workouts = React.createClass({
     header: {
@@ -22,7 +23,7 @@ var Workouts = React.createClass({
         }
     },
 
-    mixins: [HeaderMixin],
+    mixins: [HeaderMixin, PureRenderMixin],
 
     getInitialState() {
         return {
@@ -49,7 +50,7 @@ var Workouts = React.createClass({
         };
         return (
             <div className='page workouts'>
-                <List editAble={this.state.editAble} handlers={handlers} items={this.state.workouts}></List>
+                <List editAble={this.state.editAble} handlers={handlers} items={this.state.workouts.toJS()}></List>
             </div>
         );
     },

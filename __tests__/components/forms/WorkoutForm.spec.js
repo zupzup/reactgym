@@ -6,6 +6,7 @@ jest.mock('../../../scripts/actions/WorkoutStoreActionCreators.js');
 jest.mock('../../../scripts/stores/ExerciseStore.js');
 let React = require('react/addons'),
     TestUtils = React.addons.TestUtils,
+    Immutable = require('immutable'),
     AppStateActionCreators = require('../../../scripts/actions/AppStateActionCreators'),
     WorkoutStoreActionCreators = require('../../../scripts/actions/WorkoutStoreActionCreators.js'),
     ExerciseStore = require('../../../scripts/stores/ExerciseStore.js'),
@@ -14,7 +15,7 @@ let React = require('react/addons'),
 describe("WorkoutForm", () => {
     beforeEach(() => {
         ExerciseStore.getExercises.mockImplementation(() => {
-            return [
+            return Immutable.fromJS([
                 {
                     id: 1,
                     label: 'T-Bar-Rows'
@@ -23,7 +24,7 @@ describe("WorkoutForm", () => {
                     id: 2,
                     label: 'Hammercurls'
                 }
-            ];
+            ]);
         });
     });
 
@@ -33,7 +34,7 @@ describe("WorkoutForm", () => {
         WorkoutStoreActionCreators.updateWorkout.mockClear(); 
         WorkoutStoreActionCreators.addWorkout.mockClear(); 
     });
-    
+
     it("renders a WorkoutForm", () => {
         let workoutForm = TestUtils.renderIntoDocument(
             <WorkoutForm  />

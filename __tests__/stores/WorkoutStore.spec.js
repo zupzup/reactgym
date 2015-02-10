@@ -1,15 +1,12 @@
 'use strict';
 
 jest.dontMock('../../scripts/stores/WorkoutStore.js');
-jest.dontMock('object-assign');
 jest.mock('../../scripts/dispatcher/AppDispatcher.js');
 jest.mock('../../scripts/utils/LocalStorageUtil.js');
+var Immutable = require('immutable');
 
 describe("WorkoutStore", () => {
     let cb,
-        LocalStorageUtil = require('../../scripts/utils/LocalStorageUtil.js'),
-        AppDispatcher = require('../../scripts/dispatcher/AppDispatcher');
-        WorkoutStore = require('../../scripts/stores/WorkoutStore.js');
         ActionTypes = require('../../scripts/constants/ActionTypes.js'),
         actionAddWorkout = {
             source: 'VIEW_ACTION',
@@ -65,6 +62,9 @@ describe("WorkoutStore", () => {
         };
 
     beforeEach(() => {
+        LocalStorageUtil = require('../../scripts/utils/LocalStorageUtil.js'),
+        AppDispatcher = require('../../scripts/dispatcher/AppDispatcher');
+        WorkoutStore = require('../../scripts/stores/WorkoutStore.js');
         LocalStorageUtil.lsGet.mockImplementation(() => {
             return [];
         });
@@ -78,7 +78,7 @@ describe("WorkoutStore", () => {
 
     it("gets workouts", () => {
         var workouts = WorkoutStore.getWorkouts();
-        expect(workouts).toEqual([]);
+        expect(workouts.size).toEqual(0);
     });
 
     it("doesn't throw on an unregistered action", () => {
@@ -93,7 +93,7 @@ describe("WorkoutStore", () => {
     describe("has workouts", () => {
         beforeEach(() => {
             LocalStorageUtil.lsGet.mockImplementation(() => {
-                return [
+                return Immutable.fromJS([
                     {
                         id: 1,
                         label: 'Chest Triceps Shoulders Abs',
@@ -104,7 +104,7 @@ describe("WorkoutStore", () => {
                         label: 'Back Biceps Legs',
                         exercises: [2, 3]
                     }
-                ];
+                ]);
             });
         });
 
@@ -123,36 +123,45 @@ describe("WorkoutStore", () => {
 
         it("adds workouts", () => {
             cb(actionAddWorkout);
-            expect(LocalStorageUtil.lsSet.mock.calls.length).toBe(1);
-            expect(LocalStorageUtil.lsSet.mock.calls[0][1][2].label).toBe('#3');
+            cb(actionAddWorkout);
+            expect(WorkoutStore.getWorkouts().size).toBe(2);
+            expect(LocalStorageUtil.lsSet.mock.calls.length).toBe(2);
+            expect(LocalStorageUtil.lsSet.mock.calls[1][1].get(1).get('label')).toBe('#3');
         });
 
         it("removes workouts", () => {
+            cb(actionAddWorkout);
             cb(actionRemoveWorkout);
-            expect(LocalStorageUtil.lsSet.mock.calls.length).toBe(1);
-            expect(LocalStorageUtil.lsSet.mock.calls[0][1].length).toBe(1);
+            expect(LocalStorageUtil.lsSet.mock.calls.length).toBe(2);
+            expect(LocalStorageUtil.lsSet.mock.calls[1][1].size).toBe(0);
         });
 
         it("updates workouts", () => {
+            cb(actionAddWorkout);
+            cb(actionAddWorkout);
             cb(actionUpdateWorkout);
-            expect(LocalStorageUtil.lsSet.mock.calls.length).toBe(1);
-            expect(LocalStorageUtil.lsSet.mock.calls[0][1].length).toBe(2);
-            expect(LocalStorageUtil.lsSet.mock.calls[0][1][0].label).toBe('#4');
+            expect(LocalStorageUtil.lsSet.mock.calls.length).toBe(3);
+            expect(LocalStorageUtil.lsSet.mock.calls[2][1].size).toBe(2);
+            expect(LocalStorageUtil.lsSet.mock.calls[2][1].get(0).get('label')).toBe('#4');
         });
 
         it("doesn't change anything, if the id wasn't found", () => {
+            cb(actionAddWorkout);
+            cb(actionAddWorkout);
             cb(actionUpdateWorkoutFalse);
-            expect(LocalStorageUtil.lsSet.mock.calls.length).toBe(1);
-            expect(LocalStorageUtil.lsSet.mock.calls[0][1].length).toBe(2);
-            expect(LocalStorageUtil.lsSet.mock.calls[0][1][0].label).toBe('Chest Triceps Shoulders Abs');
+            expect(LocalStorageUtil.lsSet.mock.calls.length).toBe(3);
+            expect(LocalStorageUtil.lsSet.mock.calls[2][1].size).toBe(2);
+            expect(LocalStorageUtil.lsSet.mock.calls[2][1].get(0).get('label')).toBe('#3');
         });
 
         it("removes the exercise from all workouts", () => {
+            cb(actionAddWorkout);
+            cb(actionAddWorkout);
             cb(actionRemoveExercise);
-            expect(LocalStorageUtil.lsSet.mock.calls.length).toBe(1);
-            expect(LocalStorageUtil.lsSet.mock.calls[0][1].length).toBe(2);
-            expect(LocalStorageUtil.lsSet.mock.calls[0][1][0].exercises).not.toContain(2);
-            expect(LocalStorageUtil.lsSet.mock.calls[0][1][1].exercises).not.toContain(2);
+            expect(LocalStorageUtil.lsSet.mock.calls.length).toBe(3);
+            expect(LocalStorageUtil.lsSet.mock.calls[2][1].size).toBe(2);
+            expect(LocalStorageUtil.lsSet.mock.calls[2][1].get(0).get('exercises')).not.toContain(2);
+            expect(LocalStorageUtil.lsSet.mock.calls[2][1].get(1).get('exercises')).not.toContain(2);
         });
     });
 });

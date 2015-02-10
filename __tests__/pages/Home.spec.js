@@ -25,7 +25,7 @@ describe("Home", () => {
                 });
         });
         TrainingStore.getTrainings.mockImplementation(() => {
-            return [
+            return Immutable.fromJS([
                 {
                     id: 0,
                     date: '01.02.2015',
@@ -33,7 +33,7 @@ describe("Home", () => {
                         label: 'some training'
                     }
                 } 
-            ];
+            ]);
         });
         home = TestUtils.renderIntoDocument(<Home />);
     });

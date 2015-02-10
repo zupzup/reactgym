@@ -9,6 +9,7 @@ var React = require('react'),
     _ = require('lodash'),
     TrainingForm = require('../components/forms/TrainingForm'),
     Router = require('react-router'),
+    PureRenderMixin = require('react').addons.PureRenderMixin,
     Immutable = require('immutable'),
     StopTrainingDialog = require('../components/StopTrainingDialog'),
     TrainingStore = require('../stores/TrainingStore'),
@@ -19,7 +20,7 @@ var Training = React.createClass({
     header: {
         title: 'Training'
     },
-    mixins: [Router.Navigation, SimpleHeaderMixin],
+    mixins: [Router.Navigation, SimpleHeaderMixin, PureRenderMixin],
 
     getInitialState() {
         return {
@@ -53,11 +54,9 @@ var Training = React.createClass({
         }, {});
         var training = {
             workout: workout,
-            id: TrainingStore.getTrainings().map((item) => {
-                return item.id + 1;
-            }).reduce((acc, item) => {
-                return item;
-            }, 0),
+            id: TrainingStore.getTrainings().reduce((acc, item) => {
+                return item.get('id');
+            }, 0) + 1,
             sets: sets,
             currentExercise: _.first(workout.exercises)
         };
@@ -81,7 +80,7 @@ var Training = React.createClass({
             return (
                 <div className='page training'>
                     <h1>Select a Workout:</h1>
-                    <List editAble={false} handlers={handlers} items={WorkoutStore.getWorkouts()}></List>
+                    <List editAble={false} handlers={handlers} items={WorkoutStore.getWorkouts().toJS()}></List>
                 </div>
             );
         }
@@ -91,18 +90,18 @@ var Training = React.createClass({
             },
             training = this.state.activeTraining,
             exercises = ExerciseStore.getExercises().filter((item) => {
-                return training.getIn(['workout', 'exercises']).contains(item.id);
+                return training.getIn(['workout', 'exercises']).contains(item.get('id'));
             }),
             currentExercise = training.get('currentExercise').toString(),
-            currentExerciseIndex = _.findIndex(exercises, (item, index) => {
-                return item.id == currentExercise;
+            currentExerciseIndex = exercises.findIndex((item, index) => {
+                return item.get('id') == currentExercise;
             });
 
         return (
             <div className='page training'>
                 <h1>{training.getIn(['workout', 'label'])}</h1>
                 <div className='timer'>{this.state.timer}</div>
-                <List activeIndex={currentExerciseIndex} editAble={false} handlers={handlers} items={exercises}></List>
+                <List activeIndex={currentExerciseIndex} editAble={false} handlers={handlers} items={exercises.toJS()}></List>
                 <TrainingForm exercise={currentExercise} sets={training.getIn(['sets', currentExercise])} handler={this.formSubmitHandler} />
                 <div className='finish' onClick={this.finishTraining}>Finish Training</div>
             </div>

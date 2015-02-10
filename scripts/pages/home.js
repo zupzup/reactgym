@@ -5,11 +5,12 @@ var React = require('react'),
     HeaderStateActionCreators = require('../actions/HeaderStateActionCreators'),
     TrainingStore = require('../stores/TrainingStore.js'),
     Router = require('react-router'),
+    PureRenderMixin = require('react').addons.PureRenderMixin,
     Immutable = require('immutable'),
     AppState = require('../stores/AppState');
 
 var Home = React.createClass({
-    mixins: [Router.Navigation],
+    mixins: [Router.Navigation, PureRenderMixin],
 
     getInitialState() {
         return {
@@ -25,9 +26,8 @@ var Home = React.createClass({
         var activeTraining = AppState.getActiveTraining(),
             trainingDiv,
             trainings = TrainingStore.getTrainings().map((item) => {
-                var date = new Date(item.date);
-                item.label = date.toLocaleDateString() + ' ' + date.toLocaleTimeString() + ' - ' + item.workout.label;
-                return item;
+                var date = new Date(item.get('date'));
+                return item.set('label', date.toLocaleDateString() + ' ' + date.toLocaleTimeString() + ' - ' + item.getIn(['workout', 'label']));
             }),
             timerDiv;
 
@@ -40,7 +40,7 @@ var Home = React.createClass({
                 {trainingDiv}
                 {timerDiv}
                 <h2>Recent Trainings:</h2>
-                <List editAble={false} items={trainings}></List>
+                <List editAble={false} items={trainings.toJS()}></List>
             </div>
         );
     },

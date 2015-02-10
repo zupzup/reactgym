@@ -1,17 +1,16 @@
 'use strict';
 
 jest.dontMock('../../scripts/stores/TrainingStore.js');
-jest.dontMock('object-assign');
 jest.mock('../../scripts/dispatcher/AppDispatcher.js');
 jest.mock('../../scripts/utils/LocalStorageUtil.js');
 let Immutable = require('immutable');
 
 describe("TrainingStore", () => {
     let cb,
+        LocalStorageUtil,
+        AppDispatcher,
+        TrainingStore,
         ActionTypes = require('../../scripts/constants/ActionTypes.js'),
-        LocalStorageUtil = require('../../scripts/utils/LocalStorageUtil.js'),
-        AppDispatcher = require('../../scripts/dispatcher/AppDispatcher');
-        TrainingStore = require('../../scripts/stores/TrainingStore.js');
         addTrainingAction = {
             source: 'VIEW_ACTION',
             action: {
@@ -30,6 +29,9 @@ describe("TrainingStore", () => {
         };
 
     beforeEach(() => {
+        LocalStorageUtil = require('../../scripts/utils/LocalStorageUtil.js'),
+        AppDispatcher = require('../../scripts/dispatcher/AppDispatcher');
+        TrainingStore = require('../../scripts/stores/TrainingStore.js');
         LocalStorageUtil.lsGet.mockImplementation(() => {
             return [];
         });
@@ -43,15 +45,14 @@ describe("TrainingStore", () => {
 
     it("getTrainings", () => {
         var trainings = TrainingStore.getTrainings();
-        expect(trainings).toEqual([]);
+        expect(trainings.size).toEqual(0);
     });
 
     it("getTrainings initializes the trainings, if they are uninitialized", () => {
         LocalStorageUtil.lsGet.mockImplementation(() => {
             return null;
         });
-        expect(TrainingStore.getTrainings()).toEqual([]);
-        expect(LocalStorageUtil.lsSet.mock.calls.length).toBe(1);
+        expect(TrainingStore.getTrainings().size).toEqual(0);
     });
 
     it("doesn't throw on an unregistered action", () => {
@@ -75,13 +76,13 @@ describe("TrainingStore", () => {
                 }
             ];
         });
-        expect(TrainingStore.getTrainingForId(5).id).toBe(5);
+        expect(TrainingStore.getTrainingForId(5).get('id')).toBe(5);
     });
 
     it("addTraining", () => {
         cb(addTrainingAction);
         expect(LocalStorageUtil.lsSet.mock.calls.length).toBe(1);
-        expect(LocalStorageUtil.lsSet.mock.calls[0][1].length).toBe(1);
+        expect(LocalStorageUtil.lsSet.mock.calls[0][1].size).toBe(1);
     });
 
     it("removeTraining", () => {
@@ -94,7 +95,7 @@ describe("TrainingStore", () => {
         });
         cb(removeTrainingAction);
         expect(LocalStorageUtil.lsSet.mock.calls.length).toBe(1);
-        expect(LocalStorageUtil.lsSet.mock.calls[0][1].length).toBe(0);
+        expect(LocalStorageUtil.lsSet.mock.calls[0][1].size).toBe(0);
     });
 });
 

@@ -8,17 +8,17 @@ let React = require('react/addons'),
     TestUtils = React.addons.TestUtils,
     AppStateActionCreators = require('../../../scripts/actions/AppStateActionCreators'),
     ExerciseStore = require('../../../scripts/stores/ExerciseStore.js'),
+    Immutable = require('immutable'),
     TrainingForm = require('../../../scripts/components/forms/TrainingForm.js');
-let Immutable = require('immutable');
 
 describe("TrainingForm", () => {
     var setData = Immutable.fromJS([{weight: 5, reps: 5}]);
     beforeEach(() => {
         ExerciseStore.getExerciseForId.mockImplementation(() => {
-            return {
+            return Immutable.fromJS({
                 id: 0,
                 label: 'hello'
-            };
+            });
         });
     });
 

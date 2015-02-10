@@ -25,13 +25,6 @@ TODO
 
 TODOS:
 * detail on workoutclick
-* include immutable.js
-    * rewrite tests to immutable
-    * [x] AppState
-    * [x] ExerciseStore
-    * WorkoutStore
-    * TrainingStore
-* include flow
 * include propTypes
 * improve styling
     * fill empty space on homepage
@@ -126,4 +119,10 @@ DONE:
     * [x] AppState
     * [x] TrainingStore
 * [x] BUG:currentExercise should be active on training-Start
+* [x] include immutable.js
+    * [x] rewrite tests to immutable
+    * [x] AppState
+    * [x] ExerciseStore
+    * [x] WorkoutStore
+    * [x] TrainingStore
 

@@ -32,7 +32,7 @@ describe("Training", () => {
             return null;
         });
         WorkoutStore.getWorkouts.mockImplementation(() => {
-            return [
+            return Immutable.fromJS([
                 {
                     id: 1,
                     label: 'Chest Triceps Shoulders Abs',
@@ -43,17 +43,17 @@ describe("Training", () => {
                     label: 'Back Biceps Legs',
                     exercises: [2, 3]
                 }
-            ];
+            ]);
         });
         TrainingStore.getTrainings.mockImplementation(() => {
-            return [
+            return Immutable.fromJS([
                 {
                     id: 0
                 } 
-            ];
+            ]);
         });
         ExerciseStore.getExercises.mockImplementation(() => {
-            return [
+            return Immutable.fromJS([
                 {
                     id: 0,
                     label: 't1'
@@ -62,7 +62,7 @@ describe("Training", () => {
                     id: 1,
                     label: 't2'
                 }
-            ];
+            ]);
         });
         training = TestUtils.renderIntoDocument(<Training />);
     });

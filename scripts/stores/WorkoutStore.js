@@ -5,11 +5,16 @@ var react = require('react'),
     ActionTypes = require('../constants/ActionTypes'),
     assign = require('object-assign'),
     LocalStorageUtil = require('../utils/LocalStorageUtil.js'),
-    StoreListenerMixin = require('../mixins/StoreListenerMixin.js');
+    Immutable = require('immutable'),
+    StoreListenerMixin = require('../mixins/StoreListenerMixin.js'),
+    _workouts = Immutable.List();
 
 var WorkoutStore = assign({}, StoreListenerMixin, {
     getWorkouts() {
-        return LocalStorageUtil.lsGet('workouts');
+        if(_workouts.size === 0) {
+            _workouts = Immutable.fromJS(LocalStorageUtil.lsGet('workouts'));
+        }
+        return _workouts;
     }
 });
 
@@ -20,8 +25,7 @@ WorkoutStore.dispatchToken = AppDispatcher.register((payload) => {
         case ActionTypes.GET_WORKOUTS:
             var workouts = LocalStorageUtil.lsGet('workouts');
             if(workouts == null) {
-                LocalStorageUtil.lsSet('workouts', 
-                [
+                _workouts = Immutable.fromJS([
                     {
                         id: 1,
                         label: 'Chest Triceps Shoulders Abs',
@@ -33,47 +37,40 @@ WorkoutStore.dispatchToken = AppDispatcher.register((payload) => {
                         exercises: [2, 3]
                     }
                 ]);
+                LocalStorageUtil.lsSet('workouts', _workouts); 
                 WorkoutStore.emitChange();
             }
             break;
         case ActionTypes.ADD_WORKOUT:
-            var workouts = LocalStorageUtil.lsGet('workouts');
-            workouts.push({
-                id: workouts.map((item) => {
-                    return item.id + 1;
-                }).reduce((acc, item) => {
-                    return item;
-                }, 0),
+            _workouts = _workouts.push(Immutable.Map({
+                id: _workouts.reduce((a, i) => i.get('id'), 0) + 1,
                 label: action.workout.label,
                 exercises: action.workout.exercises
-            });
-            LocalStorageUtil.lsSet('workouts', workouts);
+            }));
+            LocalStorageUtil.lsSet('workouts', _workouts);
             WorkoutStore.emitChange();
             break;
         case ActionTypes.REMOVE_WORKOUT:
-            var workouts = LocalStorageUtil.lsGet('workouts');
-            workouts.splice(action.index, 1);
-            LocalStorageUtil.lsSet('workouts', workouts);
+            _workouts = _workouts.splice(action.index, 1);
+            LocalStorageUtil.lsSet('workouts', _workouts);
             WorkoutStore.emitChange();
             break;
         case ActionTypes.UPDATE_WORKOUT:
-            var workouts = LocalStorageUtil.lsGet('workouts');
-            workouts = workouts.map((item) => {
-                if(action.workout.id === item.id) {
-                    item = action.workout; 
+            var workout = Immutable.Map(action.workout);
+            _workouts = _workouts.map((item) => {
+                if(workout.get('id') === item.get('id')) {
+                    return workout;
                 }
                 return item;
             });
-            LocalStorageUtil.lsSet('workouts', workouts);
+            LocalStorageUtil.lsSet('workouts', _workouts);
             WorkoutStore.emitChange();
             break;
         case ActionTypes.REMOVE_EXERCISE_FROM_WORKOUTS:
-            var workouts = LocalStorageUtil.lsGet('workouts');
-            workouts = workouts.map((item) => {
-                item.exercises = item.exercises.filter(ex => ex !== action.id);
-                return item;
+            _workouts = _workouts.map((item) => {
+                return item.setIn('exercises', item.get('exercises').filter(ex => ex !== action.id));
             });
-            LocalStorageUtil.lsSet('workouts', workouts);
+            LocalStorageUtil.lsSet('workouts', _workouts);
             WorkoutStore.emitChange();
             break;
         default:

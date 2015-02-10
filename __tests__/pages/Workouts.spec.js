@@ -7,16 +7,17 @@ jest.mock('../../scripts/stores/WorkoutStore.js');
 
 var React = require('react/addons'),
     TestUtils = React.addons.TestUtils,
+    Immutable = require('immutable'),
     WorkoutStoreActionCreators = require('../../scripts/actions/WorkoutStoreActionCreators.js'),
     AppStateActionCreators = require('../../scripts/actions/AppStateActionCreators.js'),
     WorkoutStore = require('../../scripts/stores/WorkoutStore.js'),
     Workouts = require('../../scripts/pages/Workouts.js');
 
-describe("Exercises", () => {
+describe("Workouts", () => {
     var workouts;
     beforeEach(() => {
         WorkoutStore.getWorkouts.mockImplementation(() => {
-            return [
+            return Immutable.fromJS([
                 {
                     id: 1,
                     label: 'Chest Triceps Shoulders Abs',
@@ -27,7 +28,7 @@ describe("Exercises", () => {
                     label: 'Back Biceps Legs',
                     exercises: [2, 3]
                 }
-            ];
+            ]);
         });
         workouts = TestUtils.renderIntoDocument(<Workouts />);
     });

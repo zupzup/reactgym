@@ -6,26 +6,21 @@ var react = require('react'),
     Immutable = require('immutable'),
     assign = require('object-assign'),
     LocalStorageUtil = require('../utils/LocalStorageUtil.js'),
-    StoreListenerMixin = require('../mixins/StoreListenerMixin.js');
+    StoreListenerMixin = require('../mixins/StoreListenerMixin.js'),
+    _trainings = Immutable.List();
 
 var TrainingStore = assign({}, StoreListenerMixin, {
     getTrainings() {
-        var trainings = LocalStorageUtil.lsGet('trainings');
-        if(trainings == null) {
-            trainings = [];
-            LocalStorageUtil.lsSet('trainings', trainings);
+        if(_trainings.size === 0) {
+            _trainings = Immutable.fromJS(LocalStorageUtil.lsGet('trainings')) || Immutable.List();
         }
-        return trainings;
+        return _trainings;
     },
 
     getTrainingForId(id) {
-        var trainings = LocalStorageUtil.lsGet('trainings');
-        var results = trainings.filter((item) => {
-            return item.id === id;
-        });
-        if(results.length > 0) {
-            return results[0];
-        }
+        return this.getTrainings().filter((item) => {
+            return item.get('id') === id;
+        }).first();
     }
 });
 
@@ -34,17 +29,15 @@ TrainingStore.dispatchToken = AppDispatcher.register((payload) => {
 
     switch(action.type) {
         case ActionTypes.ADD_TRAINING:
-            var trainings = LocalStorageUtil.lsGet('trainings');
             var trainingToAdd = action.training;
             trainingToAdd = trainingToAdd.set('date', new Date());
-            trainings.push(trainingToAdd);
-            LocalStorageUtil.lsSet('trainings', trainings);
+            _trainings = _trainings.push(trainingToAdd);
+            LocalStorageUtil.lsSet('trainings', _trainings);
             TrainingStore.emitChange();
             break;
         case ActionTypes.REMOVE_TRAINING:
-            var trainings = LocalStorageUtil.lsGet('trainings');
-            trainings.splice(action.index, 1);
-            LocalStorageUtil.lsSet('trainings', trainings);
+            _trainings = _trainings.splice(action.index, 1);
+            LocalStorageUtil.lsSet('trainings', _trainings);
             TrainingStore.emitChange();
             break;
         default:

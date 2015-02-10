@@ -1,7 +1,6 @@
 'use strict';
 
 jest.dontMock('../../scripts/stores/ExerciseStore.js');
-jest.dontMock('object-assign');
 jest.mock('../../scripts/dispatcher/AppDispatcher.js');
 jest.mock('../../scripts/utils/LocalStorageUtil.js');
 let Immutable = require('immutable');
