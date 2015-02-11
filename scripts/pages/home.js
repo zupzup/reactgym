@@ -22,8 +22,15 @@ var Home = React.createClass({
         this.transitionTo('training');
     },
 
+    goToDetailHandler(e, item, index) {
+        this.transitionTo('detail',{}, {training: item.id});
+    },
+
     render() {
         var activeTraining = AppState.getActiveTraining(),
+            handlers = {
+                default: this.goToDetailHandler
+            },
             trainingDiv,
             trainings = TrainingStore.getTrainings().map((item) => {
                 var date = new Date(item.get('date'));
@@ -40,7 +47,7 @@ var Home = React.createClass({
                 {trainingDiv}
                 {timerDiv}
                 <h2>Recent Trainings:</h2>
-                <List editAble={false} items={trainings.toJS()}></List>
+                <List handlers={handlers} editAble={false} items={trainings.toJS()}></List>
             </div>
         );
     },

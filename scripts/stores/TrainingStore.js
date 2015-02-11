@@ -19,7 +19,7 @@ var TrainingStore = assign({}, StoreListenerMixin, {
 
     getTrainingForId(id) {
         return this.getTrainings().filter((item) => {
-            return item.get('id') === id;
+            return item.get('id') == id;
         }).first();
     }
 });

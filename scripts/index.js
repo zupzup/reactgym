@@ -11,6 +11,7 @@ var React = require('react'),
     Exercises = require('./pages/Exercises'),
     Training = require('./pages/Training'),
     Home = require('./pages/Home'),
+    TrainingDetail = require('./pages/TrainingDetail'),
     Workouts = require('./pages/Workouts'),
     App = require('./App');
 
@@ -20,6 +21,7 @@ var routes = (
         <Route name='exercises' path='/exercises' handler={Exercises} />
         <Route name='workouts' path='/workouts' handler={Workouts} />
         <Route name='training' path='/training' handler={Training} />
+        <Route name='detail' path='/detail' handler={TrainingDetail} />
     </Route>
 );
 

@@ -24,8 +24,8 @@ Demo:
 TODO
 
 TODOS:
+* prop transferring
 * detail on workoutclick
-* include propTypes
 * improve styling
     * fill empty space on homepage
         * recent training list -> detail on click
@@ -125,4 +125,5 @@ DONE:
     * [x] ExerciseStore
     * [x] WorkoutStore
     * [x] TrainingStore
+* [x] training detail page
 

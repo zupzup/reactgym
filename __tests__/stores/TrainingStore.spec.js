@@ -81,6 +81,7 @@ describe("TrainingStore", () => {
 
     it("addTraining", () => {
         cb(addTrainingAction);
+        expect(TrainingStore.getTrainings().size).toBe(1);
         expect(LocalStorageUtil.lsSet.mock.calls.length).toBe(1);
         expect(LocalStorageUtil.lsSet.mock.calls[0][1].size).toBe(1);
     });

@@ -42,6 +42,7 @@ describe("Home", () => {
         AppState.getActiveTraining.mockClear();
         TrainingStore.getTrainings.mockClear();
         home.componentWillUnmount();
+        Router.Navigation.transitionTo.mockClear();
         AppState.getTimer.mockClear();
     });
 
@@ -58,6 +59,13 @@ describe("Home", () => {
         let activeTrainingDiv = TestUtils.scryRenderedDOMComponentsWithClass(home, 'activeTraining');
         TestUtils.Simulate.click(activeTrainingDiv[0].getDOMNode());
         expect(Router.Navigation.transitionTo.mock.calls.length).toBe(1);
+    });
+
+    it("goes to the training detail page on click on one of the recent trainings", () => {
+        let recentTrainingDiv = TestUtils.scryRenderedDOMComponentsWithClass(home, 'listitem');
+        TestUtils.Simulate.click(recentTrainingDiv[0].getDOMNode());
+        expect(Router.Navigation.transitionTo.mock.calls.length).toBe(1);
+        expect(Router.Navigation.transitionTo.mock.calls[0][2].training).toBe(0);
     });
 
     it("gets the timer on change", () => {
