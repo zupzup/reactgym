@@ -1,67 +1,81 @@
 
 body {
-  background: #eee;
-  font-family: arial;
-  margin: 0;
+    background: #eee;
+    font-family: arial;
+    margin: 0;
 }
 
 .slide-enter {
-  transform: translateX(100%);
-  transition: transform .3s ease-in;
-  &.slide-enter-active {
-    transform: translateX(0%);
-  }
+    transform: translateX(100%);
+    transition: transform .3s ease-in;
+    &.slide-enter-active {
+        transform: translateX(0%);
+    }
 }
 
 .slide-leave {
-  transform: translateX(0%);
-  transition: transform .3s ease-in;
-  &.slide-leave-active {
-    transform: translateX(-100%);
-  }
+    transform: translateX(0%);
+    transition: transform .3s ease-in;
+    &.slide-leave-active {
+        transform: translateX(-100%);
+    }
 }
 
 .slideBack-enter {
-  transform: translateX(-100%);
-  transition: transform .3s ease-in;
-  &.slideBack-enter-active {
-    transform: translateX(0%);
-  }
+    transform: translateX(-100%);
+    transition: transform .3s ease-in;
+    &.slideBack-enter-active {
+        transform: translateX(0%);
+    }
 }
 
 .slideBack-leave {
-  transform: translateX(0%);
-  transition: transform .3s ease-in;
-  &.slideBack-leave-active {
-    transform: translateX(100%);
-  }
+    transform: translateX(0%);
+    transition: transform .3s ease-in;
+    &.slideBack-leave-active {
+        transform: translateX(100%);
+    }
 }
 
 .menubutton {
-  background: #ddd;
-  color: #555;
-  padding: 0.5rem;
-  margin: 0.1rem;
-  font-size: 1.5rem;
-  &:hover {
     background: #eee;
-    cursor: hand;
-  }
+    color: #555;
+    padding: 0.5rem;
+    margin: 0.1rem;
+    font-size: 1.5rem;
+    &:active {
+        background: #fff;
+        cursor: hand;
+    }
 }
 
 .header {
-  .headertitle {
-    color: #000;
-    text-align: center;
-    width: 24rem;
-    margin-left: -12rem;
-    left: 50%;
-    position: absolute;
-  }
+    .headertitle {
+        color: #000;
+        text-align: center;
+        font-size: 1.5rem;
+        width: 24rem;
+        margin-left: -12rem;
+        left: 50%;
+        position: absolute;
+    }
 
-  .headermenu {
+    .headermenu {
+        line-height: 3rem;
+        width: 4.5rem;
+        background: #888;
+        position: absolute;
+        color: #eee;
+        text-align: center;
+        padding: 0.25rem;
+        margin: 0.1rem;
+        z-index: 2;
+    }
+}
+
+.headeradd, .headeredit {
     line-height: 3rem;
-    width: 4.5rem;
+    width: 3.5rem;
     background: #888;
     position: absolute;
     color: #eee;
@@ -69,255 +83,270 @@ body {
     padding: 0.25rem;
     margin: 0.1rem;
     z-index: 2;
-  }
-}
-
-.headeradd, .headeredit {
-  line-height: 3rem;
-  width: 3.5rem;
-  background: #888;
-  position: absolute;
-  color: #eee;
-  text-align: center;
-  padding: 0.25rem;
-  margin: 0.1rem;
-  z-index: 2;
 }
 
 .back {
-  line-height: 3rem;
-  width: 3rem;
-  background: #888;
-  position: absolute;
-  color: #eee;
-  text-align: center;
-  padding: 0.25rem;
-  margin: 0.1rem;
-  z-index: 2;
+    line-height: 3rem;
+    width: 3rem;
+    background: #888;
+    position: absolute;
+    color: #eee;
+    text-align: center;
+    padding: 0.25rem;
+    margin: 0.1rem;
+    z-index: 2;
 }
 
-.header .headermenu:hover, .headeradd:hover, .headeredit:hover, .back:hover {
-  background: #777;
-  cursor: hand;
+.header .headermenu:active, .headeradd:active, .headeredit:active, .back:active {
+    background: #777;
+    cursor: hand;
 }
 
 .header {
-  .headermenu {
-    left: .1rem;
-  }
-  .back {
-    left: 5.5rem;
-  }
-  .headeradd {
-    right: .1rem;
-  }
-  .headeredit {
-    right: 4.5rem;
-  }
-  top: 0;
-  background: lightskyblue;
-  line-height: 4rem;
-  height: 4rem;
-  font-size: 1.2rem;
-  position: relative;
+    .headermenu {
+        left: .1rem;
+    }
+    .back {
+        left: 5.5rem;
+    }
+    .headeradd {
+        right: .1rem;
+    }
+    .headeredit {
+        right: 4.5rem;
+    }
+    top: 0;
+    background: lightskyblue;
+    line-height: 4rem;
+    height: 4rem;
+    font-size: 1.2rem;
+    position: relative;
 }
 
 .menu {
-  height: 100%;
-  width: 100%;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 1;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
 }
 
 .contentArea {
-  min-height: 100%;
-  min-width: 100%;
-  background-color: white;
-  position: relative;
-  z-index: 2;
-  transition: transform 0.2s;
-  &.open {
-    transform: translateX(35%);
-  }
+    min-height: 100%;
+    min-width: 100%;
+    background-color: white;
+    position: relative;
+    z-index: 2;
+    transition: transform 0.2s;
+    &.open {
+        transform: translateX(35%);
+    }
 }
 
 .list {}
 
 .listitem {
-  background: #fff;
-  cursor: pointer;
-  position: relative;
-  padding: 2rem 0 2rem 2rem;
-  border-bottom: 1px solid #aaa;
-  .delete {
-    visibility: hidden;
-    position: absolute;
-    background: lightcoral;
-    color: #fff;
-    padding: 0.4rem;
-    right: 3rem;
-    top: 1.6rem;
-    line-height: 1.5rem;
-    opacity: 0;
-    transition: opacity 0.5s linear;
-  }
-  .edit {
-    visibility: hidden;
-    position: absolute;
-    background: burlywood;
-    color: #fff;
-    padding: 0.4rem;
-    top: 1.6rem;
-    line-height: 1.5rem;
-    right: 7rem;
-    opacity: 0;
-    transition: opacity 0.5s linear;
-  }
-  .delete {
-    &.show {
-      opacity: 1;
-      visibility: visible;
+    background: #fff;
+    cursor: pointer;
+    position: relative;
+    padding: 2rem 0 2rem 2rem;
+    border-bottom: 1px solid #aaa;
+    .delete {
+        visibility: hidden;
+        position: absolute;
+        background: lightcoral;
+        color: #fff;
+        padding: 0.4rem;
+        right: 3rem;
+        top: 1.6rem;
+        line-height: 1.5rem;
+        opacity: 0;
+        transition: opacity 0.5s linear;
     }
-    &:hover {
-      background: red;
+    .edit {
+        visibility: hidden;
+        position: absolute;
+        background: burlywood;
+        color: #fff;
+        padding: 0.4rem;
+        top: 1.6rem;
+        line-height: 1.5rem;
+        right: 7rem;
+        opacity: 0;
+        transition: opacity 0.5s linear;
     }
-  }
-  &:first-child {
-    border-top: 1px solid #aaa;
-  }
-  .edit {
-    &.show {
-      opacity: 1;
-      visibility: visible;
+    .delete {
+        &.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        &:active {
+            background: red;
+        }
     }
-    &:hover {
-      background: orange;
+    &:first-child {
+        border-top: 1px solid #aaa;
     }
-  }
-  &.tappable:after {
-    right: 10px;
-    border: solid transparent;
-    content: " ";
-    height: 0;
-    width: 0;
-    position: absolute;
-    border-color: rgba(255, 255, 255, 0);
-    border-left-color: #bbb;
-    border-width: .5rem;
-    top: 2rem;
-  }
-  &.active {
-    background: antiquewhite;
-  }
+    .edit {
+        &.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        &:active {
+            background: orange;
+        }
+    }
+    &.tappable:after {
+        right: 10px;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        border-color: rgba(255, 255, 255, 0);
+        border-left-color: #bbb;
+        border-width: .5rem;
+        top: 2rem;
+    }
+    &.active {
+        background: antiquewhite;
+    }
 }
 
 .back.hide {
-  display: none;
+    display: none;
 }
 
 .content .page {
-  width: 100%;
-  position: absolute;
+    width: 100%;
+    position: absolute;
 }
 
 .modal {
-  &.open {
-    top: 0;
-  }
-  position: absolute;
-  z-index: 100;
-  background: #ddd;
-  top: -60%;
-  left: 0;
-  right: 0;
-  height: 60%;
-  transition: top 0.3s;
-  .close {
-    cursor: pointer;
-    height: 2rem;
-    width: 2rem;
-    right: .5rem;
-    top: .5rem;
+    &.open {
+        top: 0;
+    }
     position: absolute;
-    display: inline-block;
-    background-color: red;
-  }
+    z-index: 100;
+    background: #eee;
+    opacity: 0.9;
+    top: -60%;
+    left: 0;
+    right: 0;
+    height: 60%;
+    transition: top 0.3s;
+    .close {
+        cursor: pointer;
+        height: 2rem;
+        width: 2rem;
+        border-radius: 100%;
+        right: .5rem;
+        top: .5rem;
+        position: absolute;
+        display: inline-block;
+        background-color: red;
+        &:active {
+            background-color: lightcoral;
+        }
+    }
 }
 
 .form {
-  text-align: center;
+    text-align: center;
+    button, input, select {
+        font-size: 1.5rem;
+    }
+
+    select {
+        width: 16rem;
+    }
+
+    &.exercises,&.workouts {
+        div {
+            margin-bottom: 1rem;
+        }
+    }
 }
 
 .finish {
-  width: 100%;
-  line-height: 3rem;
-  background: lightblue;
-  text-align: center;
-  margin-top: 1rem;
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
-  &:hover {
-    background: #ccc;
-    cursor: hand;
-  }
+    width: 100%;
+    line-height: 3rem;
+    background: lightblue;
+    font-size: 2rem;
+    text-align: center;
+    margin-top: 1rem;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    &:active {
+        background: #ccc;
+        cursor: hand;
+    }
 }
 
 .timer {
-  width: 100%;
-  line-height: 3rem;
-  background: lightblue;
-  text-align: center;
-  margin-bottom: 1rem;
+    width: 100%;
+    line-height: 3rem;
+    height: 3rem;
+    font-size: 2rem;
+    background: lightblue;
+    text-align: center;
 }
 
 .rep {
-  background: brown;
-  color: #eee;
-  padding: .5rem 1.5rem .5rem 1.5rem;
-  margin: 0.1rem;
-  &:hover {
-    background: lightcoral;
-    cursor: hand;
-  }
+    background: brown;
+    color: #eee;
+    padding: .5rem 1.5rem .5rem 1.5rem;
+    margin: 0.1rem;
+    &:active {
+        background: lightcoral;
+        cursor: hand;
+    }
 }
 
 .form.training {
-  margin-top: 1rem;
+    margin-top: 1rem;
+}
+
+.training {
+    h1 {
+        text-align: center;
+    }
 }
 
 .stopTraining {
-  text-align: center;
-  position: relative;
-  margin-top: 20%;
-  font-size: 3rem;
-  button {
-    font-size: 2rem;
-  }
+    text-align: center;
+    position: relative;
+    margin-top: 20%;
+    font-size: 3rem;
+    button {
+        font-size: 2rem;
+    }
 }
 
 input.invalid {
-  border: 1px solid red;
+    border: 1px solid red;
 }
 
 .page.home {
     .timer {
         margin-top: 0.1rem;
+        text-align: center;
         width: 100%;
+        font-size: 2rem;
         line-height: 3rem;
         background: lightblue;
     }
     .activeTraining {
         cursor: hand;
-        margin-top: 0.1rem;
+        font-size: 1.5rem;
         line-height: 3rem;
         text-align: center;
         width: 100%;
-        background: lightblue;
-        &:hover {
+        background: burlywood;
+        &:active {
             background: #aaa;
         }
     }
@@ -325,8 +354,8 @@ input.invalid {
 
 .mask {
     position: absolute;
-    height: 100%;
     width: 100%;
+    height: 40%;
     z-index: 90;
     top: 2rem;
     left: 35%;

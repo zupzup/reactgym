@@ -36,9 +36,13 @@ var AddExercise = React.createClass({
        return (
             <div className='form exercises'>
                 <h1>Add Exercise</h1>
-                <ValidatedInput validator='string' ref='name' value={value} placeholder='name' className='nameField' />
-                <button className='submitButton' onClick={this.handleSubmit}>Submit</button> |
-                <button className='cancelButton' onClick={this.handleCancel}>Cancel</button>
+                <div>
+                    <ValidatedInput validator='string' ref='name' value={value} placeholder='name' className='nameField' />
+                </div>
+                <div>
+                    <button className='submitButton' onClick={this.handleSubmit}>Submit</button>
+                    <button className='cancelButton' onClick={this.handleCancel}>Cancel</button>
+                </div>
             </div>
         );
     },

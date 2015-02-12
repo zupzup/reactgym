@@ -43,12 +43,18 @@ var WorkoutForm = React.createClass({
        return (
             <div className='form workouts'>
                 <h1>Workout</h1>
-                <ValidatedInput validator='string' ref='name' placeholder='name' className='nameField' value={value} />
-                <select multiple ref='exercises' defaultValue={this.props.edit ? this.props.workout.exercises : []}>
-                    {exercises}
-                </select>
-                <button className='submitButton' onClick={this.handleSubmit}>Submit</button> |
-                <button className='cancelButton' onClick={this.handleCancel}>Cancel</button>
+                <div>
+                    <ValidatedInput validator='string' ref='name' placeholder='name' className='nameField' value={value} />
+                </div>
+                <div>
+                    <select multiple ref='exercises' defaultValue={this.props.edit ? this.props.workout.exercises : []}>
+                        {exercises}
+                    </select>
+                </div>
+                <div>
+                    <button className='submitButton' onClick={this.handleSubmit}>Submit</button>
+                    <button className='cancelButton' onClick={this.handleCancel}>Cancel</button>
+                </div>
             </div>
         );
     },

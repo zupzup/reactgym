@@ -26,15 +26,6 @@ TODO
 TODOS:
 * prop transferring
 * detail on workoutclick
-* improve styling
-    * fill empty space on homepage
-        * recent training list -> detail on click
-    * modal forms, bigger buttons
-    * training page (timer, header, active marker for exercise)
-    * [x] animate edit/delete buttons
-    * [x] backbutton
-    * [x] menubutton
-    * [x] menu colors
 * es6ify
     * improved object literals
     * template strings
@@ -126,4 +117,13 @@ DONE:
     * [x] WorkoutStore
     * [x] TrainingStore
 * [x] training detail page
+* [x] improve styling
+    * [x] fill empty space on homepage
+        * [x] recent training list -> detail on click
+    * [x] modal forms, bigger buttons
+    * [x] training page (timer, header, active marker for exercise)
+    * [x] animate edit/delete buttons
+    * [x] backbutton
+    * [x] menubutton
+    * [x] menu colors
 
