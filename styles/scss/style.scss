@@ -63,7 +63,7 @@ body {
     .headermenu {
         line-height: 3rem;
         width: 4.5rem;
-        background: #888;
+        background-color: #135;
         position: absolute;
         color: #eee;
         text-align: center;
@@ -76,7 +76,7 @@ body {
 .headeradd, .headeredit {
     line-height: 3rem;
     width: 3.5rem;
-    background: #888;
+    background-color: #135;
     position: absolute;
     color: #eee;
     text-align: center;
@@ -88,7 +88,8 @@ body {
 .back {
     line-height: 3rem;
     width: 3rem;
-    background: #888;
+    font-size: 1.8rem;
+    background-color: #135;
     position: absolute;
     color: #eee;
     text-align: center;
@@ -98,7 +99,7 @@ body {
 }
 
 .header .headermenu:active, .headeradd:active, .headeredit:active, .back:active {
-    background: #777;
+    background: #568;
     cursor: hand;
 }
 
@@ -364,3 +365,30 @@ input.invalid {
         left: 0;
     }
 }
+
+.trainingdetail {
+    h2 {
+        text-align: center;
+    }
+
+    .date {
+        text-align: center;
+        padding-bottom: 1.5rem;
+    }
+
+    .exercise {
+        padding: 1rem;
+    }
+
+    .set {
+        .count {
+            font-weight: bold;
+            margin-right: 1rem;
+        }
+
+        .repsweight {
+            color: #888;
+        }
+    }
+}
+

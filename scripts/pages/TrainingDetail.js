@@ -26,10 +26,10 @@ var TrainingDetail = React.createClass({
             training = training.toJS();
             var sets = _.map(training.sets, (set, exercise) => {
                 var sets = set.map((item, idx) => {
-                    return <div key={idx}>#{idx + 1} <span>{item.reps}</span> <span>{item.weight}</span></div>;
+                    return <div className='set' key={idx}><span className='count'>#{idx + 1}</span><span className='repsweight'>Reps: {item.reps} / Weight: {item.weight}</span></div>;
                 });
                 return (
-                    <div key={exercise}>
+                    <div className='exercise' key={exercise}>
                         <div><strong>{exercises.find(e => e.get('id') == exercise).get('label')}</strong></div>
                         <div>{sets}</div>
                     </div>);
@@ -37,7 +37,7 @@ var TrainingDetail = React.createClass({
             return (
                 <div className='page trainingdetail'>
                     <h2>{training.workout.label}</h2>
-                    <div>{new Date(training.date).toLocaleString()}</div>
+                    <div className='date'>{new Date(training.date).toLocaleString()}</div>
                     {sets}
                 </div>
             );
