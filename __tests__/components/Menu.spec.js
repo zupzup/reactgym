@@ -36,9 +36,9 @@ describe("Menu", () => {
     });
 
     it("renders a Menu", () => {
-        let menu = TestUtils.renderIntoDocument(<Menu />);
+        let menu = TestUtils.renderIntoDocument(<Menu className='hello' />);
         expect(TestUtils.isCompositeComponent(menu)).toEqual(true);
-        expect(menu.getDOMNode().className).toEqual("menu");
+        expect(menu.getDOMNode().className).toEqual("hello menu");
         menu.componentWillUnmount();
     });
 

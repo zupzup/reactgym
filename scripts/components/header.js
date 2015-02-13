@@ -35,16 +35,16 @@ var Header = React.createClass({
         }
 
         if(config.add && config.add.visible) {
-            add = <span className="headeradd" onClick={config.add.handler}>add</span>;
+            add = <span className="headeradd" onClick={config.add.handler}></span>;
         }
 
         if(config.editMode && config.editMode.visible) {
-            editMode = <span className="headeredit" onClick={config.editMode.handler}>edit</span>;
+            editMode = <div className="headeredit" onClick={config.editMode.handler}></div>;
         }
         return (
             <div className='header'>
-                <span className="headermenu" onClick={AppStateActionCreators.toggleMenu}>menu</span>
-                <span className={"back " + showBack} onClick={this.back}>&lt;</span>
+                <span className="headermenu" onClick={AppStateActionCreators.toggleMenu}></span>
+                <span className={"back " + showBack} onClick={this.back}></span>
                 {title}
                 {add}
                 {editMode}

@@ -18,6 +18,7 @@ var Menu = React.createClass({
 
     render() {
         var self = this,
+            {className, ...rest} = this.props;
             menuPoints = this.state.menuPoints.map((item) => {
             var handlerFunc = () => {
                 AppStateActionCreators.closeMenu();
@@ -27,7 +28,7 @@ var Menu = React.createClass({
         });
 
         return (
-            <div className="menu">
+            <div className={className + ' menu'}>
                 {menuPoints}
             </div>
         );

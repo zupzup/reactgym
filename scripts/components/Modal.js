@@ -10,7 +10,7 @@ var Modal = React.createClass({
         return (
             <div className={'modal ' + modalOpen}>
                 {this.props.content}
-                <span className='close' onClick={this.props.closeHandler}></span>
+                <a className='close' onClick={this.props.closeHandler}></a>
             </div>
         );
     }
