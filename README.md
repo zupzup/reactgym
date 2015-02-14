@@ -24,7 +24,6 @@ Demo:
 TODO
 
 TODOS:
-* do the rest of the icons
 * prop transferring
 * detail on workoutclick
 * es6ify
@@ -129,4 +128,5 @@ DONE:
     * [x] menu colors
 * [x] fix doctype and styling issues
 * [x] icons
+* [x] do the rest of the icons
 

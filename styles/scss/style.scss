@@ -182,10 +182,9 @@ body {
         position: absolute;
         background: lightcoral;
         color: #fff;
-        padding: 0.4rem;
-        right: 3rem;
+        padding: 0.2rem;
+        right: 2.5rem;
         top: 1.6rem;
-        line-height: 1.5rem;
         opacity: 0;
         transition: opacity 0.5s linear;
     }
@@ -194,10 +193,9 @@ body {
         position: absolute;
         background: burlywood;
         color: #fff;
-        padding: 0.4rem;
+        padding: 0.2rem;
         top: 1.6rem;
-        line-height: 1.5rem;
-        right: 7rem;
+        right: 4.5rem;
         opacity: 0;
         transition: opacity 0.5s linear;
     }
@@ -209,6 +207,9 @@ body {
         &:active {
             background: red;
         }
+    }
+    img {
+        width: 1.2rem;
     }
     &:first-child {
         border-top: 1px solid #aaa;
@@ -318,6 +319,10 @@ body {
     font-size: 2rem;
     background: lightblue;
     text-align: center;
+    img {
+        width: 1.5rem;
+        margin-left: .3rem;
+    }
 }
 
 .rep {
@@ -375,6 +380,11 @@ input.invalid {
             background: #aaa;
         }
     }
+    img {
+        width: 1.3rem;
+        margin-right: .5rem;
+        margin-left: .5rem;
+    }
 }
 
 .mask {
@@ -409,6 +419,10 @@ input.invalid {
         .repsweight {
             color: #888;
         }
+    }
+    img {
+        width: .9rem;
+        margin-right: .2rem;
     }
 }
 

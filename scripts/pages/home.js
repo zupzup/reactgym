@@ -39,14 +39,14 @@ var Home = React.createClass({
             timerDiv;
 
         if(activeTraining) {
-            trainingDiv = <div onClick={this.goToTrainingHandler} className='activeTraining'>{activeTraining.getIn(['workout', 'label'])}</div>;
-            timerDiv = <div className='timer'>{this.state.timer}</div>;
+            trainingDiv = <div onClick={this.goToTrainingHandler} className='activeTraining'><img src='../styles/images/ios7-pulse.png' />{activeTraining.getIn(['workout', 'label'])}</div>;
+            timerDiv = <div className='timer'>{this.state.timer}<img src='../styles/images/android-timer.png' /></div>;
         }
         return (
             <div className='page home'>
                 {trainingDiv}
                 {timerDiv}
-                <h2>Recent Trainings:</h2>
+                <h2><img src='../styles/images/folder.png' />Recent Trainings:</h2>
                 <List handlers={handlers} editAble={false} items={trainings.toJS()}></List>
             </div>
         );

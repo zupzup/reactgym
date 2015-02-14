@@ -37,7 +37,7 @@ var TrainingDetail = React.createClass({
             return (
                 <div className='page trainingdetail'>
                     <h2>{training.workout.label}</h2>
-                    <div className='date'>{new Date(training.date).toLocaleString()}</div>
+                    <div className='date'><img src='../styles/images/calendar.png' />{new Date(training.date).toLocaleString()}</div>
                     {sets}
                 </div>
             );

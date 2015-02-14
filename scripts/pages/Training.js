@@ -100,7 +100,9 @@ var Training = React.createClass({
         return (
             <div className='page training'>
                 <h1>{training.getIn(['workout', 'label'])}</h1>
-                <div className='timer'>{this.state.timer}</div>
+                <div className='timer'>
+                    {this.state.timer}<img src='../styles/images/android-timer.png' />
+                </div>
                 <List activeIndex={currentExerciseIndex} editAble={false} handlers={handlers} items={exercises.toJS()}></List>
                 <TrainingForm exercise={currentExercise} sets={training.getIn(['sets', currentExercise])} handler={this.formSubmitHandler} />
                 <div className='finish' onClick={this.finishTraining}>
