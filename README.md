@@ -24,11 +24,9 @@ Demo:
 TODO
 
 TODOS:
-* detail on workoutclick
 * es6ify
     * improved object literals
     * template strings
-    * array.findIndex / array.find
 * update to react .13
 * native build android / iOS
 * vibrate on timer-stop
@@ -128,4 +126,5 @@ DONE:
 * [x] fix doctype and styling issues
 * [x] icons
 * [x] do the rest of the icons
+* [x] detail on workoutclick
 

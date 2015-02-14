@@ -5,6 +5,7 @@ var React = require('react'),
     HeaderStateActionCreators = require('../actions/HeaderStateActionCreators'),
     WorkoutStoreActionCreators = require('../actions/WorkoutStoreActionCreators'),
     WorkoutForm = require('../components/forms/WorkoutForm'),
+    ExerciseStore = require('../stores/ExerciseStore.js'),
     WorkoutStore = require('../stores/WorkoutStore'),
     AppStateActionCreators = require('../actions/AppStateActionCreators'),
     HeaderMixin = require('../mixins/HeaderMixin'),
@@ -39,6 +40,19 @@ var Workouts = React.createClass({
     editHandler(e, item, index) {
         AppStateActionCreators.openModal(
             <WorkoutForm edit={true} workout={item} />
+        );
+    },
+
+    defaultHandler(e, item, index) {
+        var exercises = item.exercises.map((i) => {
+            return <div>{ExerciseStore.getExerciseForId(i).get('label')}</div>;
+        });
+        AppStateActionCreators.openModal(
+            <div className='workoutDetail'>
+                <h1>{item.label}</h1>
+                <strong>Exercises:</strong>
+                {exercises}
+            </div>
         );
     },
 
