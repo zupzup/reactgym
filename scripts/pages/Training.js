@@ -103,7 +103,9 @@ var Training = React.createClass({
                 <div className='timer'>{this.state.timer}</div>
                 <List activeIndex={currentExerciseIndex} editAble={false} handlers={handlers} items={exercises.toJS()}></List>
                 <TrainingForm exercise={currentExercise} sets={training.getIn(['sets', currentExercise])} handler={this.formSubmitHandler} />
-                <div className='finish' onClick={this.finishTraining}>Finish Training</div>
+                <div className='finish' onClick={this.finishTraining}>
+                    <img src='../styles/images/trophy.png' />Finish Training
+                </div>
             </div>
         );
     },

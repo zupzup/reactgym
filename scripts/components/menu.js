@@ -24,7 +24,7 @@ var Menu = React.createClass({
                 AppStateActionCreators.closeMenu();
                 self.transitionTo(item.link);
             };
-            return <MenuButton key={item.name} name={item.name} handler={handlerFunc}></MenuButton>;
+            return <MenuButton key={item.name} icon={item.icon} name={item.name} handler={handlerFunc}></MenuButton>;
         });
 
         return (

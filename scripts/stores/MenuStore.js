@@ -21,19 +21,23 @@ MenuStore.dispatchToken = AppDispatcher.register((payload) => {
             _menuPoints = [
                 {
                     name: 'Home',
-                    link: 'home'
+                    link: 'home',
+                    icon: '../styles/images/home.png'
                 },
                 {
                     name: 'Exercises',
-                    link: 'exercises'
+                    link: 'exercises',
+                    icon: '../styles/images/clipboard.png'
                 },
                 {
                     name: 'Workouts',
-                    link: 'workouts'
+                    link: 'workouts',
+                    icon: '../styles/images/levels.png'
                 },
                 {
                     name: 'Training',
-                    link: 'training'
+                    link: 'training',
+                    icon: '../styles/images/ios7-pulse.png'
                 }
             ];
             MenuStore.emitChange();

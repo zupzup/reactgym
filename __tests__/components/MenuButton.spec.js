@@ -12,7 +12,7 @@ describe("MenuButton", () => {
             <MenuButton name="hello" handler={handlerFunc}></MenuButton>
         );
         expect(TestUtils.isCompositeComponent(button)).toEqual(true);
-        expect(button.getDOMNode().textContent).toEqual("- hello");
+        expect(button.getDOMNode().textContent).toEqual("hello");
     });
 
     it("executes the handler when clicked", () => {
