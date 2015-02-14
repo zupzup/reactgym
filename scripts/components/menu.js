@@ -18,14 +18,15 @@ var Menu = React.createClass({
 
     render() {
         var self = this,
-            {className, ...rest} = this.props;
             menuPoints = this.state.menuPoints.map((item) => {
-            var handlerFunc = () => {
-                AppStateActionCreators.closeMenu();
-                self.transitionTo(item.link);
-            };
-            return <MenuButton key={item.name} icon={item.icon} name={item.name} handler={handlerFunc}></MenuButton>;
-        });
+                var handlerFunc = () => {
+                    AppStateActionCreators.closeMenu();
+                    self.transitionTo(item.link);
+                };
+                return <MenuButton key={item.name} icon={item.icon} name={item.name} handler={handlerFunc}></MenuButton>;
+            });
+        /* istanbul ignore next */
+        var {className, ...prps} = this.props;
 
         return (
             <div className={className + ' menu'}>

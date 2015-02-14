@@ -24,7 +24,6 @@ Demo:
 TODO
 
 TODOS:
-* prop transferring
 * detail on workoutclick
 * es6ify
     * improved object literals

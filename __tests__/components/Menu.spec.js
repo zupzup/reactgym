@@ -20,11 +20,13 @@ describe("Menu", () => {
             return [
                 {
                     name: 'Home',
-                    link: 'home'
+                    link: 'home',
+                    icon: 'home'
                 },
                 {
                     name: 'Exercises',
-                    link: 'exercises'
+                    link: 'exercises',
+                    icon: 'home'
                 }
             ];
         });
@@ -36,7 +38,7 @@ describe("Menu", () => {
     });
 
     it("renders a Menu", () => {
-        let menu = TestUtils.renderIntoDocument(<Menu className='hello' />);
+        let menu = TestUtils.renderIntoDocument(<Menu arr='arr' style='bla' className='hello' />);
         expect(TestUtils.isCompositeComponent(menu)).toEqual(true);
         expect(menu.getDOMNode().className).toEqual("hello menu");
         menu.componentWillUnmount();
