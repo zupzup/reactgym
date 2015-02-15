@@ -24,11 +24,11 @@ Demo:
 TODO
 
 TODOS:
+* native build android / iOS
+* update to react .13
 * es6ify
     * improved object literals
     * template strings
-* update to react .13
-* native build android / iOS
 * vibrate on timer-stop
 * file-api / server-api for persistence
 

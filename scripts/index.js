@@ -1,12 +1,12 @@
 'use strict';
 
 var React = require('react'),
-    css = require('style/url!file!../styles/style.css'),
     Router = require('react-router'),
     MenuStoreActionCreators = require('./actions/MenuStoreActionCreators'),
     HeaderState = require('./stores/HeaderState'),
     AppStateActionCreators = require('./actions/AppStateActionCreators'),
     ExerciseStoreActionCreators = require('./actions/ExerciseStoreActionCreators'),
+    WorkoutStoreActionCreators = require('./actions/WorkoutStoreActionCreators'),
     Route = Router.Route,
     Exercises = require('./pages/Exercises'),
     Training = require('./pages/Training'),

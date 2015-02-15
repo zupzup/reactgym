@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react'),
-    List = require('../components/List')
+    List = require('../components/List'),
     HeaderStateActionCreators = require('../actions/HeaderStateActionCreators'),
     WorkoutStoreActionCreators = require('../actions/WorkoutStoreActionCreators'),
     WorkoutForm = require('../components/forms/WorkoutForm'),

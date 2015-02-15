@@ -7,6 +7,7 @@ var gulp = require('gulp'),
     jest = require('jest-cli'),
     WebpackDevServer = require('webpack-dev-server'),
     config = require('./webpack.config'),
+    webkackProd = require('./webpack.config.production.js'),
     webpackConfig = require("./webpack.config.js");
 
 gulp.task('default', function() {
@@ -34,6 +35,17 @@ var webpackDevConfig = Object.create(webpackConfig);
 webpackDevConfig.devtool = "sourcemap";
 webpackDevConfig.debug = true;
 var devCompiler = webpack(webpackDevConfig);
+var prodCompiler = webpack(webkackProd);
+
+gulp.task("prod", function(callback) {
+    prodCompiler.run(function(err, stats) {
+        if(err) throw new gutil.PluginError("webpack:build-prod", err);
+        gutil.log("[webpack:build-prod]", stats.toString({
+            colors: true
+        }));
+        callback();
+    });
+});
 
 gulp.task("webpack", function(callback) {
     devCompiler.run(function(err, stats) {

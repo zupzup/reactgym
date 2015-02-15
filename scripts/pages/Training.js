@@ -1,9 +1,9 @@
 'use strict';
 
 var React = require('react'),
-    List = require('../components/List')
+    List = require('../components/List'),
     AppStateActionCreators = require('../actions/AppStateActionCreators'),
-    SimpleHeaderMixin = require('../mixins/SimpleHeaderMixin');
+    SimpleHeaderMixin = require('../mixins/SimpleHeaderMixin'),
     TrainingStoreActionCreators = require('../actions/TrainingStoreActionCreators'),
     WorkoutStore = require('../stores/WorkoutStore'),
     _ = require('lodash'),

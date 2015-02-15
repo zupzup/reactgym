@@ -1,12 +1,12 @@
 'use strict';
 
 var React = require('react'),
-    List = require('../components/List')
+    List = require('../components/List'),
     TrainingStore = require('../stores/TrainingStore.js'),
     ExerciseStore = require('../stores/ExerciseStore.js'),
     Router = require('react-router'),
     _ = require('lodash'),
-    SimpleHeaderMixin = require('../mixins/SimpleHeaderMixin');
+    SimpleHeaderMixin = require('../mixins/SimpleHeaderMixin'),
     PureRenderMixin = require('react').addons.PureRenderMixin;
 
 var TrainingDetail = React.createClass({

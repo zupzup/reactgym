@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react'),
-    List = require('../components/List')
+    List = require('../components/List'),
     HeaderStateActionCreators = require('../actions/HeaderStateActionCreators'),
     TrainingStore = require('../stores/TrainingStore.js'),
     Router = require('react-router'),
