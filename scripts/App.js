@@ -44,9 +44,9 @@ var App = React.createClass({
                     {mask}
                     <div className={'contentArea ' + menuOpen}>
                         <Header />
-                        <div className='content' component='div' transitionName={AppState.getNextTransition()}>
+                        <ReactCSSTransitionGroup className='content' component='div' transitionName={AppState.getNextTransition()}>
                             <RouteHandler key={name} />
-                        </div>
+                        </ReactCSSTransitionGroup>
                     </div>
                 </div>
             </DocumentTitle>

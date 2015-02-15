@@ -24,7 +24,8 @@ Demo:
 TODO
 
 TODOS:
-* fix animation problem on safari / iOS / history handling in non-native
+* extend prod build to copy js / css / images to the correct folder
+* fix animation problem on safari / iOS / history handling in native
 * fix click-event on iOS (cursor: pointer)
 * native build android / iOS
 * update to react .13
