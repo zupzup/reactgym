@@ -28,7 +28,7 @@ var TrainingForm = React.createClass({
             sets = this.props.sets.map((item, index) => {
                 var handler = () => {
                     AppStateActionCreators.removeSet(self.props.exercise, index);
-                }
+                };
                 return <span className='rep' key={index} onClick={handler}>{index + 1}</span>;
             }).toArray();
        return (

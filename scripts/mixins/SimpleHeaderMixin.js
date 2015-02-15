@@ -14,6 +14,6 @@ var SimpleHeaderMixin = {
             }
         });
     }
-}
+};
 
 module.exports = SimpleHeaderMixin;

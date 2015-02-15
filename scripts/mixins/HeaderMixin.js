@@ -22,6 +22,6 @@ var HeaderMixin = {
             }
         });
     }
-}
+};
 
 module.exports = HeaderMixin;

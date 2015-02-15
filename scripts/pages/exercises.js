@@ -20,7 +20,7 @@ var Exercises = React.createClass({
             );
         },
         edit: function() {
-            this.setState({editAble: !this.state.editAble})
+            this.setState({editAble: !this.state.editAble});
         }
     },
 

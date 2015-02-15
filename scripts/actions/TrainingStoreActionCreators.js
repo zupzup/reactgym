@@ -8,14 +8,14 @@ module.exports = {
     addTraining(training) {
         AppDispatcher.handleViewAction({
             type: ActionTypes.ADD_TRAINING,
-            training: training
+            training
         });
     },
 
     removeTraining(index) {
         AppDispatcher.handleViewAction({
             type: ActionTypes.REMOVE_TRAINING,
-            index: index
+            index
         });
     }
 };

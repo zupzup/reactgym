@@ -34,8 +34,8 @@ var ValidatedInput = React.createClass({
             valid = 'invalid';
         }
         this.setState({
-            value: value,
-            valid: valid
+            value,
+            valid
         });
     },
 

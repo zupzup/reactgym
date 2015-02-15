@@ -5,7 +5,7 @@ var Dispatcher = require('flux').Dispatcher,
         handleViewAction(action) {
             var payload = {
                 source: PayloadSources.VIEW_ACTION,
-                action: action
+                action
             };
             this.dispatch(payload);
         },
@@ -13,7 +13,7 @@ var Dispatcher = require('flux').Dispatcher,
         handleServerAction(action) {
             var payload = {
                 source: PayloadSources.SERVER_ACTION,
-                action: action
+                action
             };
             this.dispatch(payload);
         }

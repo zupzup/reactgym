@@ -1,9 +1,10 @@
-
+{
     "bitwise": false,
     "camelcase": false,
     "browser": true,
     "curly": true,
-    "eqeqeq": true,
+    "eqeqeq": false,
+    "eqnull": true,
     "forin": true,
     "immed": false,
     "latedef": true,
@@ -20,7 +21,7 @@
     "esnext": true,
     "trailing": false,
     "maxparams": 7,
-    "maxdepth": false,
+    "maxdepth": true,
     "maxstatements": false,
     "maxcomplexity": false,
     "maxlen": false,

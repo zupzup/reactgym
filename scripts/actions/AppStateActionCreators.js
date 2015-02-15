@@ -34,7 +34,7 @@ module.exports = {
     openModal(content) {
         AppDispatcher.handleViewAction({
             type: ActionTypes.OPEN_MODAL,
-            content: content
+            content
         });
     },
 
@@ -47,7 +47,7 @@ module.exports = {
     startTraining(training) {
         AppDispatcher.handleViewAction({
             type: ActionTypes.START_TRAINING,
-            training: training
+            training
         });
     },
 
@@ -81,7 +81,7 @@ module.exports = {
         AppDispatcher.handleViewAction({
             type: ActionTypes.REMOVE_SET,
             exercise: id,
-            index: index
+            index
         });
     },
 

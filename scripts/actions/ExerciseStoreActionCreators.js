@@ -13,19 +13,19 @@ module.exports = {
     addExercise(exercise) {
         AppDispatcher.handleViewAction({
             type: ActionTypes.ADD_EXERCISE,
-            exercise: exercise
+            exercise
         });
     },
     updateExercise(exercise) {
         AppDispatcher.handleViewAction({
             type: ActionTypes.UPDATE_EXERCISE,
-            exercise: exercise
+            exercise
         });
     },
     removeExercise(index) {
         AppDispatcher.handleViewAction({
             type: ActionTypes.REMOVE_EXERCISE,
-            index: index
+            index
         });
     }
 };

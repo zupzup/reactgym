@@ -73,8 +73,9 @@ var Training = React.createClass({
     },
 
     render() {
+        var handlers = {};
         if(this.state.activeTraining === null) {
-            var handlers = {
+            handlers = {
                 default: this.startTraining
             };
             return (
@@ -85,10 +86,10 @@ var Training = React.createClass({
             );
         }
 
-        var handlers = {
-                default: this.exerciseClickHandler
-            },
-            training = this.state.activeTraining,
+        handlers = {
+            default: this.exerciseClickHandler
+        };
+        var training = this.state.activeTraining,
             exercises = ExerciseStore.getExercises().filter((item) => {
                 return training.getIn(['workout', 'exercises']).contains(item.get('id'));
             }),

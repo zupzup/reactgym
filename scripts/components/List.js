@@ -21,7 +21,8 @@ var List = React.createClass({
         var self = this,
             listItems = this.props.items.map((item, index) => {
                 var handlers = _.transform(self.props.handlers, (result, handler, key) => {
-                        return result[key] = self._createHandlerFunction(item, index, handler);
+                        var handlerFnc = result[key] = self._createHandlerFunction(item, index, handler);
+                        return handlerFnc;
                     }),
                     isActive;
                 if(this.props.activeIndex == null) {

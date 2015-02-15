@@ -13,25 +13,25 @@ module.exports = {
     addWorkout(workout) {
         AppDispatcher.handleViewAction({
             type: ActionTypes.ADD_WORKOUT,
-            workout: workout
+            workout
         });
     },
     removeWorkout(index) {
         AppDispatcher.handleViewAction({
             type: ActionTypes.REMOVE_WORKOUT,
-            index: index
+            index
         });
     },
     updateWorkout(workout) {
         AppDispatcher.handleViewAction({
             type: ActionTypes.UPDATE_WORKOUT,
-            workout: workout
+            workout
         });
     },
     removeExerciseFromWorkouts(id) {
         AppDispatcher.handleViewAction({
             type: ActionTypes.REMOVE_EXERCISE_FROM_WORKOUTS,
-            id: id
+            id
         });
     }
 };

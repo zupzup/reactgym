@@ -20,7 +20,7 @@ var WorkoutForm = React.createClass({
         var workout = {
             label: this.refs.name.getDOMNode().value,
             exercises: this.getSelectedExercises(this.refs.exercises.getDOMNode().options)
-        }
+        };
         if(this.props.edit) {
             workout.id = this.props.workout.id;
             WorkoutStoreActionCreators.updateWorkout(workout);

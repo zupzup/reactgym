@@ -7,6 +7,7 @@ Setup:
 * npm install
 * gulp (starts a webpack server)
 * gulp test (runs tests and watches files)
+* gulp prod ios / android to create native apps
 
 Structure:
 ------
@@ -25,12 +26,13 @@ TODO
 
 TODOS:
 * native build android / iOS
-    * extend prod build to copy js / css / images to the correct folder
-    * fix history handling in native
+    * launch icon
+    * build for android and iOS (configurable)
+    * copy js / css / images to www folder
+    * trigger phonegap build
+* change clickable div's to buttons
+* fix history handling for native
 * update to react .13
-* es6ify
-    * improved object literals
-    * template strings
 * vibrate on timer-stop
 * file-api / server-api for persistence
 * make translate work on safari
@@ -132,4 +134,5 @@ DONE:
 * [x] detail on workoutclick
 * [x] fix animation problem on safari / iOS
 * [x] fix click-event on iOS (cursor: pointer)
+* [x] improved object literals
 

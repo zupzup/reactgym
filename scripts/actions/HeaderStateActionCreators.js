@@ -14,7 +14,7 @@ module.exports = {
     setConfig(config) {
         AppDispatcher.handleViewAction({
             type: ActionTypes.SET_HEADER_CONFIG,
-            config: config
+            config
         });
     }
 };
