@@ -33,7 +33,7 @@ var App = React.createClass({
         var name = this.getRoutes().reverse()[0].name,
             menuOpen = this.state.menuOpen ? 'open' : '',
             modal = <Modal content={this.state.modal} closeHandler={AppStateActionCreators.closeModal}  />,
-            modalClass = this.state.modal ? ' modalOpen' : '';
+            modalClass = this.state.modal ? ' modalOpen' : '',
             mask = (menuOpen || this.state.modal) ? <div className={'mask' + modalClass} onClick={this.contentHandler}></div> : null;
 
         return (

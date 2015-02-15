@@ -18,9 +18,9 @@ var ListItem = React.createClass({
 
         return (
             <div className={"listitem" + tappable + active} onClick={handlers.default}>
-                <span className={"edit " + editAble} onClick={handlers.edit}><img src='../styles/images/edit.png' />
+                <span className={"edit " + editAble} onClick={handlers.edit}><img src='styles/images/edit.png' />
                 </span>
-                <span className={"delete " + editAble} onClick={handlers.delete}><img src='../styles/images/trash-a.png' /></span>{this.props.label}
+                <span className={"delete " + editAble} onClick={handlers.delete}><img src='styles/images/trash-a.png' /></span>{this.props.label}
             </div>
         );
     }

@@ -18,7 +18,7 @@ describe("MenuButton", () => {
     it("renders a menubutton with an icon, if specified", () => {
         let handlerFunc = () => {};
         let button = TestUtils.renderIntoDocument(
-            <MenuButton icon='../styles/hello' name="hello" handler={handlerFunc}></MenuButton>
+            <MenuButton icon='styles/hello' name="hello" handler={handlerFunc}></MenuButton>
         );
         let img = TestUtils.findRenderedDOMComponentWithTag(button, 'img');
         expect(img.getDOMNode().src).toContain('styles/hello');

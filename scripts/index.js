@@ -34,7 +34,9 @@ ExerciseStoreActionCreators.getExercises();
 WorkoutStoreActionCreators.getWorkouts();
 HeaderState.init();
 
-Router.run(routes, Router.HistoryLocation, (Handler) => {
+// TODO: this doesn't work with cordova
+// Router.run(routes, Router.HistoryLocation, (Handler) => {
+Router.run(routes, (Handler) => {
     React.render(<Handler/>, document.body);
     // reset Transition animation after every transition
     AppStateActionCreators.resetTransitions();
