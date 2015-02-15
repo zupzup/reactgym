@@ -45,9 +45,9 @@ body {
     padding: 0.5rem;
     margin: 0.1rem;
     font-size: 1.2rem;
+    cursor: pointer;
     &:active {
         background: #fff;
-        cursor: hand;
     }
     .menuicon {
         width: 1rem;
@@ -72,6 +72,7 @@ body {
         background-size: 1.8rem 3rem;
         background-repeat: no-repeat;
         width: 2rem;
+        cursor: pointer;
         top: 0.2rem;
         height: 3rem;
         position: absolute;
@@ -83,6 +84,7 @@ body {
     width: 1.5rem;
     height: 3rem;
     top: 1rem;
+    cursor: pointer;
     position: absolute;
     z-index: 2;
 }
@@ -111,6 +113,7 @@ body {
     background-repeat: no-repeat;
     width: 2rem;
     top: 0.5rem;
+    cursor: pointer;
     height: 3rem;
     font-size: 1.8rem;
     position: absolute;
@@ -296,6 +299,7 @@ body {
 .finish {
     width: 100%;
     line-height: 3rem;
+    cursor: pointer;
     background: lightblue;
     font-size: 2rem;
     text-align: center;
@@ -328,6 +332,7 @@ body {
 .rep {
     background: brown;
     color: #eee;
+    cursor: pointer;
     padding: .5rem 1.5rem .5rem 1.5rem;
     margin: 0.1rem;
     &:active {
@@ -370,7 +375,7 @@ input.invalid {
         background: lightblue;
     }
     .activeTraining {
-        cursor: hand;
+        cursor: pointer;
         font-size: 1.5rem;
         line-height: 3rem;
         text-align: center;
@@ -392,6 +397,7 @@ input.invalid {
     width: 100%;
     height: 100%;
     z-index: 90;
+    cursor: pointer;
     top: 0;
     left: 45%;
     &.modalOpen {
