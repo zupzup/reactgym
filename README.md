@@ -24,16 +24,16 @@ Demo:
 TODO
 
 TODOS:
-* extend prod build to copy js / css / images to the correct folder
-* fix animation problem on safari / iOS / history handling in native
-* fix click-event on iOS (cursor: pointer)
 * native build android / iOS
+    * extend prod build to copy js / css / images to the correct folder
+    * fix history handling in native
 * update to react .13
 * es6ify
     * improved object literals
     * template strings
 * vibrate on timer-stop
 * file-api / server-api for persistence
+* make translate work on safari
 
 DONE:
 ------
@@ -130,4 +130,6 @@ DONE:
 * [x] icons
 * [x] do the rest of the icons
 * [x] detail on workoutclick
+* [x] fix animation problem on safari / iOS
+* [x] fix click-event on iOS (cursor: pointer)
 
