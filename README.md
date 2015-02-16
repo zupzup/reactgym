@@ -7,7 +7,8 @@ Setup:
 * npm install
 * gulp (starts a webpack server)
 * gulp test (runs tests and watches files)
-* gulp prod ios / android to create native apps
+* gulp prod (puts the runnable app in the www/ folder)
+* gulp clean (cleans www folder)
 
 Structure:
 ------
@@ -28,14 +29,14 @@ TODOS:
 * native build android / iOS
     * launch icon
     * build for android and iOS (configurable)
-    * copy js / css / images to www folder
     * trigger phonegap build
+    * [x] copy js / css / images to www folder
 * change clickable div's to buttons
 * fix history handling for native
 * update to react .13
 * vibrate on timer-stop
 * file-api / server-api for persistence
-* make translate work on safari
+* make translation-animations work on safari
 
 DONE:
 ------

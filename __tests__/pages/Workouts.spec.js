@@ -4,6 +4,7 @@ jest.dontMock('../../scripts/pages/Workouts.js');
 jest.mock('../../scripts/actions/WorkoutStoreActionCreators.js');
 jest.mock('../../scripts/actions/AppStateActionCreators.js');
 jest.mock('../../scripts/stores/WorkoutStore.js');
+jest.mock('../../scripts/stores/ExerciseStore.js');
 
 var React = require('react/addons'),
     TestUtils = React.addons.TestUtils,
@@ -11,6 +12,7 @@ var React = require('react/addons'),
     WorkoutStoreActionCreators = require('../../scripts/actions/WorkoutStoreActionCreators.js'),
     AppStateActionCreators = require('../../scripts/actions/AppStateActionCreators.js'),
     WorkoutStore = require('../../scripts/stores/WorkoutStore.js'),
+    ExerciseStore = require('../../scripts/stores/ExerciseStore.js'),
     Workouts = require('../../scripts/pages/Workouts.js');
 
 describe("Workouts", () => {
@@ -30,12 +32,18 @@ describe("Workouts", () => {
                 }
             ]);
         });
+        ExerciseStore.getExerciseForId.mockImplementation(() => {
+            return Immutable.fromJS({
+                label: 'hello'
+            });
+        });
         workouts = TestUtils.renderIntoDocument(<Workouts />);
     });
 
     afterEach(() => {
         workouts.componentWillUnmount();
         WorkoutStore.getWorkouts.mockClear();
+        ExerciseStore.getExerciseForId.mockClear();
         AppStateActionCreators.openModal.mockClear();
     });
 
@@ -53,6 +61,16 @@ describe("Workouts", () => {
         it("deletes the workout", () => {
             workouts.deleteHandler(null, {id: 0}, 0);
             expect(WorkoutStoreActionCreators.removeWorkout.mock.calls.length).toBe(1);
+        });
+    });
+
+    describe('defaultHandler', () => {
+        it("shows the workout in a modal", () => {
+            workouts.defaultHandler(null, {
+                id: 0,
+                exercises: [1, 2, 3]
+            }, 0);
+            expect(AppStateActionCreators.openModal.mock.calls.length).toBe(1);
         });
     });
 

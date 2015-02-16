@@ -30,6 +30,12 @@
         "import": true,
         "require": true,
         "module": true,
+        "describe": true,
+        "it": true,
+        "beforeEach": true,
+        "afterEach": true,
+        "expect": true,
+        "jest": true,
         "class": true
     }
 }

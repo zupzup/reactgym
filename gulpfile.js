@@ -2,6 +2,7 @@ var gulp = require('gulp'),
     webpack = require("webpack"),
     sass = require('gulp-ruby-sass'),
     gutil = require("gulp-util"),
+    rimraf = require("gulp-rimraf"),
     request = require('request'),
     path = require('path'),
     jest = require('jest-cli'),
@@ -9,6 +10,30 @@ var gulp = require('gulp'),
     config = require('./webpack.config'),
     webkackProd = require('./webpack.config.production.js'),
     webpackConfig = require("./webpack.config.js");
+
+var startServer = function() {
+    var server = new WebpackDevServer(webpack(config), {
+        publicPath: config.output.publicPath,
+        hot: true
+    });
+
+    server.listen(3000, 'localhost', function (err, result) {
+        if (err) {
+            console.log(err);
+        }
+
+        console.log('Listening at localhost:3000');
+    });
+
+    server.app.use(function pushStateHook(req, res, next) {
+        var ext = path.extname(req.url);
+        if ((ext === '' || ext === '.html') && req.url !== '/') {
+            req.pipe(request('http://localhost:3000')).pipe(res);
+        } else {
+            next();
+        }
+    });
+};
 
 gulp.task('default', function() {
     gulp.watch('styles/scss/*.scss', ['sass']);
@@ -38,8 +63,10 @@ var devCompiler = webpack(webpackDevConfig);
 var prodCompiler = webpack(webkackProd);
 
 gulp.task("prod", function(callback) {
+    gulp.src('index.html').pipe(gulp.dest('www'));
+    gulp.src('styles/**').pipe(gulp.dest('www/styles/'));
     prodCompiler.run(function(err, stats) {
-        if(err) throw new gutil.PluginError("webpack:build-prod", err);
+        if(err) {throw new gutil.PluginError("webpack:build-prod", err);}
         gutil.log("[webpack:build-prod]", stats.toString({
             colors: true
         }));
@@ -49,7 +76,7 @@ gulp.task("prod", function(callback) {
 
 gulp.task("webpack", function(callback) {
     devCompiler.run(function(err, stats) {
-        if(err) throw new gutil.PluginError("webpack:build-dev", err);
+        if(err) {throw new gutil.PluginError("webpack:build-dev", err);}
         gutil.log("[webpack:build-dev]", stats.toString({
             colors: true
         }));
@@ -57,26 +84,7 @@ gulp.task("webpack", function(callback) {
     });
 });
 
-var startServer = function() {
-    var server = new WebpackDevServer(webpack(config), {
-        publicPath: config.output.publicPath,
-        hot: true
-    });
+gulp.task("clean", function() {
+    return gulp.src('./www', {read: false}).pipe(rimraf());
+});
 
-    server.listen(3000, 'localhost', function (err, result) {
-        if (err) {
-            console.log(err);
-        }
-
-        console.log('Listening at localhost:3000');
-    });
-
-    server.app.use(function pushStateHook(req, res, next) {
-        var ext = path.extname(req.url);
-        if ((ext === '' || ext === '.html') && req.url !== '/') {
-            req.pipe(request('http://localhost:3000')).pipe(res);
-        } else {
-            next();
-        }
-    });
-};
