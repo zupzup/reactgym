@@ -3,7 +3,6 @@
 var react = require('react'),
     AppDispatcher = require('../dispatcher/AppDispatcher'),
     ActionTypes = require('../constants/ActionTypes'),
-    _ = require('lodash'),
     LocalStorageUtil = require('../utils/LocalStorageUtil.js'),
     Immutable = require('immutable'),
     assign = require('object-assign'),

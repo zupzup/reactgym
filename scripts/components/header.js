@@ -29,7 +29,7 @@ var Header = React.createClass({
             config = this.state.config,
             editMode,
             title,
-            showBack = (!config.back || history.state == null || currentRoute === 'home') ? 'hide' : '';
+            showBack = (!config.back || currentRoute === 'home') ? 'hide' : '';
         if(config.title && config.title.visible) {
             title = <span className="headertitle">{config.title.text}</span>; 
         }

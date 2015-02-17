@@ -8,7 +8,12 @@ Setup:
 * gulp (starts a webpack server)
 * gulp test (runs tests and watches files)
 * gulp prod (puts the runnable app in the www/ folder)
-* gulp clean (cleans www folder)
+
+For native builds:
+* npm install -g phonegap
+* gulp phonegap (creates a phonegap app)
+* gulp buildios (builds the app for iOS)
+* gulp buildandroid (builds the app for Android)
 
 Structure:
 ------
@@ -26,16 +31,14 @@ Demo:
 TODO
 
 TODOS:
-* native build android / iOS
+* pre-fill reps/weight with last training's values
+* native release builds (.ipa, .apk)
     * launch icon
-    * build for android and iOS (configurable)
-    * trigger phonegap build
-    * [x] copy js / css / images to www folder
-* change clickable div's to buttons
-* fix history handling for native
-* update to react .13
+* upgrade to react .13
 * vibrate on timer-stop
 * file-api / server-api for persistence
+    * [PhoneGap File-API](http://docs.phonegap.com/en/edge/cordova_file_file.md.html)
+    * create a common interface for file-api (native) and web-api
 * make translation-animations work on safari
 
 DONE:
@@ -136,4 +139,10 @@ DONE:
 * [x] fix animation problem on safari / iOS
 * [x] fix click-event on iOS (cursor: pointer)
 * [x] improved object literals
+* [x] native build android / iOS
+    * [x] build for android and iOS (configurable)
+    * [x] trigger phonegap build
+    * [x] copy js / css / images to www folder
+* [x] fix history handling for native
+* [x] fix iOS menu animation
 

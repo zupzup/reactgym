@@ -2,12 +2,14 @@ var gulp = require('gulp'),
     webpack = require("webpack"),
     sass = require('gulp-ruby-sass'),
     gutil = require("gulp-util"),
-    rimraf = require("gulp-rimraf"),
+    shell = require("gulp-shell"),
+    del = require("del"),
     request = require('request'),
     path = require('path'),
     jest = require('jest-cli'),
     WebpackDevServer = require('webpack-dev-server'),
     config = require('./webpack.config'),
+    phonegap = require('phonegap'),
     webkackProd = require('./webpack.config.production.js'),
     webpackConfig = require("./webpack.config.js");
 
@@ -62,7 +64,8 @@ webpackDevConfig.debug = true;
 var devCompiler = webpack(webpackDevConfig);
 var prodCompiler = webpack(webkackProd);
 
-gulp.task("prod", function(callback) {
+gulp.task("prod", ["clean"], function(callback) {
+    console.log('building prod...');
     gulp.src('index.html').pipe(gulp.dest('www'));
     gulp.src('styles/**').pipe(gulp.dest('www/styles/'));
     prodCompiler.run(function(err, stats) {
@@ -84,7 +87,39 @@ gulp.task("webpack", function(callback) {
     });
 });
 
-gulp.task("clean", function() {
-    return gulp.src('./www', {read: false}).pipe(rimraf());
+gulp.task("clean", function(cb) {
+    console.log('cleaning www...');
+    del(['./www'], cb);
+});
+
+gulp.task("cleannative", function(cb) {
+    console.log('cleaning native...');
+    del(['./native'], cb);
+});
+
+gulp.task("buildios", function(cb) {
+    console.log('building iOS');
+    shell.task([
+        'cd native && phonegap build ios'
+    ])();
+});
+
+gulp.task("buildandroid", function(cb) {
+    console.log('building Android');
+    shell.task([
+        'cd native && phonegap build android'
+    ])();
+});
+
+gulp.task("phonegap", ["cleannative", "prod"], function(cb) {
+    console.log('creating native build...');
+    phonegap.create({path: 'native', name: 'SimpleGym'}, function() {
+        console.log('removing www folder');
+        del(['./native/www'], function() {
+            console.log('copying www folder');
+            gulp.src('www/**').pipe(gulp.dest('native/www/'));
+            cb();
+        });
+    });
 });
 
