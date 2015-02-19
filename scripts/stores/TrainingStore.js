@@ -21,6 +21,21 @@ var TrainingStore = assign({}, StoreListenerMixin, {
         return this.getTrainings().filter((item) => {
             return item.get('id') == id;
         }).first();
+    },
+
+    getLastInputsForExercise(exercise, setNumber) {
+        if(!_trainings || _trainings.size === 0 || setNumber == null) {
+            return {rep: '', weight: ''};
+        }
+        console.log(_trainings.last().get('sets').get(exercise));
+        var set = _trainings.last().get('sets').get(exercise).get(setNumber);
+        if(!set) {
+            return {rep: '', weight: ''};
+        }
+        return {
+            rep: set.get('reps'),
+            weight: set.get('weight')
+        };
     }
 });
 

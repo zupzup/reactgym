@@ -20,6 +20,20 @@ describe("TrainingStore", () => {
                 })
             }
         },
+        addSetTraining = {
+            source: 'VIEW_ACTION',
+            action: {
+                type: ActionTypes.ADD_TRAINING,
+                training: Immutable.fromJS({
+                    id: 5,
+                    sets: {
+                        '0': [
+                            {reps: 5, weight: 5}
+                        ]
+                    }
+                })
+            }
+        },
         removeTrainingAction = {
             source: 'VIEW_ACTION',
             action: {
@@ -29,7 +43,7 @@ describe("TrainingStore", () => {
         };
 
     beforeEach(() => {
-        LocalStorageUtil = require('../../scripts/utils/LocalStorageUtil.js'),
+        LocalStorageUtil = require('../../scripts/utils/LocalStorageUtil.js');
         AppDispatcher = require('../../scripts/dispatcher/AppDispatcher');
         TrainingStore = require('../../scripts/stores/TrainingStore.js');
         LocalStorageUtil.lsGet.mockImplementation(() => {
@@ -46,6 +60,31 @@ describe("TrainingStore", () => {
     it("getTrainings", () => {
         var trainings = TrainingStore.getTrainings();
         expect(trainings.size).toEqual(0);
+    });
+
+    describe("getLastInputsForExercise", () => {
+        it("returns empty rep and weight if nothing is found", () => {
+            expect(TrainingStore.getLastInputsForExercise(0, 0).rep).toEqual('');
+            expect(TrainingStore.getLastInputsForExercise(0, 0).weight).toEqual('');
+        });
+
+        it("returns empty rep and weight if there is no setnumber", () => {
+            cb(addSetTraining);
+            expect(TrainingStore.getLastInputsForExercise(0, null).rep).toEqual('');
+            expect(TrainingStore.getLastInputsForExercise(0, null).weight).toEqual('');
+        });
+
+        it("returns empty rep and weight if there is no set found", () => {
+            cb(addSetTraining);
+            expect(TrainingStore.getLastInputsForExercise('0', 1).rep).toEqual('');
+            expect(TrainingStore.getLastInputsForExercise('0', 1).weight).toEqual('');
+        });
+
+        it("returns empty rep and weight if there is a set", () => {
+            cb(addSetTraining);
+            expect(TrainingStore.getLastInputsForExercise('0', 0).rep).toEqual(5);
+            expect(TrainingStore.getLastInputsForExercise('0', 0).weight).toEqual(5);
+        });
     });
 
     it("getTrainings initializes the trainings, if they are uninitialized", () => {

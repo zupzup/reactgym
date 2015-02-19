@@ -4,6 +4,7 @@ var React = require('react/addons'),
     AppStateActionCreators = require('../../actions/AppStateActionCreators'),
     ValidatedInput = require('./ValidatedInput'),
     PureRenderMixin = require('react').addons.PureRenderMixin,
+    TrainingStore = require('../../stores/TrainingStore'),
     ExerciseStore = require('../../stores/ExerciseStore');
 
 var TrainingForm = React.createClass({

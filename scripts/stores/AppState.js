@@ -107,7 +107,7 @@ AppState.dispatchToken = AppDispatcher.register((payload) => {
             AppState.emitChange();
             break;
         case ActionTypes.ADD_SET:
-            _activeTraining = _activeTraining.updateIn(['sets', action.exercise], list => list.push(action.set));
+            _activeTraining = _activeTraining.updateIn(['sets', action.exercise], list => list.push(Immutable.fromJS(action.set)));
             LocalStorageUtil.lsSet('activeTraining', _activeTraining);
             AppState.emitChange();
             break;
