@@ -32,6 +32,7 @@ var TrainingForm = React.createClass({
                 };
                 return <span className='rep' key={index} onClick={handler}>{index + 1}</span>;
             }).toArray();
+            console.log(TrainingStore.getLastInputsForExercise(this.props.exercise, sets.length));
        return (
             <div className='form training'>
                 <div>{sets}</div>

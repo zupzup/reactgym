@@ -74,10 +74,16 @@ describe("TrainingStore", () => {
             expect(TrainingStore.getLastInputsForExercise(0, null).weight).toEqual('');
         });
 
-        it("returns empty rep and weight if there is no set found", () => {
+        it("returns empty rep and weight if no set was found", () => {
             cb(addSetTraining);
             expect(TrainingStore.getLastInputsForExercise('0', 1).rep).toEqual('');
             expect(TrainingStore.getLastInputsForExercise('0', 1).weight).toEqual('');
+        });
+
+        it("returns empty rep and weight if no exercise was found", () => {
+            cb(addSetTraining);
+            expect(TrainingStore.getLastInputsForExercise('1', 1).rep).toEqual('');
+            expect(TrainingStore.getLastInputsForExercise('1', 1).weight).toEqual('');
         });
 
         it("returns empty rep and weight if there is a set", () => {

@@ -24,13 +24,16 @@ var TrainingStore = assign({}, StoreListenerMixin, {
     },
 
     getLastInputsForExercise(exercise, setNumber) {
-        if(!_trainings || _trainings.size === 0 || setNumber == null) {
-            return {rep: '', weight: ''};
+        var emptyRep = {rep: '', weight: ''},
+            trainings = this.getTrainings();
+        if(!trainings || trainings.size === 0 || 
+            setNumber == null || !trainings.last().get('sets') || 
+            !trainings.last().get('sets').get(exercise)) {
+            return emptyRep; 
         }
-        console.log(_trainings.last().get('sets').get(exercise));
-        var set = _trainings.last().get('sets').get(exercise).get(setNumber);
+        var set = trainings.last().get('sets').get(exercise).get(setNumber);
         if(!set) {
-            return {rep: '', weight: ''};
+            return emptyRep;
         }
         return {
             rep: set.get('reps'),
