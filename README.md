@@ -31,6 +31,7 @@ Demo:
 TODO
 
 TODOS:
+* add autoprefixer to sass
 * pre-fill reps/weight with last training's values
 * native release builds (.ipa, .apk)
     * launch icon

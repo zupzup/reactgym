@@ -37,7 +37,7 @@ var startServer = function() {
     });
 };
 
-gulp.task('default', function() {
+gulp.task('default', ['sass'], function() {
     gulp.watch('styles/scss/*.scss', ['sass']);
     startServer();
 });
