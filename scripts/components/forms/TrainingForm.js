@@ -18,9 +18,14 @@ var TrainingForm = React.createClass({
             weight = this.refs.weight.getDOMNode();
         if(reps.className.indexOf('invalid') === -1 && weight.className.indexOf('invalid') === -1) {
             this.props.handler(this.props.exercise, reps.value, weight.value);
-            this.refs.reps.reset();
-            this.refs.weight.reset();
+            this._setHistoryValues(1);
         }
+    },
+
+    _setHistoryValues(nextSet) {
+        var historyValues = TrainingStore.getLastInputsForExercise(this.props.exercise, this.props.sets.size + nextSet);
+        this.refs.reps.setValue(historyValues.rep);
+        this.refs.weight.setValue(historyValues.weight);
     },
 
     render() {
@@ -29,18 +34,20 @@ var TrainingForm = React.createClass({
             sets = this.props.sets.map((item, index) => {
                 var handler = () => {
                     AppStateActionCreators.removeSet(self.props.exercise, index);
+                    self._setHistoryValues(-1);
                 };
                 return <span className='rep' key={index} onClick={handler}>{index + 1}</span>;
-            }).toArray();
-            console.log(TrainingStore.getLastInputsForExercise(this.props.exercise, sets.length));
+            }).toArray(),
+            historyValues = TrainingStore.getLastInputsForExercise(this.props.exercise, sets.length);
+
        return (
             <div className='form training'>
                 <div>{sets}</div>
                 <h1>{exercise.get('label')}</h1>
                 <div>
                     <span>
-                        <ValidatedInput validator='number' ref='reps' placeholder='reps' className='reps' /><br />
-                        <ValidatedInput validator='number' ref='weight' placeholder='weight' className='weight' /><br />
+                        <ValidatedInput validator='number' ref='reps' placeholder='reps' className='reps' value={historyValues.rep}/><br />
+                        <ValidatedInput validator='number' ref='weight' placeholder='weight' className='weight' value={historyValues.weight} /><br />
                     </span>
                     <span>
                         <button className='submitButton' onClick={this.handleSubmit}>Add</button> 

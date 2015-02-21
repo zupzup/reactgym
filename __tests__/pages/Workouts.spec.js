@@ -32,7 +32,10 @@ describe("Workouts", () => {
                 }
             ]);
         });
-        ExerciseStore.getExerciseForId.mockImplementation(() => {
+        ExerciseStore.getExerciseForId.mockImplementation((id) => {
+            if(id === 4) {
+                return null; 
+            }
             return Immutable.fromJS({
                 label: 'hello'
             });
@@ -68,7 +71,7 @@ describe("Workouts", () => {
         it("shows the workout in a modal", () => {
             workouts.defaultHandler(null, {
                 id: 0,
-                exercises: [1, 2, 3]
+                exercises: [1, 2, 3, 4]
             }, 0);
             expect(AppStateActionCreators.openModal.mock.calls.length).toBe(1);
         });

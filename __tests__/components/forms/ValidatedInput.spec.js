@@ -8,7 +8,7 @@ let React = require('react/addons'),
 describe("ValidatedInput", () => {
     it("renders a ValidatedInput", () => {
         let input = TestUtils.renderIntoDocument(
-                <ValidatedInput validator='string' placeholder='name' className='nameField' />
+            <ValidatedInput validator='string' placeholder='name' className='nameField' />
         );
         expect(TestUtils.isCompositeComponent(input)).toEqual(true);
         expect(input.getDOMNode().className).toEqual("nameField valid");
@@ -16,7 +16,7 @@ describe("ValidatedInput", () => {
 
     it("shows that its valid", () => {
         let input = TestUtils.renderIntoDocument(
-                <ValidatedInput validator='string' placeholder='name' />
+            <ValidatedInput validator='string' placeholder='name' />
         );
         TestUtils.Simulate.change(input, {target: {value: 'hello'}});
         expect(input.state.valid).toBe('valid');
@@ -24,7 +24,7 @@ describe("ValidatedInput", () => {
 
     it("shows that its invalid", () => {
         let input = TestUtils.renderIntoDocument(
-                <ValidatedInput validator='number' placeholder='name' />
+            <ValidatedInput validator='number' placeholder='name' />
         );
         TestUtils.Simulate.change(input.getDOMNode(), {target: {value: 'hello'}});
         expect(input.state.valid).toBe('invalid');
@@ -32,10 +32,26 @@ describe("ValidatedInput", () => {
 
     it("resets the value on reset", () => {
         let input = TestUtils.renderIntoDocument(
-                <ValidatedInput validator='number' placeholder='name' />
+            <ValidatedInput validator='number' placeholder='name' />
         );
         input.reset();
         expect(input.state.value).toBe('');
+    });
+
+    it("can get values externally", () => {
+        let input = TestUtils.renderIntoDocument(
+            <ValidatedInput validator='number' placeholder='name' />
+        );
+        input.setValue('5');
+        expect(input.state.value).toBe('5');
+    });
+
+    it("sets values if props change", () => {
+        let input = TestUtils.renderIntoDocument(
+            <ValidatedInput validator='number' placeholder='name' />
+        );
+        input.setProps({value: '5'});
+        expect(input.state.value).toBe('5');
     });
 });
 

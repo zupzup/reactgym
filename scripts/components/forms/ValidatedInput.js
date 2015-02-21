@@ -1,8 +1,8 @@
 'use strict';
 
 var React = require('react/addons'),
-    ValidationUtil = require('../../utils/ValidationUtil'),
-    PureRenderMixin = require('react').addons.PureRenderMixin;
+ValidationUtil = require('../../utils/ValidationUtil'),
+PureRenderMixin = require('react').addons.PureRenderMixin;
 
 var ValidatedInput = React.createClass({
     mixins: [PureRenderMixin],
@@ -21,6 +21,14 @@ var ValidatedInput = React.createClass({
 
     reset() {
         this.validateAndSetValue('');
+    },
+
+    setValue(value) {
+        this.validateAndSetValue(value);
+    },
+
+    componentWillReceiveProps(next) {
+        this.validateAndSetValue(next.value);
     },
 
     componentDidMount() {
@@ -45,10 +53,10 @@ var ValidatedInput = React.createClass({
     },
 
     render() {
-       return (
-        <input placeholder={this.props.placeholder} ref={this.props.ref} className={this.props.className + ' ' + this.state.valid} type='text' name={this.props.name} onChange={this.changeHandler} value={this.state.value} />
+        return (
+            <input placeholder={this.props.placeholder} ref={this.props.ref} className={this.props.className + ' ' + this.state.valid} type='text' name={this.props.name} onChange={this.props.changeHandler || this.changeHandler} value={this.state.value} />
         );
-    },
+    }
 });
 
 module.exports = ValidatedInput;

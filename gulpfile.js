@@ -6,6 +6,7 @@ var gulp = require('gulp'),
     del = require("del"),
     request = require('request'),
     path = require('path'),
+    autoprefixer = require('gulp-autoprefixer'),
     jest = require('jest-cli'),
     WebpackDevServer = require('webpack-dev-server'),
     config = require('./webpack.config'),
@@ -54,6 +55,7 @@ gulp.task('test', function(callback) {
 gulp.task('sass', function () {
     gulp.src('./styles/scss/*.scss')
         .pipe(sass({sourcemap: false, style: 'compact'}))
+        .pipe(autoprefixer("Android >= 4.4", "iOS >= 6"))
         .on('error', function (err) { console.log(err.message); })
         .pipe(gulp.dest('styles'));
 });

@@ -4,10 +4,12 @@ jest.dontMock('../../../scripts/components/forms/TrainingForm.js');
 jest.mock('../../../scripts/actions/AppStateActionCreators.js');
 jest.mock('../../../scripts/actions/WorkoutStoreActionCreators.js');
 jest.mock('../../../scripts/stores/ExerciseStore.js');
+jest.mock('../../../scripts/stores/TrainingStore.js');
 let React = require('react/addons'),
     TestUtils = React.addons.TestUtils,
     AppStateActionCreators = require('../../../scripts/actions/AppStateActionCreators'),
     ExerciseStore = require('../../../scripts/stores/ExerciseStore.js'),
+    TrainingStore = require('../../../scripts/stores/TrainingStore.js'),
     Immutable = require('immutable'),
     TrainingForm = require('../../../scripts/components/forms/TrainingForm.js');
 
@@ -19,6 +21,12 @@ describe("TrainingForm", () => {
                 id: 0,
                 label: 'hello'
             });
+        });
+        TrainingStore.getLastInputsForExercise.mockImplementation(() => {
+            return {
+                rep: 0,
+                weight: 0
+            };
         });
     });
 

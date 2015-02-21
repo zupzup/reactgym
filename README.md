@@ -31,8 +31,6 @@ Demo:
 TODO
 
 TODOS:
-* add autoprefixer to sass
-* pre-fill reps/weight with last training's values
 * native release builds (.ipa, .apk)
     * launch icon
 * upgrade to react .13
@@ -146,4 +144,6 @@ DONE:
     * [x] copy js / css / images to www folder
 * [x] fix history handling for native
 * [x] fix iOS menu animation
+* [x] add autoprefixer to sass
+* [x] pre-fill reps/weight with last training's values
 

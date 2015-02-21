@@ -45,7 +45,10 @@ var Workouts = React.createClass({
 
     defaultHandler(e, item, index) {
         var exercises = item.exercises.map((i) => {
-            return <div key={i}>{ExerciseStore.getExerciseForId(i).get('label')}</div>;
+            var exercise = ExerciseStore.getExerciseForId(i);
+            if(exercise) {
+                return <div key={i}>{exercise.get('label')}</div>;
+            }
         });
         AppStateActionCreators.openModal(
             <div className='workoutDetail'>
