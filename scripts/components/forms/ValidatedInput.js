@@ -54,7 +54,7 @@ var ValidatedInput = React.createClass({
 
     render() {
         return (
-            <input placeholder={this.props.placeholder} ref={this.props.ref} className={this.props.className + ' ' + this.state.valid} type='text' name={this.props.name} onChange={this.props.changeHandler || this.changeHandler} value={this.state.value} />
+            <input placeholder={this.props.placeholder} ref={this.props.ref} className={this.props.className + ' ' + this.state.valid} type={this.props.type || 'text'} name={this.props.name} onChange={this.props.changeHandler || this.changeHandler} value={this.state.value} />
         );
     }
 });

@@ -31,6 +31,7 @@ Demo:
 TODO
 
 TODOS:
+* scroll focused input in position
 * platform-specific animations (slow ones for iOS)
     * [link](http://stackoverflow.com/questions/11077853/phonegap-detect-device-type-in-phonegap)
 * native release builds (.ipa, .apk)

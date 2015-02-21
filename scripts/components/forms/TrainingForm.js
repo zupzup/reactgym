@@ -38,8 +38,8 @@ var TrainingForm = React.createClass({
                 <h1>{exercise.get('label')}</h1>
                 <div>
                     <span>
-                        <ValidatedInput validator='number' ref='reps' placeholder='reps' className='reps' value={historyValues.rep}/><br />
-                        <ValidatedInput validator='number' ref='weight' placeholder='weight' className='weight' value={historyValues.weight} /><br />
+                        <ValidatedInput validator='number' type='number' ref='reps' placeholder='reps' className='reps' value={historyValues.rep}/><br />
+                        <ValidatedInput validator='number' type='number' ref='weight' placeholder='weight' className='weight' value={historyValues.weight} /><br />
                     </span>
                     <span>
                         <button className='submitButton' onClick={this.handleSubmit}>Add</button> 
