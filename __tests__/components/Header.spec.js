@@ -59,13 +59,6 @@ describe("Header", () => {
         expect(backSpan.getDOMNode()).not.toBe(undefined);
     });
 
-    it("triggers a transition to home, if there is no history", () => {
-        header.transitionTo = jest.genMockFunction();
-        let backSpan = TestUtils.findRenderedDOMComponentWithClass(header, 'back');
-        TestUtils.Simulate.click(backSpan.getDOMNode());
-        expect(header.transitionTo.mock.calls.length).toBe(1);
-    });
-
     it("triggers router-back on click on back", () => {
         history.pushState({foo: 'bar'}, "page", "foo.html");
         header.goBack = jest.genMockFunction();

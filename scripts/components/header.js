@@ -16,11 +16,7 @@ var Header = React.createClass({
     },
 
     back() {
-        if(history.state != null) {
-            this.goBack();
-        } else {
-            this.transitionTo('/');
-        }
+        this.goBack();
     },
 
     render() {

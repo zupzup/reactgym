@@ -31,6 +31,8 @@ Demo:
 TODO
 
 TODOS:
+* platform-specific animations (slow ones for iOS)
+    * [link](http://stackoverflow.com/questions/11077853/phonegap-detect-device-type-in-phonegap)
 * native release builds (.ipa, .apk)
     * launch icon
 * upgrade to react .13
@@ -38,7 +40,6 @@ TODOS:
 * file-api / server-api for persistence
     * [PhoneGap File-API](http://docs.phonegap.com/en/edge/cordova_file_file.md.html)
     * create a common interface for file-api (native) and web-api
-* make translation-animations work on safari
 
 DONE:
 ------
@@ -146,4 +147,5 @@ DONE:
 * [x] fix iOS menu animation
 * [x] add autoprefixer to sass
 * [x] pre-fill reps/weight with last training's values
+* [x] fix back onpopstate without historylocation
 
