@@ -18,14 +18,7 @@ var TrainingForm = React.createClass({
             weight = this.refs.weight.getDOMNode();
         if(reps.className.indexOf('invalid') === -1 && weight.className.indexOf('invalid') === -1) {
             this.props.handler(this.props.exercise, reps.value, weight.value);
-            this._setHistoryValues(1);
         }
-    },
-
-    _setHistoryValues(nextSet) {
-        var historyValues = TrainingStore.getLastInputsForExercise(this.props.exercise, this.props.sets.size + nextSet);
-        this.refs.reps.setValue(historyValues.rep);
-        this.refs.weight.setValue(historyValues.weight);
     },
 
     render() {
@@ -34,7 +27,6 @@ var TrainingForm = React.createClass({
             sets = this.props.sets.map((item, index) => {
                 var handler = () => {
                     AppStateActionCreators.removeSet(self.props.exercise, index);
-                    self._setHistoryValues(-1);
                 };
                 return <span className='rep' key={index} onClick={handler}>{index + 1}</span>;
             }).toArray(),
