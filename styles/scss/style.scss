@@ -9,32 +9,32 @@ body {
 
 .slide-enter {
     transform: translateX(-100%);
-    transition: transform .3s ease-in;
     &.slide-enter-active {
+        transition: transform .3s ease-in;
         transform: translateX(0%);
     }
 }
 
 .slide-leave {
     transform: translateX(0%);
-    transition: transform .3s ease-in;
     &.slide-leave-active {
+        transition: transform .3s ease-in;
         transform: translateX(100%);
     }
 }
 
 .slideBack-enter {
     transform: translateX(100%);
-    transition: transform .3s ease-in;
     &.slideBack-enter-active {
+        transition: transform .3s ease-in;
         transform: translateX(0%);
     }
 }
 
 .slideBack-leave {
     transform: translateX(0%);
-    transition: transform .3s ease-in;
     &.slideBack-leave-active {
+        transition: transform .3s ease-in;
         transform: translateX(-100%);
     }
 }
@@ -285,17 +285,17 @@ body {
 
 .modal {
     &.open {
-        top: 0;
+        transform: translateY(0%);
     }
     position: absolute;
     z-index: 100;
     background: #eee;
     opacity: 0.9;
-    top: -60%;
     left: 0;
     right: 0;
     height: 60%;
-    transition: top 0.3s;
+    transform: translateY(-100%);
+    transition: transform 0.3s;
     .close {
         cursor: pointer;
         height: 2rem;
@@ -307,6 +307,14 @@ body {
         position: absolute;
         display: inline-block;
     }
+}
+
+.ios-modal {
+    &.open {
+        top: 0;
+    }
+    top: -60%;
+    transition: top 0.3s;
 }
 
 .form {
@@ -423,7 +431,7 @@ input.invalid {
 .mask {
     position: absolute;
     width: 100%;
-    height: 100%;
+    height: 40%;
     z-index: 90;
     cursor: pointer;
     top: 0;
@@ -432,6 +440,10 @@ input.invalid {
         top: 60%;
         left: 0;
     }
+}
+
+.ios-mask {
+    height: 100%;
 }
 
 .workoutDetail {
