@@ -47,6 +47,11 @@ var ValidatedInput = React.createClass({
         });
     },
 
+    scrollToMe() {
+        var node = this.getDOMNode();
+        node.scrollTop = node.scrollHeight;
+    },
+
     changeHandler(e) {
         var newValue = e.currentTarget.value;
         this.validateAndSetValue(newValue);
@@ -54,7 +59,7 @@ var ValidatedInput = React.createClass({
 
     render() {
         return (
-            <input placeholder={this.props.placeholder} ref={this.props.ref} className={this.props.className + ' ' + this.state.valid} type={this.props.type || 'text'} name={this.props.name} onChange={this.props.changeHandler || this.changeHandler} value={this.state.value} />
+            <input onFocus={this.scrollToMe} placeholder={this.props.placeholder} ref={this.props.ref} className={this.props.className + ' ' + this.state.valid} type={this.props.type || 'text'} name={this.props.name} onChange={this.props.changeHandler || this.changeHandler} value={this.state.value} />
         );
     }
 });

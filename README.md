@@ -31,7 +31,8 @@ Demo:
 TODO
 
 TODOS:
-* scroll focused input in position
+* fix keyboard not shrinking the view on android
+    * create config.xml
 * platform-specific animations (slow ones for iOS)
     * [link](http://stackoverflow.com/questions/11077853/phonegap-detect-device-type-in-phonegap)
 * native release builds (.ipa, .apk)
@@ -149,4 +150,5 @@ DONE:
 * [x] add autoprefixer to sass
 * [x] pre-fill reps/weight with last training's values
 * [x] fix back onpopstate without historylocation
+* [x] scroll focused input in position
 
