@@ -46,6 +46,15 @@ describe("ValidatedInput", () => {
         expect(input.state.value).toBe('5');
     });
 
+    it("scrolls to the component on Focus", () => {
+        let input = TestUtils.renderIntoDocument(
+            <ValidatedInput validator='number' placeholder='name' />
+        );
+        var scrollTop = input.getDOMNode().scrollHeight;
+        TestUtils.Simulate.focus(input.getDOMNode());
+        expect(input.getDOMNode().scrollTop).toEqual(scrollTop);
+    });
+
     it("sets values if props change", () => {
         let input = TestUtils.renderIntoDocument(
             <ValidatedInput validator='number' placeholder='name' />
