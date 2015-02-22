@@ -151,4 +151,5 @@ DONE:
 * [x] pre-fill reps/weight with last training's values
 * [x] fix back onpopstate without historylocation
 * [x] scroll focused input in position
+* [x] fix side-scrolling issue
 
