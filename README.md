@@ -31,9 +31,8 @@ Demo:
 TODO
 
 TODOS:
-* fix keyboard not shrinking the view on android
-    * create config.xml [keyboard-plugin](https://github.com/etiennea/phonegap-keyboard)
 * platform-specific animations (slow ones for iOS)
+    * test on iPhone 4, 5, 6 if necessary
     * [link](http://stackoverflow.com/questions/11077853/phonegap-detect-device-type-in-phonegap)
 * native release builds (.ipa, .apk)
     * launch icon
@@ -152,4 +151,6 @@ DONE:
 * [x] fix back onpopstate without historylocation
 * [x] scroll focused input in position
 * [x] fix side-scrolling issue
+* [x] scroll top on modal-open
+* [x] fix keyboard not shrinking the view on android
 

@@ -5,6 +5,12 @@ var React = require('react/addons'),
 
 var Modal = React.createClass({
     mixins: [PureRenderMixin],
+
+    componentDidUpdate() {
+        var node = this.getDOMNode();
+        node.scrollIntoView();
+    },
+
     render() {
         var modalOpen = this.props.content ? 'open' : '';
         return (

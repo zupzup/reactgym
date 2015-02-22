@@ -120,6 +120,7 @@ gulp.task("phonegap", ["cleannative", "prod"], function(cb) {
         del(['./native/www'], function() {
             console.log('copying www folder');
             gulp.src('www/**').pipe(gulp.dest('native/www/'));
+            gulp.src('config.xml').pipe(gulp.dest('native/'));
             cb();
         });
     });
