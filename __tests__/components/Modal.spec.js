@@ -24,6 +24,23 @@ describe("Modal", () => {
         expect(modal.getDOMNode().className).toEqual("modal ");
     });
 
+    it("scrolles into view on change", () => {
+        let handlerFunc = () => {};
+        let modal = TestUtils.renderIntoDocument(
+            <Modal content={null} closeHandler={handlerFunc} />
+        );
+        let mockFunc = jest.genMockFunction();
+        modal.getDOMNode = jest.genMockFunction();
+        modal.getDOMNode.mockImplementation(() => {
+            return {
+                scrollIntoView: mockFunc 
+            };
+        });
+        modal.forceUpdate();
+        expect(modal.getDOMNode.mock.calls.length).toBe(1);
+        expect(mockFunc.mock.calls.length).toBe(1);
+    });
+
     it("executes the closeHandler when the close button is clicked", () => {
         let handlerFunc = jest.genMockFunction();
         let modal = TestUtils.renderIntoDocument(

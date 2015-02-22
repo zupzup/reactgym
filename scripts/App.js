@@ -39,8 +39,8 @@ var App = React.createClass({
         return (
             <DocumentTitle title='SimpleGym'>
                 <div className='App'>
-                    {modal}
                     <Menu className={menuOpen}/>
+                    {modal}
                     {mask}
                     <div className={'contentArea ' + menuOpen}>
                         <Header />
