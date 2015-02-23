@@ -34,7 +34,7 @@ var TrainingForm = React.createClass({
 
        return (
             <div className='form training'>
-                <div>{sets}</div>
+                <div className='sets'>{sets}</div>
                 <h1>{exercise.get('label')}</h1>
                 <div>
                     <span>

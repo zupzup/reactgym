@@ -37,7 +37,8 @@ var TrainingDetail = React.createClass({
             return (
                 <div className='page trainingdetail'>
                     <h2>{training.workout.label}</h2>
-                    <div className='date'><img src='styles/images/calendar.png' />{new Date(training.date).toLocaleString()}</div>
+                    <div className='date'><img src='styles/images/calendar.png' />{new Date(training.dateStart).toLocaleString()}</div>
+                    <div className='duration'><img src='styles/images/android-timer.png' />{this.formatMinutes(training.dateStart, training.dateEnd)} minutes</div>
                     {sets}
                 </div>
             );
@@ -48,6 +49,10 @@ var TrainingDetail = React.createClass({
                 </div>
             );
         }
+    },
+
+    formatMinutes(from, to) {
+        return Math.floor((new Date(to) - new Date(from)) / 1000 / 60);
     }
 });
 

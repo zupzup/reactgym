@@ -58,6 +58,7 @@ var Training = React.createClass({
                 return item.get('id');
             }, 0) + 1,
             sets: sets,
+            dateStart: new Date(),
             currentExercise: _.first(workout.exercises)
         };
         AppStateActionCreators.startTraining(training);

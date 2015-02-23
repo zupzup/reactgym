@@ -12,6 +12,20 @@ html {
     height: 100% !important;
 }
 
+::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+
 .App {
     width: 100% !important;
     height: 100% !important;
@@ -348,6 +362,9 @@ html {
             margin-bottom: 1rem;
         }
     }
+    .submitButton {
+        margin-top: 0.5rem;
+    }
 }
 
 .finish {
@@ -420,6 +437,10 @@ input.invalid {
     border: 1px solid red;
 }
 
+input {
+    border: 1px solid #ccc;
+}
+
 .page.home {
     .timer {
         margin-top: 0.1rem;
@@ -475,11 +496,16 @@ input.invalid {
     }
 }
 
+.sets {
+    height: 2rem;
+    line-height: 2rem;
+}
+
 .trainingdetail {
     h2 {
         text-align: center;
     }
-    .date {
+    .date, .duration {
         text-align: center;
         padding-bottom: 1.5rem;
     }

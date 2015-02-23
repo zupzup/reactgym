@@ -33,9 +33,9 @@ var Home = React.createClass({
             },
             trainingDiv,
             trainings = TrainingStore.getTrainings().map((item) => {
-                var date = new Date(item.get('date'));
+                var date = new Date(item.get('dateStart'));
                 return item.set('label', date.toLocaleDateString() + ' ' + date.toLocaleTimeString() + ' - ' + item.getIn(['workout', 'label']));
-            }),
+            }).reverse(),
             timerDiv;
 
         if(activeTraining) {

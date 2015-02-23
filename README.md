@@ -31,14 +31,10 @@ Demo:
 TODO
 
 TODOS:
-* add training-duration (start-Date, end-Date)
 * platform-specific animations (slow ones for iOS)
     * test on iPhone 4, 5, 6 if necessary
     * [link](http://stackoverflow.com/questions/11077853/phonegap-detect-device-type-in-phonegap)
 * transform icons to iconfont (ionicons)
-* training-view scrollable exercises block
-    * scrollbars
-    * iOS
 * native release builds (.ipa, .apk)
     * launch icon
 * upgrade to react .13
@@ -158,4 +154,8 @@ DONE:
 * [x] fix side-scrolling issue
 * [x] scroll top on modal-open
 * [x] fix keyboard not shrinking the view on android
+* [x] training-view scrollable exercises block
+    * [x] scrollbars
+    * [x] iOS
+* [x] add training-duration (start-Date, end-Date)
 

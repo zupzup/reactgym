@@ -48,7 +48,7 @@ TrainingStore.dispatchToken = AppDispatcher.register((payload) => {
     switch(action.type) {
         case ActionTypes.ADD_TRAINING:
             var trainingToAdd = action.training;
-            trainingToAdd = trainingToAdd.set('date', new Date());
+            trainingToAdd = trainingToAdd.set('dateEnd', new Date());
             _trainings = _trainings.push(trainingToAdd);
             LocalStorageUtil.lsSet('trainings', _trainings);
             TrainingStore.emitChange();

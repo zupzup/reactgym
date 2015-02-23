@@ -22,7 +22,8 @@ describe("TrainingDetail", () => {
             return Immutable.fromJS(
                 {
                     id: 0,
-                    date: '01.02.2015',
+                    dateEnd: '01.02.2015',
+                    dateStart: '01.01.2015',
                     workout: {
                         label: 'some training'
                     },
