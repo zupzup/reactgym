@@ -29,7 +29,7 @@ WorkoutStore.dispatchToken = AppDispatcher.register((payload) => {
                     {
                         id: 1,
                         label: 'Chest Triceps Shoulders Abs',
-                        exercises: [1, 2]
+                        exercises: [1, 2, 3]
                     },
                     {
                         id: 2,

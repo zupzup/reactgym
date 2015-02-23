@@ -98,8 +98,14 @@ html {
 }
 
 .scrollinglist {
+    height: 9rem;
     overflow: scroll;
     -webkit-overflow-scrolling: touch;
+    .listitem {
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+        -webkit-tap-highlight-color: transparent;
+        padding: 1.5rem 0 1.5rem 2rem;
+    }
 }
 
 .header {
@@ -395,6 +401,7 @@ html {
 
 .training {
     h1 {
+        font-size: 1.3rem;
         text-align: center;
     }
 }

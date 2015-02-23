@@ -31,11 +31,14 @@ Demo:
 TODO
 
 TODOS:
+* add training-duration (start-Date, end-Date)
 * platform-specific animations (slow ones for iOS)
     * test on iPhone 4, 5, 6 if necessary
     * [link](http://stackoverflow.com/questions/11077853/phonegap-detect-device-type-in-phonegap)
 * transform icons to iconfont (ionicons)
-* make training-view 100% height, scrollable exercises block
+* training-view scrollable exercises block
+    * scrollbars
+    * iOS
 * native release builds (.ipa, .apk)
     * launch icon
 * upgrade to react .13
