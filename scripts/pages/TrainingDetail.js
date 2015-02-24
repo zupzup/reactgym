@@ -37,8 +37,8 @@ var TrainingDetail = React.createClass({
             return (
                 <div className='page trainingdetail'>
                     <h2>{training.workout.label}</h2>
-                    <div className='date'><img src='styles/images/calendar.png' />{new Date(training.dateStart).toLocaleString()}</div>
-                    <div className='duration'><img src='styles/images/android-timer.png' />{this.formatMinutes(training.dateStart, training.dateEnd)} minutes</div>
+                    <div className='date'><i className='ion-calendar'></i> {new Date(training.dateStart).toLocaleString()}</div>
+                    <div className='duration'><i className='ion-android-time'></i> {this.formatMinutes(training.dateStart, training.dateEnd)} minutes</div>
                     {sets}
                 </div>
             );

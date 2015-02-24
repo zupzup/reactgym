@@ -16,7 +16,7 @@ var Modal = React.createClass({
         return (
             <div className={'modal ' + modalOpen}>
                 {this.props.content}
-                <a className='close' onClick={this.props.closeHandler}></a>
+                <a className='close ion-close-circled' onClick={this.props.closeHandler}></a>
             </div>
         );
     }

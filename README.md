@@ -34,7 +34,6 @@ TODOS:
 * platform-specific animations (slow ones for iOS)
     * test on iPhone 4, 5, 6 if necessary
     * [link](http://stackoverflow.com/questions/11077853/phonegap-detect-device-type-in-phonegap)
-* transform icons to iconfont (ionicons)
 * native release builds (.ipa, .apk)
     * launch icon
 * upgrade to react .13
@@ -158,4 +157,5 @@ DONE:
     * [x] scrollbars
     * [x] iOS
 * [x] add training-duration (start-Date, end-Date)
+* [x] transform icons to iconfont (ionicons)
 

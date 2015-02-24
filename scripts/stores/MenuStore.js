@@ -22,22 +22,22 @@ MenuStore.dispatchToken = AppDispatcher.register((payload) => {
                 {
                     name: 'Home',
                     link: 'home',
-                    icon: 'styles/images/home.png'
+                    icon: 'ion-home'
                 },
                 {
                     name: 'Exercises',
                     link: 'exercises',
-                    icon: 'styles/images/clipboard.png'
+                    icon: 'ion-clipboard'
                 },
                 {
                     name: 'Workouts',
                     link: 'workouts',
-                    icon: 'styles/images/levels.png'
+                    icon: 'ion-levels'
                 },
                 {
                     name: 'Training',
                     link: 'training',
-                    icon: 'styles/images/ios7-pulse.png'
+                    icon: 'ion-ios-pulse'
                 }
             ];
             MenuStore.emitChange();

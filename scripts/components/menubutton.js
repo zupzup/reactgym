@@ -6,10 +6,10 @@ var React = require('react/addons'),
 var MenuButton = React.createClass({
     mixins: [PureRenderMixin],
     render() {
-        var icon = this.props.icon ? <img className='menuicon' src={this.props.icon} /> : null;
+        var icon = this.props.icon ? <i className={this.props.icon}></i> : null;
         return (
             <div className='menubutton' onClick={this.props.handler}>
-                {icon}{this.props.name}
+                {icon} {this.props.name}
             </div>
         );
     }

@@ -12,17 +12,17 @@ describe("MenuButton", () => {
             <MenuButton name="hello" handler={handlerFunc}></MenuButton>
         );
         expect(TestUtils.isCompositeComponent(button)).toEqual(true);
-        expect(button.getDOMNode().textContent).toEqual("hello");
+        expect(button.getDOMNode().textContent).toEqual(" hello");
     });
 
     it("renders a menubutton with an icon, if specified", () => {
         let handlerFunc = () => {};
         let button = TestUtils.renderIntoDocument(
-            <MenuButton icon='styles/hello' name="hello" handler={handlerFunc}></MenuButton>
+            <MenuButton icon='styles-hello' name="hello" handler={handlerFunc}></MenuButton>
         );
-        let img = TestUtils.findRenderedDOMComponentWithTag(button, 'img');
-        expect(img.getDOMNode().src).toContain('styles/hello');
-        expect(button.getDOMNode().textContent).toEqual("hello");
+        let icon = TestUtils.findRenderedDOMComponentWithTag(button, 'i');
+        expect(icon.getDOMNode().className).toContain('styles-hello');
+        expect(button.getDOMNode().textContent).toEqual(" hello");
     });
 
     it("executes the handler when clicked", () => {
