@@ -8,9 +8,9 @@ let Immutable = require('immutable');
 describe("AppState", () => {
     let cb,
         ActionTypes = require('../../scripts/constants/ActionTypes.js'),
-        AppDispatcher = require('../../scripts/dispatcher/AppDispatcher');
+        AppDispatcher = require('../../scripts/dispatcher/AppDispatcher'),
         LocalStorageUtil = require('../../scripts/utils/LocalStorageUtil.js'),
-        AppState = require('../../scripts/stores/AppState.js');
+        AppState = require('../../scripts/stores/AppState.js'),
         setTransitionAction = {
             source: 'VIEW_ACTION',
             action: {
@@ -215,6 +215,7 @@ describe("AppState", () => {
 
             runs(() => {
                 expect(AppState.getTimer()).toEqual(null);
+                expect(window.navigator.notification.vibrate.mock.calls.length).toBe(1);
             });
         });
     });

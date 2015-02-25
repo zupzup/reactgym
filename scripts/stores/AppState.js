@@ -16,6 +16,7 @@ var react = require('react'),
     _timerValue = null;
 
 var vibrate = function() {
+    /* istanbul ignore else  */
     if(navigator.notification) {
         navigator.notification.vibrate(1000);
     }

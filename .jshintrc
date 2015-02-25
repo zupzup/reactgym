@@ -28,6 +28,8 @@
     "nonstandard": true,
     "globals": {
         "import": true,
+        "runs": true,
+        "waitsFor": true,
         "require": true,
         "module": true,
         "describe": true,
