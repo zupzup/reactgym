@@ -99,14 +99,22 @@ gulp.task("cleannative", function(cb) {
     del(['./native'], cb);
 });
 
-gulp.task("buildios", function(cb) {
+gulp.task("addplugins", function(cb) {
+    console.log('adding vibration plugin');
+    shell.task([
+        'cd native && cordova plugin add org.apache.cordova.vibration'
+    ])();
+    cb();
+});
+
+gulp.task("buildios", ["addplugins"], function(cb) {
     console.log('building iOS');
     shell.task([
         'cd native && phonegap build ios'
     ])();
 });
 
-gulp.task("buildandroid", function(cb) {
+gulp.task("buildandroid", ["addplugins"], function(cb) {
     console.log('building Android');
     shell.task([
         'cd native && phonegap build android'

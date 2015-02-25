@@ -97,38 +97,6 @@ html {
     }
 }
 
-.ios-slide-enter {
-    right: -100%;
-    &.ios-slide-enter-active {
-        transition: right .3s ease-in;
-        right: 0;
-    }
-}
-
-.ios-slide-leave {
-    left: 0;
-    &.ios-slide-leave-active {
-        transition: left .3s ease-in;
-        left: -100%;
-    }
-}
-
-.ios-slideBack-enter {
-    left: -100%;
-    &.ios-slideBack-enter-active {
-        transition: left .3s ease-in;
-        left: 0;
-    }
-}
-
-.ios-slideBack-leave {
-    right: 0;
-    &.ios-slideBack-leave-active {
-        transition: right .3s ease-in;
-        right: -100%;
-    }
-}
-
 .menubutton {
     background: #eff;
     color: #555;
@@ -375,14 +343,6 @@ html {
     }
 }
 
-.ios-modal {
-    &.open {
-        top: 0;
-    }
-    top: -60%;
-    transition: top 0.3s;
-}
-
 .form {
     text-align: center;
     button, input, select {
@@ -515,10 +475,6 @@ input {
         top: 60%;
         left: 0;
     }
-}
-
-.ios-mask {
-    height: 100%;
 }
 
 .workoutDetail {

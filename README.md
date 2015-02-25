@@ -31,13 +31,10 @@ Demo:
 TODO
 
 TODOS:
-* platform-specific animations (slow ones for iOS)
-    * test on iPhone 4, 5, 6 if necessary
-    * [link](http://stackoverflow.com/questions/11077853/phonegap-detect-device-type-in-phonegap)
 * native release builds (.ipa, .apk)
     * launch icon
+    * conditionally include cordova
 * upgrade to react .13
-* vibrate on timer-stop
 * file-api / server-api for persistence
     * [PhoneGap File-API](http://docs.phonegap.com/en/edge/cordova_file_file.md.html)
     * create a common interface for file-api (native) and web-api
@@ -158,4 +155,7 @@ DONE:
     * [x] iOS
 * [x] add training-duration (start-Date, end-Date)
 * [x] transform icons to iconfont (ionicons)
+* [x] platform-specific animations (slow ones for iOS)
+    * [x] test on iPhone 4, 5, 6 if necessary
+* [x] vibrate on timer-stop
 

@@ -15,6 +15,12 @@ var react = require('react'),
     _activeTraining = null,
     _timerValue = null;
 
+var vibrate = function() {
+    if(navigator.notification) {
+        navigator.notification.vibrate(1000);
+    }
+};
+
 var AppState = assign({}, StoreListenerMixin, {
     getNextTransition() {
         return _nextTransition;
@@ -92,6 +98,7 @@ AppState.dispatchToken = AppDispatcher.register((payload) => {
             _timerId = window.setInterval(() => {
                 if(_timerValue === 0) {
                     window.clearInterval(_timerId);
+                    vibrate();
                     _timerValue = null;
                     AppState.emitChange();
                     return;
