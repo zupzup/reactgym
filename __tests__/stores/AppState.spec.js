@@ -194,6 +194,11 @@ describe("AppState", () => {
         });
 
         it("stopTimer", () => {
+            window.navigator = {
+                notification: {
+                    vibrate: jest.genMockFunction()
+                }
+            };
             cb(startTimerAction);
             runs(() => {
                 flag = false;
