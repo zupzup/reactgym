@@ -31,12 +31,19 @@ Demo:
 TODO
 
 TODOS:
+* create backup/restore view
+    * list of backups
+        * on click, open modal, restore y/n
+    * button "backup noew"
+    * loading indicator for async actions
+    * BackupStore
 * native release builds (.ipa, .apk)
     * launch icon
     * conditionally include cordova
 * upgrade to react .13
 * file-api / server-api for persistence
     * [PhoneGap File-API](http://docs.phonegap.com/en/edge/cordova_file_file.md.html)
+    * [usage](https://gist.github.com/alunny/1904992)
     * create a common interface for file-api (native) and web-api
 
 DONE:

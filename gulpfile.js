@@ -5,6 +5,7 @@ var gulp = require('gulp'),
     shell = require("gulp-shell"),
     del = require("del"),
     request = require('request'),
+    replace = require('gulp-replace'),
     path = require('path'),
     autoprefixer = require('gulp-autoprefixer'),
     jest = require('jest-cli'),
@@ -99,26 +100,30 @@ gulp.task("cleannative", function(cb) {
     del(['./native'], cb);
 });
 
-gulp.task("addplugins", function(cb) {
-    console.log('adding vibration plugin');
-    shell.task([
-        'cd native && cordova plugin add org.apache.cordova.vibration'
-    ])();
-    cb();
-});
-
-gulp.task("buildios", ["addplugins"], function(cb) {
+gulp.task("buildios", ["injectcordova"], function() {
     console.log('building iOS');
     shell.task([
+        'cd native && cordova plugin add org.apache.cordova.vibration',
+        'cd native && cordova plugin add org.apache.cordova.file',
         'cd native && phonegap build ios'
     ])();
 });
 
-gulp.task("buildandroid", ["addplugins"], function(cb) {
+gulp.task("buildandroid", ["injectcordova"], function() {
     console.log('building Android');
     shell.task([
+        'cd native && cordova plugin add org.apache.cordova.vibration',
+        'cd native && cordova plugin add org.apache.cordova.file',
         'cd native && phonegap build android'
     ])();
+});
+
+gulp.task("injectcordova", function(cb) {
+    console.log('injecting cordova');
+    gulp.src('www/index.html')
+    .pipe(replace(/<!-- cordova -->/g, '<script type="text/javascript" charset="utf-8" src="cordova.js"></script>'))
+    .pipe(gulp.dest('native/www'));
+    cb();
 });
 
 gulp.task("phonegap", ["cleannative", "prod"], function(cb) {
@@ -128,7 +133,9 @@ gulp.task("phonegap", ["cleannative", "prod"], function(cb) {
         del(['./native/www'], function() {
             console.log('copying www folder');
             gulp.src('www/**').pipe(gulp.dest('native/www/'));
+            console.log('copying config.xml');
             gulp.src('config.xml').pipe(gulp.dest('native/'));
+            console.log('injecting cordova');
             cb();
         });
     });

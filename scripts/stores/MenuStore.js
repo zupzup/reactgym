@@ -38,6 +38,11 @@ MenuStore.dispatchToken = AppDispatcher.register((payload) => {
                     name: 'Training',
                     link: 'training',
                     icon: 'ion-ios-pulse'
+                },
+                {
+                    name: 'Backup / Restore',
+                    link: 'backup',
+                    icon: 'ion-folder'
                 }
             ];
             MenuStore.emitChange();

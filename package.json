@@ -16,6 +16,7 @@
     "file-loader": "~0.8.1",
     "gulp": "^3.8.10",
     "gulp-autoprefixer": "^2.1.0",
+    "gulp-replace": "^0.5.3",
     "gulp-ruby-sass": "^0.7.1",
     "gulp-shell": "^0.3.0",
     "gulp-util": "^3.0.2",
