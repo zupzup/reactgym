@@ -3,6 +3,9 @@
 var keyMirror = require('react/lib/keyMirror');
 
 module.exports = keyMirror({
+    GET_BACKUPS: null,
+    ADD_BACKUP: null,
+    RESTORE_FROM_BACKUP: null,
     REQUEST_MENUPOINTS: null,
     SET_NEXT_TRANSITION: null,
     RESET_TRANSITION: null,

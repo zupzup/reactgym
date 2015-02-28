@@ -35,7 +35,7 @@ TODOS:
     * list of backups
         * on click, open modal, restore y/n
     * button "backup noew"
-    * loading indicator for async actions
+    * loading indicator for async actions (in actioncreators)
     * BackupStore
 * native release builds (.ipa, .apk)
     * launch icon
