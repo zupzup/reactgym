@@ -7,7 +7,7 @@ var React = require('react'),
     AppStateActionCreators = require('../actions/AppStateActionCreators'),
     BackupUtil = require('../utils/BackupUtil');
 
-var Home = React.createClass({
+var BackupRestore = React.createClass({
     header: {
         title: 'Backup / Restore'
     },
@@ -28,7 +28,7 @@ var Home = React.createClass({
         var handlers = {
             default: this.handleRestore
         },
-            backups = BackupUtil.getBackups();
+        backups = BackupUtil.getBackups();
         return (
             <div className='page backup'>
                 <h2><i className='ion-folder'></i> Restore from Backup:</h2>
@@ -39,5 +39,5 @@ var Home = React.createClass({
     }
 });
 
-module.exports = Home;
+module.exports = BackupRestore;
 
