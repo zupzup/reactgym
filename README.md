@@ -31,11 +31,14 @@ Demo:
 TODO
 
 TODOS:
+* when editing exercises / workouts -> update/cancel training
+* deep-save trainings
+    * whole datastructure
 * create backup/restore view
     * list of backups
         * on click, open modal, restore y/n
     * button "backup noew"
-    * loading indicator for async actions (in actioncreators)
+    * loading indicator for async actions (in appstate)
     * BackupStore
 * native release builds (.ipa, .apk)
     * launch icon

@@ -18,8 +18,9 @@
 .ion-power:before { content: "\f2a9"; }
 .ion-trash-a:before { content: "\f252"; }
 .ion-trophy:before { content: "\f356"; }
+.ion-loop:before { content: "\f201"; }
 
-.ion-arrow-left-b, .ion-calendar, .ion-android-stopwatch, .ion-android-add, .ion-levels, .ion-trash-a, .ion-edit, .ion-drag, .ion-home, .ion-power, .ios-modal, .ion-connection-bars, .ion-clipboard, .ion-close-circled, .ion-trophy, .ion-folder, .ion-android-time:before, .ion-ios-pulse:before {
+.ion-loop, .ion-arrow-left-b, .ion-calendar, .ion-android-stopwatch, .ion-android-add, .ion-levels, .ion-trash-a, .ion-edit, .ion-drag, .ion-home, .ion-power, .ios-modal, .ion-connection-bars, .ion-clipboard, .ion-close-circled, .ion-trophy, .ion-folder, .ion-android-time:before, .ion-ios-pulse:before {
     display: inline-block;
     font-family: "Ionicons";
     speak: none;
@@ -320,6 +321,12 @@ html {
     background-color: #fff;
 }
 
+.page.backup {
+    h2 {
+        margin-left: 1rem;
+    } 
+}
+
 .modal {
     &.open {
         transform: translateY(0%);
@@ -517,6 +524,17 @@ input {
     img {
         width: .9rem;
         margin-right: .2rem;
+    }
+}
+
+.refreshButton {
+    display: block;
+    text-align: center;
+    font-size: 4rem;
+    color: lightskyblue;
+    margin-bottom: 1rem;
+    &:active {
+        color: #888;
     }
 }
 
