@@ -92,7 +92,7 @@ var Training = React.createClass({
         };
         var training = this.state.activeTraining,
             exercises = ExerciseStore.getExercises().filter((item) => {
-                return training.getIn(['workout', 'exercises']).contains(item.get('id'));
+                return training.getIn(['workout', 'exercises']).contains(item.get('id').toString());
             }),
             currentExercise = training.get('currentExercise').toString(),
             currentExerciseIndex = exercises.findIndex((item, index) => {

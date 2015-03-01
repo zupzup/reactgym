@@ -168,4 +168,5 @@ DONE:
 * [x] platform-specific animations (slow ones for iOS)
     * [x] test on iPhone 4, 5, 6 if necessary
 * [x] vibrate on timer-stop
+* [x] check workout creation + training (are exercises correctly stored?)
 
