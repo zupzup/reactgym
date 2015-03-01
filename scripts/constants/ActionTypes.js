@@ -4,6 +4,8 @@ var keyMirror = require('react/lib/keyMirror');
 
 module.exports = keyMirror({
     GET_BACKUPS: null,
+    GET_BACKUPS_SUCCESS: null,
+    GET_BACKUPS_FAIL: null,
     ADD_BACKUP: null,
     RESTORE_FROM_BACKUP: null,
     REQUEST_MENUPOINTS: null,

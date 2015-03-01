@@ -1,6 +1,16 @@
 reactgym
 ========
-Workout-Tracking app built using react and flux. Web and Native Android/iOS.
+Workout-Tracking app built using react and flux. Web and Native Android/iOS builds available
+
+Features:
+---------
+* Creation of
+    * Exercises
+    * Workouts
+    * Trainings
+* Training History
+* Rest-Timer
+* Local Backup
 
 Setup:
 ------
@@ -15,22 +25,12 @@ For native builds:
 * gulp buildios (builds the app for iOS)
 * gulp buildandroid (builds the app for Android)
 
-Structure:
-------
-simple slideout menu with
-* exercises
-    * list of exercises, create/delete
-        * name
-* workouts (1:n exercises, add/remove)
-    * name, list of exercises
-* trainings
-    * list of exercises, field for reps (number), field for weight (number), counter starts when 'save' is pressed
-
 Demo:
 ------
 TODO
 
 TODOS:
+* Implement Settings-page (timer etc.)
 * when editing exercises / workouts -> update/cancel training
 * deep-save trainings
     * whole datastructure

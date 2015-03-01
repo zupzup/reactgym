@@ -6,8 +6,7 @@ var React = require('react'),
     PureRenderMixin = require('react').addons.PureRenderMixin,
     BackupStoreActionCreators = require('../actions/BackupStoreActionCreators'),
     BackupStore = require('../stores/BackupStore'),
-    AppStateActionCreators = require('../actions/AppStateActionCreators'),
-    BackupUtil = require('../utils/BackupUtil');
+    AppStateActionCreators = require('../actions/AppStateActionCreators');
 
 var BackupRestore = React.createClass({
     header: {
@@ -48,6 +47,20 @@ var BackupRestore = React.createClass({
                 <button className='backupButton' onClick={this.handleBackup}>Backup now</button>
             </div>
         );
+    },
+
+    componentDidMount() {
+        BackupStore.addChangeListener(this._onChange);
+    },
+
+    componentWillUnmount() {
+        BackupStore.removeChangeListener(this._onChange);
+    },
+
+    _onChange() {
+        this.setState({
+            backups: BackupStore.getBackups() 
+        });
     }
 });
 

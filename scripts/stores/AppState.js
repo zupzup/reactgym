@@ -129,6 +129,9 @@ AppState.dispatchToken = AppDispatcher.register((payload) => {
             LocalStorageUtil.lsSet('activeTraining', _activeTraining);
             AppState.emitChange();
             break;
+        case ActionTypes.GET_BACKUPS:
+            console.log('request started');
+            break;
         default:
     }
 });

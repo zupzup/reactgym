@@ -2,40 +2,55 @@
 var Immutable = require('immutable'),
     folder = 'simplegym',
     prefix = 'simplegym_';
+
 var BackupUtil = {
-    getBackups() {
+    getBackups(cb) {
         var self = this;
         if(window.requestFileSystem) {
             self.getDirectory((dirEntry) => {
                 var reader = dirEntry.createReader();
                 reader.readEntries((entries) => {
-                    //TODO: fire gotEntries event
+                    cb(entries);
                     alert("got entries " + entries.length);
                 }, self.err('entries'));
             }, self.err('dir'));
         } else {
-            //TODO: fire gotEntries event with data
-            return Immutable.fromJS([
-                {
-                    label: 'simplegym_2015-01-25'
-                },
-                {
-                    label: 'simplegym_2015-01-24'
-                }
-            ]);
+            window.setTimeout(() => {
+                cb(null, Immutable.fromJS([
+                    {
+                        label: 'simplegym_2015-01-25'
+                    },
+                    {
+                        label: 'simplegym_2015-01-24'
+                    }
+                ]));
+            }, 500);
         }
     },
 
-    saveBackup(data) {
+    saveBackup(data, cb) {
         var self = this;
-        self.getDirectory((dirEntry) => {
-            dirEntry.getFile(prefix + new Date(), {create: true, exclusive: false}, (file) => {
-                dirEntry.createWriter((writer) => {
-                    //TODO write file
-                    writer.write(JSON.stringify(data));
-                }, self.err('writer'));
-            }, self.err('createFile'));
-        }, self.err('save'));
+        if(window.requestFileSystem) {
+            self.getDirectory((dirEntry) => {
+                dirEntry.getFile(prefix + new Date(), {create: true, exclusive: false}, (file) => {
+                    dirEntry.createWriter((writer) => {
+                        //TODO write file
+                        writer.write(JSON.stringify(data));
+                    }, self.err('writer'));
+                }, self.err('createFile'));
+            }, self.err('save'));
+        } else {
+            window.setTimeout(() => {
+                cb(Immutable.fromJS([
+                    {
+                        label: 'simplegym_2015-01-25'
+                    },
+                    {
+                        label: 'simplegym_2015-01-24'
+                    }
+                ]));
+            }, 500);
+        }
     },
 
     restoreFromBackup(index) {

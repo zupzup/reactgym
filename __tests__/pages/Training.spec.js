@@ -108,7 +108,7 @@ describe("Training", () => {
                     workout: {
                         id: 1,
                         label: 'first',
-                        exercises: [1, 2]
+                        exercises: ['1', '2']
                     },
                     currentExercise: 1,
                     sets: []
@@ -126,7 +126,7 @@ describe("Training", () => {
             training = TestUtils.renderIntoDocument(<Training />);
             let finishButton = TestUtils.scryRenderedDOMComponentsWithClass(training, 'finish');
             TestUtils.Simulate.click(finishButton[0].getDOMNode());
-            let dialog = AppStateActionCreators.openModal.mock.calls[0][0]
+            let dialog = AppStateActionCreators.openModal.mock.calls[0][0];
             dialog.props.yesHandler();
             expect(AppStateActionCreators.closeModal.mock.calls.length).toBe(1);
             expect(AppStateActionCreators.stopTimer.mock.calls.length).toBe(1);
@@ -138,7 +138,7 @@ describe("Training", () => {
         it("closes the modal on finish and no", () => {
             let finishButton = TestUtils.scryRenderedDOMComponentsWithClass(training, 'finish');
             TestUtils.Simulate.click(finishButton[0].getDOMNode());
-            let dialog = AppStateActionCreators.openModal.mock.calls[0][0]
+            let dialog = AppStateActionCreators.openModal.mock.calls[0][0];
             dialog.props.noHandler();
             expect(AppStateActionCreators.closeModal.mock.calls.length).toBe(1);
         });
