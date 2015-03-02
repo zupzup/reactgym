@@ -32,14 +32,9 @@ TODO
 TODOS:
 * Implement Settings-page (timer etc.)
 * when editing exercises / workouts -> update/cancel training
+    * loading indicator, failhandling for async actions (in LoadingStore)
 * deep-save trainings
     * whole datastructure
-* create backup/restore view
-    * list of backups
-        * on click, open modal, restore y/n
-    * button "backup noew"
-    * loading indicator for async actions (in appstate)
-    * BackupStore
 * native release builds (.ipa, .apk)
     * launch icon
     * conditionally include cordova
@@ -169,4 +164,9 @@ DONE:
     * [x] test on iPhone 4, 5, 6 if necessary
 * [x] vibrate on timer-stop
 * [x] check workout creation + training (are exercises correctly stored?)
+* [x] create backup/restore view
+    * [x] list of backups
+        * [x] on click, open modal, restore y/n
+    * [x] button "backup noew"
+    * [x] BackupStore
 

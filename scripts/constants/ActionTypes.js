@@ -7,6 +7,8 @@ module.exports = keyMirror({
     GET_BACKUPS_SUCCESS: null,
     GET_BACKUPS_FAIL: null,
     ADD_BACKUP: null,
+    ADD_BACKUP_SUCCESS: null,
+    ADD_BACKUP_FAIL: null,
     RESTORE_FROM_BACKUP: null,
     REQUEST_MENUPOINTS: null,
     SET_NEXT_TRANSITION: null,
