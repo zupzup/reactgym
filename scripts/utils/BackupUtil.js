@@ -10,8 +10,11 @@ var BackupUtil = {
             self.getDirectory((dirEntry) => {
                 var reader = dirEntry.createReader();
                 reader.readEntries((entries) => {
-                    alert("got entries " + entries.length);
-                    cb(null, entries);
+                    cb(null, Immutable.fromJS(entries).map((item) => {
+                        return {
+                            label: item.name
+                        };
+                    }));
                 }, self.err('entries'));
             }, self.err('dir'));
         } else {
@@ -33,14 +36,14 @@ var BackupUtil = {
         if(window.requestFileSystem) {
             self.getDirectory((dirEntry) => {
                 dirEntry.getFile(prefix + new Date().getTime().toString(), {create: true, exclusive: false}, (file) => {
-                    alert(file.name);
                     file.createWriter((writer) => {
-                        alert('got writer');
                         writer.onwriteend = (e) => {
                             dirEntry.createReader().readEntries((entries) => {
-                                alert(entries.length);
-                                alert(entries[0].name);
-                                cb(null, entries);
+                                cb(null, Immutable.fromJS(entries).map((item) => {
+                                    return {
+                                        label: item.name
+                                    };
+                                }));
                             }, self.err('entries'));
                         };
                         writer.write("Hello");

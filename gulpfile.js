@@ -135,7 +135,6 @@ gulp.task("phonegap", ["cleannative", "prod"], function(cb) {
             gulp.src('www/**').pipe(gulp.dest('native/www/'));
             console.log('copying config.xml');
             gulp.src('config.xml').pipe(gulp.dest('native/'));
-            console.log('injecting cordova');
             cb();
         });
     });
