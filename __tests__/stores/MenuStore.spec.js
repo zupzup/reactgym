@@ -38,7 +38,7 @@ describe("MenuStore", () => {
     it("requests menupoints", () => {
         cb(actionRequestMenuPoints);
         var menuPoints = MenuStore.getMenuPoints();
-        expect(menuPoints.length).toEqual(5);
+        expect(menuPoints.length).toEqual(6);
         expect(menuPoints[0].name).toEqual('Home');
     });
 });

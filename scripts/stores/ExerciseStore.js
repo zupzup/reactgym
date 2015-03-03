@@ -33,15 +33,15 @@ ExerciseStore.dispatchToken = AppDispatcher.register((payload) => {
             if(exercises == null) {
                 _exercises = Immutable.fromJS([
                     {
-                        id: 1,
+                        id: '1',
                         label: 'T-Bar-Rows'
                     },
                     {
-                        id: 2,
+                        id: '2',
                         label: 'Hammercurls'
                     },
                     {
-                        id: 3,
+                        id: '3',
                         label: 'Butterfly'
                     }
                 ]);

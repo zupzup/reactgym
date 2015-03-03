@@ -6,7 +6,7 @@ module.exports = {
     'webpack/hot/dev-server',
     './scripts/index'
   ],
-  devtool: 'eval',
+  devtool: 'sourcemap',
   output: {
     path: __dirname,
     filename: 'bundle.js',

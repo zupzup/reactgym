@@ -57,9 +57,10 @@ module.exports = {
         });
     },
 
-    startTimer() {
+    startTimer(restTimer) {
         AppDispatcher.handleViewAction({
-            type: ActionTypes.START_TIMER
+            type: ActionTypes.START_TIMER,
+            restTimer
         });
     },
 

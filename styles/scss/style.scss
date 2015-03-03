@@ -19,8 +19,9 @@
 .ion-trash-a:before { content: "\f252"; }
 .ion-trophy:before { content: "\f356"; }
 .ion-loop:before { content: "\f201"; }
+.ion-ios-gear:before { content: "\f43d"; }
 
-.ion-loop, .ion-arrow-left-b, .ion-calendar, .ion-android-stopwatch, .ion-android-add, .ion-levels, .ion-trash-a, .ion-edit, .ion-drag, .ion-home, .ion-power, .ios-modal, .ion-connection-bars, .ion-clipboard, .ion-close-circled, .ion-trophy, .ion-folder, .ion-android-time:before, .ion-ios-pulse:before {
+.ion-ios-gear, .ion-loop, .ion-arrow-left-b, .ion-calendar, .ion-android-stopwatch, .ion-android-add, .ion-levels, .ion-trash-a, .ion-edit, .ion-drag, .ion-home, .ion-power, .ios-modal, .ion-connection-bars, .ion-clipboard, .ion-close-circled, .ion-trophy, .ion-folder, .ion-android-time:before, .ion-ios-pulse:before {
     display: inline-block;
     font-family: "Ionicons";
     speak: none;
@@ -321,10 +322,19 @@ html {
     background-color: #fff;
 }
 
-.page.backup, .page.home {
+.page.backup, .page.home, .page.settings {
     h2 {
         margin-left: 1rem;
     } 
+}
+
+.settingsform {
+    margin-left: 1rem;
+    input {
+        font-size: 1.5rem;
+        width: 3rem;
+        text-align: center;
+    }
 }
 
 .modal {

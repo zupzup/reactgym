@@ -27,14 +27,14 @@ WorkoutStore.dispatchToken = AppDispatcher.register((payload) => {
             if(workouts == null) {
                 _workouts = Immutable.fromJS([
                     {
-                        id: 1,
+                        id: '1',
                         label: 'Chest Triceps Shoulders Abs',
-                        exercises: [1, 2, 3]
+                        exercises: ['1', '2', '3']
                     },
                     {
-                        id: 2,
+                        id: '2',
                         label: 'Back Biceps Legs',
-                        exercises: [2, 3]
+                        exercises: ['2', '3']
                     }
                 ]);
                 LocalStorageUtil.lsSet('workouts', _workouts); 

@@ -76,12 +76,12 @@ describe("ExerciseStore", () => {
             LocalStorageUtil.lsGet.mockImplementation(() => {
                 return [
                     {
-                        id: 1,
+                        id: '1',
                         label: 'T-Bar-Rows'
                     }
                 ];
             });
-            var exercise = ExerciseStore.getExerciseForId(1);
+            var exercise = ExerciseStore.getExerciseForId('1');
             expect(exercise.get('label')).toEqual('T-Bar-Rows');
         });
 
@@ -99,7 +99,7 @@ describe("ExerciseStore", () => {
             });
             cb(actionRequestExercises);
             expect(LocalStorageUtil.lsSet.mock.calls.length).toBe(1);
-            expect(LocalStorageUtil.lsSet.mock.calls[0][1].get(0).get('id')).toBe(1);
+            expect(LocalStorageUtil.lsSet.mock.calls[0][1].get(0).get('id')).toBe('1');
             expect(LocalStorageUtil.lsSet.mock.calls[0][1].get(0).get('label')).toBe('T-Bar-Rows');
         });
 

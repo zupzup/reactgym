@@ -13,6 +13,7 @@ var React = require('react'),
     Immutable = require('immutable'),
     StopTrainingDialog = require('../components/StopTrainingDialog'),
     TrainingStore = require('../stores/TrainingStore'),
+    SettingsStore = require('../stores/SettingsStore'),
     ExerciseStore = require('../stores/ExerciseStore'),
     AppState = require('../stores/AppState');
 
@@ -70,7 +71,7 @@ var Training = React.createClass({
 
     formSubmitHandler(exercise, reps, weight) {
         AppStateActionCreators.addSet(exercise, reps, weight);
-        AppStateActionCreators.startTimer();
+        AppStateActionCreators.startTimer(SettingsStore.getRestTimer());
     },
 
     render() {

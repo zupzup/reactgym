@@ -27,7 +27,8 @@ describe("AppState", () => {
         startTimerAction = {
             source: 'VIEW_ACTION',
             action: {
-                type: ActionTypes.START_TIMER
+                type: ActionTypes.START_TIMER,
+                restTimer: 90
             }
         },
         stopTimerAction = {

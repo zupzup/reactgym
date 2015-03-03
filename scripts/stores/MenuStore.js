@@ -43,6 +43,11 @@ MenuStore.dispatchToken = AppDispatcher.register((payload) => {
                     name: 'Backup / Restore',
                     link: 'backup',
                     icon: 'ion-folder'
+                },
+                {
+                    name: 'Settings',
+                    link: 'settings',
+                    icon: 'ion-ios-gear'
                 }
             ];
             MenuStore.emitChange();

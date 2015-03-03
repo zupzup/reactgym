@@ -30,7 +30,7 @@ Demo:
 TODO
 
 TODOS:
-* Implement Settings-page (timer etc.)
+* Tests for Settings & Backups
 * when editing exercises / workouts -> update/cancel training
     * loading indicator, failhandling for async actions (in LoadingStore)
 * deep-save trainings
@@ -169,4 +169,5 @@ DONE:
         * [x] on click, open modal, restore y/n
     * [x] button "backup noew"
     * [x] BackupStore
+* [x] Implement Settings-page (timer etc.)
 

@@ -9,6 +9,7 @@ jest.mock('../../scripts/stores/WorkoutStore.js');
 jest.mock('../../scripts/stores/ExerciseStore.js');
 jest.mock('../../scripts/stores/TrainingStore.js');
 jest.mock('../../scripts/stores/AppState.js');
+jest.mock('../../scripts/utils/LocalStorageUtil.js');
 jest.mock('../../scripts/components/forms/TrainingForm.js');
 
 var React = require('react/addons'),
@@ -18,6 +19,7 @@ var React = require('react/addons'),
     Immutable = require('immutable'),
     AppStateActionCreators = require('../../scripts/actions/AppStateActionCreators.js'),
     WorkoutStore = require('../../scripts/stores/WorkoutStore.js'),
+    LocalStorageUtil = require('../../scripts/utils/LocalStorageUtil.js'),
     ExerciseStore = require('../../scripts/stores/ExerciseStore.js'),
     TrainingStore = require('../../scripts/stores/TrainingStore.js'),
     Router = require('react-router'),
