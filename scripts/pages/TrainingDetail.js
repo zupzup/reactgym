@@ -3,7 +3,6 @@
 var React = require('react'),
     List = require('../components/List'),
     TrainingStore = require('../stores/TrainingStore.js'),
-    ExerciseStore = require('../stores/ExerciseStore.js'),
     Router = require('react-router'),
     _ = require('lodash'),
     SimpleHeaderMixin = require('../mixins/SimpleHeaderMixin'),
@@ -22,7 +21,7 @@ var TrainingDetail = React.createClass({
     render() {
         var training = TrainingStore.getTrainingForId(this.getQuery().training);
         if(training) {
-            var exercises = ExerciseStore.getExercises();
+            var exercises = training.getIn(['workout', 'exercises']);
             training = training.toJS();
             var sets = _.map(training.sets, (set, exercise) => {
                 var sets = set.map((item, idx) => {

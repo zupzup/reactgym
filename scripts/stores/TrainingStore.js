@@ -5,6 +5,7 @@ var react = require('react'),
     ActionTypes = require('../constants/ActionTypes'),
     Immutable = require('immutable'),
     assign = require('object-assign'),
+    ExerciseStore = require('../stores/ExerciseStore'),
     LocalStorageUtil = require('../utils/LocalStorageUtil.js'),
     StoreListenerMixin = require('../mixins/StoreListenerMixin.js'),
     _trainings = Immutable.List();
@@ -47,7 +48,12 @@ TrainingStore.dispatchToken = AppDispatcher.register((payload) => {
 
     switch(action.type) {
         case ActionTypes.ADD_TRAINING:
-            var trainingToAdd = action.training;
+            var storedExercises = ExerciseStore.getExercises(),
+                trainingToAdd = action.training;
+            trainingToAdd = trainingToAdd.updateIn(['workout', 'exercises'], 
+                exercises => exercises.map(e => {
+                    return storedExercises.find(i => i.get('id') == e);
+                }));
             trainingToAdd = trainingToAdd.set('dateEnd', new Date());
             _trainings = _trainings.push(trainingToAdd);
             LocalStorageUtil.lsSet('trainings', _trainings);

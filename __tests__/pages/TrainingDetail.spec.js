@@ -2,7 +2,6 @@
 
 jest.dontMock('../../scripts/pages/TrainingDetail.js');
 jest.mock('../../scripts/stores/TrainingStore.js');
-jest.mock('../../scripts/stores/ExerciseStore.js');
 jest.mock('react-router');
 
 var React = require('react/addons'),
@@ -12,7 +11,6 @@ var React = require('react/addons'),
     Router = require('react-router'),
     AppState = require('../../scripts/stores/AppState.js'),
     TrainingStore = require('../../scripts/stores/TrainingStore.js'),
-    ExerciseStore = require('../../scripts/stores/ExerciseStore.js'),
     TrainingDetail = require('../../scripts/pages/TrainingDetail.js');
 
 describe("TrainingDetail", () => {
@@ -25,6 +23,20 @@ describe("TrainingDetail", () => {
                     dateEnd: '01.02.2015',
                     dateStart: '01.01.2015',
                     workout: {
+                        exercises: [
+                            {
+                                id: 1,
+                                label: 'T-Bar-Rows'
+                            },
+                            {
+                                id: 2,
+                                label: 'Hammercurls'
+                            },
+                            {
+                                id: 3,
+                                label: 'Butterfly'
+                            }
+                        ],
                         label: 'some training'
                     },
                     sets: {
@@ -38,22 +50,6 @@ describe("TrainingDetail", () => {
                 } 
             );
         });
-        ExerciseStore.getExercises.mockImplementation(() => {
-            return Immutable.fromJS([
-                    {
-                        id: 1,
-                        label: 'T-Bar-Rows'
-                    },
-                    {
-                        id: 2,
-                        label: 'Hammercurls'
-                    },
-                    {
-                        id: 3,
-                        label: 'Butterfly'
-                    }
-                ]);
-        });
         Router.State.getQuery.mockImplementation(() => {
             return {
                 training: 0
@@ -65,7 +61,6 @@ describe("TrainingDetail", () => {
     afterEach(() => {
         TrainingStore.getTrainingForId.mockClear();
         Router.State.getQuery.mockClear();
-        ExerciseStore.getExercises.mockClear();
     });
 
     it("renders a TrainingDetail Page", () => {

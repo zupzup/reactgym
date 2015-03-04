@@ -3,12 +3,14 @@
 jest.dontMock('../../scripts/stores/TrainingStore.js');
 jest.mock('../../scripts/dispatcher/AppDispatcher.js');
 jest.mock('../../scripts/utils/LocalStorageUtil.js');
+jest.mock('../../scripts/stores/ExerciseStore.js');
 let Immutable = require('immutable');
 
 describe("TrainingStore", () => {
     let cb,
         LocalStorageUtil,
         AppDispatcher,
+        ExerciseStore,
         TrainingStore,
         ActionTypes = require('../../scripts/constants/ActionTypes.js'),
         addTrainingAction = {
@@ -16,7 +18,17 @@ describe("TrainingStore", () => {
             action: {
                 type: ActionTypes.ADD_TRAINING,
                 training: Immutable.fromJS({
-                    id: 5
+                    id: 5,
+                    sets: {
+                        "1" : [
+                            {reps: 5, weight: 5}
+                        ],
+                        "2" : [] 
+                    },
+                    workout: {
+                        exercises: ["1", "2"],
+                        label: "#1"
+                    }
                 })
             }
         },
@@ -29,7 +41,14 @@ describe("TrainingStore", () => {
                     sets: {
                         '0': [
                             {reps: 5, weight: 5}
+                        ],
+                        '1': [
+                            {reps: 5, weight: 5}
                         ]
+                    },
+                    workout: {
+                        exercises: ["1", "2"],
+                        label: "#1"
                     }
                 })
             }
@@ -44,10 +63,18 @@ describe("TrainingStore", () => {
 
     beforeEach(() => {
         LocalStorageUtil = require('../../scripts/utils/LocalStorageUtil.js');
+        ExerciseStore = require('../../scripts/stores/ExerciseStore');
         AppDispatcher = require('../../scripts/dispatcher/AppDispatcher');
         TrainingStore = require('../../scripts/stores/TrainingStore.js');
         LocalStorageUtil.lsGet.mockImplementation(() => {
             return [];
+        });
+        ExerciseStore.getExercises.mockImplementation(() => {
+            return Immutable.fromJS([
+                {id: "0", label: "yar"},
+                {id: "1", label: "hello"},
+                {id: "2", label: "yay"}
+            ]);
         });
         cb = AppDispatcher.register.mock.calls[0][0];
     });
@@ -55,6 +82,7 @@ describe("TrainingStore", () => {
     afterEach(() => {
         LocalStorageUtil.lsGet.mockClear();
         LocalStorageUtil.lsSet.mockClear();
+        ExerciseStore.getExercises.mockClear();
     });
 
     it("getTrainings", () => {

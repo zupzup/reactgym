@@ -33,8 +33,6 @@ TODOS:
 * Tests for Settings & Backups
 * when editing exercises / workouts -> update/cancel training
     * loading indicator, failhandling for async actions (in LoadingStore)
-* deep-save trainings
-    * whole datastructure
 * native release builds (.ipa, .apk)
     * launch icon
     * conditionally include cordova
@@ -170,4 +168,5 @@ DONE:
     * [x] button "backup noew"
     * [x] BackupStore
 * [x] Implement Settings-page (timer etc.)
+* [x] deep-save trainings
 
