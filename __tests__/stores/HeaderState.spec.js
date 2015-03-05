@@ -32,7 +32,7 @@ describe("HeaderState", () => {
     });
 
     it("inits", () => {
-        HeaderState.init()
+        HeaderState.init();
         var config = HeaderState.getConfig();
         expect(Object.keys(config).length).toEqual(4);
     });

@@ -30,7 +30,7 @@ Demo:
 TODO
 
 TODOS:
-* Tests for Settings & Backups
+* Tests for Backups
 * when editing exercises / workouts -> update/cancel training
     * loading indicator, failhandling for async actions (in LoadingStore)
 * native release builds (.ipa, .apk)
@@ -169,4 +169,5 @@ DONE:
     * [x] BackupStore
 * [x] Implement Settings-page (timer etc.)
 * [x] deep-save trainings
+* [x] Tests for Settings
 
