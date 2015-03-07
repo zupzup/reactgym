@@ -4,7 +4,7 @@ jest.dontMock('../../scripts/stores/SettingsStore.js');
 jest.mock('../../scripts/dispatcher/AppDispatcher.js');
 jest.mock('../../scripts/utils/LocalStorageUtil.js');
 
-describe("HeaderState", () => {
+describe("SettingsStore", () => {
     let cb,
         SettingsStore,
         LocalStorageUtil,

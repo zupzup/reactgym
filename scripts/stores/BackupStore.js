@@ -4,7 +4,6 @@ var LocalStorageUtil = require('../utils/LocalStorageUtil'),
     ActionTypes = require('../constants/ActionTypes'),
     Immutable = require('immutable'),
     AppDispatcher = require('../dispatcher/AppDispatcher'),
-    BackupUtil = require('../utils/BackupUtil'),
     assign = require('object-assign'),
     StoreListenerMixin = require('../mixins/StoreListenerMixin'),
     _backups = Immutable.List();
