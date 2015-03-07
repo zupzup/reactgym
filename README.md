@@ -30,6 +30,7 @@ Demo:
 TODO
 
 TODOS:
+* var -> let
 * Tests for Backups
 * when editing exercises / workouts -> update/cancel training
     * loading indicator, failhandling for async actions (in LoadingStore)
@@ -170,4 +171,5 @@ DONE:
 * [x] Implement Settings-page (timer etc.)
 * [x] deep-save trainings
 * [x] Tests for Settings
+* [x] use babel
 

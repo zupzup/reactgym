@@ -17,16 +17,16 @@ var Menu = React.createClass({
     },
 
     render() {
-        var self = this,
+        let self = this,
             menuPoints = this.state.menuPoints.map((item) => {
-                var handlerFunc = () => {
+                let handlerFunc = () => {
                     AppStateActionCreators.closeMenu();
                     self.transitionTo(item.link);
                 };
                 return <MenuButton key={item.name} icon={item.icon} name={item.name} handler={handlerFunc}></MenuButton>;
             });
         /* istanbul ignore next */
-        var {className, ...prps} = this.props;
+        let className = this.props.className;
 
         return (
             <div className={className + ' menu'}>

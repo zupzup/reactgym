@@ -4,7 +4,6 @@
   "dependencies": {
     "flux": "^2.0.1",
     "immutable": "^3.6.2",
-    "jsx-loader": "^0.12.2",
     "lodash": "^3.0.0",
     "object-assign": "^1.0.0",
     "react": "^0.12.2",
@@ -12,6 +11,8 @@
     "react-tools": "^0.12.2"
   },
   "devDependencies": {
+    "babel-core": "^4.7.2",
+    "babel-loader": "^4.1.0",
     "del": "^1.1.1",
     "file-loader": "~0.8.1",
     "gulp": "^3.8.10",
@@ -27,7 +28,7 @@
     "react-router": "^0.12.0",
     "request": "^2.40.0",
     "url-loader": "~0.5.5",
-    "webpack": "^1.5.1",
+    "webpack": "^1.7.2",
     "webpack-dev-server": "^1.4.10"
   },
   "scripts": {

@@ -36,7 +36,7 @@ var BackupRestore = React.createClass({
     },
 
     render() {
-        var handlers = {
+        let handlers = {
             default: this.handleRestore
         };
         return (

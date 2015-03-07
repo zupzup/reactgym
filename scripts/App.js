@@ -30,7 +30,7 @@ var App = React.createClass({
     },
 
     render() {
-        var name = this.getRoutes().reverse()[0].name,
+        let name = this.getRoutes().reverse()[0].name,
             menuOpen = this.state.menuOpen ? 'open' : '',
             modal = <Modal content={this.state.modal} closeHandler={AppStateActionCreators.closeModal}  />,
             modalClass = this.state.modal ? ' modalOpen' : '',
