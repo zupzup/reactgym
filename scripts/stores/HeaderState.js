@@ -1,13 +1,13 @@
 'use strict';
 
-var react = require('react'),
+let react = require('react'),
     AppDispatcher = require('../dispatcher/AppDispatcher'),
     ActionTypes = require('../constants/ActionTypes'),
     assign = require('object-assign'),
     StoreListenerMixin = require('../mixins/StoreListenerMixin.js'),
     _config = null;
 
-var HeaderState = assign({}, StoreListenerMixin, {
+let HeaderState = assign({}, StoreListenerMixin, {
     init() {
         _config = {
             back: true,
@@ -32,7 +32,7 @@ var HeaderState = assign({}, StoreListenerMixin, {
 });
 
 HeaderState.dispatchToken = AppDispatcher.register((payload) => {
-    var action = payload.action;
+    let action = payload.action;
 
     switch(action.type) {
         case ActionTypes.SET_HEADER_CONFIG:

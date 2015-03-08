@@ -1,6 +1,6 @@
 'use strict';
 
-var react = require('react'),
+let react = require('react'),
     AppDispatcher = require('../dispatcher/AppDispatcher'),
     ActionTypes = require('../constants/ActionTypes'),
     Immutable = require('immutable'),
@@ -10,7 +10,7 @@ var react = require('react'),
     StoreListenerMixin = require('../mixins/StoreListenerMixin.js'),
     _trainings = Immutable.List();
 
-var TrainingStore = assign({}, StoreListenerMixin, {
+let TrainingStore = assign({}, StoreListenerMixin, {
     getTrainings() {
         if(_trainings.size === 0) {
             _trainings = Immutable.fromJS(LocalStorageUtil.lsGet('trainings')) || Immutable.List();
@@ -25,14 +25,14 @@ var TrainingStore = assign({}, StoreListenerMixin, {
     },
 
     getLastInputsForExercise(exercise, setNumber) {
-        var emptyRep = {rep: '', weight: ''},
+        let emptyRep = {rep: '', weight: ''},
             trainings = this.getTrainings();
         if(!trainings || trainings.size === 0 || 
             setNumber == null || !trainings.last().get('sets') || 
             !trainings.last().get('sets').get(exercise)) {
             return emptyRep; 
         }
-        var set = trainings.last().get('sets').get(exercise).get(setNumber);
+        let set = trainings.last().get('sets').get(exercise).get(setNumber);
         if(!set) {
             return emptyRep;
         }
@@ -44,7 +44,7 @@ var TrainingStore = assign({}, StoreListenerMixin, {
 });
 
 TrainingStore.dispatchToken = AppDispatcher.register((payload) => {
-    var action = payload.action;
+    let action = payload.action;
 
     switch(action.type) {
         case ActionTypes.ADD_TRAINING:

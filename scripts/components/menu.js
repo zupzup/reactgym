@@ -26,7 +26,7 @@ var Menu = React.createClass({
                 return <MenuButton key={item.name} icon={item.icon} name={item.name} handler={handlerFunc}></MenuButton>;
             });
         /* istanbul ignore next */
-        let className = this.props.className;
+        let {className, ...prps} = this.props;
 
         return (
             <div className={className + ' menu'}>

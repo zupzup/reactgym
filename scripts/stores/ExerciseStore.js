@@ -1,6 +1,6 @@
 'use strict';
 
-var react = require('react'),
+let react = require('react'),
     AppDispatcher = require('../dispatcher/AppDispatcher'),
     ActionTypes = require('../constants/ActionTypes'),
     LocalStorageUtil = require('../utils/LocalStorageUtil.js'),
@@ -9,7 +9,7 @@ var react = require('react'),
     StoreListenerMixin = require('../mixins/StoreListenerMixin.js'),
     _exercises = Immutable.List();
 
-var ExerciseStore = assign({}, StoreListenerMixin, {
+let ExerciseStore = assign({}, StoreListenerMixin, {
     getExerciseForId(id) {
         return this.getExercises().filter((exercise) => {
             return exercise.get('id') == id;
@@ -25,7 +25,7 @@ var ExerciseStore = assign({}, StoreListenerMixin, {
 });
 
 ExerciseStore.dispatchToken = AppDispatcher.register((payload) => {
-    var action = payload.action;
+    let action = payload.action;
 
     switch(action.type) {
         case ActionTypes.GET_EXERCISES:

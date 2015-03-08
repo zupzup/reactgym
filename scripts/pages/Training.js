@@ -1,6 +1,6 @@
 'use strict';
 
-var React = require('react'),
+let React = require('react'),
     List = require('../components/List'),
     AppStateActionCreators = require('../actions/AppStateActionCreators'),
     SimpleHeaderMixin = require('../mixins/SimpleHeaderMixin'),
@@ -17,7 +17,7 @@ var React = require('react'),
     ExerciseStore = require('../stores/ExerciseStore'),
     AppState = require('../stores/AppState');
 
-var Training = React.createClass({
+let Training = React.createClass({
     header: {
         title: 'Training'
     },
@@ -31,7 +31,7 @@ var Training = React.createClass({
     },
 
     finishTraining() {
-        var self = this,
+        let self = this,
             yesHandler = () => {
                 TrainingStoreActionCreators.addTraining(AppState.getActiveTraining());
                 AppStateActionCreators.finishTraining();
@@ -48,12 +48,12 @@ var Training = React.createClass({
     },
 
     startTraining(e, item, index) {
-        var workout = _.assign({}, item);
-        var sets = workout.exercises.reduce((acc, exercise) => {
+        let workout = _.assign({}, item);
+        let sets = workout.exercises.reduce((acc, exercise) => {
             acc[exercise] = [];
             return acc;
         }, {});
-        var training = {
+        let training = {
             workout: workout,
             id: TrainingStore.getTrainings().reduce((acc, item) => {
                 return item.get('id');
@@ -75,7 +75,7 @@ var Training = React.createClass({
     },
 
     render() {
-        var handlers = {};
+        let handlers = {};
         if(this.state.activeTraining === null) {
             handlers = {
                 default: this.startTraining
@@ -91,7 +91,7 @@ var Training = React.createClass({
         handlers = {
             default: this.exerciseClickHandler
         };
-        var training = this.state.activeTraining,
+        let training = this.state.activeTraining,
             exercises = ExerciseStore.getExercises().filter((item) => {
                 return training.getIn(['workout', 'exercises']).contains(item.get('id').toString());
             }),
@@ -118,7 +118,7 @@ var Training = React.createClass({
     },
 
     componentDidMount() {
-        var self = this;
+        let self = this;
         AppState.addChangeListener(self._onChange);
     },
 

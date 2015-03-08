@@ -5,7 +5,7 @@ jest.mock('../../scripts/stores/BackupStore.js');
 jest.mock('../../scripts/actions/BackupStoreActionCreators.js');
 jest.mock('../../scripts/actions/AppStateActionCreators.js');
 
-var React = require('react/addons'),
+let React = require('react/addons'),
     TestUtils = React.addons.TestUtils,
     BackupStoreActionCreators = require('../../scripts/actions/BackupStoreActionCreators.js'),
     AppStateActionCreators = require('../../scripts/actions/AppStateActionCreators.js'),

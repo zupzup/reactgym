@@ -1,6 +1,6 @@
 'use strict';
 
-var react = require('react'),
+let react = require('react'),
     AppDispatcher = require('../dispatcher/AppDispatcher'),
     ActionTypes = require('../constants/ActionTypes'),
     _ = require('lodash'),
@@ -9,7 +9,7 @@ var react = require('react'),
     StoreListenerMixin = require('../mixins/StoreListenerMixin.js'),
     _restTimer = null;
 
-var SettingsStore = assign({}, StoreListenerMixin, {
+let SettingsStore = assign({}, StoreListenerMixin, {
     getRestTimer() {
         if(_restTimer == null) {
             _restTimer = parseInt(LocalStorageUtil.lsGet('restTimer') || 90);
@@ -19,7 +19,7 @@ var SettingsStore = assign({}, StoreListenerMixin, {
 });
 
 SettingsStore.dispatchToken = AppDispatcher.register((payload) => {
-    var action = payload.action;
+    let action = payload.action;
 
     switch(action.type) {
         case ActionTypes.SET_REST_TIMER:

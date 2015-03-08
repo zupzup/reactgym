@@ -1,20 +1,20 @@
 'use strict';
 
-var react = require('react'),
+let react = require('react'),
     AppDispatcher = require('../dispatcher/AppDispatcher'),
     ActionTypes = require('../constants/ActionTypes'),
     assign = require('object-assign'),
     StoreListenerMixin = require('../mixins/StoreListenerMixin.js'),
     _menuPoints = [];
 
-var MenuStore = assign({}, StoreListenerMixin, {
+let MenuStore = assign({}, StoreListenerMixin, {
     getMenuPoints() {
         return _menuPoints;
     }
 });
 
 MenuStore.dispatchToken = AppDispatcher.register((payload) => {
-    var action = payload.action;
+    let action = payload.action;
 
     switch(action.type) {
         case ActionTypes.REQUEST_MENUPOINTS:

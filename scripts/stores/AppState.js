@@ -1,6 +1,6 @@
 'use strict';
 
-var react = require('react'),
+let react = require('react'),
     AppDispatcher = require('../dispatcher/AppDispatcher'),
     ActionTypes = require('../constants/ActionTypes'),
     LocalStorageUtil = require('../utils/LocalStorageUtil.js'),
@@ -15,14 +15,14 @@ var react = require('react'),
     _activeTraining = null,
     _timerValue = null;
 
-var vibrate = function() {
+let vibrate = function() {
     /* istanbul ignore else  */
     if(navigator.notification) {
         navigator.notification.vibrate(1000);
     }
 };
 
-var AppState = assign({}, StoreListenerMixin, {
+let AppState = assign({}, StoreListenerMixin, {
     getNextTransition() {
         return _nextTransition;
     },
@@ -56,7 +56,7 @@ var AppState = assign({}, StoreListenerMixin, {
 });
 
 AppState.dispatchToken = AppDispatcher.register((payload) => {
-    var action = payload.action;
+    let action = payload.action;
 
     switch(action.type) {
         case ActionTypes.SET_NEXT_TRANSITION:

@@ -1,6 +1,6 @@
 'use strict';
 
-var LocalStorageUtil = require('../utils/LocalStorageUtil'),
+let LocalStorageUtil = require('../utils/LocalStorageUtil'),
     ActionTypes = require('../constants/ActionTypes'),
     Immutable = require('immutable'),
     AppDispatcher = require('../dispatcher/AppDispatcher'),
@@ -8,14 +8,14 @@ var LocalStorageUtil = require('../utils/LocalStorageUtil'),
     StoreListenerMixin = require('../mixins/StoreListenerMixin'),
     _backups = Immutable.List();
 
-var BackupStore = assign({}, StoreListenerMixin, {
+let BackupStore = assign({}, StoreListenerMixin, {
     getBackups() {
         return _backups;
     }
 });
 
 BackupStore.dispatchToken = AppDispatcher.register((payload) => {
-    var action = payload.action;
+    let action = payload.action;
 
     switch(action.type) {
         case ActionTypes.GET_BACKUPS:

@@ -1,6 +1,6 @@
 'use strict';
 
-var react = require('react'),
+let react = require('react'),
     AppDispatcher = require('../dispatcher/AppDispatcher'),
     ActionTypes = require('../constants/ActionTypes'),
     assign = require('object-assign'),
@@ -9,7 +9,7 @@ var react = require('react'),
     StoreListenerMixin = require('../mixins/StoreListenerMixin.js'),
     _workouts = Immutable.List();
 
-var WorkoutStore = assign({}, StoreListenerMixin, {
+let WorkoutStore = assign({}, StoreListenerMixin, {
     getWorkouts() {
         if(_workouts.size === 0) {
             _workouts = Immutable.fromJS(LocalStorageUtil.lsGet('workouts'));
@@ -19,7 +19,7 @@ var WorkoutStore = assign({}, StoreListenerMixin, {
 });
 
 WorkoutStore.dispatchToken = AppDispatcher.register((payload) => {
-    var action = payload.action;
+    let action = payload.action;
 
     switch(action.type) {
         case ActionTypes.GET_WORKOUTS:
