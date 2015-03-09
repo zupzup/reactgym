@@ -1,9 +1,9 @@
 'use strict';
 
-var React = require('react/addons'),
+let React = require('react/addons'),
     PureRenderMixin = require('react').addons.PureRenderMixin;
 
-var ListItem = React.createClass({
+let ListItem = React.createClass({
     mixins: [PureRenderMixin],
 
     getInitialState() {
@@ -11,7 +11,7 @@ var ListItem = React.createClass({
     },
 
     render() {
-        var handlers = this.props.handlers, 
+        let handlers = this.props.handlers, 
             active = this.props.active ? ' active' : '',
             tappable = handlers.default ? ' tappable' : '',
             editAble = this.props.editAble ? 'show' : '';

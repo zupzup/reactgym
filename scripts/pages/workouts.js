@@ -1,6 +1,6 @@
 'use strict';
 
-var React = require('react'),
+let React = require('react'),
     List = require('../components/List'),
     HeaderStateActionCreators = require('../actions/HeaderStateActionCreators'),
     WorkoutStoreActionCreators = require('../actions/WorkoutStoreActionCreators'),
@@ -11,7 +11,7 @@ var React = require('react'),
     HeaderMixin = require('../mixins/HeaderMixin'),
     PureRenderMixin = require('react').addons.PureRenderMixin;
 
-var Workouts = React.createClass({
+let Workouts = React.createClass({
     header: {
         title: 'Workouts',
         add: () => {
@@ -44,8 +44,8 @@ var Workouts = React.createClass({
     },
 
     defaultHandler(e, item, index) {
-        var exercises = item.exercises.map((i) => {
-            var exercise = ExerciseStore.getExerciseForId(i);
+        let exercises = item.exercises.map((i) => {
+            let exercise = ExerciseStore.getExerciseForId(i);
             if(exercise) {
                 return <div key={i}>{exercise.get('label')}</div>;
             }
@@ -60,7 +60,7 @@ var Workouts = React.createClass({
     },
 
     render() {
-        var handlers = {
+        let handlers = {
             default: this.defaultHandler,
             delete: this.deleteHandler,
             edit: this.editHandler
@@ -73,7 +73,7 @@ var Workouts = React.createClass({
     },
 
     componentDidMount() {
-        var self = this;
+        let self = this;
         WorkoutStore.addChangeListener(this._onChange);
     },
 

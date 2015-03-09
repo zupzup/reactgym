@@ -1,11 +1,11 @@
 'use strict';
 
-var React = require('react'),
+let React = require('react'),
     HeaderStateActionCreators = require('../actions/HeaderStateActionCreators.js');
 
-var SimpleHeaderMixin = {
+let SimpleHeaderMixin = {
     componentDidMount() {
-        var self = this;
+        let self = this;
         HeaderStateActionCreators.setConfig({
             back: true,
             title:  {

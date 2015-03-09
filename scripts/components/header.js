@@ -1,12 +1,12 @@
 'use strict';
 
-var React = require('react/addons'),
+let React = require('react/addons'),
     Router = require('react-router'),
     HeaderState = require('../stores/HeaderState'),
     AppStateActionCreators = require('../actions/AppStateActionCreators'),
     PureRenderMixin = require('react').addons.PureRenderMixin;
 
-var Header = React.createClass({
+let Header = React.createClass({
     mixins: [Router.State, Router.Navigation, PureRenderMixin],
 
     getInitialState() {
@@ -20,7 +20,7 @@ var Header = React.createClass({
     },
 
     render() {
-        var currentRoute = this.getRoutes().reverse()[0].name,
+        let currentRoute = this.getRoutes().reverse()[0].name,
             add,
             config = this.state.config,
             editMode,

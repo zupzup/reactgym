@@ -1,13 +1,13 @@
 'use strict';
 
-var React = require('react/addons'),
+let React = require('react/addons'),
     WorkoutStoreActionCreators = require('../../actions/WorkoutStoreActionCreators'),
     ExerciseStore = require('../../stores/ExerciseStore'),
     ValidatedInput = require('./ValidatedInput'),
     AppStateActionCreators = require('../../actions/AppStateActionCreators'),
     PureRenderMixin = require('react').addons.PureRenderMixin;
 
-var WorkoutForm = React.createClass({
+let WorkoutForm = React.createClass({
     mixins: [PureRenderMixin],
 
     getInitialState() {
@@ -17,7 +17,7 @@ var WorkoutForm = React.createClass({
     },
 
     handleSubmit() {
-        var workout = {
+        let workout = {
             label: this.refs.name.getDOMNode().value,
             exercises: this.getSelectedExercises(this.refs.exercises.getDOMNode().options)
         };
@@ -35,7 +35,7 @@ var WorkoutForm = React.createClass({
     },
 
     render() {
-        var self = this,
+        let self = this,
             exercises = this.state.exercises.map((item) => {
                 return <option key={item.get('id')} value={item.get('id')}>{item.get('label')}</option>;
             }),

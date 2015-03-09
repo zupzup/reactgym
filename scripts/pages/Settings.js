@@ -1,13 +1,13 @@
 'use strict';
 
-var React = require('react'),
+let React = require('react'),
     SimpleHeaderMixin = require('../mixins/SimpleHeaderMixin'),
     SettingsStore = require('../stores/SettingsStore'),
     SettingsStoreActionCreators = require('../actions/SettingsStoreActionCreators'),
     ValidatedInput = require('../components/forms/ValidatedInput'),
     PureRenderMixin = require('react').addons.PureRenderMixin;
 
-var Settings = React.createClass({
+let Settings = React.createClass({
     header: {
         title: 'Settings'
     },
@@ -24,7 +24,7 @@ var Settings = React.createClass({
     },
 
     render() {
-        var handlers = {
+        let handlers = {
             default: this.handleRestore
         };
         return (

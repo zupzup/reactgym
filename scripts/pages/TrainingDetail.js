@@ -1,6 +1,6 @@
 'use strict';
 
-var React = require('react'),
+let React = require('react'),
     List = require('../components/List'),
     TrainingStore = require('../stores/TrainingStore.js'),
     Router = require('react-router'),
@@ -8,7 +8,7 @@ var React = require('react'),
     SimpleHeaderMixin = require('../mixins/SimpleHeaderMixin'),
     PureRenderMixin = require('react').addons.PureRenderMixin;
 
-var TrainingDetail = React.createClass({
+let TrainingDetail = React.createClass({
     header: {
         title: 'Detail'
     },
@@ -19,12 +19,12 @@ var TrainingDetail = React.createClass({
     },
 
     render() {
-        var training = TrainingStore.getTrainingForId(this.getQuery().training);
+        let training = TrainingStore.getTrainingForId(this.getQuery().training);
         if(training) {
-            var exercises = training.getIn(['workout', 'exercises']);
+            let exercises = training.getIn(['workout', 'exercises']);
             training = training.toJS();
-            var sets = _.map(training.sets, (set, exercise) => {
-                var sets = set.map((item, idx) => {
+            let sets = _.map(training.sets, (set, exercise) => {
+                let sets = set.map((item, idx) => {
                     return <div className='set' key={idx}><span className='count'>#{idx + 1}</span><span className='repsweight'>Reps: {item.reps} / Weight: {item.weight}</span></div>;
                 });
                 return (

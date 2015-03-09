@@ -1,9 +1,9 @@
 'use strict';
-var assign = require('object-assign'),
-    CHANGE_EVENT = 'change',
+let assign = require('object-assign'),
     EventEmitter = require('events').EventEmitter;
+const CHANGE_EVENT = 'change';
 
-var StoreListenerMixin = assign({}, EventEmitter.prototype, {
+let StoreListenerMixin = assign({}, EventEmitter.prototype, {
     emitChange() {
         this.emit(CHANGE_EVENT);
     },

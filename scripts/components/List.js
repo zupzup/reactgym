@@ -1,11 +1,11 @@
 'use strict';
 
-var React = require('react/addons'),
+let React = require('react/addons'),
     _ = require('lodash'),
     ListItem = require('../components/ListItem'),
     PureRenderMixin = require('react').addons.PureRenderMixin;
 
-var List = React.createClass({
+let List = React.createClass({
     mixins: [PureRenderMixin],
 
     getInitialState() {
@@ -18,10 +18,10 @@ var List = React.createClass({
     },
 
     render() {
-        var self = this,
+        let self = this,
             listItems = this.props.items.map((item, index) => {
-                var handlers = _.transform(self.props.handlers, (result, handler, key) => {
-                        var handlerFnc = result[key] = self._createHandlerFunction(item, index, handler);
+                let handlers = _.transform(self.props.handlers, (result, handler, key) => {
+                        let handlerFnc = result[key] = self._createHandlerFunction(item, index, handler);
                         return handlerFnc;
                     }),
                     isActive;
@@ -42,7 +42,7 @@ var List = React.createClass({
     },
 
     _createHandlerFunction(item, index, handler) {
-        var handlerFunc = handler || this.defaultHandler;
+        let handlerFunc = handler || this.defaultHandler;
         return (e) => {
             this.setState({activeIndex: index});
             e.stopPropagation();

@@ -1,14 +1,14 @@
 'use strict';
-var Immutable = require('immutable'),
+let Immutable = require('immutable'),
     folder = 'simplegym',
     prefix = 'simplegym_';
 
-var BackupUtil = {
+let BackupUtil = {
     getBackups(cb) {
-        var self = this;
+        let self = this;
         if(window.requestFileSystem) {
             self.getDirectory((dirEntry) => {
-                var reader = dirEntry.createReader();
+                let reader = dirEntry.createReader();
                 reader.readEntries((entries) => {
                     cb(null, Immutable.fromJS(entries).map((item) => {
                         return {
@@ -32,7 +32,7 @@ var BackupUtil = {
     },
 
     saveBackup(data, cb) {
-        var self = this;
+        let self = this;
         if(window.requestFileSystem) {
             self.getDirectory((dirEntry) => {
                 dirEntry.getFile(prefix + new Date().getTime().toString(), {create: true, exclusive: false}, (file) => {
@@ -72,7 +72,7 @@ var BackupUtil = {
     },
 
     getDirectory(cb, err) {
-        var self = this;
+        let self = this;
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, (fs) => {
             fs.root.getDirectory(folder, {create: true}, cb, err);
         }, self.err('fs'));

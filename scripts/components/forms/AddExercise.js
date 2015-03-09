@@ -1,12 +1,12 @@
 'use strict';
 
-var React = require('react/addons'),
+let React = require('react/addons'),
     ValidatedInput = require('./ValidatedInput'),
     ExerciseStoreActionCreators = require('../../actions/ExerciseStoreActionCreators'),
     AppStateActionCreators = require('../../actions/AppStateActionCreators'),
     PureRenderMixin = require('react').addons.PureRenderMixin;
 
-var AddExercise = React.createClass({
+let AddExercise = React.createClass({
     mixins: [PureRenderMixin],
 
     getInitialState() {
@@ -30,7 +30,7 @@ var AddExercise = React.createClass({
     },
 
     render() {
-        var self = this,
+        let self = this,
             value = this.props.edit ? this.props.exercise.label : '';
 
        return (

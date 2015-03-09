@@ -1,6 +1,6 @@
 'use strict';
 
-var React = require('react'),
+let React = require('react'),
     List = require('../components/List'),
     ExerciseStoreActionCreators = require('../actions/ExerciseStoreActionCreators'),
     WorkoutStoreActionCreators = require('../actions/WorkoutStoreActionCreators'),
@@ -11,7 +11,7 @@ var React = require('react'),
     PureRenderMixin = require('react').addons.PureRenderMixin,
     ExerciseStore = require('../stores/ExerciseStore');
 
-var Exercises = React.createClass({
+let Exercises = React.createClass({
     header: {
         title: 'Exercises',
         add: () => {
@@ -45,7 +45,7 @@ var Exercises = React.createClass({
     },
 
     render() {
-        var handlers = {
+        let handlers = {
             default: null,
             delete: this.deleteHandler,
             edit: this.editHandler

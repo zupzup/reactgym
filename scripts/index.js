@@ -1,6 +1,6 @@
 'use strict';
 
-var React = require('react'),
+let React = require('react'),
     Router = require('react-router'),
     MenuStoreActionCreators = require('./actions/MenuStoreActionCreators'),
     HeaderState = require('./stores/HeaderState'),
@@ -17,7 +17,7 @@ var React = require('react'),
     Workouts = require('./pages/Workouts'),
     App = require('./App');
 
-var routes = (
+let routes = (
     <Route handler={App}>
         <Route name='home' path='/' handler={Home} />
         <Route name='exercises' path='/exercises' handler={Exercises} />

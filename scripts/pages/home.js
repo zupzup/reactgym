@@ -1,6 +1,6 @@
 'use strict';
 
-var React = require('react'),
+let React = require('react'),
     List = require('../components/List'),
     HeaderStateActionCreators = require('../actions/HeaderStateActionCreators'),
     TrainingStore = require('../stores/TrainingStore.js'),
@@ -9,7 +9,7 @@ var React = require('react'),
     Immutable = require('immutable'),
     AppState = require('../stores/AppState');
 
-var Home = React.createClass({
+let Home = React.createClass({
     mixins: [Router.Navigation, PureRenderMixin],
 
     getInitialState() {
@@ -27,13 +27,13 @@ var Home = React.createClass({
     },
 
     render() {
-        var activeTraining = AppState.getActiveTraining(),
+        let activeTraining = AppState.getActiveTraining(),
             handlers = {
                 default: this.goToDetailHandler
             },
             trainingDiv,
             trainings = TrainingStore.getTrainings().map((item) => {
-                var date = new Date(item.get('dateStart'));
+                let date = new Date(item.get('dateStart'));
                 return item.set('label', date.toLocaleDateString() + ' ' + date.toLocaleTimeString() + ' - ' + item.getIn(['workout', 'label']));
             }).reverse(),
             timerDiv;
@@ -63,7 +63,7 @@ var Home = React.createClass({
     },
 
     componentDidMount() {
-        var self = this;
+        let self = this;
         AppState.addChangeListener(self._onChange);
     },
 

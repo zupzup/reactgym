@@ -1,20 +1,20 @@
 'use strict';
 
-var React = require('react/addons'),
+let React = require('react/addons'),
     AppStateActionCreators = require('../../actions/AppStateActionCreators'),
     ValidatedInput = require('./ValidatedInput'),
     PureRenderMixin = require('react').addons.PureRenderMixin,
     TrainingStore = require('../../stores/TrainingStore'),
     ExerciseStore = require('../../stores/ExerciseStore');
 
-var TrainingForm = React.createClass({
+let TrainingForm = React.createClass({
     mixins: [PureRenderMixin],
     getInitialState() {
         return {};
     },
 
     handleSubmit() {
-        var reps = this.refs.reps.getDOMNode(),
+        let reps = this.refs.reps.getDOMNode(),
             weight = this.refs.weight.getDOMNode();
         if(reps.className.indexOf('invalid') === -1 && weight.className.indexOf('invalid') === -1) {
             this.props.handler(this.props.exercise, reps.value, weight.value);
@@ -22,10 +22,10 @@ var TrainingForm = React.createClass({
     },
 
     render() {
-        var self = this,
+        let self = this,
             exercise = ExerciseStore.getExerciseForId(this.props.exercise),
             sets = this.props.sets.map((item, index) => {
-                var handler = () => {
+                let handler = () => {
                     AppStateActionCreators.removeSet(self.props.exercise, index);
                 };
                 return <span className='rep' key={index} onClick={handler}>{index + 1}</span>;

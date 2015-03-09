@@ -1,6 +1,6 @@
 'use strict';
-var prefix = 'sg_';
-var LocalStorageUtil = {
+const prefix = 'sg_';
+let LocalStorageUtil = {
     lsGet(key) {
         return JSON.parse(localStorage.getItem(prefix + key));
     },

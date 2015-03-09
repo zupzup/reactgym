@@ -1,6 +1,6 @@
 'use strict';
 
-var React = require('react/addons'),
+let React = require('react/addons'),
     Header = require('./components/Header'),
     Menu = require('./components/Menu'),
     Modal = require('./components/Modal'),
@@ -12,7 +12,7 @@ var React = require('react/addons'),
     RouteHandler = Router.RouteHandler,
     Navigation = Router.Navigation;
 
-var App = React.createClass({
+let App = React.createClass({
     mixins: [Router.State, Navigation],
 
     getInitialState() {

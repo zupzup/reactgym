@@ -1,10 +1,10 @@
 'use strict';
 
-var React = require('react/addons'),
+let React = require('react/addons'),
 ValidationUtil = require('../../utils/ValidationUtil'),
 PureRenderMixin = require('react').addons.PureRenderMixin;
 
-var ValidatedInput = React.createClass({
+let ValidatedInput = React.createClass({
     mixins: [PureRenderMixin],
 
     getInitialState() {
@@ -15,7 +15,7 @@ var ValidatedInput = React.createClass({
     },
 
     validate(value) {
-        var validator = ValidationUtil.getValidationFunction(this.props.validator);
+        let validator = ValidationUtil.getValidationFunction(this.props.validator);
         return validator.test(value);
     },
 
@@ -32,12 +32,12 @@ var ValidatedInput = React.createClass({
     },
 
     componentDidMount() {
-        var value = this.props.value || '';
+        let value = this.props.value || '';
         this.validateAndSetValue(value);
     },
 
     validateAndSetValue(value) {
-        var valid = 'valid';
+        let valid = 'valid';
         if(!this.validate(value)) {
             valid = 'invalid';
         }
@@ -48,12 +48,12 @@ var ValidatedInput = React.createClass({
     },
 
     scrollToMe() {
-        var node = this.getDOMNode();
+        let node = this.getDOMNode();
         node.scrollTop = node.scrollHeight;
     },
 
     changeHandler(e) {
-        var newValue = e.currentTarget.value;
+        let newValue = e.currentTarget.value;
         this.validateAndSetValue(newValue);
     },
 

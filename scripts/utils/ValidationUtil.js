@@ -1,4 +1,4 @@
-var ValidationUtil = {
+module.exports = {
     getValidationFunction(validator) {
         if(validator === 'number') {
             return {
@@ -11,4 +11,3 @@ var ValidationUtil = {
     }
 };
 
-module.exports = ValidationUtil;
