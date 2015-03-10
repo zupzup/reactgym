@@ -34,6 +34,7 @@ let Workouts = React.createClass({
     },
 
     deleteHandler(e, item, index) {
+        AppStateActionCreators.finishTraining();
         WorkoutStoreActionCreators.removeWorkout(index);
     },
 

@@ -30,18 +30,18 @@ Demo:
 TODO
 
 TODOS:
-* var -> let
-* Tests for Backups
-* when editing exercises / workouts -> update/cancel training
-    * loading indicator, failhandling for async actions (in LoadingStore)
-* native release builds (.ipa, .apk)
-    * launch icon
-    * conditionally include cordova
 * upgrade to react .13
+* finish backups
+    * Tests for Backups
+    * warning, that active training gets canceled on data-change
+    * loading indicator, failhandling for async actions (in LoadingStore)
 * file-api / server-api for persistence
     * [PhoneGap File-API](http://docs.phonegap.com/en/edge/cordova_file_file.md.html)
     * [usage](https://gist.github.com/alunny/1904992)
     * create a common interface for file-api (native) and web-api
+* native release builds (.ipa, .apk)
+    * launch icon
+    * conditionally include cordova
 
 DONE:
 ------
@@ -172,4 +172,6 @@ DONE:
 * [x] deep-save trainings
 * [x] Tests for Settings
 * [x] use babel
+* [x] when editing exercises / workouts -> update/cancel training
+* [x] var -> let
 

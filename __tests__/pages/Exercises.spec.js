@@ -37,6 +37,7 @@ describe("Exercises", () => {
         exercises.componentWillUnmount();
         ExerciseStore.getExercises.mockClear();
         AppStateActionCreators.openModal.mockClear();
+        AppStateActionCreators.finishTraining.mockClear();
     });
 
     it("renders an Exercises Page", () => {
@@ -53,6 +54,7 @@ describe("Exercises", () => {
         it("deletes the exercise and removes it from all workouts", () => {
             exercises.deleteHandler(null, {id: 0}, 0);
             expect(ExerciseStoreActionCreators.removeExercise.mock.calls.length).toBe(1);
+            expect(AppStateActionCreators.finishTraining.mock.calls.length).toBe(1);
             expect(WorkoutStoreActionCreators.removeExerciseFromWorkouts.mock.calls.length).toBe(1);
         });
     });

@@ -22,6 +22,7 @@ let AddExercise = React.createClass({
         } else {
             ExerciseStoreActionCreators.addExercise(this.refs.name.getDOMNode().value);
         }
+        AppStateActionCreators.finishTraining();
         AppStateActionCreators.closeModal();
     },
 

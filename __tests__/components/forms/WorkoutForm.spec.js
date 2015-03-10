@@ -30,6 +30,7 @@ describe("WorkoutForm", () => {
 
     afterEach(() => {
         ExerciseStore.getExercises.mockClear();
+        AppStateActionCreators.finishTraining.mockClear(); 
         AppStateActionCreators.closeModal.mockClear(); 
         WorkoutStoreActionCreators.updateWorkout.mockClear(); 
         WorkoutStoreActionCreators.addWorkout.mockClear(); 
@@ -59,6 +60,7 @@ describe("WorkoutForm", () => {
         let submitButton = TestUtils.findRenderedDOMComponentWithClass(workoutForm, 'submitButton');
         TestUtils.Simulate.click(submitButton.getDOMNode());
         expect(AppStateActionCreators.closeModal.mock.calls.length).toBe(1);
+        expect(AppStateActionCreators.finishTraining.mock.calls.length).toBe(1);
         expect(WorkoutStoreActionCreators.addWorkout.mock.calls.length).toBe(1);
     });
 
@@ -72,6 +74,7 @@ describe("WorkoutForm", () => {
         );
         let submitButton = TestUtils.findRenderedDOMComponentWithClass(workoutForm, 'submitButton');
         TestUtils.Simulate.click(submitButton.getDOMNode());
+        expect(AppStateActionCreators.finishTraining.mock.calls.length).toBe(1);
         expect(AppStateActionCreators.closeModal.mock.calls.length).toBe(1);
         expect(WorkoutStoreActionCreators.updateWorkout.mock.calls.length).toBe(1);
     });

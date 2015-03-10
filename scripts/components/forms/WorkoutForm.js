@@ -27,6 +27,7 @@ let WorkoutForm = React.createClass({
         } else {
             WorkoutStoreActionCreators.addWorkout(workout);
         }
+        AppStateActionCreators.finishTraining();
         AppStateActionCreators.closeModal();
     },
 

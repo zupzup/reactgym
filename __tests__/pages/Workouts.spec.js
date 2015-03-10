@@ -48,6 +48,7 @@ describe("Workouts", () => {
         WorkoutStore.getWorkouts.mockClear();
         ExerciseStore.getExerciseForId.mockClear();
         AppStateActionCreators.openModal.mockClear();
+        AppStateActionCreators.finishTraining.mockClear();
     });
 
     it("renders a Workouts Page", () => {
@@ -64,6 +65,7 @@ describe("Workouts", () => {
         it("deletes the workout", () => {
             workouts.deleteHandler(null, {id: 0}, 0);
             expect(WorkoutStoreActionCreators.removeWorkout.mock.calls.length).toBe(1);
+            expect(AppStateActionCreators.finishTraining.mock.calls.length).toBe(1);
         });
     });
 

@@ -12,9 +12,10 @@ let React = require('react/addons'),
 describe("AddExercise", () => {
     afterEach(() => {
         AppStateActionCreators.closeModal.mockClear(); 
+        AppStateActionCreators.finishTraining.mockClear(); 
         ExerciseStoreActionCreators.addExercise.mockClear(); 
     });
-    
+
     it("renders an AddExercise form", () => {
         let addExercise = TestUtils.renderIntoDocument(
             <AddExercise  />
@@ -39,6 +40,7 @@ describe("AddExercise", () => {
         let submitButton = TestUtils.findRenderedDOMComponentWithClass(addExercise, 'submitButton');
         TestUtils.Simulate.click(submitButton.getDOMNode());
         expect(AppStateActionCreators.closeModal.mock.calls.length).toBe(1);
+        expect(AppStateActionCreators.finishTraining.mock.calls.length).toBe(1);
         expect(ExerciseStoreActionCreators.addExercise.mock.calls.length).toBe(1);
     });
 
@@ -52,6 +54,7 @@ describe("AddExercise", () => {
         );
         let submitButton = TestUtils.findRenderedDOMComponentWithClass(addExercise, 'submitButton');
         TestUtils.Simulate.click(submitButton.getDOMNode());
+        expect(AppStateActionCreators.finishTraining.mock.calls.length).toBe(1);
         expect(AppStateActionCreators.closeModal.mock.calls.length).toBe(1);
         expect(ExerciseStoreActionCreators.updateExercise.mock.calls.length).toBe(1);
     });
