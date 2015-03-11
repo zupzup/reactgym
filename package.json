@@ -6,9 +6,8 @@
     "immutable": "^3.6.4",
     "lodash": "^3.5.0",
     "object-assign": "^1.0.0",
-    "react": "^0.12.2",
-    "react-document-title": "^1.0.2",
-    "react-tools": "^0.12.2"
+    "react": "^0.13.0",
+    "react-tools": "^0.13.0"
   },
   "devDependencies": {
     "babel": "^4.7.7",
@@ -25,8 +24,8 @@
     "istanbul": "^0.3.7",
     "jest-cli": "^0.4.0",
     "phonegap": "^4.2.0-0.24.2",
-    "react-hot-loader": "^1.1.5",
-    "react-router": "^0.12.0",
+    "react-hot-loader": "^1.2.2",
+    "react-router": "git://github.com/rackt/react-router.git#0.13-compat",
     "request": "^2.40.0",
     "url-loader": "~0.5.5",
     "webpack": "^1.7.2",

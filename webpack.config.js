@@ -20,7 +20,7 @@ module.exports = {
   },
   module: {
     loaders: [
-      { test: /\.js$/, exclude: /node_modules/, loaders: ['react-hot', 'babel?experimental'] }
+      { test: /\.js$/, exclude: /\/node_modules\/[^react\-router].*/, loader: 'babel?experimental' }
     ]
   }
 };

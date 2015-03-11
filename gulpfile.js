@@ -18,24 +18,14 @@ var gulp = require('gulp'),
 var startServer = function() {
     var server = new WebpackDevServer(webpack(config), {
         publicPath: config.output.publicPath,
-        hot: true
-    });
-
-    server.listen(3000, 'localhost', function (err, result) {
+        hot: false,
+        historyApiFallback: true
+    }).listen(3000, 'localhost', function (err, result) {
         if (err) {
             console.log(err);
         }
 
         console.log('Listening at localhost:3000');
-    });
-
-    server.app.use(function pushStateHook(req, res, next) {
-        var ext = path.extname(req.url);
-        if ((ext === '' || ext === '.html') && req.url !== '/') {
-            req.pipe(request('http://localhost:3000')).pipe(res);
-        } else {
-            next();
-        }
     });
 };
 

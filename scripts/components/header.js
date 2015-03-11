@@ -20,7 +20,7 @@ let Header = React.createClass({
     },
 
     render() {
-        let currentRoute = this.getRoutes().reverse()[0].name,
+        let currentRoute = this.context.router.getCurrentRoutes().reverse()[0].name,
             add,
             config = this.state.config,
             editMode,

@@ -8,7 +8,6 @@ let React = require('react/addons'),
     AppState = require('./stores/AppState'),
     AppStateActionCreators = require('./actions/AppStateActionCreators'),
     ReactCSSTransitionGroup = React.addons.CSSTransitionGroup,
-    DocumentTitle = require('react-document-title'),
     RouteHandler = Router.RouteHandler,
     Navigation = Router.Navigation;
 
@@ -30,26 +29,24 @@ let App = React.createClass({
     },
 
     render() {
-        let name = this.getRoutes().reverse()[0].name,
+        let name = this.context.router.getCurrentRoutes().reverse()[0].name,
             menuOpen = this.state.menuOpen ? 'open' : '',
             modal = <Modal content={this.state.modal} closeHandler={AppStateActionCreators.closeModal}  />,
             modalClass = this.state.modal ? ' modalOpen' : '',
             mask = (menuOpen || this.state.modal) ? <div className={'mask' + modalClass} onClick={this.contentHandler}></div> : null;
 
         return (
-            <DocumentTitle title='SimpleGym'>
-                <div className='App'>
-                    <Menu className={menuOpen}/>
-                    {modal}
-                    {mask}
-                    <div className={'contentArea ' + menuOpen}>
-                        <Header />
-                        <ReactCSSTransitionGroup className='content' component='div' transitionName={AppState.getNextTransition()}>
-                            <RouteHandler key={name} />
-                        </ReactCSSTransitionGroup>
-                    </div>
+            <div className='App'>
+                <Menu className={menuOpen}/>
+                {modal}
+                {mask}
+                <div className={'contentArea ' + menuOpen}>
+                    <Header />
+                    <ReactCSSTransitionGroup className='content' component='div' transitionName={AppState.getNextTransition()}>
+                        <RouteHandler key={name} />
+                    </ReactCSSTransitionGroup>
                 </div>
-            </DocumentTitle>
+            </div>
         );
     },
 
