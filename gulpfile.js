@@ -18,8 +18,7 @@ var gulp = require('gulp'),
 var startServer = function() {
     var server = new WebpackDevServer(webpack(config), {
         publicPath: config.output.publicPath,
-        hot: false,
-        historyApiFallback: true
+        hot: false
     }).listen(3000, 'localhost', function (err, result) {
         if (err) {
             console.log(err);
