@@ -25,7 +25,7 @@ let App = React.createClass({
 
         if(this.state.modal) {
             AppStateActionCreators.closeModal();
-        } 
+        }
     },
 
     render() {
@@ -64,10 +64,6 @@ let App = React.createClass({
 
     _onChange() {
         this.setState(this.getStateFromStores());
-    },
-
-    shouldComponentUpdate(nextProps, nextState) {
-        return true;
     }
 });
 
