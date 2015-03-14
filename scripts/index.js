@@ -7,7 +7,6 @@ let React = require('react'),
     AppStateActionCreators = require('./actions/AppStateActionCreators'),
     ExerciseStoreActionCreators = require('./actions/ExerciseStoreActionCreators'),
     WorkoutStoreActionCreators = require('./actions/WorkoutStoreActionCreators'),
-    Route = Router.Route,
     Exercises = require('./pages/Exercises'),
     Training = require('./pages/Training'),
     Home = require('./pages/Home'),
@@ -17,15 +16,19 @@ let React = require('react'),
     Workouts = require('./pages/Workouts'),
     App = require('./App');
 
+let Route = Router.Route,
+    DefaultRoute = Router.DefaultRoute;
+
+
 let routes = (
-    <Route handler={App}>
-        <Route name='home' path='/' handler={Home} />
-        <Route name='exercises' path='/exercises' handler={Exercises} />
-        <Route name='workouts' path='/workouts' handler={Workouts} />
-        <Route name='training' path='/training' handler={Training} />
-        <Route name='detail' path='/detail' handler={TrainingDetail} />
-        <Route name='backup' path='/backup' handler={BackupRestore} />
-        <Route name='settings' path='/settings' handler={Settings} />
+    <Route name='app' path='/' handler={App}>
+        <DefaultRoute name='home' handler={Home} />
+        <Route name='exercises' handler={Exercises} />
+        <Route name='workouts' handler={Workouts} />
+        <Route name='training' handler={Training} />
+        <Route name='detail' handler={TrainingDetail} />
+        <Route name='backup' handler={BackupRestore} />
+        <Route name='settings' handler={Settings} />
     </Route>
 );
 
@@ -35,10 +38,10 @@ WorkoutStoreActionCreators.getWorkouts();
 HeaderState.init();
 
 Router.run(routes, (Handler, state) => {
-    if(state.action === 'pop') {
-        AppStateActionCreators.setNextTransition('slideBack');
-    }
+    // if(state.action === 'pop') {
+    //     AppStateActionCreators.setNextTransition('slideBack');
+    // }
     React.render(<Handler/>, document.body);
     // reset Transition animation after every transition
-    AppStateActionCreators.resetTransitions();
+    // AppStateActionCreators.resetTransitions();
 });

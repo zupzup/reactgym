@@ -16,16 +16,16 @@ let Header = React.createClass({
     },
 
     back() {
-        this.goBack();
+        this.context.router.goBack();
     },
 
     render() {
-        let currentRoute = this.context.router.getCurrentRoutes().reverse()[0].name,
+        let currentRoute = this.context.router.getCurrentPath(),
             add,
             config = this.state.config,
             editMode,
             title,
-            showBack = (!config.back || currentRoute === 'home') ? 'hide' : '';
+            showBack = (!config.back || currentRoute === '/') ? 'hide' : '';
         if(config.title && config.title.visible) {
             title = <span className="headertitle">{config.title.text}</span>; 
         }

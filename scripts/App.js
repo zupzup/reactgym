@@ -8,11 +8,10 @@ let React = require('react/addons'),
     AppState = require('./stores/AppState'),
     AppStateActionCreators = require('./actions/AppStateActionCreators'),
     ReactCSSTransitionGroup = React.addons.CSSTransitionGroup,
-    RouteHandler = Router.RouteHandler,
-    Navigation = Router.Navigation;
+    RouteHandler = Router.RouteHandler;
 
 let App = React.createClass({
-    mixins: [Router.State, Navigation],
+    mixins: [Router.State],
 
     getInitialState() {
         return AppState.getAll();
@@ -29,7 +28,7 @@ let App = React.createClass({
     },
 
     render() {
-        let name = this.context.router.getCurrentRoutes().reverse()[0].name,
+        let name = this.context.router.getCurrentPath(),
             menuOpen = this.state.menuOpen ? 'open' : '',
             modal = <Modal content={this.state.modal} closeHandler={AppStateActionCreators.closeModal}  />,
             modalClass = this.state.modal ? ' modalOpen' : '',

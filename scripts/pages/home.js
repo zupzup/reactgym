@@ -19,11 +19,11 @@ let Home = React.createClass({
     },
 
     goToTrainingHandler() {
-        this.transitionTo('training');
+        this.context.router.transitionTo('training');
     },
 
     goToDetailHandler(e, item, index) {
-        this.transitionTo('detail',{}, {training: item.id});
+        this.context.router.transitionTo('detail',{}, {training: item.id});
     },
 
     render() {

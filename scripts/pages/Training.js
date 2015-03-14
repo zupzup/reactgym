@@ -37,7 +37,7 @@ let Training = React.createClass({
                 AppStateActionCreators.finishTraining();
                 AppStateActionCreators.stopTimer();
                 AppStateActionCreators.closeModal();
-                self.transitionTo('home');
+                self.context.router.transitionTo('home');
             },
             noHandler = () => {
                 AppStateActionCreators.closeModal();
