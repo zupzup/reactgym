@@ -38,10 +38,10 @@ WorkoutStoreActionCreators.getWorkouts();
 HeaderState.init();
 
 Router.run(routes, (Handler, state) => {
-    // if(state.action === 'pop') {
-    //     AppStateActionCreators.setNextTransition('slideBack');
-    // }
+    if(state.action === 'pop') {
+        AppStateActionCreators.setNextTransition('slideBack');
+    }
     React.render(<Handler/>, document.body);
     // reset Transition animation after every transition
-    // AppStateActionCreators.resetTransitions();
+    AppStateActionCreators.resetTransitions();
 });

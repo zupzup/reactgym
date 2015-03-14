@@ -5,12 +5,16 @@ let React = require('react'),
     HeaderStateActionCreators = require('../actions/HeaderStateActionCreators'),
     TrainingStore = require('../stores/TrainingStore.js'),
     Router = require('react-router'),
+    SimpleHeaderMixin = require('../mixins/SimpleHeaderMixin'),
     PureRenderMixin = require('react').addons.PureRenderMixin,
     Immutable = require('immutable'),
     AppState = require('../stores/AppState');
 
 let Home = React.createClass({
-    mixins: [Router.Navigation, PureRenderMixin],
+    header: {
+        title: 'Home'
+    },
+    mixins: [Router.Navigation, PureRenderMixin, SimpleHeaderMixin],
 
     getInitialState() {
         return {
@@ -50,16 +54,6 @@ let Home = React.createClass({
                 <List handlers={handlers} editAble={false} items={trainings.toJS()}></List>
             </div>
         );
-    },
-
-    componentWillMount() {
-        HeaderStateActionCreators.setConfig({
-            back: false,
-            title:  {
-                visible: true,
-                text: 'Home'
-            }
-        });
     },
 
     componentDidMount() {
