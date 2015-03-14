@@ -15,6 +15,23 @@ var React = require('react/addons'),
 
 describe("Header", () => {
     var header;
+    var ContextComponent = React.createClass({
+        childContextTypes: {
+            router: React.PropTypes.object
+        },
+        getChildContext() {
+            return {
+                router: {
+                    getCurrentRoutes: () => {
+                        return [{name: 'home'}];
+                    }
+                }
+            };
+        },
+        render() {
+            return (<Header/>);
+        }
+    });
     beforeEach(() => {
         Router.State.getRoutes.mockImplementation(() => {
             return [{name: 'home'}];
@@ -36,7 +53,8 @@ describe("Header", () => {
                 }
             };
         });
-        header = TestUtils.renderIntoDocument(<Header />);
+        var wrapped = TestUtils.renderIntoDocument(<ContextComponent/>);
+        header = TestUtils.findRenderedComponentWithType(wrapped, Header);
     });
 
     afterEach(() => {
@@ -51,7 +69,6 @@ describe("Header", () => {
     });
 
     it("renders a title, addbutton, editbutton and backbutton", () => {
-        header = TestUtils.renderIntoDocument(<Header />);
         let backSpan = TestUtils.findRenderedDOMComponentWithClass(header, 'back');
         let titleSpan = TestUtils.findRenderedDOMComponentWithClass(header, 'headertitle');
         let addSpan = TestUtils.findRenderedDOMComponentWithClass(header, 'headeradd');
@@ -78,16 +95,18 @@ describe("Header", () => {
             return [{name: 'notHome'}];
         });
         history.pushState({foo: 'bar'}, "page", "foo.html");
-        let newHeader = TestUtils.renderIntoDocument(<Header />);
+        let wrapped = TestUtils.renderIntoDocument(<ContextComponent/>);
+        let newHeader = TestUtils.findRenderedComponentWithType(wrapped, Header);
         let backSpan = TestUtils.scryRenderedDOMComponentsWithClass(newHeader, 'back hide');
-        expect(backSpan.length).toBe(0);
+        expect(backSpan.length).toBe(1);
     });
 
     it("shows no buttons, if none are configured", () => {
         HeaderState.getConfig.mockImplementation(() => {
             return {};
         });
-        let newHeader = TestUtils.renderIntoDocument(<Header />);
+        let wrapped = TestUtils.renderIntoDocument(<ContextComponent/>);
+        let newHeader = TestUtils.findRenderedComponentWithType(wrapped, Header);
         let title = TestUtils.scryRenderedDOMComponentsWithClass(newHeader, 'headertitle');
         expect(title.length).toBe(0);
     });
