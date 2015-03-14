@@ -19,7 +19,7 @@ let TrainingDetail = React.createClass({
     },
 
     render() {
-        let training = TrainingStore.getTrainingForId(this.getQuery().training);
+        let training = TrainingStore.getTrainingForId(this.context.router.getCurrentQuery().training);
         if(training) {
             let exercises = training.getIn(['workout', 'exercises']);
             training = training.toJS();
