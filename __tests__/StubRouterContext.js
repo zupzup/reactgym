@@ -1,42 +1,38 @@
 'use strict';
 
 let React = require('react'),
-    { func } = React.PropTypes;
+assign = require('object-assign');
 
 let StubRouterContext = (Component, props, stubs) => {
-  return React.createClass({
-    childContextTypes: {
-      makePath: func,
-      makeHref: func,
-      transitionTo: func,
-      replaceWith: func,
-      goBack: func,
-      getCurrentPath: func,
-      getCurrentRoutes: func,
-      getCurrentPathname: func,
-      getCurrentParams: func,
-      getCurrentQuery: func,
-      isActive: func,
-    },
+    return React.createClass({
+        childContextTypes: {
+            router: React.PropTypes.object,
+        },
 
-    getChildContext () {
-      return Object.assign({
-        makePath () {},
-        makeHref () {},
-        transitionTo () {},
-        replaceWith () {},
-        goBack () {},
-        getCurrentPath () {},
-        getCurrentRoutes () {},
-        getCurrentPathname () {},
-        getCurrentParams () {},
-        getCurrentQuery () {},
-        isActive () {},
-      }, stubs);
-    },
+        getChildContext () {
+            var routerContext = assign({
+                makePath () {},
+                makeHref () {},
+                transitionTo () {},
+                replaceWith () {},
+                goBack () {},
+                getCurrentPath () {},
+                getCurrentRoutes () {},
+                getCurrentPathname () {},
+                getCurrentParams () {},
+                getCurrentQuery () {},
+                isActive () {},
+            }, stubs);
+            return {
+                router: routerContext
+            };
+        },
 
-    render () {
-      return <Component {...props} />;
-    }
-  });
+        render () {
+            return <Component {...props} />;
+        }
+    });
 };
+
+module.exports = StubRouterContext;
+

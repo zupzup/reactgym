@@ -30,7 +30,6 @@ Demo:
 TODO
 
 TODOS:
-* upgrade to react .13
 * finish backups
     * Tests for Backups
     * warning, that active training gets canceled on data-change
@@ -174,4 +173,5 @@ DONE:
 * [x] use babel
 * [x] when editing exercises / workouts -> update/cancel training
 * [x] var -> let
+* [x] upgrade to react .13
 

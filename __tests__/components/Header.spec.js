@@ -9,33 +9,15 @@ var React = require('react/addons'),
     TestUtils = React.addons.TestUtils,
     Header = require('../../scripts/components/Header.js'),
     HeaderState = require('../../scripts/stores/HeaderState'),
+    StubRouterContext = require('../StubRouterContext.js'),
     Router = require('react-router'),
-    Router,
     HeaderState;
 
 describe("Header", () => {
-    var header;
-    var ContextComponent = React.createClass({
-        childContextTypes: {
-            router: React.PropTypes.object
-        },
-        getChildContext() {
-            return {
-                router: {
-                    getCurrentRoutes: () => {
-                        return [{name: 'home'}];
-                    }
-                }
-            };
-        },
-        render() {
-            return (<Header/>);
-        }
-    });
+    var header,
+        wrapped,
+        ContextComponent = StubRouterContext(Header);
     beforeEach(() => {
-        Router.State.getRoutes.mockImplementation(() => {
-            return [{name: 'home'}];
-        });
         HeaderState.getConfig.mockImplementation(() => {
             return {
                 back: true,
@@ -53,13 +35,12 @@ describe("Header", () => {
                 }
             };
         });
-        var wrapped = TestUtils.renderIntoDocument(<ContextComponent/>);
+        wrapped = TestUtils.renderIntoDocument(<ContextComponent/>);
         header = TestUtils.findRenderedComponentWithType(wrapped, Header);
     });
 
     afterEach(() => {
         header.componentWillUnmount();
-        Router.State.getRoutes.mockClear();
         HeaderState.getConfig.mockClear();
     });
 
@@ -78,26 +59,25 @@ describe("Header", () => {
 
     it("triggers router-back on click on back", () => {
         history.pushState({foo: 'bar'}, "page", "foo.html");
-        header.goBack = jest.genMockFunction();
+        header.context.router.goBack = jest.genMockFunction();
         let backSpan = TestUtils.findRenderedDOMComponentWithClass(header, 'back');
         TestUtils.Simulate.click(backSpan.getDOMNode());
-        expect(header.goBack.mock.calls.length).toBe(1);
+        expect(header.context.router.goBack.mock.calls.length).toBe(1);
     });
  
     it("shows no back button on homepage", () => {
-        let backSpan = TestUtils.scryRenderedDOMComponentsWithClass(header, 'back hide');
+        let ContextComponent = StubRouterContext(Header, {}, {getCurrentPath: () => {return '/';}}),
+            wrapped = TestUtils.renderIntoDocument(<ContextComponent/>),
+            newHeader = TestUtils.findRenderedComponentWithType(wrapped, Header),
+            backSpan = TestUtils.scryRenderedDOMComponentsWithClass(newHeader, 'back hide');
         expect(backSpan.length).toBe(1);
     });
  
     it("shows a back button on other pages, if there is a history", () => {
-        Router.State.getRoutes.mockClear();
-        Router.State.getRoutes.mockImplementation(() => {
-            return [{name: 'notHome'}];
-        });
         history.pushState({foo: 'bar'}, "page", "foo.html");
         let wrapped = TestUtils.renderIntoDocument(<ContextComponent/>);
         let newHeader = TestUtils.findRenderedComponentWithType(wrapped, Header);
-        let backSpan = TestUtils.scryRenderedDOMComponentsWithClass(newHeader, 'back hide');
+        let backSpan = TestUtils.scryRenderedDOMComponentsWithClass(newHeader, 'back');
         expect(backSpan.length).toBe(1);
     });
 
