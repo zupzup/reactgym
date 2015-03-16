@@ -9,7 +9,7 @@ var React = require('react/addons'),
     TestUtils = React.addons.TestUtils,
     Header = require('../../scripts/components/Header.js'),
     HeaderState = require('../../scripts/stores/HeaderState'),
-    StubRouterContext = require('../StubRouterContext.js'),
+    StubRouterContext = require('../../StubRouterContext.js'),
     Router = require('react-router'),
     HeaderState;
 
