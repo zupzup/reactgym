@@ -24,6 +24,7 @@ var React = require('react/addons'),
     TrainingStore = require('../../scripts/stores/TrainingStore.js'),
     Router = require('react-router'),
     AppState = require('../../scripts/stores/AppState.js'),
+    StubRouterContext = require('../../StubRouterContext.js'),
     Training = require('../../scripts/pages/Training.js');
 
 describe("Training", () => {
@@ -125,7 +126,9 @@ describe("Training", () => {
         });
 
         it("finishes and saves the training and redirects back to home on finish and yes", () => {
-            training = TestUtils.renderIntoDocument(<Training />);
+            let ContextComponent = StubRouterContext(Training),
+                wrapped = TestUtils.renderIntoDocument(<ContextComponent/>),
+                training = TestUtils.findRenderedComponentWithType(wrapped, Training);
             let finishButton = TestUtils.scryRenderedDOMComponentsWithClass(training, 'finish');
             TestUtils.Simulate.click(finishButton[0].getDOMNode());
             let dialog = AppStateActionCreators.openModal.mock.calls[0][0];
@@ -134,7 +137,7 @@ describe("Training", () => {
             expect(AppStateActionCreators.stopTimer.mock.calls.length).toBe(1);
             expect(AppStateActionCreators.finishTraining.mock.calls.length).toBe(1);
             expect(TrainingStoreActionCreators.addTraining.mock.calls.length).toBe(1);
-            expect(Router.Navigation.transitionTo.mock.calls.length).toBe(1);
+            expect(training.context.router.transitionTo.mock.calls.length).toBe(1);
         });
 
         it("closes the modal on finish and no", () => {

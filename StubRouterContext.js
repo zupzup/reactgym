@@ -1,7 +1,7 @@
 'use strict';
 
 let React = require('react'),
-assign = require('object-assign');
+    assign = require('object-assign');
 
 let StubRouterContext = (Component, props, stubs) => {
     return React.createClass({
@@ -10,19 +10,19 @@ let StubRouterContext = (Component, props, stubs) => {
         },
 
         getChildContext () {
-            var routerContext = assign({
-                makePath () {},
-                makeHref () {},
-                transitionTo () {},
-                replaceWith () {},
-                goBack () {},
-                getCurrentPath () {},
-                getCurrentRoutes () {},
-                getCurrentPathname () {},
-                getCurrentParams () {},
-                getCurrentQuery () {},
-                isActive () {},
-            }, stubs);
+            var routerContext = {
+                makePath: jest.genMockFn(),
+                makeHref: jest.genMockFn(),
+                transitionTo: jest.genMockFn(),
+                replaceWith: jest.genMockFn(),
+                goBack: jest.genMockFn(),
+                getCurrentPath: jest.genMockFn(),
+                getCurrentRoutes: jest.genMockFn(),
+                getCurrentPathname: jest.genMockFn(),
+                getCurrentParams: jest.genMockFn(),
+                getCurrentQuery: jest.genMockFn() ,
+                isActive: jest.genMockFn()
+            };
             return {
                 router: routerContext
             };
