@@ -14,7 +14,7 @@ let StoreListenerMixin = assign({}, EventEmitter.prototype, {
 
     removeChangeListener(callback) {
         this.removeListener(CHANGE_EVENT, callback);
-    },
+    }
 });
 
 module.exports = StoreListenerMixin;

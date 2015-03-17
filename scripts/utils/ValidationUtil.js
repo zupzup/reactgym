@@ -1,12 +1,16 @@
 module.exports = {
     getValidationFunction(validator) {
-        if(validator === 'number') {
+        if (validator === 'number') {
             return {
-                test: (value) => { return /^\d+$/.test(value); }
+                test: (value) => {
+                    return /^\d+$/.test(value);
+                }
             };
         }
         return {
-            test: (value) => { return true; }
+            test: () => {
+                return true;
+            }
         };
     }
 };

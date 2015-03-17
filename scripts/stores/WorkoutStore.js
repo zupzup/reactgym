@@ -1,7 +1,6 @@
 'use strict';
 
-let react = require('react'),
-    AppDispatcher = require('../dispatcher/AppDispatcher'),
+let AppDispatcher = require('../dispatcher/AppDispatcher'),
     ActionTypes = require('../constants/ActionTypes'),
     assign = require('object-assign'),
     LocalStorageUtil = require('../utils/LocalStorageUtil.js'),
@@ -11,7 +10,7 @@ let react = require('react'),
 
 let WorkoutStore = assign({}, StoreListenerMixin, {
     getWorkouts() {
-        if(_workouts.size === 0) {
+        if (_workouts.size === 0) {
             _workouts = Immutable.fromJS(LocalStorageUtil.lsGet('workouts'));
         }
         return _workouts;
@@ -21,10 +20,10 @@ let WorkoutStore = assign({}, StoreListenerMixin, {
 WorkoutStore.dispatchToken = AppDispatcher.register((payload) => {
     let action = payload.action;
 
-    switch(action.type) {
+    switch (action.type) {
         case ActionTypes.GET_WORKOUTS:
             var workouts = LocalStorageUtil.lsGet('workouts');
-            if(workouts == null) {
+            if (workouts == null) {
                 _workouts = Immutable.fromJS([
                     {
                         id: '1',
@@ -37,7 +36,7 @@ WorkoutStore.dispatchToken = AppDispatcher.register((payload) => {
                         exercises: ['2', '3']
                     }
                 ]);
-                LocalStorageUtil.lsSet('workouts', _workouts); 
+                LocalStorageUtil.lsSet('workouts', _workouts);
                 WorkoutStore.emitChange();
             }
             break;
@@ -58,7 +57,7 @@ WorkoutStore.dispatchToken = AppDispatcher.register((payload) => {
         case ActionTypes.UPDATE_WORKOUT:
             var workout = Immutable.Map(action.workout);
             _workouts = _workouts.map((item) => {
-                if(workout.get('id') === item.get('id')) {
+                if (workout.get('id') === item.get('id')) {
                     return workout;
                 }
                 return item;

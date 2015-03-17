@@ -1,7 +1,6 @@
 'use strict';
 
-let react = require('react'),
-    AppDispatcher = require('../dispatcher/AppDispatcher'),
+let AppDispatcher = require('../dispatcher/AppDispatcher'),
     ActionTypes = require('../constants/ActionTypes'),
     LocalStorageUtil = require('../utils/LocalStorageUtil.js'),
     Immutable = require('immutable'),
@@ -17,7 +16,7 @@ let ExerciseStore = assign({}, StoreListenerMixin, {
     },
 
     getExercises() {
-        if(_exercises.size === 0) {
+        if (_exercises.size === 0) {
             _exercises = Immutable.fromJS(LocalStorageUtil.lsGet('exercises'));
         }
         return _exercises;
@@ -27,10 +26,10 @@ let ExerciseStore = assign({}, StoreListenerMixin, {
 ExerciseStore.dispatchToken = AppDispatcher.register((payload) => {
     let action = payload.action;
 
-    switch(action.type) {
+    switch (action.type) {
         case ActionTypes.GET_EXERCISES:
             var exercises = LocalStorageUtil.lsGet('exercises');
-            if(exercises == null) {
+            if (exercises == null) {
                 _exercises = Immutable.fromJS([
                     {
                         id: '1',
@@ -60,7 +59,7 @@ ExerciseStore.dispatchToken = AppDispatcher.register((payload) => {
         case ActionTypes.UPDATE_EXERCISE:
             var exercise = Immutable.Map(action.exercise);
             _exercises = _exercises.map((item) => {
-                if(exercise.get('id') === item.get('id')) {
+                if (exercise.get('id') === item.get('id')) {
                     return exercise;
                 }
                 return item;

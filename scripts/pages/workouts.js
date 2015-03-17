@@ -2,7 +2,6 @@
 
 let React = require('react'),
     List = require('../components/List'),
-    HeaderStateActionCreators = require('../actions/HeaderStateActionCreators'),
     WorkoutStoreActionCreators = require('../actions/WorkoutStoreActionCreators'),
     WorkoutForm = require('../components/forms/WorkoutForm'),
     ExerciseStore = require('../stores/ExerciseStore.js'),
@@ -38,16 +37,16 @@ let Workouts = React.createClass({
         WorkoutStoreActionCreators.removeWorkout(index);
     },
 
-    editHandler(e, item, index) {
+    editHandler(e, item) {
         AppStateActionCreators.openModal(
             <WorkoutForm edit={true} workout={item} />
         );
     },
 
-    defaultHandler(e, item, index) {
+    defaultHandler(e, item) {
         let exercises = item.exercises.map((i) => {
             let exercise = ExerciseStore.getExerciseForId(i);
-            if(exercise) {
+            if (exercise) {
                 return <div key={i}>{exercise.get('label')}</div>;
             }
         });
@@ -68,13 +67,12 @@ let Workouts = React.createClass({
         };
         return (
             <div className='page workouts'>
-                <List editAble={this.state.editAble} handlers={handlers} items={this.state.workouts.toJS()}></List>
+                <List editAble={this.state.editAble} handlers={handlers} items={this.state.workouts.toJS()} />
             </div>
         );
     },
 
     componentDidMount() {
-        let self = this;
         WorkoutStore.addChangeListener(this._onChange);
     },
 

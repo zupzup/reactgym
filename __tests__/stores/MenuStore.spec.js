@@ -11,7 +11,7 @@ describe("MenuStore", () => {
         actionRequestMenuPoints = {
             source: 'VIEW_ACTION',
             action: {
-                type: ActionTypes.REQUEST_MENUPOINTS 
+                type: ActionTypes.REQUEST_MENUPOINTS
             }
         };
 
@@ -27,7 +27,7 @@ describe("MenuStore", () => {
     });
 
     it("doesn't throw on an unregistered action", () => {
-        expect(cb.bind(null,{
+        expect(cb.bind(null, {
             source: 'VIEW_ACTION',
             action: {
                 type: 'NULL'

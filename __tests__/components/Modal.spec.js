@@ -33,7 +33,7 @@ describe("Modal", () => {
         modal.getDOMNode = jest.genMockFunction();
         modal.getDOMNode.mockImplementation(() => {
             return {
-                scrollIntoView: mockFunc 
+                scrollIntoView: mockFunc
             };
         });
         modal.forceUpdate();

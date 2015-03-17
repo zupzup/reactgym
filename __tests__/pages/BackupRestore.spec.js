@@ -7,8 +7,6 @@ jest.mock('../../scripts/actions/AppStateActionCreators.js');
 
 let React = require('react/addons'),
     TestUtils = React.addons.TestUtils,
-    BackupStoreActionCreators = require('../../scripts/actions/BackupStoreActionCreators.js'),
-    AppStateActionCreators = require('../../scripts/actions/AppStateActionCreators.js'),
     Immutable = require('immutable'),
     BackupStore = require('../../scripts/stores/BackupStore.js'),
     BackupRestore = require('../../scripts/pages/BackupRestore.js');
@@ -18,7 +16,7 @@ describe("BackupRestore", () => {
     beforeEach(() => {
         BackupStore.getBackups.mockImplementation(() => {
             return Immutable.fromJS([
-            
+
             ]);
         });
         backupRestore = TestUtils.renderIntoDocument(<BackupRestore />);

@@ -1,7 +1,6 @@
 'use strict';
 
 let React = require('react'),
-    List = require('../components/List'),
     TrainingStore = require('../stores/TrainingStore.js'),
     Router = require('react-router'),
     _ = require('lodash'),
@@ -20,12 +19,13 @@ let TrainingDetail = React.createClass({
 
     render() {
         let training = TrainingStore.getTrainingForId(this.context.router.getCurrentQuery().training);
-        if(training) {
+        if (training) {
             let exercises = training.getIn(['workout', 'exercises']);
             training = training.toJS();
             let sets = _.map(training.sets, (set, exercise) => {
                 let sets = set.map((item, idx) => {
-                    return <div className='set' key={idx}><span className='count'>#{idx + 1}</span><span className='repsweight'>Reps: {item.reps} / Weight: {item.weight}</span></div>;
+                    return (<div className='set' key={idx}><span className='count'>#{idx + 1}</span>
+                    <span className='repsweight'>Reps: {item.reps} / Weight: {item.weight}</span></div>);
                 });
                 return (
                     <div className='exercise' key={exercise}>
@@ -36,8 +36,10 @@ let TrainingDetail = React.createClass({
             return (
                 <div className='page trainingdetail'>
                     <h2>{training.workout.label}</h2>
-                    <div className='date'><i className='ion-calendar'></i> {new Date(training.dateStart).toLocaleString()}</div>
-                    <div className='duration'><i className='ion-android-time'></i> {this.formatMinutes(training.dateStart, training.dateEnd)} minutes</div>
+                    <div className='date'><i className='ion-calendar'></i>
+                        {new Date(training.dateStart).toLocaleString()}</div>
+                    <div className='duration'><i className='ion-android-time'></i>
+                    {this.formatMinutes(training.dateStart, training.dateEnd)} minutes</div>
                     {sets}
                 </div>
             );

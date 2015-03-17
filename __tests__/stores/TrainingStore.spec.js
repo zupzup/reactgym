@@ -20,10 +20,10 @@ describe("TrainingStore", () => {
                 training: Immutable.fromJS({
                     id: 5,
                     sets: {
-                        "1" : [
+                        "1": [
                             {reps: 5, weight: 5}
                         ],
-                        "2" : [] 
+                        "2": []
                     },
                     workout: {
                         exercises: ["1", "2"],
@@ -129,7 +129,7 @@ describe("TrainingStore", () => {
     });
 
     it("doesn't throw on an unregistered action", () => {
-        expect(cb.bind(null,{
+        expect(cb.bind(null, {
             source: 'VIEW_ACTION',
             action: {
                 type: 'NULL'

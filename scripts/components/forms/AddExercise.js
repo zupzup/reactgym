@@ -14,7 +14,7 @@ let AddExercise = React.createClass({
     },
 
     handleSubmit() {
-        if(this.props.edit) {
+        if (this.props.edit) {
             ExerciseStoreActionCreators.updateExercise({
                 id: this.props.exercise.id,
                 label: this.refs.name.getDOMNode().value
@@ -31,22 +31,22 @@ let AddExercise = React.createClass({
     },
 
     render() {
-        let self = this,
-            value = this.props.edit ? this.props.exercise.label : '';
+        let value = this.props.edit ? this.props.exercise.label : '';
 
-       return (
-            <div className='form exercises'>
-                <h1>Add Exercise</h1>
-                <div>
-                    <ValidatedInput validator='string' ref='name' value={value} placeholder='name' className='nameField' />
-                </div>
-                <div>
-                    <button className='submitButton' onClick={this.handleSubmit}>Submit</button>
-                    <button className='cancelButton' onClick={this.handleCancel}>Cancel</button>
-                </div>
-            </div>
+        return (
+           <div className='form exercises'>
+               <h1>Add Exercise</h1>
+               <div>
+                   <ValidatedInput validator='string' ref='name'
+                    value={value} placeholder='name' className='nameField' />
+               </div>
+               <div>
+                   <button className='submitButton' onClick={this.handleSubmit}>Submit</button>
+                   <button className='cancelButton' onClick={this.handleCancel}>Cancel</button>
+               </div>
+           </div>
         );
-    },
+    }
 });
 
 module.exports = AddExercise;

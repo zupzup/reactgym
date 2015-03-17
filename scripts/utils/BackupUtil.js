@@ -6,7 +6,7 @@ let Immutable = require('immutable'),
 let BackupUtil = {
     getBackups(cb) {
         let self = this;
-        if(window.requestFileSystem) {
+        if (window.requestFileSystem) {
             self.getDirectory((dirEntry) => {
                 let reader = dirEntry.createReader();
                 reader.readEntries((entries) => {
@@ -33,11 +33,11 @@ let BackupUtil = {
 
     saveBackup(data, cb) {
         let self = this;
-        if(window.requestFileSystem) {
+        if (window.requestFileSystem) {
             self.getDirectory((dirEntry) => {
                 dirEntry.getFile(prefix + new Date().getTime().toString(), {create: true, exclusive: false}, (file) => {
                     file.createWriter((writer) => {
-                        writer.onwriteend = (e) => {
+                        writer.onwriteend = () => {
                             dirEntry.createReader().readEntries((entries) => {
                                 cb(null, Immutable.fromJS(entries).map((item) => {
                                     return {
@@ -69,6 +69,7 @@ let BackupUtil = {
     },
 
     restoreFromBackup(filename, cb) {
+        window.console.log(filename, cb);
     },
 
     getDirectory(cb, err) {
@@ -81,7 +82,7 @@ let BackupUtil = {
     err(msg) {
         //TODO: fire FS-error event
         return function () {
-            alert('[FAIL] ' + msg);
+            window.alert('[FAIL] ' + msg);
         };
     }
 };

@@ -7,7 +7,6 @@ describe("BackupStore", () => {
     let cb,
         BackupStore,
         Immutable = require('immutable'),
-        BackupUtil,
         AppDispatcher,
         ActionTypes = require('../../scripts/constants/ActionTypes.js'),
         getBackupsSuccessAction = {
@@ -42,7 +41,7 @@ describe("BackupStore", () => {
     });
 
     it("doesn't throw on an unregistered action", () => {
-        expect(cb.bind(null,{
+        expect(cb.bind(null, {
             source: 'VIEW_ACTION',
             action: {
                 type: 'NULL'

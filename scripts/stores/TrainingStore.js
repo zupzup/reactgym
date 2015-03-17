@@ -1,7 +1,6 @@
 'use strict';
 
-let react = require('react'),
-    AppDispatcher = require('../dispatcher/AppDispatcher'),
+let AppDispatcher = require('../dispatcher/AppDispatcher'),
     ActionTypes = require('../constants/ActionTypes'),
     Immutable = require('immutable'),
     assign = require('object-assign'),
@@ -12,7 +11,7 @@ let react = require('react'),
 
 let TrainingStore = assign({}, StoreListenerMixin, {
     getTrainings() {
-        if(_trainings.size === 0) {
+        if (_trainings.size === 0) {
             _trainings = Immutable.fromJS(LocalStorageUtil.lsGet('trainings')) || Immutable.List();
         }
         return _trainings;
@@ -27,13 +26,13 @@ let TrainingStore = assign({}, StoreListenerMixin, {
     getLastInputsForExercise(exercise, setNumber) {
         let emptyRep = {rep: '', weight: ''},
             trainings = this.getTrainings();
-        if(!trainings || trainings.size === 0 || 
-            setNumber == null || !trainings.last().get('sets') || 
-            !trainings.last().get('sets').get(exercise)) {
-            return emptyRep; 
+        if (!trainings || trainings.size === 0 ||
+            setNumber == null || !trainings.last().get('sets') ||
+                !trainings.last().get('sets').get(exercise)) {
+            return emptyRep;
         }
         let set = trainings.last().get('sets').get(exercise).get(setNumber);
-        if(!set) {
+        if (!set) {
             return emptyRep;
         }
         return {
@@ -46,11 +45,11 @@ let TrainingStore = assign({}, StoreListenerMixin, {
 TrainingStore.dispatchToken = AppDispatcher.register((payload) => {
     let action = payload.action;
 
-    switch(action.type) {
+    switch (action.type) {
         case ActionTypes.ADD_TRAINING:
             var storedExercises = ExerciseStore.getExercises(),
                 trainingToAdd = action.training;
-            trainingToAdd = trainingToAdd.updateIn(['workout', 'exercises'], 
+            trainingToAdd = trainingToAdd.updateIn(['workout', 'exercises'],
                 exercises => exercises.map(e => {
                     return storedExercises.find(i => i.get('id') == e);
                 }));

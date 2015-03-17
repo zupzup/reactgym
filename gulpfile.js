@@ -4,9 +4,7 @@ var gulp = require('gulp'),
     gutil = require("gulp-util"),
     shell = require("gulp-shell"),
     del = require("del"),
-    request = require('request'),
     replace = require('gulp-replace'),
-    path = require('path'),
     autoprefixer = require('gulp-autoprefixer'),
     jest = require('jest-cli'),
     WebpackDevServer = require('webpack-dev-server'),
@@ -16,10 +14,10 @@ var gulp = require('gulp'),
     webpackConfig = require("./webpack.config.js");
 
 var startServer = function() {
-    var server = new WebpackDevServer(webpack(config), {
+    new WebpackDevServer(webpack(config), {
         publicPath: config.output.publicPath,
         hot: false
-    }).listen(3000, 'localhost', function (err, result) {
+    }).listen(3000, 'localhost', function (err) {
         if (err) {
             console.log(err);
         }
@@ -36,7 +34,7 @@ gulp.task('default', ['sass'], function() {
 gulp.task('test', function(callback) {
     gulp.watch('__tests__/**/*.js', ['test']);
     gulp.watch('scripts/**/*.js', ['test']);
-    var onComplete = function(result) {
+    var onComplete = function() {
         callback();
     };
     jest.runCLI({}, __dirname, onComplete);
@@ -46,7 +44,9 @@ gulp.task('sass', function () {
     gulp.src('./styles/scss/*.scss')
         .pipe(sass({sourcemap: false, style: 'compact'}))
         .pipe(autoprefixer("Android >= 4.4", "iOS >= 6"))
-        .on('error', function (err) { console.log(err.message); })
+        .on('error', function (err) {
+            console.log(err.message);
+        })
         .pipe(gulp.dest('styles'));
 });
 
@@ -61,7 +61,9 @@ gulp.task("prod", ["clean"], function(callback) {
     gulp.src('index.html').pipe(gulp.dest('www'));
     gulp.src('styles/**').pipe(gulp.dest('www/styles/'));
     prodCompiler.run(function(err, stats) {
-        if(err) {throw new gutil.PluginError("webpack:build-prod", err);}
+        if (err) {
+            throw new gutil.PluginError("webpack:build-prod", err);
+        }
         gutil.log("[webpack:build-prod]", stats.toString({
             colors: true
         }));
@@ -71,7 +73,9 @@ gulp.task("prod", ["clean"], function(callback) {
 
 gulp.task("webpack", function(callback) {
     devCompiler.run(function(err, stats) {
-        if(err) {throw new gutil.PluginError("webpack:build-dev", err);}
+        if (err) {
+            throw new gutil.PluginError("webpack:build-dev", err);
+        }
         gutil.log("[webpack:build-dev]", stats.toString({
             colors: true
         }));

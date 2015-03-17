@@ -38,7 +38,7 @@ let ValidatedInput = React.createClass({
 
     validateAndSetValue(value) {
         let valid = 'valid';
-        if(!this.validate(value)) {
+        if (!this.validate(value)) {
             valid = 'invalid';
         }
         this.setState({
@@ -59,7 +59,9 @@ let ValidatedInput = React.createClass({
 
     render() {
         return (
-            <input onFocus={this.scrollToMe} placeholder={this.props.placeholder} ref={this.props.ref} className={this.props.className + ' ' + this.state.valid} type={this.props.type || 'text'} name={this.props.name} onChange={this.props.changeHandler || this.changeHandler} value={this.state.value} />
+            <input onFocus={this.scrollToMe} placeholder={this.props.placeholder} ref={this.props.ref}
+            className={this.props.className + ' ' + this.state.valid} type={this.props.type || 'text'}
+            name={this.props.name} onChange={this.props.changeHandler || this.changeHandler} value={this.state.value} />
         );
     }
 });

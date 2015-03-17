@@ -19,20 +19,18 @@ let Settings = React.createClass({
         };
     },
 
-    onRestTimerChange(e) {
+    onRestTimerChange() {
         SettingsStoreActionCreators.setRestTimer(this.refs.restTimer.getDOMNode().value);
     },
 
     render() {
-        let handlers = {
-            default: this.handleRestore
-        };
         return (
             <div className='page settings'>
                 <h2><i className='ion-android-time'></i> Rest-Timer</h2>
                 <div className="settingsform">
                     <div>
-                        <ValidatedInput changeHandler={this.onRestTimerChange} validator='number' ref='restTimer' placeholder='90' value={this.state.restTimer} />
+                        <ValidatedInput changeHandler={this.onRestTimerChange}
+                            validator='number' ref='restTimer' placeholder='90' value={this.state.restTimer} />
                     </div>
                 </div>
             </div>

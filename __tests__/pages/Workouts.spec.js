@@ -33,8 +33,8 @@ describe("Workouts", () => {
             ]);
         });
         ExerciseStore.getExerciseForId.mockImplementation((id) => {
-            if(id === 4) {
-                return null; 
+            if (id === 4) {
+                return null;
             }
             return Immutable.fromJS({
                 label: 'hello'
@@ -93,7 +93,7 @@ describe("Workouts", () => {
             expect(AppStateActionCreators.openModal.mock.calls.length).toBe(1);
         });
     });
- 
+
     describe('headerEdit', () => {
         it("sets the state to editAble", () => {
             workouts.header.edit.apply(workouts);

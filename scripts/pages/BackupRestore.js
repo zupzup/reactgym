@@ -43,7 +43,7 @@ var BackupRestore = React.createClass({
             <div className='page backup'>
                 <h2><i className='ion-folder'></i> Backups:</h2>
                 <i className='refreshButton ion-loop' onClick={this.refreshBackups}></i>
-                <List handlers={handlers} editAble={false} items={this.state.backups.toJS()}></List>
+                <List handlers={handlers} editAble={false} items={this.state.backups.toJS()} />
                 <button className='backupButton' onClick={this.handleBackup}>Backup now</button>
             </div>
         );
@@ -59,7 +59,7 @@ var BackupRestore = React.createClass({
 
     _onChange() {
         this.setState({
-            backups: BackupStore.getBackups() 
+            backups: BackupStore.getBackups()
         });
     }
 });

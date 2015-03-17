@@ -9,9 +9,7 @@ var React = require('react/addons'),
     TestUtils = React.addons.TestUtils,
     Header = require('../../scripts/components/Header.js'),
     HeaderState = require('../../scripts/stores/HeaderState'),
-    StubRouterContext = require('../../StubRouterContext.js'),
-    Router = require('react-router'),
-    HeaderState;
+    StubRouterContext = require('../../StubRouterContext.js');
 
 describe("Header", () => {
     var header,
@@ -55,6 +53,9 @@ describe("Header", () => {
         let addSpan = TestUtils.findRenderedDOMComponentWithClass(header, 'headeradd');
         let editSpan = TestUtils.findRenderedDOMComponentWithClass(header, 'headeredit');
         expect(backSpan.getDOMNode()).not.toBe(undefined);
+        expect(titleSpan.getDOMNode()).not.toBe(undefined);
+        expect(addSpan.getDOMNode()).not.toBe(undefined);
+        expect(editSpan.getDOMNode()).not.toBe(undefined);
     });
 
     it("triggers router-back on click on back", () => {
@@ -64,15 +65,17 @@ describe("Header", () => {
         TestUtils.Simulate.click(backSpan.getDOMNode());
         expect(header.context.router.goBack.mock.calls.length).toBe(1);
     });
- 
+
     it("shows no back button on homepage", () => {
-        let ContextComponent = StubRouterContext(Header, {}, {getCurrentPath: () => {return '/';}}),
-            wrapped = TestUtils.renderIntoDocument(<ContextComponent/>),
+        let ContextComponent = StubRouterContext(Header, {}, {getCurrentPath: () => {
+            return '/';
+        }}),
+            wrapped = TestUtils.renderIntoDocument(<ContextComponent />),
             newHeader = TestUtils.findRenderedComponentWithType(wrapped, Header),
             backSpan = TestUtils.scryRenderedDOMComponentsWithClass(newHeader, 'back hide');
         expect(backSpan.length).toBe(1);
     });
- 
+
     it("shows a back button on other pages, if there is a history", () => {
         history.pushState({foo: 'bar'}, "page", "foo.html");
         let wrapped = TestUtils.renderIntoDocument(<ContextComponent/>);

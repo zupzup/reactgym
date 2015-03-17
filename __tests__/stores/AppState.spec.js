@@ -118,7 +118,7 @@ describe("AppState", () => {
     });
 
     it("doesn't throw on an unregistered action", () => {
-        expect(cb.bind(null,{
+        expect(cb.bind(null, {
             source: 'VIEW_ACTION',
             action: {
                 type: 'NULL'
@@ -211,7 +211,7 @@ describe("AppState", () => {
             });
 
             waitsFor(() => {
-                return flag; 
+                return flag;
             }, 'timed out', 1200);
 
             runs(() => {

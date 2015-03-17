@@ -7,6 +7,9 @@ var Immutable = require('immutable');
 
 describe("WorkoutStore", () => {
     let cb,
+        AppDispatcher,
+        WorkoutStore,
+        LocalStorageUtil,
         ActionTypes = require('../../scripts/constants/ActionTypes.js'),
         actionAddWorkout = {
             source: 'VIEW_ACTION',
@@ -15,7 +18,7 @@ describe("WorkoutStore", () => {
                 workout: {
                     label: '#3',
                     exercises: [0, 1]
-                } 
+                }
             }
         },
         actionRemoveWorkout = {
@@ -40,7 +43,7 @@ describe("WorkoutStore", () => {
                     id: 1,
                     label: '#4',
                     exercises: [1]
-                } 
+                }
             }
         },
         actionUpdateWorkoutFalse = {
@@ -51,7 +54,7 @@ describe("WorkoutStore", () => {
                     id: 0,
                     label: '#4',
                     exercises: [1]
-                } 
+                }
             }
         },
         actionRequestWorkouts = {
@@ -62,7 +65,7 @@ describe("WorkoutStore", () => {
         };
 
     beforeEach(() => {
-        LocalStorageUtil = require('../../scripts/utils/LocalStorageUtil.js'),
+        LocalStorageUtil = require('../../scripts/utils/LocalStorageUtil.js');
         AppDispatcher = require('../../scripts/dispatcher/AppDispatcher');
         WorkoutStore = require('../../scripts/stores/WorkoutStore.js');
         LocalStorageUtil.lsGet.mockImplementation(() => {
@@ -82,7 +85,7 @@ describe("WorkoutStore", () => {
     });
 
     it("doesn't throw on an unregistered action", () => {
-        expect(cb.bind(null,{
+        expect(cb.bind(null, {
             source: 'VIEW_ACTION',
             action: {
                 type: 'NULL'

@@ -26,7 +26,7 @@ describe("Menu", () => {
                 nextTransition: 'slide',
                 menuOpen: false,
                 modal: null
-            }
+            };
         });
     });
 
@@ -58,7 +58,7 @@ describe("Menu", () => {
                     nextTransition: 'slide',
                     menuOpen: true,
                     modal: null
-                }
+                };
             });
         });
 
@@ -66,7 +66,7 @@ describe("Menu", () => {
             let app = TestUtils.renderIntoDocument(<App />);
             let contentArea = TestUtils.findRenderedDOMComponentWithClass(app, 'contentArea');
             let mask = TestUtils.findRenderedDOMComponentWithClass(app, 'mask');
-            expect(contentArea.getDOMNode().className).toBe('contentArea open')
+            expect(contentArea.getDOMNode().className).toBe('contentArea open');
             expect(mask.getDOMNode().className).toBe('mask');
         });
 
@@ -77,7 +77,7 @@ describe("Menu", () => {
             expect(AppStateActionCreators.closeMenu.mock.calls.length).toBe(1);
         });
     });
-    
+
     describe("openModal", () => {
         beforeEach(() => {
             AppState.getAll.mockImplementation(() => {
@@ -85,14 +85,14 @@ describe("Menu", () => {
                     nextTransition: 'slide',
                     menuOpen: false,
                     modal: '5'
-                }
+                };
             });
         });
         it("sets the modal to open if there is a modal and renders a mask", () => {
             let app = TestUtils.renderIntoDocument(<App />);
             let modal = TestUtils.findRenderedDOMComponentWithClass(app, 'modal');
             let mask = TestUtils.findRenderedDOMComponentWithClass(app, 'mask');
-            expect(mask.getDOMNode().className).toBe('mask modalOpen')
+            expect(mask.getDOMNode().className).toBe('mask modalOpen');
             expect(modal.getDOMNode().className).toBe('modal open');
         });
 

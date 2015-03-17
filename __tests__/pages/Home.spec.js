@@ -8,7 +8,6 @@ jest.mock('react-router');
 
 var React = require('react/addons'),
     TestUtils = React.addons.TestUtils,
-    HeaderStateActionCreators = require('../../scripts/actions/HeaderStateActionCreators.js'),
     Immutable = require('immutable'),
     Router = require('react-router'),
     AppState = require('../../scripts/stores/AppState.js'),
@@ -34,7 +33,7 @@ describe("Home", () => {
                     workout: {
                         label: 'some training'
                     }
-                } 
+                }
             ]);
         });
         home = TestUtils.renderIntoDocument(<Home />);

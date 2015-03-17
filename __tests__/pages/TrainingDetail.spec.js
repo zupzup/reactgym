@@ -6,10 +6,8 @@ jest.mock('react-router');
 
 var React = require('react/addons'),
     TestUtils = React.addons.TestUtils,
-    HeaderStateActionCreators = require('../../scripts/actions/HeaderStateActionCreators.js'),
     Immutable = require('immutable'),
     Router = require('react-router'),
-    AppState = require('../../scripts/stores/AppState.js'),
     TrainingStore = require('../../scripts/stores/TrainingStore.js'),
     TrainingDetail = require('../../scripts/pages/TrainingDetail.js');
 
@@ -47,13 +45,13 @@ describe("TrainingDetail", () => {
                             {reps: 1, weight: 1}
                         ]
                     }
-                } 
+                }
             );
         });
         Router.State.getQuery.mockImplementation(() => {
             return {
                 training: 0
-            }; 
+            };
         });
         detail = TestUtils.renderIntoDocument(<TrainingDetail />);
     });

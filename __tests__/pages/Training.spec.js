@@ -14,15 +14,12 @@ jest.mock('../../scripts/components/forms/TrainingForm.js');
 
 var React = require('react/addons'),
     TestUtils = React.addons.TestUtils,
-    WorkoutStoreActionCreators = require('../../scripts/actions/WorkoutStoreActionCreators.js'),
     TrainingStoreActionCreators = require('../../scripts/actions/TrainingStoreActionCreators.js'),
     Immutable = require('immutable'),
     AppStateActionCreators = require('../../scripts/actions/AppStateActionCreators.js'),
     WorkoutStore = require('../../scripts/stores/WorkoutStore.js'),
-    LocalStorageUtil = require('../../scripts/utils/LocalStorageUtil.js'),
     ExerciseStore = require('../../scripts/stores/ExerciseStore.js'),
     TrainingStore = require('../../scripts/stores/TrainingStore.js'),
-    Router = require('react-router'),
     AppState = require('../../scripts/stores/AppState.js'),
     StubRouterContext = require('../../StubRouterContext.js'),
     Training = require('../../scripts/pages/Training.js');
@@ -52,7 +49,7 @@ describe("Training", () => {
             return Immutable.fromJS([
                 {
                     id: 0
-                } 
+                }
             ]);
         });
         ExerciseStore.getExercises.mockImplementation(() => {

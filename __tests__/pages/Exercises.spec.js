@@ -27,7 +27,7 @@ describe("Exercises", () => {
                 {
                     id: 1,
                     label: 'second'
-                } 
+                }
             ]);
         });
         exercises = TestUtils.renderIntoDocument(<Exercises />);
@@ -73,7 +73,7 @@ describe("Exercises", () => {
             expect(AppStateActionCreators.openModal.mock.calls.length).toBe(1);
         });
     });
- 
+
     describe('headerEdit', () => {
         it("sets the state to editAble", () => {
             exercises.header.edit.apply(exercises);

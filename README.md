@@ -30,6 +30,7 @@ Demo:
 TODO
 
 TODOS:
+* fix all eslint problems
 * finish backups
     * Tests for Backups
     * warning, that active training gets canceled on data-change

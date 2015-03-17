@@ -7,7 +7,6 @@ let React = require('react'),
     AppStateActionCreators = require('../actions/AppStateActionCreators'),
     AddExercise = require('../components/forms/AddExercise'),
     HeaderMixin = require('../mixins/HeaderMixin'),
-    Immutable = require('immutable'),
     PureRenderMixin = require('react').addons.PureRenderMixin,
     ExerciseStore = require('../stores/ExerciseStore');
 
@@ -39,7 +38,7 @@ let Exercises = React.createClass({
         WorkoutStoreActionCreators.removeExerciseFromWorkouts(item.id);
     },
 
-    editHandler(e, item, index) {
+    editHandler(e, item) {
         AppStateActionCreators.openModal(
             <AddExercise edit={true} exercise={item} />
         );
@@ -53,7 +52,7 @@ let Exercises = React.createClass({
         };
         return (
             <div className='page exercises'>
-                <List editAble={this.state.editAble} handlers={handlers} items={this.state.exercises.toJS()}></List>
+                <List editAble={this.state.editAble} handlers={handlers} items={this.state.exercises.toJS()} />
             </div>
         );
     },

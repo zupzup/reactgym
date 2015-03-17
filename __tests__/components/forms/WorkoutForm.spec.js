@@ -30,15 +30,15 @@ describe("WorkoutForm", () => {
 
     afterEach(() => {
         ExerciseStore.getExercises.mockClear();
-        AppStateActionCreators.finishTraining.mockClear(); 
-        AppStateActionCreators.closeModal.mockClear(); 
-        WorkoutStoreActionCreators.updateWorkout.mockClear(); 
-        WorkoutStoreActionCreators.addWorkout.mockClear(); 
+        AppStateActionCreators.finishTraining.mockClear();
+        AppStateActionCreators.closeModal.mockClear();
+        WorkoutStoreActionCreators.updateWorkout.mockClear();
+        WorkoutStoreActionCreators.addWorkout.mockClear();
     });
 
     it("renders a WorkoutForm", () => {
         let workoutForm = TestUtils.renderIntoDocument(
-            <WorkoutForm  />
+            <WorkoutForm />
         );
         expect(TestUtils.isCompositeComponent(workoutForm)).toEqual(true);
         expect(workoutForm.getDOMNode().className).toEqual("form workouts");
@@ -46,7 +46,7 @@ describe("WorkoutForm", () => {
 
     it("closes the modal on cancel", () => {
         let workoutForm = TestUtils.renderIntoDocument(
-            <WorkoutForm  />
+            <WorkoutForm />
         );
         let cancelButton = TestUtils.findRenderedDOMComponentWithClass(workoutForm, 'cancelButton');
         TestUtils.Simulate.click(cancelButton.getDOMNode());
@@ -55,7 +55,7 @@ describe("WorkoutForm", () => {
 
     it("saves the workout and closes the modal on submit", () => {
         let workoutForm = TestUtils.renderIntoDocument(
-            <WorkoutForm  />
+            <WorkoutForm />
         );
         let submitButton = TestUtils.findRenderedDOMComponentWithClass(workoutForm, 'submitButton');
         TestUtils.Simulate.click(submitButton.getDOMNode());
@@ -70,7 +70,7 @@ describe("WorkoutForm", () => {
             exercises: ['0', '1']
         };
         let workoutForm = TestUtils.renderIntoDocument(
-            <WorkoutForm  edit={true} workout={workout}/>
+            <WorkoutForm edit={true} workout={workout}/>
         );
         let submitButton = TestUtils.findRenderedDOMComponentWithClass(workoutForm, 'submitButton');
         TestUtils.Simulate.click(submitButton.getDOMNode());

@@ -1,7 +1,6 @@
 'use strict';
 
-let react = require('react'),
-    AppDispatcher = require('../dispatcher/AppDispatcher'),
+let AppDispatcher = require('../dispatcher/AppDispatcher'),
     ActionTypes = require('../constants/ActionTypes'),
     LocalStorageUtil = require('../utils/LocalStorageUtil.js'),
     StoreListenerMixin = require('../mixins/StoreListenerMixin.js'),
@@ -16,7 +15,7 @@ let react = require('react'),
 
 let vibrate = function() {
     /* istanbul ignore else  */
-    if(navigator.notification) {
+    if (navigator.notification) {
         navigator.notification.vibrate(1000);
     }
 };
@@ -31,11 +30,11 @@ let AppState = assign({}, StoreListenerMixin, {
     },
 
     getModal() {
-        return _modal; 
+        return _modal;
     },
 
     getActiveTraining() {
-        if(_activeTraining == null) {
+        if (_activeTraining == null) {
             _activeTraining = Immutable.fromJS(LocalStorageUtil.lsGet('activeTraining'));
         }
         return _activeTraining;
@@ -57,7 +56,7 @@ let AppState = assign({}, StoreListenerMixin, {
 AppState.dispatchToken = AppDispatcher.register((payload) => {
     let action = payload.action;
 
-    switch(action.type) {
+    switch (action.type) {
         case ActionTypes.SET_NEXT_TRANSITION:
            _nextTransition = action.animation;
            AppState.emitChange();
@@ -96,7 +95,7 @@ AppState.dispatchToken = AppDispatcher.register((payload) => {
             window.clearInterval(_timerId);
             _timerValue = action.restTimer;
             _timerId = window.setInterval(() => {
-                if(_timerValue === 0) {
+                if (_timerValue === 0) {
                     window.clearInterval(_timerId);
                     vibrate();
                     _timerValue = null;
@@ -114,7 +113,8 @@ AppState.dispatchToken = AppDispatcher.register((payload) => {
             AppState.emitChange();
             break;
         case ActionTypes.ADD_SET:
-            _activeTraining = _activeTraining.updateIn(['sets', action.exercise], list => list.push(Immutable.fromJS(action.set)));
+            _activeTraining = _activeTraining.updateIn(['sets', action.exercise],
+                list => list.push(Immutable.fromJS(action.set)));
             LocalStorageUtil.lsSet('activeTraining', _activeTraining);
             AppState.emitChange();
             break;

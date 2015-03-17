@@ -34,7 +34,7 @@ describe("ListItem", () => {
         expect(editButton.length).toBe(1);
         expect(deleteButton.length).toBe(1);
     });
-    
+
     it("triggers the defaultHandler if clicked on", () => {
         let listItem = TestUtils.renderIntoDocument(<ListItem handlers={handlers}/>);
         TestUtils.Simulate.click(listItem.getDOMNode());
@@ -47,7 +47,7 @@ describe("ListItem", () => {
         TestUtils.Simulate.click(editButton.getDOMNode());
         expect(handlers.edit.mock.calls.length).toBe(1);
     });
-    
+
     it("triggers the deleteHandler if the delete button is clicked", () => {
         let listItem = TestUtils.renderIntoDocument(<ListItem handlers={handlers}/>);
         let deleteButton = TestUtils.findRenderedDOMComponentWithClass(listItem, 'delete');

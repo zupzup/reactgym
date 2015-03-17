@@ -2,12 +2,10 @@
 
 let React = require('react'),
     List = require('../components/List'),
-    HeaderStateActionCreators = require('../actions/HeaderStateActionCreators'),
     TrainingStore = require('../stores/TrainingStore.js'),
     Router = require('react-router'),
     SimpleHeaderMixin = require('../mixins/SimpleHeaderMixin'),
     PureRenderMixin = require('react').addons.PureRenderMixin,
-    Immutable = require('immutable'),
     AppState = require('../stores/AppState');
 
 let Home = React.createClass({
@@ -26,8 +24,8 @@ let Home = React.createClass({
         this.context.router.transitionTo('training');
     },
 
-    goToDetailHandler(e, item, index) {
-        this.context.router.transitionTo('detail',{}, {training: item.id});
+    goToDetailHandler(e, item) {
+        this.context.router.transitionTo('detail', {}, {training: item.id});
     },
 
     render() {
@@ -38,12 +36,14 @@ let Home = React.createClass({
             trainingDiv,
             trainings = TrainingStore.getTrainings().map((item) => {
                 let date = new Date(item.get('dateStart'));
-                return item.set('label', date.toLocaleDateString() + ' ' + date.toLocaleTimeString() + ' - ' + item.getIn(['workout', 'label']));
+                return item.set('label', date.toLocaleDateString() + ' ' +
+                    date.toLocaleTimeString() + ' - ' + item.getIn(['workout', 'label']));
             }).reverse(),
             timerDiv;
 
-        if(activeTraining) {
-            trainingDiv = <div onClick={this.goToTrainingHandler} className='activeTraining'><i className='ion-ios-pulse'></i> {activeTraining.getIn(['workout', 'label'])}</div>;
+        if (activeTraining) {
+            trainingDiv = (<div onClick={this.goToTrainingHandler} className='activeTraining'>
+            <i className='ion-ios-pulse'></i> {activeTraining.getIn(['workout', 'label'])}</div>);
             timerDiv = <div className='timer'>{this.state.timer} <i className='ion-android-time'></i></div>;
         }
         return (
@@ -51,7 +51,7 @@ let Home = React.createClass({
                 {trainingDiv}
                 {timerDiv}
                 <h2><i className='ion-folder'></i> Recent Trainings:</h2>
-                <List handlers={handlers} editAble={false} items={trainings.toJS()}></List>
+                <List handlers={handlers} editAble={false} items={trainings.toJS()} />
             </div>
         );
     },

@@ -23,13 +23,12 @@ let Menu = React.createClass({
                     AppStateActionCreators.closeMenu();
                     self.context.router.transitionTo(item.link);
                 };
-                return <MenuButton key={item.name} icon={item.icon} name={item.name} handler={handlerFunc}></MenuButton>;
+                return (<MenuButton key={item.name} icon={item.icon}
+                    name={item.name} handler={handlerFunc} />);
             });
-        /* istanbul ignore next */
-        let {className, ...prps} = this.props;
 
         return (
-            <div className={className + ' menu'}>
+            <div className={this.props.className + ' menu'}>
                 {menuPoints}
             </div>
         );

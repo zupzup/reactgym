@@ -26,15 +26,15 @@ let Header = React.createClass({
             editMode,
             title,
             showBack = (!config.back || currentRoute === '/') ? 'hide' : '';
-        if(config.title && config.title.visible) {
-            title = <span className="headertitle">{config.title.text}</span>; 
+        if (config.title && config.title.visible) {
+            title = <span className="headertitle">{config.title.text}</span>;
         }
 
-        if(config.add && config.add.visible) {
+        if (config.add && config.add.visible) {
             add = <span className="headeradd ion-android-add" onClick={config.add.handler}></span>;
         }
 
-        if(config.editMode && config.editMode.visible) {
+        if (config.editMode && config.editMode.visible) {
             editMode = <div className="headeredit ion-edit" onClick={config.editMode.handler}></div>;
         }
         return (

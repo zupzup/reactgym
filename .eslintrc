@@ -1,0 +1,98 @@
+{
+    "ecmaFeatures": {
+        "blockBindings": true,
+        "forOf": true,
+        "blockBindings": true,
+        "defaultParams": true,
+        "globalReturn": false,
+        "objectLiteralShorthandMethods": true,
+        "objectLiteralShorthandProperties": true,
+        "templateStrings": true,
+        "spread": true,
+        "jsx": true,
+        "arrowFunctions": true
+    },
+    "plugins": [
+        "react"
+    ],
+    "env": {
+        "browser": true,
+        "node": true
+    },
+    "globals": {
+        "async": true,
+        "fetch": true,
+        "it": true,
+        "describe": true,
+        "afterEach": true,
+        "beforeEach": true,
+        "expect": true,
+        "runs": true,
+        "waitsFor": true,
+        "LocalFileSystem": true,
+        "jest": true
+    },
+    "rules": {
+        "no-multi-spaces": 2,
+        "no-underscore-dangle": 0,
+        "no-alert": 0,
+        "no-duplicate-case": 0,
+        "no-bitwise": 1,
+        "no-path-concat": 0,
+        "no-comma-dangle": 2,
+        "camelcase": 0,
+        "curly": 2,
+        "eqeqeq": 0,
+        "guard-for-in": 2,
+        "wrap-iife": 0,
+        "no-use-before-define": 2,
+        "new-cap": 2,
+        "quotes": 0,
+        "strict": 0,
+        "no-caller": 2,
+        "no-empty": 1,
+        "no-new": 2,
+        "no-plusplus": 0,
+        "no-unused-vars": 1,
+        "no-trailing-spaces": 2,
+
+        // STYLE
+        "max-params": [2, 7],
+        "key-spacing": [2, {
+            beforeColon: false,
+            afterColon: true
+        }],
+        "indent": [2, 4],
+        "brace-style": [2, "1tbs"],
+        "comma-spacing": [2, {before: false, after: true}],
+        "comma-style": [2, "last"],
+        "consistent-this": [1, "self"],
+        "eol-last": 0,
+        "new-cap": 0,
+        "new-parens": 2,
+        "no-array-constructor": 2,
+        "no-mixed-requires": 0,
+        "no-mixed-spaces-and-tabs": 2,
+        "no-multiple-empty-lines": 2,
+        "no-space-before-semi": 2,
+        "no-spaced-func": 1,
+        "padded-blocks": [2, "never"],
+        "semi": [2, "always"],
+        "space-after-keywords": [2, "always"],
+        "space-infix-ops": 0,
+        "max-len" : [1, 120],
+        "space-in-brackets": [2, "never"],
+
+        // REACT
+        "react/display-name": 0,
+        "react/jsx-uses-react": 1,
+        "react/jsx-uses-vars": 1,
+        "react/no-did-mount-set-state": 1,
+        "react/no-did-update-set-state": 1,
+        "react/no-multi-comp": 1,
+        "react/prop-types": 0,
+        "react/react-in-jsx-scope": 1,
+        "react/self-closing-comp": 1,
+        "react/wrap-multilines": 1
+    }
+}

@@ -11,14 +11,14 @@ let React = require('react/addons'),
 
 describe("AddExercise", () => {
     afterEach(() => {
-        AppStateActionCreators.closeModal.mockClear(); 
-        AppStateActionCreators.finishTraining.mockClear(); 
-        ExerciseStoreActionCreators.addExercise.mockClear(); 
+        AppStateActionCreators.closeModal.mockClear();
+        AppStateActionCreators.finishTraining.mockClear();
+        ExerciseStoreActionCreators.addExercise.mockClear();
     });
 
     it("renders an AddExercise form", () => {
         let addExercise = TestUtils.renderIntoDocument(
-            <AddExercise  />
+            <AddExercise />
         );
         expect(TestUtils.isCompositeComponent(addExercise)).toEqual(true);
         expect(addExercise.getDOMNode().className).toEqual("form exercises");
@@ -26,7 +26,7 @@ describe("AddExercise", () => {
 
     it("closes the modal on cancel", () => {
         let addExercise = TestUtils.renderIntoDocument(
-            <AddExercise  />
+            <AddExercise />
         );
         let cancelButton = TestUtils.findRenderedDOMComponentWithClass(addExercise, 'cancelButton');
         TestUtils.Simulate.click(cancelButton.getDOMNode());
@@ -35,7 +35,7 @@ describe("AddExercise", () => {
 
     it("saves the exercise and closes the modal on submit", () => {
         let addExercise = TestUtils.renderIntoDocument(
-            <AddExercise  />
+            <AddExercise />
         );
         let submitButton = TestUtils.findRenderedDOMComponentWithClass(addExercise, 'submitButton');
         TestUtils.Simulate.click(submitButton.getDOMNode());

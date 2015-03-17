@@ -10,7 +10,6 @@ let React = require('react'),
     TrainingForm = require('../components/forms/TrainingForm'),
     Router = require('react-router'),
     PureRenderMixin = require('react').addons.PureRenderMixin,
-    Immutable = require('immutable'),
     StopTrainingDialog = require('../components/StopTrainingDialog'),
     TrainingStore = require('../stores/TrainingStore'),
     SettingsStore = require('../stores/SettingsStore'),
@@ -47,7 +46,7 @@ let Training = React.createClass({
         );
     },
 
-    startTraining(e, item, index) {
+    startTraining(e, item) {
         let workout = _.assign({}, item);
         let sets = workout.exercises.reduce((acc, exercise) => {
             acc[exercise] = [];
@@ -65,7 +64,7 @@ let Training = React.createClass({
         AppStateActionCreators.startTraining(training);
     },
 
-    exerciseClickHandler(e, item, index) {
+    exerciseClickHandler(e, item) {
         AppStateActionCreators.setCurrentExercise(item.id);
     },
 
@@ -76,14 +75,14 @@ let Training = React.createClass({
 
     render() {
         let handlers = {};
-        if(this.state.activeTraining === null) {
+        if (this.state.activeTraining === null) {
             handlers = {
                 default: this.startTraining
             };
             return (
                 <div className='page training'>
                     <h1>Select a Workout:</h1>
-                    <List editAble={false} handlers={handlers} items={WorkoutStore.getWorkouts().toJS()}></List>
+                    <List editAble={false} handlers={handlers} items={WorkoutStore.getWorkouts().toJS()} />
                 </div>
             );
         }
@@ -96,7 +95,7 @@ let Training = React.createClass({
                 return training.getIn(['workout', 'exercises']).contains(item.get('id').toString());
             }),
             currentExercise = training.get('currentExercise').toString(),
-            currentExerciseIndex = exercises.findIndex((item, index) => {
+            currentExerciseIndex = exercises.findIndex((item) => {
                 return item.get('id') == currentExercise;
             });
 
@@ -107,9 +106,11 @@ let Training = React.createClass({
                     {this.state.timer} <i className='ion-android-time'></i>
                 </div>
                 <div className='scrollinglist'>
-                    <List activeIndex={currentExerciseIndex} editAble={false} handlers={handlers} items={exercises.toJS()}></List>
+                    <List activeIndex={currentExerciseIndex}
+                        editAble={false} handlers={handlers} items={exercises.toJS()} />
                 </div>
-                <TrainingForm exercise={currentExercise} sets={training.getIn(['sets', currentExercise])} handler={this.formSubmitHandler} />
+                <TrainingForm exercise={currentExercise}
+                    sets={training.getIn(['sets', currentExercise])} handler={this.formSubmitHandler} />
                 <div className='finish' onClick={this.finishTraining}>
                     <i className='ion-trophy'></i> Finish Training
                 </div>

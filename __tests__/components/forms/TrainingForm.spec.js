@@ -32,7 +32,7 @@ describe("TrainingForm", () => {
 
     afterEach(() => {
         ExerciseStore.getExerciseForId.mockClear();
-        AppStateActionCreators.removeSet.mockClear(); 
+        AppStateActionCreators.removeSet.mockClear();
     });
 
     it("renders a TrainingForm", () => {

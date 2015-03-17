@@ -2,8 +2,7 @@
 
 jest.dontMock('../../scripts/dispatcher/AppDispatcher.js');
 var AppDispatcher = require('../../scripts/dispatcher/AppDispatcher.js'),
-    PayloadSources = require('../../scripts/constants/PayloadSources'),
-    Dispatcher = require('flux').Dispatcher;
+    PayloadSources = require('../../scripts/constants/PayloadSources');
 
 describe("AppDispatcher", () => {
     it("handlers view actions", () => {

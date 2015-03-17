@@ -3,7 +3,6 @@
 jest.dontMock('../../scripts/stores/ExerciseStore.js');
 jest.mock('../../scripts/dispatcher/AppDispatcher.js');
 jest.mock('../../scripts/utils/LocalStorageUtil.js');
-let Immutable = require('immutable');
 
 describe("ExerciseStore", () => {
     let cb,
@@ -43,7 +42,6 @@ describe("ExerciseStore", () => {
         };
 
     beforeEach(() => {
-        LocalStorageUtil = require('../../scripts/utils/LocalStorageUtil.js'),
         AppDispatcher = require('../../scripts/dispatcher/AppDispatcher');
         ExerciseStore = require('../../scripts/stores/ExerciseStore.js');
         LocalStorageUtil.lsGet.mockImplementation(() => {
@@ -63,7 +61,7 @@ describe("ExerciseStore", () => {
     });
 
     it("doesn't throw on an unregistered action", () => {
-        expect(cb.bind(null,{
+        expect(cb.bind(null, {
             source: 'VIEW_ACTION',
             action: {
                 type: 'NULL'

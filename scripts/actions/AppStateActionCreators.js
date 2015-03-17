@@ -89,7 +89,7 @@ module.exports = {
     setCurrentExercise(id) {
         AppDispatcher.handleViewAction({
             type: ActionTypes.SET_CURRENT_EXERCISE,
-            exercise: id,
+            exercise: id
         });
     }
 };

@@ -18,11 +18,11 @@ let App = React.createClass({
     },
 
     contentHandler() {
-        if(this.state.menuOpen) {
+        if (this.state.menuOpen) {
             AppStateActionCreators.closeMenu();
         }
 
-        if(this.state.modal) {
+        if (this.state.modal) {
             AppStateActionCreators.closeModal();
         }
     },
@@ -30,9 +30,10 @@ let App = React.createClass({
     render() {
         let name = this.context.router.getCurrentPath(),
             menuOpen = this.state.menuOpen ? 'open' : '',
-            modal = <Modal content={this.state.modal} closeHandler={AppStateActionCreators.closeModal}  />,
+            modal = <Modal content={this.state.modal} closeHandler={AppStateActionCreators.closeModal} />,
             modalClass = this.state.modal ? ' modalOpen' : '',
-            mask = (menuOpen || this.state.modal) ? <div className={'mask' + modalClass} onClick={this.contentHandler}></div> : null;
+            mask = (menuOpen || this.state.modal) ?
+                <div className={'mask' + modalClass} onClick={this.contentHandler}></div> : null;
 
         return (
             <div className='App'>
@@ -41,7 +42,8 @@ let App = React.createClass({
                 {mask}
                 <div className={'contentArea ' + menuOpen}>
                     <Header />
-                    <ReactCSSTransitionGroup className='content' component='div' transitionName={AppState.getNextTransition()}>
+                    <ReactCSSTransitionGroup className='content'
+                        component='div' transitionName={AppState.getNextTransition()}>
                         <RouteHandler key={name} />
                     </ReactCSSTransitionGroup>
                 </div>

@@ -1,14 +1,13 @@
 'use strict';
 
-let React = require('react'),
-    HeaderStateActionCreators = require('../actions/HeaderStateActionCreators.js');
+let HeaderStateActionCreators = require('../actions/HeaderStateActionCreators.js');
 
 let HeaderMixin = {
     componentDidMount() {
         let self = this;
         HeaderStateActionCreators.setConfig({
             back: true,
-            title:  {
+            title: {
                 visible: true,
                 text: self.header.title
             },

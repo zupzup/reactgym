@@ -1,7 +1,6 @@
 'use strict';
 
-let LocalStorageUtil = require('../utils/LocalStorageUtil'),
-    ActionTypes = require('../constants/ActionTypes'),
+let ActionTypes = require('../constants/ActionTypes'),
     Immutable = require('immutable'),
     AppDispatcher = require('../dispatcher/AppDispatcher'),
     assign = require('object-assign'),
@@ -17,7 +16,7 @@ let BackupStore = assign({}, StoreListenerMixin, {
 BackupStore.dispatchToken = AppDispatcher.register((payload) => {
     let action = payload.action;
 
-    switch(action.type) {
+    switch (action.type) {
         case ActionTypes.GET_BACKUPS:
             //TODO: loading indicator
             break;

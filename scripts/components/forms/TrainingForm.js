@@ -16,7 +16,7 @@ let TrainingForm = React.createClass({
     handleSubmit() {
         let reps = this.refs.reps.getDOMNode(),
             weight = this.refs.weight.getDOMNode();
-        if(reps.className.indexOf('invalid') === -1 && weight.className.indexOf('invalid') === -1) {
+        if (reps.className.indexOf('invalid') === -1 && weight.className.indexOf('invalid') === -1) {
             this.props.handler(this.props.exercise, reps.value, weight.value);
         }
     },
@@ -32,17 +32,19 @@ let TrainingForm = React.createClass({
             }).toArray(),
             historyValues = TrainingStore.getLastInputsForExercise(this.props.exercise, sets.length);
 
-       return (
+        return (
             <div className='form training'>
                 <div className='sets'>{sets}</div>
                 <h1>{exercise.get('label')}</h1>
                 <div>
                     <span>
-                        <ValidatedInput validator='number' type='number' ref='reps' placeholder='reps' className='reps' value={historyValues.rep}/><br />
-                        <ValidatedInput validator='number' type='number' ref='weight' placeholder='weight' className='weight' value={historyValues.weight} /><br />
+                        <ValidatedInput validator='number' type='number'
+                            ref='reps' placeholder='reps' className='reps' value={historyValues.rep}/><br />
+                        <ValidatedInput validator='number' type='number'
+                            ref='weight' placeholder='weight' className='weight' value={historyValues.weight} /><br />
                     </span>
                     <span>
-                        <button className='submitButton' onClick={this.handleSubmit}>Add</button> 
+                        <button className='submitButton' onClick={this.handleSubmit}>Add</button>
                     </span>
                 </div>
             </div>

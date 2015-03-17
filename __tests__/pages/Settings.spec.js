@@ -7,7 +7,6 @@ jest.mock('../../scripts/actions/SettingsStoreActionCreators.js');
 var React = require('react/addons'),
     TestUtils = React.addons.TestUtils,
     SettingsStoreActionCreators = require('../../scripts/actions/SettingsStoreActionCreators.js'),
-    Immutable = require('immutable'),
     SettingsStore = require('../../scripts/stores/SettingsStore.js'),
     Settings = require('../../scripts/pages/Settings.js');
 

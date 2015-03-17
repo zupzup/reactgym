@@ -19,7 +19,6 @@ let React = require('react'),
 let Route = Router.Route,
     DefaultRoute = Router.DefaultRoute;
 
-
 let routes = (
     <Route name='app' path='/' handler={App}>
         <DefaultRoute name='home' handler={Home} />
@@ -38,7 +37,7 @@ WorkoutStoreActionCreators.getWorkouts();
 HeaderState.init();
 
 Router.run(routes, (Handler, state) => {
-    if(state.action === 'pop') {
+    if (state.action === 'pop') {
         AppStateActionCreators.setNextTransition('slideBack');
     }
     React.render(<Handler/>, document.body);
