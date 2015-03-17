@@ -6,8 +6,8 @@
     "immutable": "^3.6.4",
     "lodash": "^3.5.0",
     "object-assign": "^1.0.0",
-    "react": "^0.13.0",
-    "react-tools": "^0.13.0"
+    "react": "^0.13.1",
+    "react-tools": "^0.13.1"
   },
   "devDependencies": {
     "babel": "^4.7.7",
