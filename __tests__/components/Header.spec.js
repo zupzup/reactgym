@@ -5,14 +5,14 @@ jest.mock('../../scripts/stores/HeaderState.js');
 jest.mock('../../scripts/actions/HeaderStateActionCreators.js');
 jest.mock('react-router');
 
-var React = require('react/addons'),
+let React = require('react/addons'),
     TestUtils = React.addons.TestUtils,
     Header = require('../../scripts/components/Header.js'),
     HeaderState = require('../../scripts/stores/HeaderState'),
     StubRouterContext = require('../../StubRouterContext.js');
 
 describe("Header", () => {
-    var header,
+    let header,
         wrapped,
         ContextComponent = StubRouterContext(Header);
     beforeEach(() => {
