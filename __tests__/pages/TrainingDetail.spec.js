@@ -9,10 +9,19 @@ var React = require('react/addons'),
     Immutable = require('immutable'),
     Router = require('react-router'),
     TrainingStore = require('../../scripts/stores/TrainingStore.js'),
-    TrainingDetail = require('../../scripts/pages/TrainingDetail.js');
+    TrainingDetail = require('../../scripts/pages/TrainingDetail.js'),
+    StubRouterContext = require('../../StubRouterContext.js');
 
 describe("TrainingDetail", () => {
-    var detail;
+    var detail,
+        wrapped,
+        ContextComponent = StubRouterContext(TrainingDetail, {}, {
+            getCurrentQuery: () => {
+                return {
+                    training: 0
+                };
+            }
+        });
     beforeEach(() => {
         TrainingStore.getTrainingForId.mockImplementation(() => {
             return Immutable.fromJS(
@@ -48,12 +57,8 @@ describe("TrainingDetail", () => {
                 }
             );
         });
-        Router.State.getQuery.mockImplementation(() => {
-            return {
-                training: 0
-            };
-        });
-        detail = TestUtils.renderIntoDocument(<TrainingDetail />);
+        wrapped = TestUtils.renderIntoDocument(<ContextComponent/>);
+        detail = TestUtils.findRenderedComponentWithType(wrapped, TrainingDetail);
     });
 
     afterEach(() => {
@@ -70,7 +75,8 @@ describe("TrainingDetail", () => {
         TrainingStore.getTrainingForId.mockImplementation(() => {
             return undefined;
         });
-        detail = TestUtils.renderIntoDocument(<TrainingDetail />);
+        wrapped = TestUtils.renderIntoDocument(<ContextComponent/>);
+        detail = TestUtils.findRenderedComponentWithType(wrapped, TrainingDetail);
         expect(detail.getDOMNode().textContent).toEqual('invalid Id');
     });
 });
