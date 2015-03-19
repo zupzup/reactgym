@@ -6,8 +6,8 @@ jest.mock('../../scripts/utils/LocalStorageUtil.js');
 
 describe("ExerciseStore", () => {
     let cb,
-        LocalStorageUtil,
         AppDispatcher,
+        LocalStorageUtil,
         ExerciseStore,
         ActionTypes = require('../../scripts/constants/ActionTypes.js'),
         actionAddExercises = {
@@ -42,6 +42,7 @@ describe("ExerciseStore", () => {
         };
 
     beforeEach(() => {
+        LocalStorageUtil = require('../../scripts/utils/LocalStorageUtil.js');
         AppDispatcher = require('../../scripts/dispatcher/AppDispatcher');
         ExerciseStore = require('../../scripts/stores/ExerciseStore.js');
         LocalStorageUtil.lsGet.mockImplementation(() => {
