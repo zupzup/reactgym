@@ -6,17 +6,30 @@ jest.mock('../scripts/stores/AppState.js');
 jest.mock('../scripts/actions/AppStateActionCreators.js');
 jest.mock('../scripts/components/Header.js');
 jest.mock('../scripts/components/Menu.js');
+
 var React = require('react/addons'),
     TestUtils = React.addons.TestUtils,
     AppStateActionCreators = require('../scripts/actions/AppStateActionCreators'),
-    Router = require('react-router'),
     AppState = require('../scripts/stores/AppState.js'),
-    App = require('../scripts/App.js');
+    App = require('../scripts/App.js'),
+    Router = require('react-router'),
+    StubRouterContext = require('../StubRouterContext.js');
 
-describe("Menu", () => {
+Router.RouteHandler = React.createClass({
+    render() {
+        return <div>hello</div>;
+    }
+});
+
+describe("App", () => {
+    let app,
+        ContextComponent,
+        wrapped;
     beforeEach(() => {
-        Router.State.getRoutes.mockImplementation(() => {
-            return ['123'];
+        ContextComponent = StubRouterContext(App, {}, {
+            getCurrentPath: () => {
+                return '123';
+            }
         });
         AppState.getNextTransition.mockImplementation(() => {
             return 'slide';
@@ -28,10 +41,11 @@ describe("Menu", () => {
                 modal: null
             };
         });
+        wrapped = TestUtils.renderIntoDocument(<ContextComponent />);
+        app = TestUtils.findRenderedComponentWithType(wrapped, App);
     });
 
     afterEach(() => {
-        Router.State.getRoutes.mockClear();
         AppState.getAll.mockClear();
         AppState.getNextTransition.mockClear();
         AppStateActionCreators.closeMenu.mockClear();
@@ -39,14 +53,12 @@ describe("Menu", () => {
     });
 
     it("renders an App", () => {
-        let app = TestUtils.renderIntoDocument(<App />);
         expect(TestUtils.isCompositeComponent(app)).toEqual(true);
         expect(app.getDOMNode().className).toEqual("App");
         app.componentWillUnmount();
     });
 
     it("gets the appstate onchange", () => {
-        let app = TestUtils.renderIntoDocument(<App />);
         app._onChange();
         expect(AppState.getAll.mock.calls.length).toBe(2);
     });
@@ -60,10 +72,11 @@ describe("Menu", () => {
                     modal: null
                 };
             });
+            wrapped = TestUtils.renderIntoDocument(<ContextComponent />);
+            app = TestUtils.findRenderedComponentWithType(wrapped, App);
         });
 
         it("sets the menu to open on menuOpen and renders a mask", () => {
-            let app = TestUtils.renderIntoDocument(<App />);
             let contentArea = TestUtils.findRenderedDOMComponentWithClass(app, 'contentArea');
             let mask = TestUtils.findRenderedDOMComponentWithClass(app, 'mask');
             expect(contentArea.getDOMNode().className).toBe('contentArea open');
@@ -71,7 +84,6 @@ describe("Menu", () => {
         });
 
         it("it closes the menu on clicking the mask", () => {
-            let app = TestUtils.renderIntoDocument(<App />);
             let mask = TestUtils.findRenderedDOMComponentWithClass(app, 'mask');
             TestUtils.Simulate.click(mask.getDOMNode());
             expect(AppStateActionCreators.closeMenu.mock.calls.length).toBe(1);
@@ -87,9 +99,10 @@ describe("Menu", () => {
                     modal: '5'
                 };
             });
+            wrapped = TestUtils.renderIntoDocument(<ContextComponent />);
+            app = TestUtils.findRenderedComponentWithType(wrapped, App);
         });
         it("sets the modal to open if there is a modal and renders a mask", () => {
-            let app = TestUtils.renderIntoDocument(<App />);
             let modal = TestUtils.findRenderedDOMComponentWithClass(app, 'modal');
             let mask = TestUtils.findRenderedDOMComponentWithClass(app, 'mask');
             expect(mask.getDOMNode().className).toBe('mask modalOpen');
@@ -97,7 +110,6 @@ describe("Menu", () => {
         });
 
         it("it closes the modal on clicking the mask", () => {
-            let app = TestUtils.renderIntoDocument(<App />);
             let mask = TestUtils.findRenderedDOMComponentWithClass(app, 'mask');
             TestUtils.Simulate.click(mask.getDOMNode());
             expect(AppStateActionCreators.closeModal.mock.calls.length).toBe(1);

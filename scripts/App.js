@@ -7,8 +7,7 @@ let React = require('react/addons'),
     Router = require('react-router'),
     AppState = require('./stores/AppState'),
     AppStateActionCreators = require('./actions/AppStateActionCreators'),
-    ReactCSSTransitionGroup = React.addons.CSSTransitionGroup,
-    RouteHandler = Router.RouteHandler;
+    ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 let App = React.createClass({
     mixins: [Router.State],
@@ -44,7 +43,7 @@ let App = React.createClass({
                     <Header />
                     <ReactCSSTransitionGroup className='content'
                         component='div' transitionName={AppState.getNextTransition()}>
-                        <RouteHandler key={name} />
+                        <Router.RouteHandler key={name} />
                     </ReactCSSTransitionGroup>
                 </div>
             </div>
@@ -69,3 +68,4 @@ let App = React.createClass({
 });
 
 module.exports = App;
+
