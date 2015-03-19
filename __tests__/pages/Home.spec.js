@@ -12,10 +12,13 @@ var React = require('react/addons'),
     Router = require('react-router'),
     AppState = require('../../scripts/stores/AppState.js'),
     TrainingStore = require('../../scripts/stores/TrainingStore.js'),
-    Home = require('../../scripts/pages/Home.js');
+    Home = require('../../scripts/pages/Home.js'),
+    StubRouterContext = require('../../StubRouterContext.js');
 
 describe("Home", () => {
-    var home;
+    var home,
+        wrapped,
+        ContextComponent = StubRouterContext(Home);
     beforeEach(() => {
         AppState.getActiveTraining.mockImplementation(() => {
             return Immutable.fromJS({
@@ -36,7 +39,8 @@ describe("Home", () => {
                 }
             ]);
         });
-        home = TestUtils.renderIntoDocument(<Home />);
+        wrapped = TestUtils.renderIntoDocument(<ContextComponent/>);
+        home = TestUtils.findRenderedComponentWithType(wrapped, Home);
     });
 
     afterEach(() => {
@@ -59,14 +63,14 @@ describe("Home", () => {
     it("goes to the training page on click on the training", () => {
         let activeTrainingDiv = TestUtils.scryRenderedDOMComponentsWithClass(home, 'activeTraining');
         TestUtils.Simulate.click(activeTrainingDiv[0].getDOMNode());
-        expect(Router.Navigation.transitionTo.mock.calls.length).toBe(1);
+        expect(home.context.router.transitionTo.mock.calls.length).toBe(1);
     });
 
     it("goes to the training detail page on click on one of the recent trainings", () => {
         let recentTrainingDiv = TestUtils.scryRenderedDOMComponentsWithClass(home, 'listitem');
         TestUtils.Simulate.click(recentTrainingDiv[0].getDOMNode());
-        expect(Router.Navigation.transitionTo.mock.calls.length).toBe(1);
-        expect(Router.Navigation.transitionTo.mock.calls[0][2].training).toBe(0);
+        expect(home.context.router.transitionTo.mock.calls.length).toBe(1);
+        expect(home.context.router.transitionTo.mock.calls[0][2].training).toBe(0);
     });
 
     it("gets the timer on change", () => {
