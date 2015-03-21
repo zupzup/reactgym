@@ -7,7 +7,6 @@ jest.mock('../../scripts/actions/AppStateActionCreators.js');
 let React = require('react/addons'),
     TestUtils = React.addons.TestUtils,
     AppStateActionCreators = require('../../scripts/actions/AppStateActionCreators'),
-    Router = require('react-router'),
     MenuStore = require('../../scripts/stores/MenuStore.js'),
     Menu = require('../../scripts/components/Menu.js'),
     StubRouterContext = require('../../StubRouterContext.js');
@@ -17,9 +16,6 @@ describe("Menu", () => {
         menu,
         wrapped;
     beforeEach(() => {
-        Router.State.getRoutes.mockImplementation(() => {
-            return ['123'];
-        });
         MenuStore.getMenuPoints.mockImplementation(() => {
             return [
                 {
@@ -39,7 +35,6 @@ describe("Menu", () => {
     });
 
     afterEach(() => {
-        Router.State.getRoutes.mockClear();
         MenuStore.getMenuPoints.mockClear();
     });
 

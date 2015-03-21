@@ -25,7 +25,7 @@
     "jest-cli": "git://github.com/zupzup/jest.git",
     "phonegap": "^4.2.0-0.24.2",
     "react-hot-loader": "^1.2.2",
-    "react-router": "git://github.com/nhunzaker/react-router.git",
+    "react-router": "^0.13.1",
     "request": "^2.40.0",
     "url-loader": "~0.5.5",
     "webpack": "^1.7.2",

@@ -1,13 +1,16 @@
 'use strict';
 
 let React = require('react/addons'),
-    Router = require('react-router'),
     HeaderState = require('../stores/HeaderState'),
     AppStateActionCreators = require('../actions/AppStateActionCreators'),
     PureRenderMixin = require('react').addons.PureRenderMixin;
 
 let Header = React.createClass({
-    mixins: [Router.State, Router.Navigation, PureRenderMixin],
+    mixins: [PureRenderMixin],
+
+    contextTypes: {
+        router: React.PropTypes.func.isRequired
+    },
 
     getInitialState() {
         return {

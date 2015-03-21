@@ -8,7 +8,6 @@ let React = require('react'),
     WorkoutStore = require('../stores/WorkoutStore'),
     _ = require('lodash'),
     TrainingForm = require('../components/forms/TrainingForm'),
-    Router = require('react-router'),
     PureRenderMixin = require('react').addons.PureRenderMixin,
     StopTrainingDialog = require('../components/StopTrainingDialog'),
     TrainingStore = require('../stores/TrainingStore'),
@@ -20,7 +19,12 @@ let Training = React.createClass({
     header: {
         title: 'Training'
     },
-    mixins: [Router.Navigation, SimpleHeaderMixin, PureRenderMixin],
+
+    mixins: [SimpleHeaderMixin, PureRenderMixin],
+
+    contextTypes: {
+        router: React.PropTypes.func.isRequired
+    },
 
     getInitialState() {
         return {

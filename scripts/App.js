@@ -10,8 +10,9 @@ let React = require('react/addons'),
     ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 let App = React.createClass({
-    mixins: [Router.State],
-
+    contextTypes: {
+        router: React.PropTypes.func.isRequired
+    },
     getInitialState() {
         return AppState.getAll();
     },

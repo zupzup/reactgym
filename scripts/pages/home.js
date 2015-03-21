@@ -3,16 +3,18 @@
 let React = require('react'),
     List = require('../components/List'),
     TrainingStore = require('../stores/TrainingStore.js'),
-    Router = require('react-router'),
     SimpleHeaderMixin = require('../mixins/SimpleHeaderMixin'),
     PureRenderMixin = require('react').addons.PureRenderMixin,
     AppState = require('../stores/AppState');
 
 let Home = React.createClass({
+    contextTypes: {
+        router: React.PropTypes.func.isRequired
+    },
     header: {
         title: 'Home'
     },
-    mixins: [Router.Navigation, PureRenderMixin, SimpleHeaderMixin],
+    mixins: [PureRenderMixin, SimpleHeaderMixin],
 
     getInitialState() {
         return {

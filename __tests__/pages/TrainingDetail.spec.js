@@ -7,7 +7,6 @@ jest.mock('react-router');
 var React = require('react/addons'),
     TestUtils = React.addons.TestUtils,
     Immutable = require('immutable'),
-    Router = require('react-router'),
     TrainingStore = require('../../scripts/stores/TrainingStore.js'),
     TrainingDetail = require('../../scripts/pages/TrainingDetail.js'),
     StubRouterContext = require('../../StubRouterContext.js');
@@ -63,7 +62,6 @@ describe("TrainingDetail", () => {
 
     afterEach(() => {
         TrainingStore.getTrainingForId.mockClear();
-        Router.State.getQuery.mockClear();
     });
 
     it("renders a TrainingDetail Page", () => {
