@@ -6,6 +6,9 @@ var React = require('react'),
     PureRenderMixin = require('react').addons.PureRenderMixin,
     BackupStoreActionCreators = require('../actions/BackupStoreActionCreators'),
     BackupStore = require('../stores/BackupStore'),
+    ExerciseStore = require('../stores/ExerciseStore'),
+    WorkoutStore = require('../stores/WorkoutStore'),
+    TrainingStore = require('../stores/TrainingStore'),
     AppStateActionCreators = require('../actions/AppStateActionCreators');
 
 var BackupRestore = React.createClass({
@@ -25,9 +28,11 @@ var BackupRestore = React.createClass({
     },
 
     handleBackup() {
-        var backup = {};
-        // TODO: get exercises, workouts, trainings from localstorage
-        // and att them to backup
+        var backup = {
+            exercises: ExerciseStore.getExercises(),
+            workouts: WorkoutStore.getWorkouts(),
+            training: TrainingStore.getTrainings()
+        };
         BackupStoreActionCreators.addBackup(backup);
     },
 
