@@ -33,7 +33,8 @@ TODOS:
 * finish backups
     * Tests for Backups
     * warning, that active training gets canceled on data-change
-    * loading indicator, failhandling for async actions (in LoadingStore)
+    * failhandling for async actions (in LoadingStore)
+    * loading indicator styling
 * file-api / server-api for persistence
     * [PhoneGap File-API](http://docs.phonegap.com/en/edge/cordova_file_file.md.html)
     * [usage](https://gist.github.com/alunny/1904992)

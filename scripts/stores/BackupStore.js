@@ -5,11 +5,16 @@ let ActionTypes = require('../constants/ActionTypes'),
     AppDispatcher = require('../dispatcher/AppDispatcher'),
     assign = require('object-assign'),
     StoreListenerMixin = require('../mixins/StoreListenerMixin'),
+    _loading = false,
     _backups = Immutable.List();
 
 let BackupStore = assign({}, StoreListenerMixin, {
     getBackups() {
         return _backups;
+    },
+
+    getLoading() {
+        return _loading;
     }
 });
 
@@ -18,22 +23,30 @@ BackupStore.dispatchToken = AppDispatcher.register((payload) => {
 
     switch (action.type) {
         case ActionTypes.GET_BACKUPS:
-            //TODO: loading indicator
+            _loading = true;
+            BackupStore.emitChange();
             break;
         case ActionTypes.GET_BACKUPS_FAIL:
+            _loading = false;
+            BackupStore.emitChange();
             break;
         case ActionTypes.GET_BACKUPS_SUCCESS:
+            _loading = false;
             _backups = action.data;
             BackupStore.emitChange();
             break;
         case ActionTypes.ADD_BACKUP:
-            //TODO: loading indicator
+            _loading = true;
+            BackupStore.emitChange();
             break;
         case ActionTypes.ADD_BACKUP_SUCCESS:
+            _loading = false;
             _backups = action.data;
             BackupStore.emitChange();
             break;
         case ActionTypes.ADD_BACKUP_FAIL:
+            _loading = false;
+            BackupStore.emitChange();
             break;
         case ActionTypes.RESTORE_FROM_BACKUP:
             break;

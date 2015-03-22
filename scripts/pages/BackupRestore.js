@@ -23,7 +23,8 @@ var BackupRestore = React.createClass({
 
     getInitialState() {
         return {
-            backups: BackupStore.getBackups()
+            backups: BackupStore.getBackups(),
+            loading: BackupStore.getLoading()
         };
     },
 
@@ -42,10 +43,11 @@ var BackupRestore = React.createClass({
 
     render() {
         let handlers = {
-            default: this.handleRestore
-        };
+                default: this.handleRestore
+            },
+            loadingClass = this.state.loading ? ' loading' : '';
         return (
-            <div className='page backup'>
+            <div className={'page backup' + loadingClass}>
                 <h2><i className='ion-folder'></i> Backups:</h2>
                 <i className='refreshButton ion-loop' onClick={this.refreshBackups}></i>
                 <List handlers={handlers} editAble={false} items={this.state.backups.toJS()} />
@@ -64,7 +66,8 @@ var BackupRestore = React.createClass({
 
     _onChange() {
         this.setState({
-            backups: BackupStore.getBackups()
+            backups: BackupStore.getBackups(),
+            loading: BackupStore.getLoading()
         });
     }
 });
