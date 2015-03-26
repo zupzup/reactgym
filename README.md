@@ -35,10 +35,9 @@ TODOS:
     * warning, that active training gets canceled on data-change
     * failhandling for async actions (in LoadingStore)
     * loading indicator styling
-* file-api / server-api for persistence
+* file-api for persistence
     * [PhoneGap File-API](http://docs.phonegap.com/en/edge/cordova_file_file.md.html)
     * [usage](https://gist.github.com/alunny/1904992)
-    * create a common interface for file-api (native) and web-api
 * native release builds (.ipa, .apk)
     * launch icon
     * conditionally include cordova

@@ -17,10 +17,6 @@ var BackupRestore = React.createClass({
     },
     mixins: [SimpleHeaderMixin, PureRenderMixin],
 
-    refreshBackups() {
-        BackupStoreActionCreators.getBackups();
-    },
-
     getInitialState() {
         return {
             backups: BackupStore.getBackups(),
@@ -37,8 +33,8 @@ var BackupRestore = React.createClass({
         BackupStoreActionCreators.addBackup(backup);
     },
 
-    handleRestore(e, item, index) {
-        AppStateActionCreators.openModal(<div>Restore this state? {item.label} {index}</div>);
+    handleRestore(e, item) {
+        AppStateActionCreators.openModal(<div>Restore this state? {item.label}</div>);
     },
 
     render() {
@@ -47,9 +43,10 @@ var BackupRestore = React.createClass({
             },
             loadingClass = this.state.loading ? ' loading' : '';
         return (
-            <div className={'page backup' + loadingClass}>
+            <div className='page backup'>
+                <div className={'loadingindicator' + loadingClass}>
+                    <i className='refreshButton ion-loop rotating'></i></div>
                 <h2><i className='ion-folder'></i> Backups:</h2>
-                <i className='refreshButton ion-loop' onClick={this.refreshBackups}></i>
                 <List handlers={handlers} editAble={false} items={this.state.backups.toJS()} />
                 <button className='backupButton' onClick={this.handleBackup}>Backup now</button>
             </div>
@@ -58,6 +55,7 @@ var BackupRestore = React.createClass({
 
     componentDidMount() {
         BackupStore.addChangeListener(this._onChange);
+        BackupStoreActionCreators.getBackups();
     },
 
     componentWillUnmount() {
