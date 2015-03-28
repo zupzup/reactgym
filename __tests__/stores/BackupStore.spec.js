@@ -9,6 +9,12 @@ describe("BackupStore", () => {
         Immutable = require('immutable'),
         AppDispatcher,
         ActionTypes = require('../../scripts/constants/ActionTypes.js'),
+        getGetBackupsAction = {
+            source: 'VIEW_ACTION',
+            action: {
+                type: ActionTypes.GET_BACKUPS
+            }
+        },
         getBackupsSuccessAction = {
             source: 'VIEW_ACTION',
             action: {
@@ -38,6 +44,12 @@ describe("BackupStore", () => {
         cb(getBackupsSuccessAction);
         var backup = BackupStore.getBackups();
         expect(backup.size).toEqual(2);
+        expect(BackupStore.getLoading()).toBe(false);
+    });
+
+    it("shows a loading indicator when getting backups", () => {
+        cb(getGetBackupsAction);
+        expect(BackupStore.getLoading()).toBe(true);
     });
 
     it("doesn't throw on an unregistered action", () => {
