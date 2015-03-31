@@ -4,6 +4,17 @@ let Immutable = require('immutable'),
     prefix = 'simplegym_';
 
 let BackupUtil = {
+    getBackup(filename, cb) {
+        //TODO implement
+        window.setTimeout(() => {
+            cb(null, Immutable.fromJS([
+                {
+                    label: 'simplegym_2015-01-24'
+                }
+            ]));
+        }, 500);
+    },
+
     getBackups(cb) {
         let self = this;
         if (window.requestFileSystem) {

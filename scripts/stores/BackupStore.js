@@ -32,7 +32,7 @@ BackupStore.dispatchToken = AppDispatcher.register((payload) => {
             break;
         case ActionTypes.GET_BACKUPS_SUCCESS:
             _loading = false;
-            _backups = action.data;
+            _backups = Immutable.fromJS(action.data);
             BackupStore.emitChange();
             break;
         case ActionTypes.ADD_BACKUP:
@@ -41,7 +41,7 @@ BackupStore.dispatchToken = AppDispatcher.register((payload) => {
             break;
         case ActionTypes.ADD_BACKUP_SUCCESS:
             _loading = false;
-            _backups = action.data;
+            _backups = Immutable.fromJS(action.data);
             BackupStore.emitChange();
             break;
         case ActionTypes.ADD_BACKUP_FAIL:
@@ -49,6 +49,13 @@ BackupStore.dispatchToken = AppDispatcher.register((payload) => {
             BackupStore.emitChange();
             break;
         case ActionTypes.RESTORE_FROM_BACKUP:
+            _loading = true;
+            break;
+        case ActionTypes.RESTORE_FROM_BACKUP_SUCCESS:
+            _loading = false;
+            break;
+        case ActionTypes.RESTORE_FROM_BACKUP_FAILURE:
+            _loading = false;
             break;
         default:
     }

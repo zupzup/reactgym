@@ -29,9 +29,13 @@ module.exports = {
     },
 
     restoreFromBackup(filename) {
-        AppDispatcher.handleViewAction({
-            type: ActionTypes.RESTORE_FROM_BACKUP,
-            filename
+        AppDispatcher.handleViewAction({type: ActionTypes.RESTORE_FROM_BACKUP});
+        BackupUtil.getBackup(filename, (err, data) => {
+            if (!err) {
+                AppDispatcher.handleViewAction({type: ActionTypes.RESTORE_FROM_BACKUP_SUCCESS, data});
+            } else {
+                AppDispatcher.handleViewAction({type: ActionTypes.RESTORE_FROM_BACKUP_FAILURE, err});
+            }
         });
     }
 };
