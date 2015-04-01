@@ -34,7 +34,16 @@ var BackupRestore = React.createClass({
     },
 
     handleRestore(e, item) {
-        AppStateActionCreators.openModal(<div>Restore this state? {item.label}</div>);
+        let handler = BackupStoreActionCreators.restoreFromBackup.bind(this, item.label);
+        AppStateActionCreators.openModal(
+            <div className="restoreState">
+                <h1>Restore this state?</h1>
+                <div>{item.label}</div>
+                <div>
+                    <button className='yes' onClick={handler}>Restore</button>
+                </div>
+            </div>
+        );
     },
 
     render() {

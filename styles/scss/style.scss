@@ -555,6 +555,14 @@ input {
     font-size: 2rem;
 }
 
+.restoreState {
+    padding: 1rem;
+    button {
+        margin-top: 2rem;
+        font-size: 2rem;
+    }
+}
+
 .loadingindicator {
     display: none;
     position: absolute;

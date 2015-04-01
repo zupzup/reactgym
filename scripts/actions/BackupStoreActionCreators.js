@@ -29,6 +29,7 @@ module.exports = {
     },
 
     restoreFromBackup(filename) {
+        console.log(filename);
         AppDispatcher.handleViewAction({type: ActionTypes.RESTORE_FROM_BACKUP});
         BackupUtil.getBackup(filename, (err, data) => {
             if (!err) {
