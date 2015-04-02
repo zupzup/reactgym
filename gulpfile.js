@@ -42,7 +42,7 @@ gulp.task('test', function(callback) {
 
 gulp.task('sass', function () {
     gulp.src('./styles/scss/*.scss')
-        .pipe(sass({sourcemap: false, style: 'compact'}))
+        .pipe(sass({"sourcemap=none": true, style: 'compact'}))
         .pipe(autoprefixer("Android >= 4.4", "iOS >= 6"))
         .on('error', function (err) {
             console.log(err.message);

@@ -15,6 +15,12 @@ describe("BackupStore", () => {
                 type: ActionTypes.GET_BACKUPS
             }
         },
+        restoreFromBackupAction = {
+            source: 'VIEW_ACTION',
+            action: {
+                type: ActionTypes.RESTORE_FROM_BACKUP
+            }
+        },
         getBackupsSuccessAction = {
             source: 'VIEW_ACTION',
             action: {
@@ -49,6 +55,11 @@ describe("BackupStore", () => {
 
     it("shows a loading indicator when getting backups", () => {
         cb(getGetBackupsAction);
+        expect(BackupStore.getLoading()).toBe(true);
+    });
+
+    it("shows a loading indicator when restoring backups", () => {
+        cb(restoreFromBackupAction);
         expect(BackupStore.getLoading()).toBe(true);
     });
 

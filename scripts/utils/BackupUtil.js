@@ -5,14 +5,41 @@ let Immutable = require('immutable'),
 
 let BackupUtil = {
     getBackup(filename, cb) {
-        //TODO implement
-        window.setTimeout(() => {
-            cb(null, Immutable.fromJS([
-                {
-                    label: 'simplegym_2015-01-24'
-                }
-            ]));
-        }, 500);
+        let self = this;
+        if (window.requestFileSystem) {
+            self.getDirectory((dirEntry) => {
+                let reader = dirEntry.createReader();
+                reader.readEntries((entries) => {
+                    let backupFile = entries.filter((entry) => {
+                        return entry.name === filename;
+                    });
+                    if (backupFile && backupFile.length > 0) {
+                        let reader = new FileReader();
+                        reader.onloadend = (e) => {
+                            let data = e.target.result;
+                            if (data) {
+                                cb(null, JSON.parse(data));
+                            } else {
+                                self.err('file parse error');
+                            }
+                        };
+                        reader.readAsText(backupFile[0]);
+                    } else {
+                        self.err('no such file');
+                    }
+                }, self.err('entries'));
+            }, self.err('dir'));
+        } else {
+            window.setTimeout(() => {
+                cb(null, Immutable.fromJS({
+                    exercises: [],
+                    workouts: [
+                    ],
+                    training: [
+                    ]
+                }));
+            }, 500);
+        }
     },
 
     getBackups(cb) {
@@ -77,10 +104,6 @@ let BackupUtil = {
                 ]));
             }, 500);
         }
-    },
-
-    restoreFromBackup(filename, cb) {
-        window.console.log(filename, cb);
     },
 
     getDirectory(cb, err) {
