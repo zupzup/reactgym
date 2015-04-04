@@ -3,10 +3,15 @@
 jest.dontMock('../../scripts/utils/BackupUtil.js');
 var BackupUtil = require('../../scripts/utils/BackupUtil.js');
 
+LocalFileSystem = {
+    PERSISTENT: null
+};
 window.requestFileSystem = (filesys, num, cb) => {
     let fs = {
         root: {
-            getDirectory: jest.genMockFunction()
+            getDirectory(folder, options, callback) {
+                callback();
+            }
         }
     };
     cb(fs);
@@ -16,7 +21,9 @@ window.alert = jest.genMockFunction();
 describe("BackupUtil", () => {
     describe("getDirectory", () => {
         it("gets a directory and triggers the callback", () => {
-            expect(true).toBe(true);
+            let cb = jest.genMockFunction();
+            BackupUtil.getDirectory(cb, null);
+            expect(cb.mock.calls.length).toBe(1);
         });
     });
 
