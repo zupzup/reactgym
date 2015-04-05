@@ -29,18 +29,15 @@ Demo:
 ------
 TODO
 
-TODOS:
 * finish backups
     * Tests for Backups
-    * warning, that active training gets canceled on data-change
     * failhandling for async actions (in LoadingStore)
-    * loading indicator styling
-* file-api for persistence
-    * [PhoneGap File-API](http://docs.phonegap.com/en/edge/cordova_file_file.md.html)
-    * [usage](https://gist.github.com/alunny/1904992)
+    * [x] loading indicator styling
+    * file-api for persistence
+        * [PhoneGap File-API](http://docs.phonegap.com/en/edge/cordova_file_file.md.html)
+        * [usage](https://gist.github.com/alunny/1904992)
 * native release builds (.ipa, .apk)
     * launch icon
-    * conditionally include cordova
 
 DONE:
 ------
@@ -175,4 +172,5 @@ DONE:
 * [x] var -> let
 * [x] upgrade to react .13
 * [x] fix all eslint problems
+* [x] conditionally include cordova
 

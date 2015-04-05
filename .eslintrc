@@ -30,6 +30,7 @@
         "runs": true,
         "waitsFor": true,
         "LocalFileSystem": true,
+        "FileReader": true,
         "jest": true
     },
     "rules": {

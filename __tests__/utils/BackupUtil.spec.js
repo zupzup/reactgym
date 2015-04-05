@@ -6,11 +6,39 @@ var BackupUtil = require('../../scripts/utils/BackupUtil.js');
 LocalFileSystem = {
     PERSISTENT: null
 };
+
+FileReader = function() {
+    this.readAsText = () => {
+        this.onloadend({
+            target: {
+                result: "{\"some\": \"data\"}"
+            }
+        });
+    };
+};
+
 window.requestFileSystem = (filesys, num, cb) => {
     let fs = {
         root: {
             getDirectory(folder, options, callback) {
-                callback();
+                let dirEntry = {
+                    createReader() {
+                        return {
+                            readEntries(entrycb) {
+                                let entries = [
+                                    {
+                                        name: 'someFile'
+                                    },
+                                    {
+                                        name: 'anotherFile'
+                                    }
+                                ];
+                                entrycb(entries);
+                            }
+                        };
+                    }
+                };
+                callback(dirEntry);
             }
         }
     };
@@ -31,6 +59,14 @@ describe("BackupUtil", () => {
         it("alerts [FAIL] with an error message", () => {
             BackupUtil.err('hello')();
             expect(window.alert.mock.calls.length).toBe(1);
+        });
+    });
+
+    describe("getBackup", () => {
+        it("gets a specified file from the directory", () => {
+            let cb = jest.genMockFunction();
+            BackupUtil.getBackup('someFile', cb);
+            expect(cb.mock.calls.length).toBe(1);
         });
     });
 });
