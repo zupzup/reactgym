@@ -29,16 +29,6 @@ let BackupUtil = {
                     }
                 }, self.err('entries'));
             }, self.err('dir'));
-        } else {
-            window.setTimeout(() => {
-                cb(null, Immutable.fromJS({
-                    exercises: [],
-                    workouts: [
-                    ],
-                    training: [
-                    ]
-                }));
-            }, 500);
         }
     },
 
@@ -49,23 +39,12 @@ let BackupUtil = {
                 let reader = dirEntry.createReader();
                 reader.readEntries((entries) => {
                     cb(null, Immutable.fromJS(entries).map((item) => {
-                        return {
-                            label: item.name
-                        };
+                        return Immutable.fromJS({
+                            label: item.get('name')
+                        });
                     }));
                 }, self.err('entries'));
             }, self.err('dir'));
-        } else {
-            window.setTimeout(() => {
-                cb(null, Immutable.fromJS([
-                    {
-                        label: 'simplegym_2015-01-25'
-                    },
-                    {
-                        label: 'simplegym_2015-01-24'
-                    }
-                ]));
-            }, 500);
         }
     },
 
@@ -78,9 +57,9 @@ let BackupUtil = {
                         writer.onwriteend = () => {
                             dirEntry.createReader().readEntries((entries) => {
                                 cb(null, Immutable.fromJS(entries).map((item) => {
-                                    return {
-                                        label: item.name
-                                    };
+                                    return Immutable.fromJS({
+                                        label: item.get('name')
+                                    });
                                 }));
                             }, self.err('entries'));
                         };
@@ -89,20 +68,6 @@ let BackupUtil = {
                     }, self.err('writer'));
                 }, self.err('createFile'));
             }, self.err('save'));
-        } else {
-            window.setTimeout(() => {
-                cb(null, Immutable.fromJS([
-                    {
-                        label: 'simplegym_2015-01-25'
-                    },
-                    {
-                        label: 'simplegym_2015-01-24'
-                    },
-                    {
-                        label: 'simplegym_2015-01-27'
-                    }
-                ]));
-            }, 500);
         }
     },
 
