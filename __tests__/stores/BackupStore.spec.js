@@ -15,6 +15,30 @@ describe("BackupStore", () => {
                 type: ActionTypes.GET_BACKUPS
             }
         },
+        getBackupsFailAction = {
+            source: 'VIEW_ACTION',
+            action: {
+                type: ActionTypes.GET_BACKUPS_FAIL
+            }
+        },
+        getRestoreFailAction = {
+            source: 'VIEW_ACTION',
+            action: {
+                type: ActionTypes.RESTORE_FROM_BACKUP_FAILURE
+            }
+        },
+        addBackupAction = {
+            source: 'VIEW_ACTION',
+            action: {
+                type: ActionTypes.ADD_BACKUP
+            }
+        },
+        addBackupFailAction = {
+            source: 'VIEW_ACTION',
+            action: {
+                type: ActionTypes.ADD_BACKUP_FAIL
+            }
+        },
         restoreFromBackupAction = {
             source: 'VIEW_ACTION',
             action: {
@@ -46,22 +70,49 @@ describe("BackupStore", () => {
     afterEach(() => {
     });
 
-    it("gets a list of Backups", () => {
-        cb(getBackupsSuccessAction);
-        var backup = BackupStore.getBackups();
-        expect(backup.size).toEqual(2);
-        expect(BackupStore.getLoading()).toBe(false);
+    describe("adding backups", () => {
+        it("shows a loading indicator when adding backups", () => {
+            cb(addBackupAction);
+            expect(BackupStore.getLoading()).toBe(true);
+        });
+
+        it("hides the loading indicator, when adding backups fails", () => {
+            cb(addBackupFailAction);
+            expect(BackupStore.getLoading()).toBe(false);
+        });
     });
 
-    it("shows a loading indicator when getting backups", () => {
-        cb(getGetBackupsAction);
-        expect(BackupStore.getLoading()).toBe(true);
+    describe("getting backups", () => {
+        it("shows a loading indicator when getting backups", () => {
+            cb(getGetBackupsAction);
+            expect(BackupStore.getLoading()).toBe(true);
+        });
+
+        it("gets a list of Backups", () => {
+            cb(getBackupsSuccessAction);
+            var backup = BackupStore.getBackups();
+            expect(backup.size).toEqual(2);
+            expect(BackupStore.getLoading()).toBe(false);
+        });
+
+        it("hides the loading indicator, when getting backups fails", () => {
+            cb(getBackupsFailAction);
+            expect(BackupStore.getLoading()).toBe(false);
+        });
     });
 
-    it("shows a loading indicator when restoring backups", () => {
-        cb(restoreFromBackupAction);
-        expect(BackupStore.getLoading()).toBe(true);
+    describe("backup restore", () => {
+        it("shows a loading indicator when restoring backups", () => {
+            cb(restoreFromBackupAction);
+            expect(BackupStore.getLoading()).toBe(true);
+        });
+
+        it("hides the loading indicator, when restoring backups fail", () => {
+            cb(getRestoreFailAction);
+            expect(BackupStore.getLoading()).toBe(false);
+        });
     });
+
 
     it("doesn't throw on an unregistered action", () => {
         expect(cb.bind(null, {

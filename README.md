@@ -30,12 +30,12 @@ Demo:
 TODO
 
 * finish backups
-    * Tests for Backups
     * failhandling for async actions (in LoadingStore)
-    * [x] loading indicator styling
     * file-api for persistence
         * [PhoneGap File-API](http://docs.phonegap.com/en/edge/cordova_file_file.md.html)
         * [usage](https://gist.github.com/alunny/1904992)
+    * [x] Tests for Backups
+    * [x] loading indicator styling
 * native release builds (.ipa, .apk)
     * launch icon
 
