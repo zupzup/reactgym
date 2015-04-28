@@ -21,6 +21,11 @@ WorkoutStore.dispatchToken = AppDispatcher.register((payload) => {
     let action = payload.action;
 
     switch (action.type) {
+        case ActionTypes.RESTORE_WORKOUTS:
+            _workouts = Immutable.fromJS(action.data);
+            LocalStorageUtil.lsSet('workouts', _workouts);
+            WorkoutStore.emitChange();
+            break;
         case ActionTypes.GET_WORKOUTS:
             var workouts = LocalStorageUtil.lsGet('workouts');
             if (workouts == null) {

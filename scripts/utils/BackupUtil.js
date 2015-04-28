@@ -20,14 +20,14 @@ let BackupUtil = {
                             if (data) {
                                 cb(null, JSON.parse(data));
                             } else {
-                                self.err('file parse error');
+                                self.err('Error Parsing File')();
                             }
                         };
                         reader.readAsText(backupFile[0]);
                     } else {
-                        self.err('no such file');
+                        self.err('There is no such file')();
                     }
-                }, self.err('entries'));
+                }, self.err('Error reading Directory'));
             }, self.err('dir'));
         }
     },
@@ -43,8 +43,8 @@ let BackupUtil = {
                             label: item.get('name')
                         });
                     }));
-                }, self.err('entries'));
-            }, self.err('dir'));
+                }, self.err('Error reading Directory'));
+            }, self.err('Error reading Directory'));
         }
     },
 
@@ -61,13 +61,12 @@ let BackupUtil = {
                                         label: item.get('name')
                                     });
                                 }));
-                            }, self.err('entries'));
+                            }, self.err('Error reading Directory'));
                         };
-                        writer.write("Hello");
-                        // writer.write(JSON.stringify(data));
-                    }, self.err('writer'));
-                }, self.err('createFile'));
-            }, self.err('save'));
+                        writer.write(JSON.stringify(data));
+                    }, self.err('Error writing File'));
+                }, self.err('Error creating File'));
+            }, self.err('Error saving File'));
         }
     },
 
@@ -75,13 +74,12 @@ let BackupUtil = {
         let self = this;
         window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, (fs) => {
             fs.root.getDirectory(folder, {create: true}, cb, err);
-        }, self.err('fs'));
+        }, self.err('Error accessing the FileSystem'));
     },
 
     err(msg) {
-        //TODO: fire FS-error event
         return function () {
-            window.alert('[FAIL] ' + msg);
+            window.alert('[ERROR] ' + msg);
         };
     }
 };

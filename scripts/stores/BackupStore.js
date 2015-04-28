@@ -53,6 +53,7 @@ BackupStore.dispatchToken = AppDispatcher.register((payload) => {
             break;
         case ActionTypes.RESTORE_FROM_BACKUP_SUCCESS:
             _loading = false;
+            BackupStore.emitChange();
             break;
         case ActionTypes.RESTORE_FROM_BACKUP_FAILURE:
             _loading = false;

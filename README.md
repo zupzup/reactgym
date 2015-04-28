@@ -29,13 +29,7 @@ Demo:
 ------
 TODO
 
-* finish backups
-    * failhandling for async actions (in LoadingStore)
-    * file-api for persistence
-        * [PhoneGap File-API](http://docs.phonegap.com/en/edge/cordova_file_file.md.html)
-        * [usage](https://gist.github.com/alunny/1904992)
-    * [x] Tests for Backups
-    * [x] loading indicator styling
+* Test Backup On Device
 * native release builds (.ipa, .apk)
     * launch icon
 
@@ -173,4 +167,11 @@ DONE:
 * [x] upgrade to react .13
 * [x] fix all eslint problems
 * [x] conditionally include cordova
+* [x] finish backups
+    * [x] failhandling for async actions (in LoadingStore)
+    * [x] file-api for persistence
+        * [PhoneGap File-API](http://docs.phonegap.com/en/edge/cordova_file_file.md.html)
+        * [usage](https://gist.github.com/alunny/1904992)
+    * [x] Tests for Backups
+    * [x] loading indicator styling
 

@@ -13,6 +13,20 @@ describe("TrainingStore", () => {
         ExerciseStore,
         TrainingStore,
         ActionTypes = require('../../scripts/constants/ActionTypes.js'),
+        restoreAction = {
+            source: 'VIEW_ACTION',
+            action: {
+                type: ActionTypes.RESTORE_TRAININGS,
+                data: [
+                {
+                    id: 1
+                },
+                {
+                    id: 2
+                }
+                ]
+            }
+        },
         addTrainingAction = {
             source: 'VIEW_ACTION',
             action: {
@@ -170,6 +184,11 @@ describe("TrainingStore", () => {
         cb(removeTrainingAction);
         expect(LocalStorageUtil.lsSet.mock.calls.length).toBe(1);
         expect(LocalStorageUtil.lsSet.mock.calls[0][1].size).toBe(0);
+    });
+
+    it("restores trainings", () => {
+        cb(restoreAction);
+        expect(TrainingStore.getTrainings().size).toBe(2);
     });
 });
 

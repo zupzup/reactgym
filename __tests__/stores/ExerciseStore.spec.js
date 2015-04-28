@@ -17,6 +17,22 @@ describe("ExerciseStore", () => {
                 exercise: 'Hyperextensions'
             }
         },
+        restoreAction = {
+            source: 'VIEW_ACTION',
+            action: {
+                type: ActionTypes.RESTORE_EXERCISES,
+                data: [
+                {
+                    id: 1,
+                    label: 'newLabel'
+                },
+                {
+                    id: 2,
+                    label: 'newLabel'
+                }
+                ]
+            }
+        },
         actionUpdateExercise = {
             source: 'VIEW_ACTION',
             action: {
@@ -122,6 +138,11 @@ describe("ExerciseStore", () => {
             cb(actionRemoveExercise);
             expect(LocalStorageUtil.lsSet.mock.calls.length).toBe(1);
             expect(LocalStorageUtil.lsSet.mock.calls[0][1].size).toBe(0);
+        });
+
+        it("restores exercises", () => {
+            cb(restoreAction);
+            expect(ExerciseStore.getExercises().size).toBe(2);
         });
     });
 });

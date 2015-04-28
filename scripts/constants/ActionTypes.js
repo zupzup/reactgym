@@ -38,5 +38,8 @@ module.exports = keyMirror({
     STOP_TIMER: null,
     ADD_SET: null,
     REMOVE_SET: null,
-    REMOVE_EXERCISE_FROM_WORKOUTS: null
+    REMOVE_EXERCISE_FROM_WORKOUTS: null,
+    RESTORE_EXERCISES: null,
+    RESTORE_WORKOUTS: null,
+    RESTORE_TRAININGS: null
 });

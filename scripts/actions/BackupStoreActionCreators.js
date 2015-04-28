@@ -29,10 +29,12 @@ module.exports = {
     },
 
     restoreFromBackup(filename) {
-        console.log(filename);
         AppDispatcher.handleViewAction({type: ActionTypes.RESTORE_FROM_BACKUP});
         BackupUtil.getBackup(filename, (err, data) => {
-            if (!err) {
+            if (!err && data) {
+                AppDispatcher.handleViewAction({type: ActionTypes.RESTORE_EXERCISES, data: data.exercises || []});
+                AppDispatcher.handleViewAction({type: ActionTypes.RESTORE_WORKOUTS, data: data.workouts || []});
+                AppDispatcher.handleViewAction({type: ActionTypes.RESTORE_TRAININGS, data: data.trainings || []});
                 AppDispatcher.handleViewAction({type: ActionTypes.RESTORE_FROM_BACKUP_SUCCESS, data});
             } else {
                 AppDispatcher.handleViewAction({type: ActionTypes.RESTORE_FROM_BACKUP_FAILURE, err});
