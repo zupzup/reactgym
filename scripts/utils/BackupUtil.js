@@ -14,16 +14,19 @@ let BackupUtil = {
                         return entry.name === filename;
                     });
                     if (backupFile && backupFile.length > 0) {
-                        let reader = new FileReader();
-                        reader.onloadend = (e) => {
-                            let data = e.target.result;
-                            if (data) {
-                                cb(null, JSON.parse(data));
-                            } else {
-                                self.err('Error Parsing File')();
-                            }
-                        };
-                        reader.readAsText(backupFile[0]);
+                        let fileEntry = backupFile[0];
+                        fileEntry.file((file) => {
+                            let reader = new FileReader();
+                            reader.onloadend = (e) => {
+                                let data = e.target.result;
+                                if (data) {
+                                    cb(null, JSON.parse(data));
+                                } else {
+                                    self.err('Error Parsing File')();
+                                }
+                            };
+                            reader.readAsText(file);
+                        }, self.err('Error reading the File'));
                     } else {
                         self.err('There is no such file')();
                     }
@@ -38,12 +41,13 @@ let BackupUtil = {
             self.getDirectory((dirEntry) => {
                 let reader = dirEntry.createReader();
                 reader.readEntries((entries) => {
-                    cb(null, Immutable.fromJS(entries).map((item) => {
-                        return Immutable.fromJS({
-                            label: item.get('name')
-                        });
-                    }));
-                }, self.err('Error reading Directory'));
+                    let fileNames = entries.map((item) => {
+                        return {
+                            label: item.name
+                        };
+                    });
+                    cb(null, Immutable.fromJS(fileNames));
+                }, self.err('Error reading Files'));
             }, self.err('Error reading Directory'));
         }
     },
@@ -56,11 +60,12 @@ let BackupUtil = {
                     file.createWriter((writer) => {
                         writer.onwriteend = () => {
                             dirEntry.createReader().readEntries((entries) => {
-                                cb(null, Immutable.fromJS(entries).map((item) => {
-                                    return Immutable.fromJS({
-                                        label: item.get('name')
-                                    });
-                                }));
+                                let fileNames = entries.map((item) => {
+                                    return {
+                                        label: item.name
+                                    };
+                                });
+                                cb(null, Immutable.fromJS(fileNames));
                             }, self.err('Error reading Directory'));
                         };
                         writer.write(JSON.stringify(data));

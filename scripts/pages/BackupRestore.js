@@ -28,19 +28,23 @@ var BackupRestore = React.createClass({
         var backup = {
             exercises: ExerciseStore.getExercises(),
             workouts: WorkoutStore.getWorkouts(),
-            training: TrainingStore.getTrainings()
+            trainings: TrainingStore.getTrainings()
         };
         BackupStoreActionCreators.addBackup(backup);
     },
 
+    handleRestoreClick(item) {
+        BackupStoreActionCreators.restoreFromBackup(item.label);
+        AppStateActionCreators.closeModal();
+    },
+
     handleRestore(e, item) {
-        let handler = BackupStoreActionCreators.restoreFromBackup.bind(this, item.label);
         AppStateActionCreators.openModal(
             <div className="restoreState">
                 <h1>Restore this state?</h1>
                 <div>{item.label}</div>
                 <div>
-                    <button className='yes' onClick={handler}>Restore</button>
+                    <button className='yes' onClick={this.handleRestoreClick.bind(null, item)}>Restore</button>
                 </div>
             </div>
         );

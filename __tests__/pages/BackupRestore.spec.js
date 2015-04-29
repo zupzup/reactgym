@@ -33,6 +33,7 @@ describe("BackupRestore", () => {
     afterEach(() => {
         BackupStore.getBackups.mockClear();
         backupRestore.componentWillUnmount();
+        AppStateActionCreators.openModal.mockClear();
     });
 
     it("renders a Backup/Restore Page", () => {
@@ -67,6 +68,12 @@ describe("BackupRestore", () => {
         it("opens a modal and shows a dialog for restoring a backup", () => {
             backupRestore.handleRestore(null, {label: 'helloBackup'});
             expect(AppStateActionCreators.openModal.mock.calls.length).toBe(1);
+        });
+
+        it("closes the modal and restores the Backup", () => {
+            backupRestore.handleRestoreClick({label: 'helloBackup'});
+            expect(AppStateActionCreators.closeModal.mock.calls.length).toBe(1);
+            expect(BackupStoreActionCreators.restoreFromBackup.mock.calls.length).toBe(1);
         });
     });
 });

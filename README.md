@@ -30,6 +30,8 @@ Demo:
 TODO
 
 * Test Backup On Device
+    * [x] Android
+    * iOS 
 * native release builds (.ipa, .apk)
     * launch icon
 

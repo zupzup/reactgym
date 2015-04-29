@@ -41,7 +41,10 @@ function setFileSystem() {
                                 readEntries(entrycb) {
                                     let entries = [
                                         {
-                                            name: 'someFile'
+                                            name: 'someFile',
+                                            file: (filecb) => {
+                                                filecb();
+                                            }
                                         },
                                         {
                                             name: 'anotherFile'
