@@ -29,9 +29,6 @@ Demo:
 ------
 TODO
 
-* Test Backup On Device
-    * [x] Android
-    * iOS 
 * native release builds (.ipa, .apk)
     * launch icon
 
@@ -176,4 +173,7 @@ DONE:
         * [usage](https://gist.github.com/alunny/1904992)
     * [x] Tests for Backups
     * [x] loading indicator styling
+* [x] Test Backup On Device
+    * [x] Android
+    * [x] iOS
 
