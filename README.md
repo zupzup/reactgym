@@ -35,6 +35,7 @@ Demo:
 ------
 TODO GitHub Page Link
 
+* Cleanup
 * GitHub page
 * native release builds (.ipa, .apk)
     * launch icon

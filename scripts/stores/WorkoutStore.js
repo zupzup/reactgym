@@ -33,12 +33,12 @@ WorkoutStore.dispatchToken = AppDispatcher.register((payload) => {
                     {
                         id: '1',
                         label: 'Chest Triceps Shoulders Abs',
-                        exercises: ['1', '2', '3']
+                        exercises: ['6', '4', '13', '5', '3', '12', '14']
                     },
                     {
                         id: '2',
                         label: 'Back Biceps Legs',
-                        exercises: ['2', '3']
+                        exercises: ['1', '2', '10', '8', '9', '7', '11']
                     }
                 ]);
                 LocalStorageUtil.lsSet('workouts', _workouts);

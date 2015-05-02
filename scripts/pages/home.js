@@ -11,9 +11,11 @@ let Home = React.createClass({
     contextTypes: {
         router: React.PropTypes.func.isRequired
     },
+
     header: {
         title: 'Home'
     },
+
     mixins: [PureRenderMixin, SimpleHeaderMixin],
 
     getInitialState() {

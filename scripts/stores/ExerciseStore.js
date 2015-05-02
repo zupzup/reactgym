@@ -47,6 +47,50 @@ ExerciseStore.dispatchToken = AppDispatcher.register((payload) => {
                     {
                         id: '3',
                         label: 'Butterfly'
+                    },
+                    {
+                        id: '4',
+                        label: 'Situps'
+                    },
+                    {
+                        id: '5',
+                        label: 'Situps Side'
+                    },
+                    {
+                        id: '6',
+                        label: 'Benchpress'
+                    },
+                    {
+                        id: '7',
+                        label: 'Chin Ups'
+                    },
+                    {
+                        id: '8',
+                        label: 'Pull Ups'
+                    },
+                    {
+                        id: '9',
+                        label: 'Calf Raises'
+                    },
+                    {
+                        id: '10',
+                        label: 'Leg Press'
+                    },
+                    {
+                        id: '11',
+                        label: 'Hyperextensions'
+                    },
+                    {
+                        id: '12',
+                        label: 'Shoulder Press'
+                    },
+                    {
+                        id: '13',
+                        label: 'Lateral Raises'
+                    },
+                    {
+                        id: '14',
+                        label: 'French Press'
                     }
                 ]);
                 LocalStorageUtil.lsSet('exercises', _exercises);
