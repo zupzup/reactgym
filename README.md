@@ -36,6 +36,7 @@ Demo:
 TODO GitHub Page Link
 
 * Cleanup
+* use npm jest
 * GitHub page
 * native release builds (.ipa, .apk)
     * launch icon
