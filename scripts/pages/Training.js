@@ -113,7 +113,7 @@ let Training = React.createClass({
                     <List activeIndex={currentExerciseIndex}
                         editAble={false} handlers={handlers} items={exercises.toJS()} />
                 </div>
-                <TrainingForm exercise={currentExercise}
+                <TrainingForm exercise={currentExercise} training={training}
                     sets={training.getIn(['sets', currentExercise])} handler={this.formSubmitHandler} />
                 <div className='finish' onClick={this.finishTraining}>
                     <i className='ion-trophy'></i> Finish Training

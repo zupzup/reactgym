@@ -14,7 +14,12 @@ let React = require('react/addons'),
     TrainingForm = require('../../../scripts/components/forms/TrainingForm.js');
 
 describe("TrainingForm", () => {
-    var setData = Immutable.fromJS([{weight: 5, reps: 5}]);
+    var setData = Immutable.fromJS([{weight: 5, reps: 5}]),
+        training = Immutable.fromJS({
+            workout: {
+                id: '1'
+            }
+        });
     beforeEach(() => {
         ExerciseStore.getExerciseForId.mockImplementation(() => {
             return Immutable.fromJS({
@@ -37,7 +42,7 @@ describe("TrainingForm", () => {
 
     it("renders a TrainingForm", () => {
         let trainingForm = TestUtils.renderIntoDocument(
-            <TrainingForm sets={setData} exercise={0}/>
+            <TrainingForm sets={setData} exercise={0} training={training}/>
         );
         expect(TestUtils.isCompositeComponent(trainingForm)).toEqual(true);
         expect(trainingForm.getDOMNode().className).toEqual("form training");
@@ -46,7 +51,7 @@ describe("TrainingForm", () => {
     it("calls the handler on submit", () => {
         let handler = jest.genMockFunction();
         let trainingForm = TestUtils.renderIntoDocument(
-            <TrainingForm sets={setData} exercise={0} handler={handler}/>
+            <TrainingForm sets={setData} exercise={0} handler={handler} training={training}/>
         );
         let submitButton = TestUtils.findRenderedDOMComponentWithClass(trainingForm, 'submitButton');
         trainingForm.refs.reps.validateAndSetValue(5);
@@ -58,7 +63,7 @@ describe("TrainingForm", () => {
     it("doesn't call the handler, if either field is invalid", () => {
         let handler = jest.genMockFunction();
         let trainingForm = TestUtils.renderIntoDocument(
-            <TrainingForm sets={setData} exercise={0} handler={handler}/>
+            <TrainingForm sets={setData} exercise={0} handler={handler} training={training}/>
         );
         let submitButton = TestUtils.findRenderedDOMComponentWithClass(trainingForm, 'submitButton');
         trainingForm.refs.reps.validateAndSetValue('k');
@@ -69,7 +74,7 @@ describe("TrainingForm", () => {
 
     it("removes sets on click", () => {
         let trainingForm = TestUtils.renderIntoDocument(
-            <TrainingForm sets={setData} exercise={0}/>
+            <TrainingForm sets={setData} exercise={0} training={training}/>
         );
         let set = TestUtils.findRenderedDOMComponentWithClass(trainingForm, 'rep');
         TestUtils.Simulate.click(set.getDOMNode());

@@ -23,15 +23,18 @@ let TrainingStore = assign({}, StoreListenerMixin, {
         }).first();
     },
 
-    getLastInputsForExercise(exercise, setNumber) {
+    getLastInputsForExercise(exercise, setNumber, workout) {
         let emptyRep = {rep: '', weight: ''},
             trainings = this.getTrainings();
-        if (!trainings || trainings.size === 0 ||
-            setNumber == null || !trainings.last().get('sets') ||
-                !trainings.last().get('sets').get(exercise)) {
+        let filtered = (!trainings || trainings.size === 0) ? trainings : trainings.filter((item) => {
+            return item.get('workout').get('id') === workout.get('id');
+        });
+        if (!filtered || filtered.size === 0 || setNumber == null
+                || !filtered.last().get('sets') ||
+                !filtered.last().get('sets').get(exercise)) {
             return emptyRep;
         }
-        let set = trainings.last().get('sets').get(exercise).get(setNumber);
+        let set = filtered.last().get('sets').get(exercise).get(setNumber);
         if (!set) {
             return emptyRep;
         }

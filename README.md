@@ -36,6 +36,7 @@ Demo:
 TODO GitHub Page Link
 
 * Cleanup
+* LocalStorage instability (sqlite)
 * use npm jest
 * GitHub page
 * native release builds (.ipa, .apk)
