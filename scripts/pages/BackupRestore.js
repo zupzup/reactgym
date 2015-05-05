@@ -51,6 +51,13 @@ var BackupRestore = React.createClass({
     },
 
     render() {
+        if (!window.requestFileSystem) {
+            return (
+                <div className='page backup disabled'>
+                    <h3>This feature is disabled in the browser.</h3>
+                </div>
+            );
+        }
         let handlers = {
                 default: this.handleRestore
             },

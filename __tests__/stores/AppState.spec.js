@@ -31,6 +31,13 @@ describe("AppState", () => {
                 restTimer: 90
             }
         },
+        startTimerActionShort = {
+            source: 'VIEW_ACTION',
+            action: {
+                type: ActionTypes.START_TIMER,
+                restTimer: 0
+            }
+        },
         stopTimerAction = {
             source: 'VIEW_ACTION',
             action: {
@@ -200,12 +207,11 @@ describe("AppState", () => {
                     vibrate: jest.genMockFunction()
                 }
             };
-            cb(startTimerAction);
+            cb(startTimerActionShort);
             runs(() => {
                 flag = false;
                 setTimeout(() => {
                     flag = true;
-                    cb(stopTimerAction);
                 }, 1050);
                 jest.runAllTimers();
             });
@@ -217,6 +223,31 @@ describe("AppState", () => {
             runs(() => {
                 expect(AppState.getTimer()).toEqual(null);
                 expect(window.navigator.notification.vibrate.mock.calls.length).toBe(1);
+            });
+        });
+
+        it("stopTimer by force", () => {
+            window.navigator = {
+                notification: {
+                    vibrate: jest.genMockFunction()
+                }
+            };
+            cb(startTimerAction);
+            runs(() => {
+                flag = false;
+                setTimeout(() => {
+                    flag = true;
+                    cb(stopTimerAction);
+                }, 600);
+                jest.runOnlyPendingTimers();
+            });
+
+            waitsFor(() => {
+                return flag;
+            }, 'timed out', 2200);
+
+            runs(() => {
+                expect(AppState.getTimer()).toEqual(null);
             });
         });
     });

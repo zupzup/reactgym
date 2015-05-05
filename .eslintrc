@@ -38,7 +38,7 @@
         "no-underscore-dangle": 0,
         "no-alert": 0,
         "no-duplicate-case": 0,
-        "no-bitwise": 1,
+        "no-bitwise": 0,
         "no-path-concat": 0,
         "no-comma-dangle": 2,
         "camelcase": 0,

@@ -19,6 +19,7 @@ let React = require('react/addons'),
     TrainingStore = require('../../scripts/stores/TrainingStore.js'),
     BackupRestore = require('../../scripts/pages/BackupRestore.js');
 
+window.requestFileSystem = true;
 describe("BackupRestore", () => {
     var backupRestore;
     beforeEach(() => {
@@ -39,6 +40,13 @@ describe("BackupRestore", () => {
     it("renders a Backup/Restore Page", () => {
         expect(TestUtils.isCompositeComponent(backupRestore)).toEqual(true);
         expect(backupRestore.getDOMNode().className).toEqual('page backup');
+    });
+
+    it("renders a feature unavailability page on desktop", () => {
+        window.requestFileSystem = false;
+        backupRestore = TestUtils.renderIntoDocument(<BackupRestore />);
+        expect(backupRestore.getDOMNode().className).toEqual('page backup disabled');
+        window.requestFileSystem = true;
     });
 
     it("shows a loading indicator if it is loading", () => {

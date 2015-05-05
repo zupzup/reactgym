@@ -36,8 +36,8 @@ Demo:
 TODO GitHub Page Link
 
 * Cleanup
-* LocalStorage instability (sqlite)
-* use npm jest
 * GitHub page
-* native release builds (.ipa, .apk)
-    * launch icon
+    * https://help.github.com/articles/creating-project-pages-manually/
+    * Intro + Links on Top
+    * Phone-Image with App running inside (iframe or render into div)
+

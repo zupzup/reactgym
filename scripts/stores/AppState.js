@@ -9,6 +9,7 @@ let AppDispatcher = require('../dispatcher/AppDispatcher'),
     _nextTransition = 'slide',
     _modal = null,
     _menuOpen = false,
+    _timerEnd = null,
     _timerId = null,
     _activeTraining = null,
     _timerValue = null;
@@ -93,23 +94,26 @@ AppState.dispatchToken = AppDispatcher.register((payload) => {
             break;
         case ActionTypes.START_TIMER:
             window.clearInterval(_timerId);
+            _timerEnd = (Date.now() / 1000 | 0) + action.restTimer;
             _timerValue = action.restTimer;
             _timerId = window.setInterval(() => {
-                if (_timerValue === 0) {
+                if (_timerValue <= 0) {
                     window.clearInterval(_timerId);
                     vibrate();
                     _timerValue = null;
+                    _timerEnd = null;
                     AppState.emitChange();
                     return;
                 }
-                _timerValue -= 1;
+                _timerValue = _timerEnd - (Date.now() / 1000 | 0);
                 AppState.emitChange();
-            }, 1000);
+            }, 500);
             AppState.emitChange();
             break;
         case ActionTypes.STOP_TIMER:
             window.clearInterval(_timerId);
             _timerValue = null;
+            _timerEnd = null;
             AppState.emitChange();
             break;
         case ActionTypes.ADD_SET:
