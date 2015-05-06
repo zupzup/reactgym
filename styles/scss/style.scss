@@ -1,0 +1,625 @@
+@font-face { font-family: "Ionicons"; src: url("../styles/fonts/ionicons.eot?v=2.0.0"); src: url("../styles/fonts/ionicons.eot?v=2.0.0#iefix") format("embedded-opentype"), url("../styles/fonts/ionicons.ttf?v=2.0.0") format("truetype"), url("../styles/fonts/ionicons.woff?v=2.0.0") format("woff"), url("../styles/fonts/ionicons.svg?v=2.0.0#Ionicons") format("svg"); font-weight: normal; font-style: normal; }
+
+.ion-android-stopwatch:before { content: "\f2fd"; }
+.ion-android-add:before { content: "\f2c7"; }
+.ion-android-time:before { content: "\f3b3"; }
+.ion-arrow-left-b:before { content: "\f107"; }
+.ion-calendar:before { content: "\f117"; }
+.ion-checkmark:before { content: "\f122"; }
+.ion-clipboard:before { content: "\f127"; }
+.ion-close-circled:before { content: "\f128"; }
+.ion-connection-bars:before { content: "\f274"; }
+.ion-drag:before { content: "\f130"; }
+.ion-edit:before { content: "\f2bf"; }
+.ion-folder:before { content: "\f139"; }
+.ion-home:before { content: "\f144"; }
+.ion-ios-pulse:before { content: "\f493"; }
+.ion-levels:before { content: "\f298"; }
+.ion-power:before { content: "\f2a9"; }
+.ion-trash-a:before { content: "\f252"; }
+.ion-trophy:before { content: "\f356"; }
+.ion-loop:before { content: "\f201"; }
+.ion-ios-gear:before { content: "\f43d"; }
+
+.ion-ios-gear, .ion-loop, .ion-arrow-left-b, .ion-calendar, .ion-android-stopwatch, .ion-android-add, .ion-levels, .ion-trash-a, .ion-edit, .ion-drag, .ion-home, .ion-power, .ios-modal, .ion-connection-bars, .ion-clipboard, .ion-close-circled, .ion-trophy, .ion-folder, .ion-android-time:before, .ion-ios-pulse:before {
+    display: inline-block;
+    font-family: "Ionicons";
+    speak: none;
+    font-style:normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    text-rendering: auto;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    background: #fff;
+    font-family: arial;
+    margin: 0;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+html {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+
+.App {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.slideBack-enter {
+    transform: translateX(-100%);
+    &.slideBack-enter-active {
+        transition: transform .3s ease-in;
+        transform: translateX(0%);
+    }
+}
+
+.slideBack-leave {
+    transform: translateX(0%);
+    &.slideBack-leave-active {
+        transition: transform .3s ease-in;
+        transform: translateX(100%);
+    }
+}
+
+.slide-enter {
+    transform: translateX(100%);
+    &.slide-enter-active {
+        transition: transform .3s ease-in;
+        transform: translateX(0%);
+    }
+}
+
+.slide-leave {
+    transform: translateX(0%);
+    &.slide-leave-active {
+        transition: transform .3s ease-in;
+        transform: translateX(-100%);
+    }
+}
+
+.menubutton {
+    background: #eff;
+    color: #555;
+    padding: 0.5rem;
+    margin: 0.1rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    &:active {
+        background: #fff;
+    }
+    .menuicon {
+        width: 1rem;
+        margin-right: .5rem;
+    }
+}
+
+.scrollinglist {
+    height: 9rem;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+    .listitem {
+        -webkit-tap-highlight-color: rgba(0,0,0,0);
+        -webkit-tap-highlight-color: transparent;
+        padding: 1.5rem 0 1.5rem 2rem;
+    }
+}
+
+.header {
+    z-index: 3;
+    .headertitle {
+        color: #000;
+        text-align: center;
+        font-size: 1.2rem;
+        width: 100%;
+        position: absolute;
+    }
+
+    .headermenu {
+        background-size: 1.8rem 3rem;
+        background-repeat: no-repeat;
+        width: 2rem;
+        cursor: pointer;
+        font-size: 2.5rem;
+        top: 0.5rem;
+        height: 3rem;
+        position: absolute;
+        z-index: 2;
+    }
+}
+
+.headeradd, .headeredit {
+    width: 1.5rem;
+    height: 3rem;
+    font-size: 1.5rem;
+    top: 1rem;
+    cursor: pointer;
+    position: absolute;
+    z-index: 2;
+}
+
+.headeradd {
+    background-size: 1.5rem 1.5rem;
+    background-repeat: no-repeat;
+    &:active {
+        top: 0.8rem;
+    }
+}
+
+.headeredit {
+    background-size: 1.5rem 1.5rem;
+    background-repeat: no-repeat;
+    &:active {
+        top: 0.8rem;
+    }
+}
+
+.back {
+    width: 2rem;
+    cursor: pointer;
+    top: 0.3rem;
+    height: 3rem;
+    font-size: 1.8rem;
+    position: absolute;
+    z-index: 2;
+    &:active {
+        top: 0.3rem;
+    }
+    i {
+        font-size: 3rem;
+        line-height: 3rem;
+        margin-left: 1rem;
+    }
+}
+
+.header {
+    .headermenu {
+        left: .5rem;
+    }
+    .back {
+        left: 3rem;
+    }
+    .headeradd {
+        right: .5rem;
+    }
+    .headeredit {
+        right: 3rem;
+    }
+    top: 0;
+    z-index: 1;
+    background: lightskyblue;
+    line-height: 3.5rem;
+    height: 3.5rem;
+    font-size: 1.2rem;
+    position: relative;
+}
+
+.menu {
+    height: 100%;
+    width: 45%;
+    position: fixed;
+    z-index: 0;
+    background-color: lightskyblue;
+    transition: transform 0.2s;
+    transform: translateX(-100%);
+    &.open {
+        transform: translateX(0%);
+    }
+}
+
+.contentArea {
+    min-width: 100%;
+    background-color: #fff;
+    height: 100%;
+    z-index: 2;
+    transform: translateX(0);
+    transition: transform 0.2s;
+    &.open {
+        transform: translateX(45%);
+    }
+}
+
+.listitem {
+    background: #fff;
+    cursor: pointer;
+    position: relative;
+    padding: 2rem 0 2rem 2rem;
+    border-bottom: 1px solid #aaa;
+    .delete {
+        visibility: hidden;
+        position: absolute;
+        background: lightcoral;
+        color: #fff;
+        padding: 0.2rem;
+        font-size: 1.2rem;
+        right: 2.5rem;
+        top: 1.6rem;
+        opacity: 0;
+        transition: opacity 0.5s linear;
+    }
+    .edit {
+        visibility: hidden;
+        position: absolute;
+        background: burlywood;
+        color: #fff;
+        font-size: 1.2rem;
+        padding: 0.2rem;
+        top: 1.6rem;
+        right: 4.5rem;
+        opacity: 0;
+        transition: opacity 0.5s linear;
+    }
+    .delete {
+        &.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        &:active {
+            background: red;
+        }
+    }
+    img {
+        width: 1.2rem;
+    }
+    &:first-child {
+        border-top: 1px solid #aaa;
+    }
+    .edit {
+        &.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        &:active {
+            background: orange;
+        }
+    }
+    &.tappable:after {
+        right: 10px;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        border-color: rgba(255, 255, 255, 0);
+        border-left-color: #bbb;
+        border-width: .5rem;
+        top: 2rem;
+    }
+    &.active {
+        background: antiquewhite;
+    }
+}
+
+.back.hide {
+    display: none;
+}
+
+.content .page {
+    min-width: 100%;
+    z-index: 3;
+    min-height: 100%;
+    position: absolute;
+    background-color: #fff;
+}
+
+.page.backup, .page.home, .page.settings {
+    h2 {
+        margin-left: 1rem;
+    } 
+}
+
+.settingsform {
+    margin-left: 1rem;
+    input {
+        font-size: 1.5rem;
+        width: 3rem;
+        text-align: center;
+    }
+}
+
+.modal {
+    &.open {
+        transform: translateY(0%);
+    }
+    position: absolute;
+    z-index: 100;
+    background: #eee;
+    opacity: 0.9;
+    left: 0;
+    right: 0;
+    height: 60%;
+    transform: translateY(-100%);
+    transition: transform 0.3s;
+    .close {
+        cursor: pointer;
+        height: 2rem;
+        width: 2rem;
+        right: .5rem;
+        font-size: 2rem;
+        background-size: 2rem 2rem;
+        top: .5rem;
+        position: absolute;
+        display: inline-block;
+    }
+}
+
+.form {
+    text-align: center;
+    button, input, select {
+        font-size: 1.5rem;
+    }
+    select {
+        width: 16rem;
+    }
+    &.exercises,&.workouts {
+        div {
+            margin-bottom: 1rem;
+        }
+    }
+    .submitButton {
+        margin-top: 0.5rem;
+    }
+}
+
+.finish {
+    width: 100%;
+    line-height: 3rem;
+    cursor: pointer;
+    background: lightblue;
+    font-size: 2rem;
+    text-align: center;
+    margin-top: 1rem;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    &:active {
+        background: #ccc;
+        cursor: hand;
+    }
+    img {
+        width: 1.5rem;
+        margin-right: .5rem;
+    }
+}
+
+.timer {
+    width: 100%;
+    line-height: 3rem;
+    height: 3rem;
+    font-size: 2rem;
+    background: lightblue;
+    text-align: center;
+    img {
+        width: 1.5rem;
+        margin-left: .3rem;
+    }
+}
+
+.rep {
+    background: brown;
+    color: #eee;
+    cursor: pointer;
+    padding: .5rem 1.5rem .5rem 1.5rem;
+    margin: 0.1rem;
+    &:active {
+        background: lightcoral;
+        cursor: hand;
+    }
+}
+
+.form.training {
+    margin-top: 1rem;
+}
+
+.training {
+    h1 {
+        font-size: 1.3rem;
+        text-align: center;
+    }
+}
+
+.stopTraining {
+    text-align: center;
+    position: relative;
+    margin-top: 20%;
+    font-size: 3rem;
+    button {
+        font-size: 2rem;
+    }
+}
+
+input.invalid {
+    border: 1px solid red;
+}
+
+input {
+    border: 1px solid #ccc;
+}
+
+.page.home {
+    .timer {
+        margin-top: 0.1rem;
+        text-align: center;
+        width: 100%;
+        font-size: 2rem;
+        line-height: 3rem;
+        background: lightblue;
+    }
+    .activeTraining {
+        cursor: pointer;
+        font-size: 1.5rem;
+        line-height: 3rem;
+        text-align: center;
+        width: 100%;
+        background: burlywood;
+        &:active {
+            background: #aaa;
+        }
+    }
+    img {
+        width: 1.3rem;
+        margin-right: .5rem;
+        margin-left: .5rem;
+    }
+}
+
+.mask {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 90;
+    cursor: pointer;
+    top: 0;
+    left: 45%;
+    &.modalOpen {
+        height: 40%;
+        top: 60%;
+        left: 0;
+    }
+}
+
+.workoutDetail {
+    width: 100%;
+    padding-top: 25%;
+    padding-left: 10%;
+    h1 {
+        font-size: 1.5rem;
+    }
+}
+
+.sets {
+    height: 2rem;
+    line-height: 2rem;
+}
+
+.trainingdetail {
+    h2 {
+        text-align: center;
+    }
+    .date, .duration {
+        text-align: center;
+        padding-bottom: 1.5rem;
+    }
+    .exercise {
+        padding: 1rem;
+    }
+    .set {
+        .count {
+            font-weight: bold;
+            margin-right: 1rem;
+        }
+        .repsweight {
+            color: #888;
+        }
+    }
+    img {
+        width: .9rem;
+        margin-right: .2rem;
+    }
+}
+
+.refreshButton {
+    display: block;
+    text-align: center;
+    font-size: 8rem;
+    color: lightskyblue;
+    margin-bottom: 1rem;
+    &:active {
+        color: #888;
+    }
+}
+
+.backupButton {
+    margin-top: 2rem;
+    margin-left: 2rem;
+    font-size: 2rem;
+}
+
+.restoreState {
+    padding: 1rem;
+    button {
+        margin-top: 2rem;
+        font-size: 2rem;
+    }
+}
+
+.loadingindicator {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    background: white;
+    opacity: 0.5;
+    i {
+        margin-top: 15%;
+    }
+    &.loading {
+        display: block;
+    }
+}
+
+@-webkit-keyframes rotating {
+    from {
+        -ms-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    to {
+        -ms-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes rotating {
+    from {
+        -ms-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -webkit-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    to {
+        -ms-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -webkit-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+.rotating {
+    -webkit-animation: rotating 1s linear infinite;
+    -moz-animation: rotating 1s linear infinite;
+    -ms-animation: rotating 1s linear infinite;
+    -o-animation: rotating 1s linear infinite;
+    animation: rotating 1s linear infinite;
+}
+
