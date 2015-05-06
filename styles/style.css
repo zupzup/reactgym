@@ -24,6 +24,10 @@
     margin-bottom: 1rem;
 }
 
+.outer p {
+    color: #888;
+}
+
 
 @font-face { font-family: "Ionicons"; src: url("../styles/fonts/ionicons.eot?v=2.0.0"); src: url("../styles/fonts/ionicons.eot?v=2.0.0#iefix") format("embedded-opentype"), url("../styles/fonts/ionicons.ttf?v=2.0.0") format("truetype"), url("../styles/fonts/ionicons.woff?v=2.0.0") format("woff"), url("../styles/fonts/ionicons.svg?v=2.0.0#Ionicons") format("svg"); font-weight: normal; font-style: normal; }
 .ion-android-stopwatch:before { content: "\f2fd"; }
