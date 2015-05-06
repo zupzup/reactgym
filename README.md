@@ -2,6 +2,12 @@ reactgym
 ========
 Workout-Tracking app built using react and flux. Web and Native Android/iOS builds available
 
+TODO
+-----
+
+* Cleanup
+* Readme Finish
+
 Tech
 ---------
 * ImmutableJS
@@ -33,11 +39,5 @@ For native builds:
 
 Demo:
 ------
-TODO GitHub Page Link
 
-* Cleanup
-* GitHub page
-    * https://help.github.com/articles/creating-project-pages-manually/
-    * Intro + Links on Top
-    * Phone-Image with App running inside (iframe or render into div)
-
+* [demo](http://zupzup.github.io/reactgym/)
