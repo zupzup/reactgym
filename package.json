@@ -6,6 +6,7 @@
     "immutable": "^3.7.2",
     "lodash": "^3.8.0",
     "object-assign": "^2.0.0",
+    "react-router": "^0.13.3",
     "react": "^0.13.2",
     "react-tools": "^0.13.2"
   },
@@ -24,7 +25,6 @@
     "jest-cli": "0.4.0",
     "phonegap": "^4.2.0-0.26.0",
     "react-hot-loader": "^1.2.6",
-    "react-router": "^0.13.3",
     "request": "^2.55.0",
     "webpack": "^1.8.11",
     "webpack-dev-server": "^1.8.2"
