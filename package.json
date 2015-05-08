@@ -11,8 +11,8 @@
     "react-tools": "^0.13.2"
   },
   "devDependencies": {
-    "babel": "^5.2.9",
-    "babel-core": "^5.2.9",
+    "babel": "^5.2.17",
+    "babel-core": "^5.2.17",
     "babel-loader": "^5.0.0",
     "del": "^1.1.1",
     "gulp": "^3.8.10",
@@ -22,7 +22,7 @@
     "gulp-shell": "^0.4.1",
     "gulp-util": "^3.0.2",
     "istanbul": "^0.3.13",
-    "jest-cli": "0.4.0",
+    "jest-cli": "0.4.1",
     "phonegap": "^4.2.0-0.26.0",
     "react-hot-loader": "^1.2.6",
     "request": "^2.55.0",
