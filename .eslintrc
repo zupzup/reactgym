@@ -4,6 +4,7 @@
         "forOf": true,
         "blockBindings": true,
         "defaultParams": true,
+        "modules": true,
         "globalReturn": false,
         "objectLiteralShorthandMethods": true,
         "objectLiteralShorthandProperties": true,

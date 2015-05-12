@@ -1,13 +1,15 @@
 'use strict';
 
-let React = require('react/addons'),
-    Header = require('./components/Header'),
-    Menu = require('./components/Menu'),
-    Modal = require('./components/Modal'),
-    Router = require('react-router'),
-    AppState = require('./stores/AppState'),
-    AppStateActionCreators = require('./actions/AppStateActionCreators'),
-    ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+import React from "react/addons";
+import Header from "./components/Header";
+import Menu from "./components/Menu";
+import Modal from "./components/Modal";
+import Router from "react-router";
+import AppState from "./stores/AppState"
+import AppStateActionCreators from "./actions/AppStateActionCreators";
+
+let ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
+
 
 let App = React.createClass({
     contextTypes: {
