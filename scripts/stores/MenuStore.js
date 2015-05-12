@@ -1,10 +1,11 @@
 'use strict';
 
-let AppDispatcher = require('../dispatcher/AppDispatcher'),
-    ActionTypes = require('../constants/ActionTypes'),
-    assign = require('object-assign'),
-    StoreListenerMixin = require('../mixins/StoreListenerMixin.js'),
-    _menuPoints = [];
+import AppDispatcher from '../dispatcher/AppDispatcher';
+import ActionTypes from '../constants/ActionTypes';
+import assign from 'object-assign';
+import StoreListenerMixin from '../mixins/StoreListenerMixin.js';
+
+let _menuPoints = [];
 
 let MenuStore = assign({}, StoreListenerMixin, {
     getMenuPoints() {

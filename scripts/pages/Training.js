@@ -1,18 +1,18 @@
 'use strict';
 
-let React = require('react'),
-    List = require('../components/List'),
-    AppStateActionCreators = require('../actions/AppStateActionCreators'),
-    SimpleHeaderMixin = require('../mixins/SimpleHeaderMixin'),
-    TrainingStoreActionCreators = require('../actions/TrainingStoreActionCreators'),
-    WorkoutStore = require('../stores/WorkoutStore'),
-    _ = require('lodash'),
-    TrainingForm = require('../components/forms/TrainingForm'),
-    StopTrainingDialog = require('../components/StopTrainingDialog'),
-    TrainingStore = require('../stores/TrainingStore'),
-    SettingsStore = require('../stores/SettingsStore'),
-    ExerciseStore = require('../stores/ExerciseStore'),
-    AppState = require('../stores/AppState');
+import React from 'react';
+import List from '../components/List';
+import AppStateActionCreators from '../actions/AppStateActionCreators';
+import SimpleHeaderMixin from '../mixins/SimpleHeaderMixin';
+import TrainingStoreActionCreators from '../actions/TrainingStoreActionCreators';
+import WorkoutStore from '../stores/WorkoutStore';
+import _ from 'lodash';
+import TrainingForm from '../components/forms/TrainingForm';
+import StopTrainingDialog from '../components/StopTrainingDialog';
+import TrainingStore from '../stores/TrainingStore';
+import SettingsStore from '../stores/SettingsStore';
+import ExerciseStore from '../stores/ExerciseStore';
+import AppState from '../stores/AppState';
 
 let Training = React.createClass({
     header: {
@@ -139,4 +139,3 @@ let Training = React.createClass({
 });
 
 module.exports = Training;
-

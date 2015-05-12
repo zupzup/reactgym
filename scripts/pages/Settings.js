@@ -1,10 +1,10 @@
 'use strict';
 
-let React = require('react'),
-    SimpleHeaderMixin = require('../mixins/SimpleHeaderMixin'),
-    SettingsStore = require('../stores/SettingsStore'),
-    SettingsStoreActionCreators = require('../actions/SettingsStoreActionCreators'),
-    ValidatedInput = require('../components/forms/ValidatedInput');
+import React from 'react';
+import SimpleHeaderMixin from '../mixins/SimpleHeaderMixin';
+import SettingsStore from '../stores/SettingsStore';
+import SettingsStoreActionCreators from '../actions/SettingsStoreActionCreators';
+import ValidatedInput from '../components/forms/ValidatedInput';
 
 let Settings = React.createClass({
     header: {
@@ -50,4 +50,3 @@ let Settings = React.createClass({
 });
 
 module.exports = Settings;
-

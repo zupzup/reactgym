@@ -1,12 +1,13 @@
 'use strict';
 
-let AppDispatcher = require('../dispatcher/AppDispatcher'),
-    ActionTypes = require('../constants/ActionTypes'),
-    assign = require('object-assign'),
-    LocalStorageUtil = require('../utils/LocalStorageUtil.js'),
-    Immutable = require('immutable'),
-    StoreListenerMixin = require('../mixins/StoreListenerMixin.js'),
-    _workouts = Immutable.List();
+import AppDispatcher from '../dispatcher/AppDispatcher';
+import ActionTypes from '../constants/ActionTypes';
+import assign from 'object-assign';
+import LocalStorageUtil from '../utils/LocalStorageUtil.js';
+import Immutable from 'immutable';
+import StoreListenerMixin from '../mixins/StoreListenerMixin.js';
+
+let _workouts = Immutable.List();
 
 let WorkoutStore = assign({}, StoreListenerMixin, {
     getWorkouts() {

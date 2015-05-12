@@ -1,13 +1,13 @@
 'use strict';
 
-let React = require('react'),
-    List = require('../components/List'),
-    WorkoutStoreActionCreators = require('../actions/WorkoutStoreActionCreators'),
-    WorkoutForm = require('../components/forms/WorkoutForm'),
-    ExerciseStore = require('../stores/ExerciseStore.js'),
-    WorkoutStore = require('../stores/WorkoutStore'),
-    AppStateActionCreators = require('../actions/AppStateActionCreators'),
-    HeaderMixin = require('../mixins/HeaderMixin');
+import React from 'react';
+import List from '../components/List';
+import WorkoutStoreActionCreators from '../actions/WorkoutStoreActionCreators';
+import WorkoutForm from '../components/forms/WorkoutForm';
+import ExerciseStore from '../stores/ExerciseStore.js';
+import WorkoutStore from '../stores/WorkoutStore';
+import AppStateActionCreators from '../actions/AppStateActionCreators';
+import HeaderMixin from '../mixins/HeaderMixin';
 
 let Workouts = React.createClass({
     header: {
@@ -85,4 +85,3 @@ let Workouts = React.createClass({
 });
 
 module.exports = Workouts;
-

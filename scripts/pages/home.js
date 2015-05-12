@@ -1,10 +1,10 @@
 'use strict';
 
-let React = require('react'),
-    List = require('../components/List'),
-    TrainingStore = require('../stores/TrainingStore.js'),
-    SimpleHeaderMixin = require('../mixins/SimpleHeaderMixin'),
-    AppState = require('../stores/AppState');
+import React from 'react';
+import List from '../components/List';
+import TrainingStore from '../stores/TrainingStore.js';
+import SimpleHeaderMixin from '../mixins/SimpleHeaderMixin';
+import AppState from '../stores/AppState';
 
 let Home = React.createClass({
     contextTypes: {
@@ -76,4 +76,3 @@ let Home = React.createClass({
 });
 
 module.exports = Home;
-

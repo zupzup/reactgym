@@ -1,9 +1,9 @@
 'use strict';
 
-let React = require('react'),
-    TrainingStore = require('../stores/TrainingStore.js'),
-    _ = require('lodash'),
-    SimpleHeaderMixin = require('../mixins/SimpleHeaderMixin');
+import React from 'react';
+import TrainingStore from '../stores/TrainingStore.js';
+import _ from 'lodash';
+import SimpleHeaderMixin from '../mixins/SimpleHeaderMixin';
 
 let TrainingDetail = React.createClass({
     header: {
@@ -61,4 +61,3 @@ let TrainingDetail = React.createClass({
 });
 
 module.exports = TrainingDetail;
-

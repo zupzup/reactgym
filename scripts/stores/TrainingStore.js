@@ -1,13 +1,14 @@
 'use strict';
 
-let AppDispatcher = require('../dispatcher/AppDispatcher'),
-    ActionTypes = require('../constants/ActionTypes'),
-    Immutable = require('immutable'),
-    assign = require('object-assign'),
-    ExerciseStore = require('../stores/ExerciseStore'),
-    LocalStorageUtil = require('../utils/LocalStorageUtil.js'),
-    StoreListenerMixin = require('../mixins/StoreListenerMixin.js'),
-    _trainings = Immutable.List();
+import AppDispatcher from '../dispatcher/AppDispatcher';
+import ActionTypes from '../constants/ActionTypes';
+import Immutable from 'immutable';
+import assign from 'object-assign';
+import ExerciseStore from '../stores/ExerciseStore';
+import LocalStorageUtil from '../utils/LocalStorageUtil.js';
+import StoreListenerMixin from '../mixins/StoreListenerMixin.js';
+
+let _trainings = Immutable.List();
 
 let TrainingStore = assign({}, StoreListenerMixin, {
     getTrainings() {
@@ -76,4 +77,3 @@ TrainingStore.dispatchToken = AppDispatcher.register((payload) => {
 });
 
 module.exports = TrainingStore;
-

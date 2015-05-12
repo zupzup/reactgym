@@ -1,12 +1,13 @@
 'use strict';
 
-let AppDispatcher = require('../dispatcher/AppDispatcher'),
-    ActionTypes = require('../constants/ActionTypes'),
-    LocalStorageUtil = require('../utils/LocalStorageUtil.js'),
-    StoreListenerMixin = require('../mixins/StoreListenerMixin.js'),
-    assign = require('object-assign'),
-    Immutable = require('immutable'),
-    _nextTransition = 'slide',
+import AppDispatcher from '../dispatcher/AppDispatcher';
+import ActionTypes from '../constants/ActionTypes';
+import LocalStorageUtil from '../utils/LocalStorageUtil.js';
+import StoreListenerMixin from '../mixins/StoreListenerMixin.js';
+import assign from 'object-assign';
+import Immutable from 'immutable';
+
+let _nextTransition = 'slide',
     _modal = null,
     _menuOpen = false,
     _timerEnd = null,

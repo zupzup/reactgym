@@ -1,12 +1,13 @@
 'use strict';
 
-let AppDispatcher = require('../dispatcher/AppDispatcher'),
-    ActionTypes = require('../constants/ActionTypes'),
-    _ = require('lodash'),
-    assign = require('object-assign'),
-    LocalStorageUtil = require('../utils/LocalStorageUtil.js'),
-    StoreListenerMixin = require('../mixins/StoreListenerMixin.js'),
-    _restTimer = null;
+import AppDispatcher from '../dispatcher/AppDispatcher';
+import ActionTypes from '../constants/ActionTypes';
+import _ from 'lodash';
+import assign from 'object-assign';
+import LocalStorageUtil from '../utils/LocalStorageUtil.js';
+import StoreListenerMixin from '../mixins/StoreListenerMixin.js';
+
+let _restTimer = null;
 
 let SettingsStore = assign({}, StoreListenerMixin, {
     getRestTimer() {

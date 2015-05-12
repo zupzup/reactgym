@@ -1,11 +1,12 @@
 'use strict';
 
-let ActionTypes = require('../constants/ActionTypes'),
-    Immutable = require('immutable'),
-    AppDispatcher = require('../dispatcher/AppDispatcher'),
-    assign = require('object-assign'),
-    StoreListenerMixin = require('../mixins/StoreListenerMixin'),
-    _loading = false,
+import ActionTypes from '../constants/ActionTypes';
+import Immutable from 'immutable';
+import AppDispatcher from '../dispatcher/AppDispatcher';
+import assign from 'object-assign';
+import StoreListenerMixin from '../mixins/StoreListenerMixin';
+
+let _loading = false,
     _backups = Immutable.List();
 
 let BackupStore = assign({}, StoreListenerMixin, {
@@ -63,4 +64,3 @@ BackupStore.dispatchToken = AppDispatcher.register((payload) => {
 });
 
 module.exports = BackupStore;
-
