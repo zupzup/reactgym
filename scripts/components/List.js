@@ -1,8 +1,8 @@
 'use strict';
 
-let React = require('react/addons'),
-    _ = require('lodash'),
-    ListItem = require('../components/ListItem');
+import React from 'react/addons';
+import _ from 'lodash';
+import ListItem from '../components/ListItem';
 
 let List = React.createClass({
     mixins: [React.addons.PureRenderMixin],
@@ -52,4 +52,3 @@ let List = React.createClass({
 });
 
 module.exports = List;
-

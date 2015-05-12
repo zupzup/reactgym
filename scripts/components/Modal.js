@@ -1,6 +1,6 @@
 'use strict';
 
-let React = require('react/addons');
+import React from 'react/addons';
 
 let Modal = React.createClass({
     mixins: [React.addons.PureRenderMixin],
@@ -22,4 +22,3 @@ let Modal = React.createClass({
 });
 
 module.exports = Modal;
-

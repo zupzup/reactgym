@@ -1,9 +1,9 @@
 'use strict';
 
-let React = require('react'),
-    MenuButton = require('../components/MenuButton'),
-    MenuStore = require('../stores/MenuStore.js'),
-    AppStateActionCreators = require('../actions/AppStateActionCreators');
+import React from 'react';
+import MenuButton from '../components/MenuButton';
+import MenuStore from '../stores/MenuStore.js';
+import AppStateActionCreators from '../actions/AppStateActionCreators';
 
 let Menu = React.createClass({
     mixins: [React.addons.PureRenderMixin],
@@ -50,4 +50,3 @@ let Menu = React.createClass({
 });
 
 module.exports = Menu;
-

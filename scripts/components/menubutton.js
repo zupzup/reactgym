@@ -1,6 +1,6 @@
 'use strict';
 
-let React = require('react/addons');
+import React from 'react/addons';
 
 let MenuButton = React.createClass({
     mixins: [React.addons.PureRenderMixin],
@@ -15,4 +15,3 @@ let MenuButton = React.createClass({
 });
 
 module.exports = MenuButton;
-

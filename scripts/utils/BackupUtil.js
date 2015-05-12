@@ -1,6 +1,8 @@
 'use strict';
-let Immutable = require('immutable'),
-    folder = 'simplegym',
+
+import Immutable from 'immutable';
+
+let folder = 'simplegym',
     prefix = 'simplegym_';
 
 let BackupUtil = {

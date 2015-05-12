@@ -1,8 +1,8 @@
 'use strict';
 
-let React = require('react/addons'),
-    HeaderState = require('../stores/HeaderState'),
-    AppStateActionCreators = require('../actions/AppStateActionCreators');
+import React from 'react/addons';
+import HeaderState from '../stores/HeaderState';
+import AppStateActionCreators from '../actions/AppStateActionCreators';
 
 let Header = React.createClass({
     mixins: [React.addons.PureRenderMixin],
@@ -64,4 +64,3 @@ let Header = React.createClass({
 });
 
 module.exports = Header;
-

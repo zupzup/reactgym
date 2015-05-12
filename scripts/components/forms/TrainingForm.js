@@ -1,10 +1,10 @@
 'use strict';
 
-let React = require('react/addons'),
-    AppStateActionCreators = require('../../actions/AppStateActionCreators'),
-    ValidatedInput = require('./ValidatedInput'),
-    TrainingStore = require('../../stores/TrainingStore'),
-    ExerciseStore = require('../../stores/ExerciseStore');
+import React from 'react/addons';
+import AppStateActionCreators from '../../actions/AppStateActionCreators';
+import ValidatedInput from './ValidatedInput';
+import TrainingStore from '../../stores/TrainingStore';
+import ExerciseStore from '../../stores/ExerciseStore';
 
 let TrainingForm = React.createClass({
     mixins: [React.addons.PureRenderMixin],
@@ -53,4 +53,3 @@ let TrainingForm = React.createClass({
 });
 
 module.exports = TrainingForm;
-

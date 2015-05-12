@@ -1,7 +1,7 @@
 'use strict';
 
-let React = require('react/addons'),
-    ValidationUtil = require('../../utils/ValidationUtil');
+import React from 'react/addons';
+import ValidationUtil from '../../utils/ValidationUtil';
 
 let ValidatedInput = React.createClass({
     mixins: [React.addons.PureRenderMixin],
@@ -66,4 +66,3 @@ let ValidatedInput = React.createClass({
 });
 
 module.exports = ValidatedInput;
-

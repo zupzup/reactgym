@@ -1,6 +1,6 @@
 'use strict';
 
-let React = require('react');
+import React from 'react';
 
 let StopTrainingDialog = React.createClass({
     mixins: [React.addons.PureRenderMixin],
@@ -26,4 +26,3 @@ let StopTrainingDialog = React.createClass({
 });
 
 module.exports = StopTrainingDialog;
-

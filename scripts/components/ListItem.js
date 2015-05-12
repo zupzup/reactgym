@@ -1,6 +1,6 @@
 'use strict';
 
-let React = require('react/addons');
+import React from 'react/addons';
 
 let ListItem = React.createClass({
     mixins: [React.addons.PureRenderMixin],
@@ -27,4 +27,3 @@ let ListItem = React.createClass({
 });
 
 module.exports = ListItem;
-
