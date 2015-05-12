@@ -1,8 +1,8 @@
 'use strict';
 
-let AppDispatcher = require('../dispatcher/AppDispatcher'),
-    BackupUtil = require('../utils/BackupUtil'),
-    ActionTypes = require('../constants/ActionTypes');
+import AppDispatcher from '../dispatcher/AppDispatcher';
+import BackupUtil from '../utils/BackupUtil';
+import ActionTypes from '../constants/ActionTypes';
 
 /* istanbul ignore next */
 module.exports = {

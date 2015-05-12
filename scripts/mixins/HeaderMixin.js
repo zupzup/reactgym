@@ -1,6 +1,6 @@
 'use strict';
 
-let HeaderStateActionCreators = require('../actions/HeaderStateActionCreators.js');
+import HeaderStateActionCreators from '../actions/HeaderStateActionCreators.js';
 
 let HeaderMixin = {
     componentDidMount() {
