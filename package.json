@@ -39,7 +39,7 @@
     "unmockedModulePathPatterns": [
       "react"
     ],
-    "collectCoverage": true,
+    "collectCoverage": false,
     "testPathIgnorePatterns": [
       "/node_modules/"
     ]
