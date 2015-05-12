@@ -1,10 +1,9 @@
 'use strict';
 
-let React = require('react/addons'),
-    PureRenderMixin = require('react').addons.PureRenderMixin;
+let React = require('react/addons');
 
 let Modal = React.createClass({
-    mixins: [PureRenderMixin],
+    mixins: [React.addons.PureRenderMixin],
 
     componentDidUpdate() {
         let node = this.getDOMNode();

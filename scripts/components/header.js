@@ -2,11 +2,10 @@
 
 let React = require('react/addons'),
     HeaderState = require('../stores/HeaderState'),
-    AppStateActionCreators = require('../actions/AppStateActionCreators'),
-    PureRenderMixin = require('react').addons.PureRenderMixin;
+    AppStateActionCreators = require('../actions/AppStateActionCreators');
 
 let Header = React.createClass({
-    mixins: [PureRenderMixin],
+    mixins: [React.addons.PureRenderMixin],
 
     contextTypes: {
         router: React.PropTypes.func.isRequired

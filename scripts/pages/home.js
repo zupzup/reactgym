@@ -4,7 +4,6 @@ let React = require('react'),
     List = require('../components/List'),
     TrainingStore = require('../stores/TrainingStore.js'),
     SimpleHeaderMixin = require('../mixins/SimpleHeaderMixin'),
-    PureRenderMixin = require('react').addons.PureRenderMixin,
     AppState = require('../stores/AppState');
 
 let Home = React.createClass({
@@ -16,7 +15,7 @@ let Home = React.createClass({
         title: 'Home'
     },
 
-    mixins: [PureRenderMixin, SimpleHeaderMixin],
+    mixins: [React.addons.PureRenderMixin, SimpleHeaderMixin],
 
     getInitialState() {
         return {

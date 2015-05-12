@@ -7,8 +7,7 @@ let React = require('react'),
     ExerciseStore = require('../stores/ExerciseStore.js'),
     WorkoutStore = require('../stores/WorkoutStore'),
     AppStateActionCreators = require('../actions/AppStateActionCreators'),
-    HeaderMixin = require('../mixins/HeaderMixin'),
-    PureRenderMixin = require('react').addons.PureRenderMixin;
+    HeaderMixin = require('../mixins/HeaderMixin');
 
 let Workouts = React.createClass({
     header: {
@@ -23,7 +22,7 @@ let Workouts = React.createClass({
         }
     },
 
-    mixins: [HeaderMixin, PureRenderMixin],
+    mixins: [HeaderMixin, React.addons.PureRenderMixin],
 
     getInitialState() {
         return {

@@ -8,7 +8,6 @@ let React = require('react'),
     WorkoutStore = require('../stores/WorkoutStore'),
     _ = require('lodash'),
     TrainingForm = require('../components/forms/TrainingForm'),
-    PureRenderMixin = require('react').addons.PureRenderMixin,
     StopTrainingDialog = require('../components/StopTrainingDialog'),
     TrainingStore = require('../stores/TrainingStore'),
     SettingsStore = require('../stores/SettingsStore'),
@@ -20,7 +19,7 @@ let Training = React.createClass({
         title: 'Training'
     },
 
-    mixins: [SimpleHeaderMixin, PureRenderMixin],
+    mixins: [SimpleHeaderMixin, React.addons.PureRenderMixin],
 
     contextTypes: {
         router: React.PropTypes.func.isRequired

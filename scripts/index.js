@@ -1,20 +1,20 @@
 'use strict';
 
-let React = require('react'),
-    Router = require('react-router'),
-    MenuStoreActionCreators = require('./actions/MenuStoreActionCreators'),
-    HeaderState = require('./stores/HeaderState'),
-    AppStateActionCreators = require('./actions/AppStateActionCreators'),
-    ExerciseStoreActionCreators = require('./actions/ExerciseStoreActionCreators'),
-    WorkoutStoreActionCreators = require('./actions/WorkoutStoreActionCreators'),
-    Exercises = require('./pages/Exercises'),
-    Training = require('./pages/Training'),
-    Home = require('./pages/Home'),
-    TrainingDetail = require('./pages/TrainingDetail'),
-    BackupRestore = require('./pages/BackupRestore'),
-    Settings = require('./pages/Settings'),
-    Workouts = require('./pages/Workouts'),
-    App = require('./App');
+import React from 'react';
+import Router from 'react-router';
+import MenuStoreActionCreators from './actions/MenuStoreActionCreators';
+import HeaderState from './stores/HeaderState';
+import AppStateActionCreators from './actions/AppStateActionCreators';
+import ExerciseStoreActionCreators from './actions/ExerciseStoreActionCreators';
+import WorkoutStoreActionCreators from './actions/WorkoutStoreActionCreators';
+import Exercises from './pages/Exercises';
+import Training from './pages/Training';
+import Home from './pages/Home';
+import TrainingDetail from './pages/TrainingDetail';
+import BackupRestore from './pages/BackupRestore';
+import Settings from './pages/Settings';
+import Workouts from './pages/Workouts';
+import App from './App';
 
 let Route = Router.Route,
     DefaultRoute = Router.DefaultRoute;

@@ -4,11 +4,10 @@ let React = require('react/addons'),
     WorkoutStoreActionCreators = require('../../actions/WorkoutStoreActionCreators'),
     ExerciseStore = require('../../stores/ExerciseStore'),
     ValidatedInput = require('./ValidatedInput'),
-    AppStateActionCreators = require('../../actions/AppStateActionCreators'),
-    PureRenderMixin = require('react').addons.PureRenderMixin;
+    AppStateActionCreators = require('../../actions/AppStateActionCreators');
 
 let WorkoutForm = React.createClass({
-    mixins: [PureRenderMixin],
+    mixins: [React.addons.PureRenderMixin],
 
     getInitialState() {
         return {

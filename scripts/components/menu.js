@@ -3,11 +3,10 @@
 let React = require('react'),
     MenuButton = require('../components/MenuButton'),
     MenuStore = require('../stores/MenuStore.js'),
-    AppStateActionCreators = require('../actions/AppStateActionCreators'),
-    PureRenderMixin = require('react').addons.PureRenderMixin;
+    AppStateActionCreators = require('../actions/AppStateActionCreators');
 
 let Menu = React.createClass({
-    mixins: [PureRenderMixin],
+    mixins: [React.addons.PureRenderMixin],
 
     contextTypes: {
         router: React.PropTypes.func.isRequired

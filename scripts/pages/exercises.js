@@ -7,7 +7,6 @@ let React = require('react'),
     AppStateActionCreators = require('../actions/AppStateActionCreators'),
     AddExercise = require('../components/forms/AddExercise'),
     HeaderMixin = require('../mixins/HeaderMixin'),
-    PureRenderMixin = require('react').addons.PureRenderMixin,
     ExerciseStore = require('../stores/ExerciseStore');
 
 let Exercises = React.createClass({
@@ -23,7 +22,7 @@ let Exercises = React.createClass({
         }
     },
 
-    mixins: [HeaderMixin, PureRenderMixin],
+    mixins: [HeaderMixin, React.addons.PureRenderMixin],
 
     getInitialState() {
         return {

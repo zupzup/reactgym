@@ -3,15 +3,14 @@
 let React = require('react'),
     TrainingStore = require('../stores/TrainingStore.js'),
     _ = require('lodash'),
-    SimpleHeaderMixin = require('../mixins/SimpleHeaderMixin'),
-    PureRenderMixin = require('react').addons.PureRenderMixin;
+    SimpleHeaderMixin = require('../mixins/SimpleHeaderMixin');
 
 let TrainingDetail = React.createClass({
     header: {
         title: 'Detail'
     },
 
-    mixins: [PureRenderMixin, SimpleHeaderMixin],
+    mixins: [React.addons.PureRenderMixin, SimpleHeaderMixin],
 
     contextTypes: {
         router: React.PropTypes.func.isRequired

@@ -1,10 +1,9 @@
 'use strict';
 
-let React = require('react/addons'),
-    PureRenderMixin = require('react').addons.PureRenderMixin;
+let React = require('react/addons');
 
 let MenuButton = React.createClass({
-    mixins: [PureRenderMixin],
+    mixins: [React.addons.PureRenderMixin],
     render() {
         let icon = this.props.icon ? <i className={this.props.icon}></i> : null;
         return (

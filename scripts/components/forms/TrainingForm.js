@@ -3,12 +3,11 @@
 let React = require('react/addons'),
     AppStateActionCreators = require('../../actions/AppStateActionCreators'),
     ValidatedInput = require('./ValidatedInput'),
-    PureRenderMixin = require('react').addons.PureRenderMixin,
     TrainingStore = require('../../stores/TrainingStore'),
     ExerciseStore = require('../../stores/ExerciseStore');
 
 let TrainingForm = React.createClass({
-    mixins: [PureRenderMixin],
+    mixins: [React.addons.PureRenderMixin],
     getInitialState() {
         return {};
     },

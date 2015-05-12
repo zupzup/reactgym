@@ -1,21 +1,20 @@
 'use strict';
 
-var React = require('react'),
-    List = require('../components/List'),
-    SimpleHeaderMixin = require('../mixins/SimpleHeaderMixin'),
-    PureRenderMixin = require('react').addons.PureRenderMixin,
-    BackupStoreActionCreators = require('../actions/BackupStoreActionCreators'),
-    BackupStore = require('../stores/BackupStore'),
-    ExerciseStore = require('../stores/ExerciseStore'),
-    WorkoutStore = require('../stores/WorkoutStore'),
-    TrainingStore = require('../stores/TrainingStore'),
-    AppStateActionCreators = require('../actions/AppStateActionCreators');
+import React from 'react';
+import List from '../components/List';
+import SimpleHeaderMixin from '../mixins/SimpleHeaderMixin';
+import BackupStoreActionCreators from '../actions/BackupStoreActionCreators';
+import BackupStore from '../stores/BackupStore';
+import ExerciseStore from '../stores/ExerciseStore';
+import WorkoutStore from '../stores/WorkoutStore';
+import TrainingStore from '../stores/TrainingStore';
+import AppStateActionCreators from '../actions/AppStateActionCreators';
 
 var BackupRestore = React.createClass({
     header: {
         title: 'Backup / Restore'
     },
-    mixins: [SimpleHeaderMixin, PureRenderMixin],
+    mixins: [SimpleHeaderMixin, React.addons.PureRenderMixin],
 
     getInitialState() {
         return {
@@ -91,4 +90,3 @@ var BackupRestore = React.createClass({
 });
 
 module.exports = BackupRestore;
-

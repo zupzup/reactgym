@@ -4,14 +4,13 @@ let React = require('react'),
     SimpleHeaderMixin = require('../mixins/SimpleHeaderMixin'),
     SettingsStore = require('../stores/SettingsStore'),
     SettingsStoreActionCreators = require('../actions/SettingsStoreActionCreators'),
-    ValidatedInput = require('../components/forms/ValidatedInput'),
-    PureRenderMixin = require('react').addons.PureRenderMixin;
+    ValidatedInput = require('../components/forms/ValidatedInput');
 
 let Settings = React.createClass({
     header: {
         title: 'Settings'
     },
-    mixins: [SimpleHeaderMixin, PureRenderMixin],
+    mixins: [SimpleHeaderMixin, React.addons.PureRenderMixin],
 
     getInitialState() {
         return {

@@ -2,11 +2,10 @@
 
 let React = require('react/addons'),
     _ = require('lodash'),
-    ListItem = require('../components/ListItem'),
-    PureRenderMixin = require('react').addons.PureRenderMixin;
+    ListItem = require('../components/ListItem');
 
 let List = React.createClass({
-    mixins: [PureRenderMixin],
+    mixins: [React.addons.PureRenderMixin],
 
     getInitialState() {
         return {
