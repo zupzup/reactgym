@@ -5,11 +5,12 @@ jest.mock('../../scripts/stores/TrainingStore.js');
 jest.mock('react-router');
 
 var React = require('react/addons'),
-    TestUtils = React.addons.TestUtils,
     Immutable = require('immutable'),
     TrainingStore = require('../../scripts/stores/TrainingStore.js'),
     TrainingDetail = require('../../scripts/pages/TrainingDetail.js'),
     StubRouterContext = require('../../StubRouterContext.js');
+
+let TestUtils = React.addons.TestUtils;
 
 describe("TrainingDetail", () => {
     var detail,

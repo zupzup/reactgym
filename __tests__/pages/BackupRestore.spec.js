@@ -9,7 +9,6 @@ jest.mock('../../scripts/actions/BackupStoreActionCreators.js');
 jest.mock('../../scripts/actions/AppStateActionCreators.js');
 
 let React = require('react/addons'),
-    TestUtils = React.addons.TestUtils,
     Immutable = require('immutable'),
     BackupStoreActionCreators = require('../../scripts/actions/BackupStoreActionCreators.js'),
     AppStateActionCreators = require('../../scripts/actions/AppStateActionCreators.js'),
@@ -18,6 +17,8 @@ let React = require('react/addons'),
     ExerciseStore = require('../../scripts/stores/ExerciseStore.js'),
     TrainingStore = require('../../scripts/stores/TrainingStore.js'),
     BackupRestore = require('../../scripts/pages/BackupRestore.js');
+
+let TestUtils = React.addons.TestUtils;
 
 window.requestFileSystem = true;
 describe("BackupRestore", () => {

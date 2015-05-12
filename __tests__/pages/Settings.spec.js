@@ -5,10 +5,11 @@ jest.mock('../../scripts/stores/SettingsStore.js');
 jest.mock('../../scripts/actions/SettingsStoreActionCreators.js');
 
 var React = require('react/addons'),
-    TestUtils = React.addons.TestUtils,
     SettingsStoreActionCreators = require('../../scripts/actions/SettingsStoreActionCreators.js'),
     SettingsStore = require('../../scripts/stores/SettingsStore.js'),
     Settings = require('../../scripts/pages/Settings.js');
+
+let TestUtils = React.addons.TestUtils;
 
 describe("Settings", () => {
     var settings;

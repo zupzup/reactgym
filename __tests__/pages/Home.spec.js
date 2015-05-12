@@ -7,12 +7,13 @@ jest.mock('../../scripts/actions/HeaderStateActionCreators.js');
 jest.mock('react-router');
 
 var React = require('react/addons'),
-    TestUtils = React.addons.TestUtils,
     Immutable = require('immutable'),
     AppState = require('../../scripts/stores/AppState.js'),
     TrainingStore = require('../../scripts/stores/TrainingStore.js'),
     Home = require('../../scripts/pages/Home.js'),
     StubRouterContext = require('../../StubRouterContext.js');
+
+let TestUtils = React.addons.TestUtils;
 
 describe("Home", () => {
     var home,

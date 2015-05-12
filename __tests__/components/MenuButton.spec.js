@@ -2,8 +2,9 @@
 
 jest.dontMock('../../scripts/components/MenuButton.js');
 let React = require('react/addons'),
-    TestUtils = React.addons.TestUtils,
     MenuButton = require('../../scripts/components/MenuButton.js');
+
+let TestUtils = React.addons.TestUtils;
 
 describe("MenuButton", () => {
     it("renders a menubutton", () => {

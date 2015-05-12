@@ -6,10 +6,11 @@ jest.mock('../../scripts/actions/HeaderStateActionCreators.js');
 jest.mock('react-router');
 
 let React = require('react/addons'),
-    TestUtils = React.addons.TestUtils,
     Header = require('../../scripts/components/Header.js'),
     HeaderState = require('../../scripts/stores/HeaderState'),
     StubRouterContext = require('../../StubRouterContext.js');
+
+let TestUtils = React.addons.TestUtils;
 
 describe("Header", () => {
     let header,

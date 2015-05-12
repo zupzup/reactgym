@@ -5,11 +5,12 @@ jest.mock('react-router');
 jest.mock('../../scripts/stores/MenuStore.js');
 jest.mock('../../scripts/actions/AppStateActionCreators.js');
 let React = require('react/addons'),
-    TestUtils = React.addons.TestUtils,
     AppStateActionCreators = require('../../scripts/actions/AppStateActionCreators'),
     MenuStore = require('../../scripts/stores/MenuStore.js'),
     Menu = require('../../scripts/components/Menu.js'),
     StubRouterContext = require('../../StubRouterContext.js');
+
+let TestUtils = React.addons.TestUtils;
 
 describe("Menu", () => {
     let ContextComponent = StubRouterContext(Menu, {className: 'hello'}),

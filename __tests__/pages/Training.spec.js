@@ -13,7 +13,6 @@ jest.mock('../../scripts/utils/LocalStorageUtil.js');
 jest.mock('../../scripts/components/forms/TrainingForm.js');
 
 var React = require('react/addons'),
-    TestUtils = React.addons.TestUtils,
     TrainingStoreActionCreators = require('../../scripts/actions/TrainingStoreActionCreators.js'),
     Immutable = require('immutable'),
     AppStateActionCreators = require('../../scripts/actions/AppStateActionCreators.js'),
@@ -23,6 +22,8 @@ var React = require('react/addons'),
     AppState = require('../../scripts/stores/AppState.js'),
     StubRouterContext = require('../../StubRouterContext.js'),
     Training = require('../../scripts/pages/Training.js');
+
+let TestUtils = React.addons.TestUtils;
 
 describe("Training", () => {
     var training;

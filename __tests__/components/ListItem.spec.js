@@ -2,8 +2,9 @@
 
 jest.dontMock('../../scripts/components/ListItem.js');
 var React = require('react/addons'),
-    TestUtils = React.addons.TestUtils,
     ListItem = require('../../scripts/components/ListItem.js');
+
+let TestUtils = React.addons.TestUtils;
 
 describe("ListItem", () => {
     let handlers;

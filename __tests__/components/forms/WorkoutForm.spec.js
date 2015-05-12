@@ -5,12 +5,13 @@ jest.mock('../../../scripts/actions/AppStateActionCreators.js');
 jest.mock('../../../scripts/actions/WorkoutStoreActionCreators.js');
 jest.mock('../../../scripts/stores/ExerciseStore.js');
 let React = require('react/addons'),
-    TestUtils = React.addons.TestUtils,
     Immutable = require('immutable'),
     AppStateActionCreators = require('../../../scripts/actions/AppStateActionCreators'),
     WorkoutStoreActionCreators = require('../../../scripts/actions/WorkoutStoreActionCreators.js'),
     ExerciseStore = require('../../../scripts/stores/ExerciseStore.js'),
     WorkoutForm = require('../../../scripts/components/forms/WorkoutForm.js');
+
+let TestUtils = React.addons.TestUtils;
 
 describe("WorkoutForm", () => {
     beforeEach(() => {

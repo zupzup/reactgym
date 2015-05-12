@@ -6,12 +6,13 @@ jest.mock('../../../scripts/actions/WorkoutStoreActionCreators.js');
 jest.mock('../../../scripts/stores/ExerciseStore.js');
 jest.mock('../../../scripts/stores/TrainingStore.js');
 let React = require('react/addons'),
-    TestUtils = React.addons.TestUtils,
     AppStateActionCreators = require('../../../scripts/actions/AppStateActionCreators'),
     ExerciseStore = require('../../../scripts/stores/ExerciseStore.js'),
     TrainingStore = require('../../../scripts/stores/TrainingStore.js'),
     Immutable = require('immutable'),
     TrainingForm = require('../../../scripts/components/forms/TrainingForm.js');
+
+let TestUtils = React.addons.TestUtils;
 
 describe("TrainingForm", () => {
     var setData = Immutable.fromJS([{weight: 5, reps: 5}]),

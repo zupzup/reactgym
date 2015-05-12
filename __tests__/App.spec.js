@@ -8,12 +8,13 @@ jest.mock('../scripts/components/Header.js');
 jest.mock('../scripts/components/Menu.js');
 
 var React = require('react/addons'),
-    TestUtils = React.addons.TestUtils,
     AppStateActionCreators = require('../scripts/actions/AppStateActionCreators'),
     AppState = require('../scripts/stores/AppState.js'),
     App = require('../scripts/App.js'),
     Router = require('react-router'),
     StubRouterContext = require('../StubRouterContext.js');
+
+let TestUtils = React.addons.TestUtils;
 
 Router.RouteHandler = React.createClass({
     render() {

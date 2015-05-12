@@ -3,11 +3,13 @@
 jest.dontMock('../../../scripts/components/forms/AddExercise.js');
 jest.mock('../../../scripts/actions/AppStateActionCreators.js');
 jest.mock('../../../scripts/actions/ExerciseStoreActionCreators');
+
 let React = require('react/addons'),
-    TestUtils = React.addons.TestUtils,
     AppStateActionCreators = require('../../../scripts/actions/AppStateActionCreators'),
     ExerciseStoreActionCreators = require('../../../scripts/actions/ExerciseStoreActionCreators'),
     AddExercise = require('../../../scripts/components/forms/AddExercise.js');
+
+let TestUtils = React.addons.TestUtils;
 
 describe("AddExercise", () => {
     afterEach(() => {

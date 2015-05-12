@@ -2,8 +2,9 @@
 
 jest.dontMock('../../../scripts/components/forms/ValidatedInput.js');
 let React = require('react/addons'),
-    TestUtils = React.addons.TestUtils,
     ValidatedInput = require('../../../scripts/components/forms/ValidatedInput.js');
+
+let TestUtils = React.addons.TestUtils;
 
 describe("ValidatedInput", () => {
     it("renders a ValidatedInput", () => {

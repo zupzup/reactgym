@@ -2,8 +2,9 @@
 
 jest.dontMock('../../scripts/components/StopTrainingDialog.js');
 var React = require('react/addons'),
-    TestUtils = React.addons.TestUtils,
     StopTrainingDialog = require('../../scripts/components/StopTrainingDialog.js');
+
+let TestUtils = React.addons.TestUtils;
 
 describe("StopTrainingDialog", () => {
     it("renders a stop Training dialog", () => {
