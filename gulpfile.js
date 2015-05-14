@@ -1,7 +1,7 @@
 var gulp = require('gulp'),
     webpack = require("webpack"),
-    sass = require('gulp-ruby-sass'),
     gutil = require("gulp-util"),
+    sass = require('gulp-sass'),
     shell = require("gulp-shell"),
     del = require("del"),
     replace = require('gulp-replace'),
@@ -10,6 +10,10 @@ var gulp = require('gulp'),
     WebpackDevServer = require('webpack-dev-server'),
     config = require('./webpack.config'),
     phonegap = require('phonegap'),
+    gulpif = require("gulp-if"),
+    sourcemaps = require('gulp-sourcemaps'),
+    minifyCSS = require('gulp-minify-css'),
+    dev = process.env.NODE_ENV !== 'production',
     webkackProd = require('./webpack.config.production.js'),
     webpackConfig = require("./webpack.config.js");
 
@@ -42,10 +46,16 @@ gulp.task('test', function(callback) {
 
 gulp.task('sass', function () {
     gulp.src('./styles/scss/*.scss')
-        .pipe(sass({"sourcemap=none": true, style: 'compact'}))
-        .pipe(autoprefixer("Android >= 4.4", "iOS >= 6"))
+    .pipe(gulpif(dev, sourcemaps.init()))
+        .pipe(sass())
+    .pipe(autoprefixer({
+        browsers: ['last 2 versions'],
+        cascade: false
+    }))
+    .pipe(minifyCSS())
+    .pipe(gulpif(dev, sourcemaps.write()))
         .on('error', function (err) {
-            console.log(err.message);
+            gutil.log(err.message);
         })
         .pipe(gulp.dest('styles'));
 });
