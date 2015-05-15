@@ -54,6 +54,7 @@
         "no-caller": 2,
         "no-empty": 1,
         "no-new": 2,
+        "no-shadow": 0,
         "no-plusplus": 0,
         "no-unused-vars": 1,
         "no-trailing-spaces": 2,

@@ -26,14 +26,14 @@ let TrainingDetail = React.createClass({
             let exercises = training.getIn(['workout', 'exercises']);
             training = training.toJS();
             let sets = _.map(training.sets, (set, exercise) => {
-                let sets = set.map((item, idx) => {
+                let innerSets = set.map((item, idx) => {
                     return (<div className='set' key={idx}><span className='count'>#{idx + 1}</span>
                     <span className='repsweight'>Reps: {item.reps} / Weight: {item.weight}</span></div>);
                 });
                 return (
                     <div className='exercise' key={exercise}>
                         <div><strong>{exercises.find(e => e.get('id') == exercise).get('label')}</strong></div>
-                        <div>{sets}</div>
+                        <div>{innerSets}</div>
                     </div>);
             });
             return (

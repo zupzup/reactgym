@@ -57,8 +57,8 @@ let Training = React.createClass({
         }, {});
         let training = {
             workout: workout,
-            id: TrainingStore.getTrainings().reduce((acc, item) => {
-                return item.get('id');
+            id: TrainingStore.getTrainings().reduce((acc, it) => {
+                return it.get('id');
             }, 0) + 1,
             sets: sets,
             dateStart: new Date(),

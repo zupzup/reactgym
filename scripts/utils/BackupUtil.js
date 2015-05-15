@@ -18,8 +18,8 @@ let BackupUtil = {
                     if (backupFile && backupFile.length > 0) {
                         let fileEntry = backupFile[0];
                         fileEntry.file((file) => {
-                            let reader = new FileReader();
-                            reader.onloadend = (e) => {
+                            let freader = new FileReader();
+                            freader.onloadend = (e) => {
                                 let data = e.target.result;
                                 if (data) {
                                     cb(null, JSON.parse(data));
@@ -27,7 +27,7 @@ let BackupUtil = {
                                     self.err('Error Parsing File')();
                                 }
                             };
-                            reader.readAsText(file);
+                            freader.readAsText(file);
                         }, self.err('Error reading the File'));
                     } else {
                         self.err('There is no such file')();

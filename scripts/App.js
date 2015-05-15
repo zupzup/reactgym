@@ -5,7 +5,7 @@ import Header from "./components/Header";
 import Menu from "./components/Menu";
 import Modal from "./components/Modal";
 import Router from "react-router";
-import AppState from "./stores/AppState"
+import AppState from "./stores/AppState";
 import AppStateActionCreators from "./actions/AppStateActionCreators";
 
 let ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
