@@ -7,7 +7,7 @@
     "lodash": "^3.10.0",
     "object-assign": "^3.0.0",
     "react-router": "^0.13.3",
-    "react": "^0.13.2",
+    "react": "^15.6.2",
     "react-tools": "^0.13.2"
   },
   "devDependencies": {
